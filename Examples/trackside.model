@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="ASCII"?>
+<integration_:DDIPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture_="http://www.deis-project.eu/ode/architecture" xmlns:argumentation_="http://omg.sacm/2.0/argumentation" xmlns:artifact_="http://omg.sacm/2.0/artifact" xmlns:dependability_="http://www.deis-project.eu/ode/dependability" xmlns:failureLogic_="http://www.deis-project.eu/ode/failureLogic" xmlns:integration_="http://www.deis-project.eu/ode/integration" name="Trackside" description="Trackside DDI Top Container Package">
+  <odeProductPackages xsi:type="failureLogic_:FailureLogicPackage" name="ETCS Trackside">
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="4002" name="ETCS Trackside" subModels="//@odeProductPackages.0/@failureModels.1 //@odeProductPackages.0/@failureModels.2 //@odeProductPackages.0/@failureModels.3">
+      <failures Id="1446" name="Trackside functions" description="Failure of Trackside functions" originType="Output" failureClass="Value"/>
+      <failures Id="5629" name="ErrLoopOut" description="Erroneous Euroloop telegram/telegrams interpretable as correct" originType="Output" failureClass="Value"/>
+      <failures Id="3362" name="OmLoopOut" description="Omission of Euroloop uplink signal" originType="Output" failureClass="O"/>
+      <failures Id="8285" name="ErrBalOut" description="Erroneous Eurobalise telegram/telegrams interpretable as correct" originType="Output" failureClass="Value"/>
+      <failures Id="3752" name="OmBalOut" description="Omission of Eurobalise uplink signal" originType="Output" failureClass="O"/>
+      <failures Id="2848" name="OmActIn" description="Omission of activation signal" failureClass="O"/>
+      <failures Id="4518" name="OmTelIn" description="Omission of tele-powering signal" failureClass="O"/>
+      <causes xsi:type="failureLogic_:Gate" Id="8228" name="Trackside functions" description="Failure of Trackside functions" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.0/@failures.0" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.0/@causes.7"/>
+      <causes xsi:type="failureLogic_:Gate" Id="9419" name="ErrLoopOut" description="Erroneous Euroloop telegram/telegrams interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.0/@failures.1" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.1/@causes.1"/>
+      <causes xsi:type="failureLogic_:Gate" Id="1970" name="OmLoopOut" description="Omission of Euroloop uplink signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.0/@failures.2" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.1/@causes.2"/>
+      <causes xsi:type="failureLogic_:Gate" Id="2617" name="ErrBalOut" description="Erroneous Eurobalise telegram/telegrams interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.0/@failures.3" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.2/@causes.3"/>
+      <causes xsi:type="failureLogic_:Gate" Id="1427" name="OmBalOut" description="Omission of Eurobalise uplink signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.0/@failures.4" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.2/@causes.0"/>
+      <causes xsi:type="failureLogic_:Gate" Id="4408" name="OmActIn" description="Omission of activation signal" failure="//@odeProductPackages.0/@failureModels.0/@failures.5" gateType="InputEvent"/>
+      <causes xsi:type="failureLogic_:Gate" Id="3915" name="OmTelIn" description="Omission of tele-powering signal" failure="//@odeProductPackages.0/@failureModels.0/@failures.6" gateType="InputEvent"/>
+      <causes xsi:type="failureLogic_:Gate" Id="9348" name="or1" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.0/@causes.1 //@odeProductPackages.0/@failureModels.0/@causes.3"/>
+    </failureModels>
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="5715" name="Euroloop" subModels="//@odeProductPackages.0/@failureModels.4 //@odeProductPackages.0/@failureModels.5">
+      <failures Id="5847" name="OmActIn" description="Omission of activation signal" failureClass="O"/>
+      <failures Id="6665" name="ErrTelOut" description="Erroneous telegram/telegrams interpretable as correct" originType="Output" failureClass="Value"/>
+      <failures Id="6541" name="OmUpOut" description="Omission of uplink signal" originType="Output" failureClass="O"/>
+      <failures Id="8666" name="ErrLEUIn" description="Erroneous LEU data interpretable as correct" failureClass="Value"/>
+      <causes xsi:type="failureLogic_:Gate" Id="7435" name="OmActIn" description="Omission of activation signal" failure="//@odeProductPackages.0/@failureModels.1/@failures.0" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.0/@causes.5"/>
+      <causes xsi:type="failureLogic_:Gate" Id="4112" name="ErrTelOut" description="Erroneous telegram/telegrams interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.1/@failures.1" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.1"/>
+      <causes xsi:type="failureLogic_:Gate" Id="5283" name="OmUpOut" description="Omission of uplink signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.1/@failures.2" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.0"/>
+      <causes xsi:type="failureLogic_:Gate" Id="2570" name="ErrLEUIn" description="Erroneous LEU data interpretable as correct" failure="//@odeProductPackages.0/@failureModels.1/@failures.3" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.3/@causes.0"/>
+    </failureModels>
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="6461" name="Eurobalise">
+      <failures Id="3218" name="OmUpOut" description="Omission of uplink data signal" originType="Output" failureClass="O"/>
+      <failures Id="8125" name="ErrLEUIn" description="Erroneous LEU data interpretable as correct" failureClass="Value"/>
+      <failures Id="3841" name="OmTelIn" description="Omission of tele-powering signal" failureClass="O"/>
+      <failures Id="8407" name="ErrTelOut" description="Erroneous telegram interpretable as correct" originType="Output" failureClass="Value"/>
+      <failures Id="4687" name="ValUpOut" description="Uplink signal too strong" originType="Output" failureClass="Value"/>
+      <failures Id="8017" name="OmUpInt" description="HW failure leading to omission of uplink signal" originType="Internal" failureClass="O">
+        <failureProbDistribution Id="2414" type="Fit">
+          <parameters Id="7046" name="Value" value="1.0"/>
+        </failureProbDistribution>
+      </failures>
+      <failures Id="4206" name="ValUpInt" description="HW failure leading to uplink signal being too strong" originType="Internal" failureClass="Val">
+        <failureProbDistribution Id="5695" type="Fit">
+          <parameters Id="3358" name="Value" value="1.0"/>
+        </failureProbDistribution>
+      </failures>
+      <failures Id="7148" name="ErrTelInt" description="HW failure leading to erroneous telegram interpretable as correct" originType="Internal" failureClass="Val">
+        <failureProbDistribution Id="8706" type="Fit">
+          <parameters Id="6573" name="Value" value="0.006"/>
+        </failureProbDistribution>
+      </failures>
+      <causes xsi:type="failureLogic_:Gate" Id="2663" name="OmUpOut" description="Omission of uplink data signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.2/@failures.0" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.2/@causes.5"/>
+      <causes xsi:type="failureLogic_:Gate" Id="6008" name="ErrLEUIn" description="Erroneous LEU data interpretable as correct" failure="//@odeProductPackages.0/@failureModels.2/@failures.1" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.3/@causes.1"/>
+      <causes xsi:type="failureLogic_:Gate" Id="4182" name="OmTelIn" description="Omission of tele-powering signal" failure="//@odeProductPackages.0/@failureModels.2/@failures.2" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.0/@causes.6"/>
+      <causes xsi:type="failureLogic_:Gate" Id="5515" name="ErrTelOut" description="Erroneous telegram interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.2/@failures.3" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.2/@causes.6"/>
+      <causes xsi:type="failureLogic_:Gate" Id="9737" name="ValUpOut" description="Uplink signal too strong" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.2/@failures.4" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.2/@causes.8"/>
+      <causes xsi:type="failureLogic_:Gate" Id="6202" name="or1" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.2/@causes.7 //@odeProductPackages.0/@failureModels.2/@causes.2"/>
+      <causes xsi:type="failureLogic_:Gate" Id="5530" name="or2" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.2/@causes.9 //@odeProductPackages.0/@failureModels.2/@causes.1"/>
+      <causes Id="7551" name="OmUpInt" description="HW failure leading to omission of uplink signal" causeType="BasicEvent"/>
+      <causes Id="3450" name="ValUpInt" description="HW failure leading to uplink signal being too strong" causeType="BasicEvent"/>
+      <causes Id="8819" name="ErrTelInt" description="HW failure leading to erroneous telegram interpretable as correct" causeType="BasicEvent"/>
+    </failureModels>
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="6833" name="LEU">
+      <failures Id="2984" name="ErrLoopOut" description="Erroneous loop data" originType="Output" failureClass="Value"/>
+      <failures Id="691" name="ErrBalOut" description="Erroneous balise data" originType="Output" failureClass="Value"/>
+      <causes xsi:type="failureLogic_:Gate" Id="6678" name="ErrLoopOut" description="Erroneous loop data" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.3/@failures.0" gateType="OutputEvent"/>
+      <causes xsi:type="failureLogic_:Gate" Id="5533" name="ErrBalOut" description="Erroneous balise data" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.3/@failures.1" gateType="OutputEvent"/>
+    </failureModels>
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="9351" name="ELC">
+      <failures Id="2945" name="OmUpOut" description="Omission of uplink signal" originType="Output" failureClass="O"/>
+      <failures Id="9940" name="ErrTelOut" description="Erroneous telegram/telegrams interpretable as correct" originType="Output" failureClass="Val"/>
+      <failures Id="226" name="OmActOut" description="Omission of activation signal" originType="Output" failureClass="O"/>
+      <failures Id="6326" name="OmActIn" description="Omission of activation signal" failureClass="O"/>
+      <failures Id="829" name="ErrUpIn" description="Erroneous uplink signal interpretable as correct" failureClass="Val"/>
+      <failures Id="5041" name="OmUpIn" description="Omission of uplink signal" failureClass="O"/>
+      <failures Id="4752" name="ELCFail" description="ELC broken" originType="Internal" failureClass="">
+        <failureProbDistribution Id="1375" type="Fit">
+          <parameters Id="6938" name="Value" value="4.0"/>
+        </failureProbDistribution>
+      </failures>
+      <causes xsi:type="failureLogic_:Gate" Id="537" name="OmUpOut" description="Omission of uplink signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.4/@failures.0" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.7"/>
+      <causes xsi:type="failureLogic_:Gate" Id="2297" name="ErrTelOut" description="Erroneous telegram/telegrams interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.4/@failures.1" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.4"/>
+      <causes xsi:type="failureLogic_:Gate" Id="7857" name="OmActOut" description="Omission of activation signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.4/@failures.2" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.6"/>
+      <causes xsi:type="failureLogic_:Gate" Id="2602" name="OmActIn" description="Omission of activation signal" failure="//@odeProductPackages.0/@failureModels.4/@failures.3" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.1/@causes.0"/>
+      <causes xsi:type="failureLogic_:Gate" Id="6090" name="ErrUpIn" description="Erroneous uplink signal interpretable as correct" failure="//@odeProductPackages.0/@failureModels.4/@failures.4" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.5/@causes.1"/>
+      <causes xsi:type="failureLogic_:Gate" Id="5575" name="OmUpIn" description="Omission of uplink signal" failure="//@odeProductPackages.0/@failureModels.4/@failures.5" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.5/@causes.2"/>
+      <causes xsi:type="failureLogic_:Gate" Id="2285" name="Or1" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.4/@causes.8 //@odeProductPackages.0/@failureModels.4/@causes.3"/>
+      <causes xsi:type="failureLogic_:Gate" Id="885" name="Or2" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.4/@causes.8 //@odeProductPackages.0/@failureModels.4/@causes.5"/>
+      <causes Id="7935" name="ELCFail" description="ELC broken" causeType="BasicEvent"/>
+    </failureModels>
+    <failureModels xsi:type="failureLogic_:FaultTree" Id="1382" name="Loop Modem">
+      <failures Id="8214" name="OmActIn" description="Omission of activation signal" failureClass="O"/>
+      <failures Id="7384" name="ErrUpOut" description="Erroneous uplink signal interpretable as correct" originType="Output" failureClass="Val"/>
+      <failures Id="4266" name="OmUpOut" description="Omission of uplink signal" originType="Output" failureClass="O"/>
+      <failures Id="2871" name="ErrLEUIn" description="Erronoeous LEU data interpretable as correct" failureClass="Val"/>
+      <failures Id="5596" name="OmUpFail" description="HW failure leading to omission of uplink signal" originType="Internal" failureClass="O">
+        <failureProbDistribution Id="8287" type="Fit">
+          <parameters Id="8801" name="Value" value="1.0"/>
+        </failureProbDistribution>
+      </failures>
+      <failures Id="6936" name="ErrUpFail" description="HW failure leading to erroneous uplink signal interpretable as correct" originType="Internal" failureClass="Val">
+        <failureProbDistribution Id="2799" type="Fit">
+          <parameters Id="6110" name="Value" value="0.004"/>
+        </failureProbDistribution>
+      </failures>
+      <causes xsi:type="failureLogic_:Gate" Id="6554" name="OmActIn" description="Omission of activation signal" failure="//@odeProductPackages.0/@failureModels.5/@failures.0" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.4/@causes.2"/>
+      <causes xsi:type="failureLogic_:Gate" Id="3972" name="ErrUpOut" description="Erroneous uplink signal interpretable as correct" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.5/@failures.1" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.5/@causes.5"/>
+      <causes xsi:type="failureLogic_:Gate" Id="144" name="OmUpOut" description="Omission of uplink signal" causeType="OutputEvent" failure="//@odeProductPackages.0/@failureModels.5/@failures.2" gateType="OutputEvent" causes="//@odeProductPackages.0/@failureModels.5/@causes.4"/>
+      <causes xsi:type="failureLogic_:Gate" Id="8920" name="ErrLEUIn" description="Erronoeous LEU data interpretable as correct" failure="//@odeProductPackages.0/@failureModels.5/@failures.3" gateType="InputEvent" causes="//@odeProductPackages.0/@failureModels.1/@causes.3"/>
+      <causes xsi:type="failureLogic_:Gate" Id="3855" name="Or1" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.5/@causes.0 //@odeProductPackages.0/@failureModels.5/@causes.6"/>
+      <causes xsi:type="failureLogic_:Gate" Id="7670" name="Or2" causeType="Gate" causes="//@odeProductPackages.0/@failureModels.5/@causes.3 //@odeProductPackages.0/@failureModels.5/@causes.6"/>
+      <causes Id="5955" name="OmUpFail" description="HW failure leading to omission of uplink signal" causeType="BasicEvent"/>
+      <causes Id="1595" name="ErrUpFail" description="HW failure leading to erroneous uplink signal interpretable as correct" causeType="BasicEvent"/>
+    </failureModels>
+  </odeProductPackages>
+  <odeProductPackages xsi:type="dependability_:DependabilityPackage" name="Trackside"/>
+  <odeProductPackages xsi:type="architecture_:DesignPackage" name="Trackside" description="Trackside unit of the ETCS">
+    <systems Id="4861" name="Trackside" description="" subSystems="//@odeProductPackages.2/@systems.1 //@odeProductPackages.2/@systems.2 //@odeProductPackages.2/@systems.3" failureModels="//@odeProductPackages.0/@failureModels.0">
+      <systemBoundaries name="Trackside Default Boundary" ports="//@odeProductPackages.2/@systems.0/@ports.0 //@odeProductPackages.2/@systems.0/@ports.1"/>
+      <signals Id="8357" name="" description="" fromPort="//@odeProductPackages.2/@systems.3/@ports.0" toPort="//@odeProductPackages.2/@systems.1/@ports.0"/>
+      <signals Id="6850" name="" description="" fromPort="//@odeProductPackages.2/@systems.3/@ports.1" toPort="//@odeProductPackages.2/@systems.2/@ports.0"/>
+      <signals Id="9488" name="" description="" fromPort="//@odeProductPackages.2/@systems.1/@ports.1" toPort="//@odeProductPackages.2/@systems.0/@ports.0"/>
+      <signals Id="5523" name="" description="" fromPort="//@odeProductPackages.2/@systems.0/@ports.0" toPort="//@odeProductPackages.2/@systems.1/@ports.2"/>
+      <signals Id="1068" name="" description="" fromPort="//@odeProductPackages.2/@systems.0/@ports.1" toPort="//@odeProductPackages.2/@systems.2/@ports.1"/>
+      <signals Id="4379" name="" description="" fromPort="//@odeProductPackages.2/@systems.2/@ports.2" toPort="//@odeProductPackages.2/@systems.0/@ports.1"/>
+      <ports Id="2598" name="Balise Antenna Signal" description="" direction="INOUT" interfaceFailures="//@odeProductPackages.0/@failureModels.0/@failures.3 //@odeProductPackages.0/@failureModels.0/@failures.4 //@odeProductPackages.0/@failureModels.0/@failures.6"/>
+      <ports Id="5764" name="Euroloop Antenna Signal" description="" direction="INOUT" interfaceFailures="//@odeProductPackages.0/@failureModels.0/@failures.1 //@odeProductPackages.0/@failureModels.0/@failures.2 //@odeProductPackages.0/@failureModels.0/@failures.5"/>
+    </systems>
+    <systems Id="3510" name="Balise" description="Eurobalise" failureModels="//@odeProductPackages.0/@failureModels.2">
+      <systemBoundaries name="Balise Default Boundary" ports="//@odeProductPackages.2/@systems.1/@ports.0 //@odeProductPackages.2/@systems.1/@ports.1 //@odeProductPackages.2/@systems.1/@ports.2"/>
+      <ports Id="2700" name="LEU data" description="" direction="INOUT" interfaceFailures="//@odeProductPackages.0/@failureModels.2/@failures.1"/>
+      <ports Id="1397" name="Uplink signal" description="" direction="INOUT" interfaceFailures="//@odeProductPackages.0/@failureModels.2/@failures.0 //@odeProductPackages.0/@failureModels.2/@failures.4 //@odeProductPackages.0/@failureModels.2/@failures.3"/>
+      <ports Id="2277" name="Tele-powering signal" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.2/@failures.2"/>
+    </systems>
+    <systems Id="9381" name="Loop" description="Euroloop" subSystems="//@odeProductPackages.2/@systems.4 //@odeProductPackages.2/@systems.5" failureModels="//@odeProductPackages.0/@failureModels.1">
+      <systemBoundaries name="Loop Default Boundary" ports="//@odeProductPackages.2/@systems.2/@ports.0 //@odeProductPackages.2/@systems.2/@ports.1 //@odeProductPackages.2/@systems.2/@ports.2"/>
+      <signals Id="7207" name="" description="" fromPort="//@odeProductPackages.2/@systems.2/@ports.0" toPort="//@odeProductPackages.2/@systems.4/@ports.0"/>
+      <signals Id="7336" name="" description="" fromPort="//@odeProductPackages.2/@systems.5/@ports.0" toPort="//@odeProductPackages.2/@systems.4/@ports.1"/>
+      <signals Id="5407" name="" description="" fromPort="//@odeProductPackages.2/@systems.4/@ports.2" toPort="//@odeProductPackages.2/@systems.5/@ports.1"/>
+      <signals Id="1461" name="" description="" fromPort="//@odeProductPackages.2/@systems.2/@ports.1" toPort="//@odeProductPackages.2/@systems.5/@ports.2"/>
+      <signals Id="3816" name="" description="" fromPort="//@odeProductPackages.2/@systems.5/@ports.3" toPort="//@odeProductPackages.2/@systems.2/@ports.2"/>
+      <ports Id="288" name="LEU data" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.1/@failures.3"/>
+      <ports Id="2128" name="Activation signal" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.1/@failures.0"/>
+      <ports Id="2899" name="Uplink signal" description="" direction="OUT" interfaceFailures="//@odeProductPackages.0/@failureModels.1/@failures.2 //@odeProductPackages.0/@failureModels.1/@failures.1"/>
+    </systems>
+    <systems Id="9832" name="LEU" description="LEU" failureModels="//@odeProductPackages.0/@failureModels.3">
+      <systemBoundaries name="LEU Default Boundary" ports="//@odeProductPackages.2/@systems.3/@ports.0 //@odeProductPackages.2/@systems.3/@ports.1"/>
+      <ports Id="9846" name="Balise data" description="" direction="INOUT"/>
+      <ports Id="1754" name="Loop data" description="" direction="OUT"/>
+    </systems>
+    <systems Id="7740" name="LOOMO" description="Loop Modem" failureModels="//@odeProductPackages.0/@failureModels.5">
+      <systemBoundaries name="LOOMO Default Boundary" ports="//@odeProductPackages.2/@systems.4/@ports.0 //@odeProductPackages.2/@systems.4/@ports.1 //@odeProductPackages.2/@systems.4/@ports.2"/>
+      <ports Id="8732" name="LEU data" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.1/@failures.3"/>
+      <ports Id="7434" name="Activation signal" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.5/@failures.0"/>
+      <ports Id="8346" name="UplinkSignal" description="" direction="OUT" interfaceFailures="//@odeProductPackages.0/@failureModels.5/@failures.2 //@odeProductPackages.0/@failureModels.5/@failures.1"/>
+    </systems>
+    <systems Id="6010" name="ELC" description="Euroloop Leaky Cable" failureModels="//@odeProductPackages.0/@failureModels.4">
+      <systemBoundaries name="ELC Default Boundary" ports="//@odeProductPackages.2/@systems.5/@ports.0 //@odeProductPackages.2/@systems.5/@ports.1 //@odeProductPackages.2/@systems.5/@ports.2 //@odeProductPackages.2/@systems.5/@ports.3"/>
+      <ports Id="4648" name="LOOMO activation" description="" direction="OUT" interfaceFailures="//@odeProductPackages.0/@failureModels.4/@failures.2"/>
+      <ports Id="7745" name="Uplink signal from LOOMO" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.4/@failures.5"/>
+      <ports name="Activation signal" description="" interfaceFailures="//@odeProductPackages.0/@failureModels.1/@failures.0"/>
+      <ports Id="925" name="Uplink signal" description="" direction="OUT" interfaceFailures="//@odeProductPackages.0/@failureModels.4/@failures.0 //@odeProductPackages.0/@failureModels.4/@failures.1"/>
+    </systems>
+  </odeProductPackages>
+  <assuranceCasePackages>
+    <name lang="en" content="Trackside_ACP"/>
+    <description>
+      <content>
+        <value lang="en" content="Trackside Assurance Case Package"/>
+      </content>
+    </description>
+    <artifactPackage>
+      <artifactElement xsi:type="artifact_:Artifact" gid="9307" version="1.1" date="2018-11-29T00:00:00.000+0000">
+        <name lang="en" content="Hazard and failure analysis result"/>
+        <description>
+          <content>
+            <value lang="en" content=""/>
+          </content>
+        </description>
+      </artifactElement>
+      <artifactElement xsi:type="artifact_:Activity" gid="9314" startTime="2018-04-29T00:00:00.000+0100" endTime="2018-10-28T00:00:00.000+0100">
+        <name lang="en" content="Hazard or failure analysis"/>
+        <description>
+          <content>
+            <value lang="en" content=""/>
+          </content>
+        </description>
+      </artifactElement>
+      <artifactElement xsi:type="artifact_:Event" gid="3273" occurence="2018-11-29T00:00:00.000+0000">
+        <name lang="en" content="Release of hazards and failures"/>
+        <description>
+          <content>
+            <value lang="en" content=""/>
+          </content>
+        </description>
+      </artifactElement>
+      <artifactElement xsi:type="artifact_:Participant" gid="6125">
+        <name lang="en" content="Safety manager, designer/implementer"/>
+      </artifactElement>
+      <artifactElement xsi:type="artifact_:Technique" gid="8878">
+        <name lang="en" content="FMEA"/>
+        <description>
+          <content>
+            <value lang="en" content="Techniques that are HR in the tables of E.1-E.10 of the standard EN 50129"/>
+          </content>
+        </description>
+      </artifactElement>
+      <artifactElement xsi:type="artifact_:Resource" gid="4409">
+        <name lang="en" content="System description with system boundary description, design/architecture documents"/>
+      </artifactElement>
+    </artifactPackage>
+    <argumentPackage>
+      <name lang="en" content="Trackside_ArgP"/>
+      <description>
+        <content>
+          <value lang="en" content="Trackside Argument Package"/>
+        </content>
+      </description>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="6205">
+        <name lang="en" content="G4"/>
+        <description>
+          <content>
+            <value lang="en" content="Trackside functions are acceptably safe"/>
+          </content>
+        </description>
+        <taggedValue gid="3776">
+          <key>
+            <value lang="Activity" content="QuantitativeFTA"/>
+          </key>
+        </taggedValue>
+        <taggedValue gid="5949">
+          <key>
+            <value lang="TargetFailureRate" content="0.01"/>
+          </key>
+        </taggedValue>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="6718">
+        <name lang="en" content="G13"/>
+        <description>
+          <content>
+            <value lang="en" content="Processes according to Safety Integrity Level (SIL) 4 have been applied"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="7128">
+        <name lang="en" content="G3"/>
+        <description>
+          <content>
+            <value lang="en" content="Hazard Rate of trackside functions (&quot;trusted&quot; parts) &lt;=0,67e-09/h has been demonstrated"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedInference" gid="3158" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.1 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.2" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.0"/>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="5790">
+        <name lang="en" content="G23"/>
+        <description>
+          <content>
+            <value lang="en" content="The information transmission functions of the trackside equipment has been developed according to SIL 4 processes"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArgumentReasoning">
+        <name lang="en" content="S7"/>
+        <description>
+          <content>
+            <value lang="en" content="Argument over compliance with SIL 4 processes for relevant functions"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedInference" gid="9814" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.4" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.1" reasoning="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.5"/>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="2726">
+        <name lang="en" content="G15"/>
+        <description>
+          <content>
+            <value lang="en" content="The interfaces have been well defined between the safety-relate system and non safety-related system and have been analyzed"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="3467">
+        <name lang="en" content="G16"/>
+        <description>
+          <content>
+            <value lang="en" content="The roles of designer, verifier/validator, and assessor are independent."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="9033">
+        <name lang="en" content="G17"/>
+        <description>
+          <content>
+            <value lang="en" content="The safety-related systems and non safety-related systems are separated."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="6036">
+        <name lang="en" content="G18"/>
+        <description>
+          <content>
+            <value lang="en" content="The isolation distances are designed at least conform to the EN 50124-1"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="5432">
+        <name lang="en" content="G19"/>
+        <description>
+          <content>
+            <value lang="en" content="The FMECA is used for failure and hazard analysis"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="7859">
+        <name lang="en" content="G20"/>
+        <description>
+          <content>
+            <value lang="en" content="The system has been designed hierarchically and the traceability between requirements and design artifacts is ensured."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="7536">
+        <name lang="en" content="G21"/>
+        <description>
+          <content>
+            <value lang="en" content="The systems has been tested functionally according to its specification, the conformity to the specification has been proved."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="6349">
+        <name lang="en" content="G22"/>
+        <description>
+          <content>
+            <value lang="en" content="The operators and maintenance personnels are trained at the beginning and retrained regularly."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedInference" gid="2090" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.7 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.8 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.9 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.10 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.11 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.12 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.13 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.14" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.4"/>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="5931">
+        <name lang="en" content="C15"/>
+        <description>
+          <content>
+            <value lang="en" content="E.2.1 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="980">
+        <name lang="en" content="C16"/>
+        <description>
+          <content>
+            <value lang="en" content="E.3.2 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="6928">
+        <name lang="en" content="C17"/>
+        <description>
+          <content>
+            <value lang="en" content="E.4.1 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="9610">
+        <name lang="en" content="C18"/>
+        <description>
+          <content>
+            <value lang="en" content="E.5.5 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="860">
+        <name lang="en" content="C19"/>
+        <description>
+          <content>
+            <value lang="en" content="E.6.4 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="1379">
+        <name lang="en" content="C20"/>
+        <description>
+          <content>
+            <value lang="en" content="E.7.1 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="6083">
+        <name lang="en" content="C21"/>
+        <description>
+          <content>
+            <value lang="en" content="E.9.3 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="7032">
+        <name lang="en" content="C22"/>
+        <description>
+          <content>
+            <value lang="en" content="E.10 of EN 50129"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="3025" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.16" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.7"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="8743" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.17" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.8"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="8253" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.18" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.9"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="1795" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.19" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.10"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="8347" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.20" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.11"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="9855" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.21" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.12"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="3986" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.22" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.13"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="3234" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.23" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.14"/>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="9257">
+        <name lang="en" content="G1916"/>
+        <description>
+          <content>
+            <value lang="en" content="FMECA is performed and its results have been documented"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="4478">
+        <name lang="en" content="G1917"/>
+        <description>
+          <content>
+            <value lang="en" content="Independent reviews of FMECA have been performed by two person"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedInference" gid="6235" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.32 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.33" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.11"/>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="164">
+        <name lang="en" content="Sn8"/>
+        <description>
+          <content>
+            <value lang="en" content="Specification of interfaces"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="8633">
+        <name lang="en" content="Sn9"/>
+        <description>
+          <content>
+            <value lang="en" content="Organisation plan"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="7399">
+        <name lang="en" content="Sn10"/>
+        <description>
+          <content>
+            <value lang="en" content="Architecture description of safety-related functions according to System Requirements Specification subset 26-2"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="3636">
+        <name lang="en" content="Sn11"/>
+        <description>
+          <content>
+            <value lang="en" content="Architecture description of non safety-related functions according to System Requirements Specification subset 26-2"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="9261">
+        <name lang="en" content="Sn12"/>
+        <description>
+          <content>
+            <value lang="en" content="Physical independence description in the detailed safety-related component documentation"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="2061" referencedArtifactElement="//@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.0 //@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.1 //@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.2 //@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.3 //@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.4 //@assuranceCasePackages.0/@artifactPackage.0/@artifactElement.5">
+        <name lang="en" content="Sn13"/>
+        <description>
+          <content>
+            <value lang="en" content="Documentation of FMECA"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="3721">
+        <name lang="en" content="Sn14"/>
+        <description>
+          <content>
+            <value lang="en" content="Documentation of structured design and realisation of safety requirements (in Doors). And documentation of the traceability between the safety requirement and design and implementation artifacts."/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="506">
+        <name lang="en" content="Sn15"/>
+        <description>
+          <content>
+            <value lang="en" content="Test specification, test report"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="7731">
+        <name lang="en" content="Sn16"/>
+        <description>
+          <content>
+            <value lang="en" content="Training plan"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="8531">
+        <name lang="en" content="Sn17"/>
+        <description>
+          <content>
+            <value lang="en" content="Report of the review of the FMECA by independent reviewers John Doe and Jane Doe"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="8231" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.35" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.7"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="5355" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.35" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.7"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="1283" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.37 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.38" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.9"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="4799" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.40 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.44" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.11"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="4765" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.39" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.10"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="8317" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.41" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.12"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="7851" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.42" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.13"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="9504" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.43" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.14"/>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="8052">
+        <name lang="en" content="G11"/>
+        <description>
+          <content>
+            <value lang="en" content="Hazard Rate of hazardous events &quot;Erroneous balise telegram interpretable as correct&quot; &lt;= 1e-11/h"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:Claim" gid="8470">
+        <name lang="en" content="G12"/>
+        <description>
+          <content>
+            <value lang="en" content="Hazard Rate of hazardous events &quot;Erroneous loop telegram interpretable as correct&quot; &lt;= 1e-11/h"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArgumentReasoning">
+        <name lang="en" content="S6"/>
+        <description>
+          <content>
+            <value lang="en" content="Argument over all relevant hazardous events"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedInference" gid="178" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.53 //@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.54" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.2" reasoning="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.55"/>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="3848">
+        <name lang="en" content="Sn5"/>
+        <description>
+          <content>
+            <value lang="en" content="Quantitative fault tree analysis of the Top Events &quot;Erroneous balise telegram interpretable as correct&quot;"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="4809">
+        <name lang="en" content="Sn7"/>
+        <description>
+          <content>
+            <value lang="en" content="Quantitative fault tree analysis of the Top Events &quot;Erroneous loop telegram interpretable as correct&quot;"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="7873" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.57" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.53"/>
+      <argumentationElement xsi:type="argumentation_:AssertedEvidence" gid="5607" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.58" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.54"/>
+      <argumentationElement xsi:type="argumentation_:ArtifactReference" gid="9662">
+        <name lang="en" content="C3"/>
+        <description>
+          <content>
+            <value lang="en" content="UNISIG ERTM/ETCS specification Subset-091, issue: 3.4.0"/>
+          </content>
+        </description>
+      </argumentationElement>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="7832" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.61" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.2"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="9904" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.61" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.53"/>
+      <argumentationElement xsi:type="argumentation_:AssertedContext" gid="3403" source="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.61" target="//@assuranceCasePackages.0/@argumentPackage.0/@argumentationElement.54"/>
+    </argumentPackage>
+  </assuranceCasePackages>
+</integration_:DDIPackage>
