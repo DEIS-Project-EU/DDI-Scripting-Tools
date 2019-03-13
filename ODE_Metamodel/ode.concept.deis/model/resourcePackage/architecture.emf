@@ -1,0 +1,110 @@
+@namespace(uri="http://www.deis-project.eu/ode/architecture", prefix="architecture")
+
+package architecture;
+
+import "platform:/resource/ode.concept.deis/model/resourcePackage/odeBase.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/failureLogic.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/dependability.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/integration.ecore";
+
+class DesignPackage extends integration.ODEProductPackage {
+	val System[*] systems;
+	val Function[*] functions;
+}
+
+class System extends odeBase.BaseElement {
+	attr double overallLifetime;
+	attr odeBase.TimeUnit overallLifetimeTimeUnit = "Hour";
+    val SystemBoundary[1..*] systemBoundaries;
+    val Context[*] contexts;
+    val Configuration[*] configurations;
+    val Signal[*] signals;
+    val Port[*] ports;
+    ref System[*] subSystems;
+    ref Function[*] realisedFunctions;
+    ref dependability.Asset[0..1] asAsset;
+    ref dependability.DependabilityRequirement[*] dependabilityRequirements;
+    ref dependability.AssuranceLevel[0..1] assuranceLevel;
+    ref dependability.Standard[*] appliedStandards;
+	ref failureLogic.FailureModel[*] failureModels;
+  }
+
+  class Function extends odeBase.BaseElement {
+    val Signal[*] signals;
+    val Port[*] ports;
+    val PerfChars[0..1] perfChars; 
+    ref Function[*] subFunctions;
+    ref dependability.Asset[0..1] asAsset;
+    ref dependability.DependabilityRequirement[*] dependabilityRequirements;
+    ref dependability.AssuranceLevel[0..1] assuranceLevel;
+	ref failureLogic.FailureModel[*] failureModels;
+    ref dependability.Malfunction[*] malfunctions;
+  }
+  
+  class SafetyFunction extends Function {
+    attr String object;
+    attr String behavior;
+    attr String safeState;
+  }
+  
+  class Port extends odeBase.BaseElement {
+    attr String flowType;
+    attr PortDirection direction;
+    ref failureLogic.Failure[*] interfaceFailures;
+    ref Port[*] refinedPorts;
+    ref dependability.AssuranceLevel[0..1] assuranceLevel;
+    ref dependability.DependabilityRequirement[*] dependabilityRequirements;
+  }
+
+  class PerfChars extends odeBase.BaseElement {
+    attr double responseTime;
+  }
+
+  class SystemBoundary extends odeBase.BaseElement {
+    ref Port[*] ports;
+  }
+
+  class Context extends odeBase.BaseElement {
+    attr String usageHistory;
+    attr double missionTime;
+    attr odeBase.TimeUnit missionTimeTimeUnit = "Hour";
+  }
+
+  class PhysicalComponent extends System {
+    attr String dimensions;
+    attr int pricePerUnit;
+    attr double mass;
+    attr int protectionCategory;
+    attr double usefulLifetime;
+    attr odeBase.TimeUnit usefulLifetimeTimeUnit;
+    val LifecycleCondition[*] lifecycleConditions;
+    ref LogicalComponent[*] logicalComponents;
+    ref dependability.MaintenanceProcedure[0..1] maintenanceProcedure;
+  }
+
+  class LogicalComponent extends System {
+  }
+
+  class LifecycleCondition extends odeBase.BaseElement {
+    attr String value;
+    val LifecycleCondition[*] conditions;
+  }
+
+  enum PortDirection {
+    IN = 0;
+    OUT = 1;
+    INOUT = 2;
+  }
+
+  class Signal extends odeBase.BaseElement {
+    ref Port[1] fromPort;
+    ref Port[1] toPort;
+  }
+
+  class SafetyRelatedSystem extends System {
+    attr String safeState;
+  }
+
+  class Configuration extends odeBase.BaseElement {
+    ref System[*] subSystems;
+  }

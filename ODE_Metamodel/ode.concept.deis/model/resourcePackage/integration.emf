@@ -1,0 +1,14 @@
+@namespace(uri="http://www.deis-project.eu/ode/integration", prefix="integration")
+package integration;
+
+import "platform:/resource/ode.concept.deis/model/resourcePackage/odeBase.ecore";
+import "platform:/resource/ode.concept.deis/model/sacm/assurancecase.ecore";
+
+class DDIPackage extends odeBase.BaseElement {
+	val ODEProductPackage[*] odeProductPackages;
+	val assuranceCase.AssuranceCasePackage[*] assuranceCasePackages;
+}
+
+abstract class ODEProductPackage extends odeBase.BaseElement {
+	
+}

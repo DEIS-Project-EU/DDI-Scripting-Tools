@@ -1,0 +1,77 @@
+@namespace(uri="http://omg.sacm/2.0/argumentation", prefix="argumentation_")
+package argumentation;
+
+import "platform:/resource/ode.concept.deis/model/sacm/base.ecore";
+
+enum AssertionDeclaration {
+  asserted = 1;
+  needsSupport = 2;
+  assumed = 3;
+  axiomatic = 4;
+  defeated = 5;
+  asCited = 6;
+}
+
+abstract class ArgumentationElement extends base.ArtifactElement {
+  attr boolean[1] uninstantiated = false;
+}
+
+class ArgumentGroup extends ArgumentationElement {
+  ref ArgumentationElement[*] argumentationElement;
+}
+
+class ArgumentPackage extends ArgumentationElement {
+  val ArgumentationElement[*] argumentationElement;
+}
+
+class ArgumentPackageInterface extends ArgumentPackage {
+  ref ArgumentPackage[1] implements;
+}
+
+class ArgumentPackageBinding extends ArgumentPackage {
+  ref ArgumentPackage[2..*] participantPackage;
+}
+
+abstract class ArgumentAsset extends ArgumentationElement {
+  val base.MultiLangString content;
+}
+
+abstract class Assertion extends ArgumentAsset {
+  attr AssertionDeclaration[1] assertionDeclaration = "asserted";
+  ref Claim[*] metaClaim;
+}
+
+class ArgumentReasoning extends ArgumentAsset {
+  ref ArgumentPackage structure;
+}
+
+class Claim extends Assertion {
+}
+
+abstract class AssertedRelationship extends Assertion {
+  attr boolean[1] isCounter = false;
+  ref ArgumentAsset[+] source;
+  ref ArgumentAsset[+] target;
+  ref ArgumentReasoning reasoning;
+  attr int requies = 0;
+}
+
+class ArtifactReference extends ArgumentAsset {
+  ref base.ArtifactElement[*] referencedArtifactElement;
+}
+
+class AssertedArtifactSupport extends AssertedRelationship {
+}
+
+class AssertedInference extends AssertedRelationship {
+}
+
+class AssertedEvidence extends AssertedRelationship {
+}
+
+class AssertedContext extends AssertedRelationship {
+}
+
+class AssertedArtifactContext extends AssertedRelationship {
+}
+

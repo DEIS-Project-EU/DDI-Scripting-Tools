@@ -1,0 +1,29 @@
+@namespace(uri="http://www.deis-project.eu/ode/base", prefix="odeBase")
+package odeBase;
+  abstract class BaseElement {
+    val KeyValueMap[*] keyValueMaps;
+    attr long Id;
+    attr String name;
+    attr String description;
+  }
+  
+  enum TimeUnit {
+  	Millisecond = 0;
+    Second = 1;
+    Minute = 2;
+    Hour = 3;
+    Day = 4;
+    Week = 5;
+    Month = 6;
+    Year = 7;
+  }
+  
+  class KeyValueMap {
+    attr String key;
+    val Value[*] values;
+  }
+
+  class Value {
+    attr String tag;
+    attr String value;
+  }

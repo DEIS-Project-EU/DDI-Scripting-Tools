@@ -1,0 +1,240 @@
+// Design //
+
+struct TDDIAbstractDependabilityRequirementRef {
+	1: TDDIAbstractDependabilityRequirement& ref
+}
+
+struct TDDIAbstractSystemRef {
+	1: TDDIAbstractSystem& ref
+}
+
+struct TDDIAbstractFunctionRef {
+	1: TDDIAbstractFunction& ref
+}
+
+struct TDDIPortRef {
+	1: TDDIPort& ref
+}
+
+struct TDDIAbstractStandardRef {
+	1: TDDIAbstractStandard& ref
+}
+
+struct TDDIMalfunctionRef {
+	1: TDDIMalfunction& ref
+}
+
+struct TDDILogicalComponentRef {
+	1: TDDILogicalComponent& ref
+}
+
+// Design //
+
+
+// Base //
+
+// No -Refs needed
+
+// Base //
+
+
+// Dependability //
+
+// No -Refs needed
+
+// Dependability //
+
+
+// Domain //
+
+struct TDDIAssuranceLevelRef {
+	1: TDDIAssuranceLevel& ref
+}
+
+// Domain //
+
+
+// FailureLogic //
+
+struct TDDIAbstractFailureRef {
+	1: TDDIAbstractFailure& ref
+}
+
+struct TDDIAbstractFailureModelRef {
+	1: TDDIAbstractFailureModel& ref
+}
+
+struct TDDISecurityViolationRef {
+	1: TDDISecurityViolation& ref
+}
+
+// End-FailureLogic //
+
+
+// FMEA //
+
+// No -Refs needed
+
+// End-FMEA //
+
+
+// FTA //
+
+struct TDDIAbstractCauseRef {
+	1: TDDIAbstractCause& ref
+}
+
+// End-FTA
+
+
+// HARA
+
+struct TDDIAbstractMeasureRef {
+	1: TDDIAbstractMeasure& ref
+}
+
+struct TDDIAbstractRiskParameterRef {
+	1: TDDIAbstractRiskParameter& ref
+}
+
+struct TDDIHazardTypeRef {
+	1: TDDIHazardType& ref
+}
+
+struct TDDIHazardRef {
+	1: TDDIHazard& ref
+}
+
+// End-HARA
+
+
+// Markov //
+
+struct TDDIStateRef {
+	1: TDDIState& ref
+}
+
+// End-Markov //
+
+
+// Requirement //
+
+struct TDDIMaintenanceProcedureRef {
+	1: TDDIMaintenanceProcedure& ref
+}
+
+// End-Requirement //
+
+
+// TARA //
+
+struct TDDIVulnerabilityRef {
+	1: TDDIVulnerability& ref
+}
+
+struct TDDIVulnerableItemRef {
+	1: TDDIVulnerableItem& ref
+}
+
+struct TDDISecurityControlRef {
+	1: TDDISecurityControl& ref
+}
+
+struct TDDIAttackerGoalRef {
+	1: TDDIAttackerGoal& ref
+}
+
+struct TDDIActionRef {
+	1: TDDIAction& ref
+}
+
+struct TDDIPayloadRef {
+	1: TDDIPayload& ref
+}
+
+struct TDDISecurityCapabilityRef{
+	1: TDDISecurityCapability& ref
+}
+
+// End-TARA //
+
+
+// SACM_Argumentation //
+
+struct TDDIImplementationConstraintRef {
+	1: TDDIImplementationConstraint& ref
+}
+
+struct TDDINoteRef {
+	1: TDDINote& ref
+}
+
+struct TDDITaggedValueRef {
+	1: TDDITaggedValue& ref
+}
+
+struct TDDIAbstractArtifactElementRef {
+	1: TDDIAbstractArtifactElement& ref
+}
+
+struct TDDIClaimRef {
+	1: TDDIClaim& ref
+}
+
+struct TDDIAbstractArgumentPackageRef {
+	1: TDDIAbstractArgumentPackage& ref
+}
+
+struct TDDIAbstractArgumentationElementRef{
+	1: TDDIAbstractArgumentationElement& ref
+}
+
+struct TDDIAbstractArgumentAssetRef{
+	1: TDDIAbstractArgumentAsset& ref
+}
+
+// End-SACM_Argumentation //
+
+// SACM_Artifact //
+
+struct TDDIPropertyRef {
+	1: TDDIProperty& ref
+}
+
+struct TDDIAbstractArtifactAssetRef {
+	1: TDDIAbstractArtifactAsset& ref
+}
+
+// End-SACM_Artifact //
+
+// SACM_AssuranceCase //
+
+struct TDDIAbstractAssuranceCasePackageRef {
+	1: TDDIAbstractAssuranceCasePackage& ref
+}
+
+struct TDDIAssuranceCasePackageInterfaceRef {
+	1: TDDIAssuranceCasePackageInterface& ref
+}
+
+struct TDDIAbstractArtifactPackageRef {
+	1: TDDIAbstractArtifactPackage& ref
+}
+
+struct TDDIAbstractTerminologyPackageRef {
+	1: TDDIAbstractTerminologyPackage& ref
+}
+
+// End-SACM_AssuranceCase //
+
+// SACM_Terminology //
+
+struct TDDIAbstractExpressionElementRef {
+	1: TDDIAbstractExpressionElement& ref
+}
+
+struct TDDICategoryRef{
+	1: TDDICategory& ref
+}
+
+// End-SACM_Terminology //

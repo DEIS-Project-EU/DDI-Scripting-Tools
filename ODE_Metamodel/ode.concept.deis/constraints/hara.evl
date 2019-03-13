@@ -1,0 +1,50 @@
+context hara!Malfunction {
+	constraint HasCorrespondingFunction {
+		check: Function.all().malfunctions.flatten().includes(self)
+		message: "Malfunction " + self.name + " must be referenced by a Function" 	
+	}
+}
+
+context hara!RiskAssessment {
+	constraint HasCorrespondingHazard {
+		check: self.hazard <> null
+		message: "RiskAssessment " + self.name + " must associate to a Hazard"
+	}
+	
+	constraint HasOneAccident {
+		check: self.riskParameters.select(r|r.isTypeOf(Accident)).size <= 1
+		message: "RiskAssessment " + self.name + " must associate to at most one Accident"
+	}
+	
+	constraint HasOneSituation {
+		check: self.riskParameters.select(r|r.isTypeOf(Situation)).size <= 1
+		message: "RiskAssessment " + self.name + " must associate to at most one Situation"
+	}
+	
+	constraint HasOneOperatorMeasure {
+		check: self.riskParameters.select(r|r.isTypeOf(OperatorMeasure)).size <= 1
+		message: "RiskAssessment " + self.name + " must associate to at most one OperatorMeasure"
+	}
+}
+
+context hara!FTAPropagation {
+	constraint sourceTypes {
+		check: self.source.isTypeOf(Gate) or self.source.isTypeOf(BasicEvent) or self.source.isTypeOf(OutputFailure) or self.source.isTypeOf(InputEvent)
+		message: "Source type for " + self.name + " is invalid"
+	}
+	
+	constraint targetType {
+		check: self.source.isTypeOf(Gate) or self.source.isTypeOf(OutputEvent) or self.source.isTypeOf(InputFailure)
+		message: "Source type for " + self.name + " is invalid"
+	}
+}
+
+context hara!FTAPackage {
+	constraint ContainedFailreAnalysisArtifacts {
+		check: self.failureAnalyaisArtifacts.forAll(f|f.isTypeOf(InterfaceFailure) or f.isTypeOf(minimalCutset))
+	}
+	
+	constraint FTAArtifacts {
+		check: self.ftaArtifacts.forAll(f|f.isTypeOf(FTAArtifact) or f.isTypeOf(FTAPackage))
+	}
+}

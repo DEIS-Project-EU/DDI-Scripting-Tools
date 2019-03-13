@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" monitorInterval="30">
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{ABSOLUTE} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </Console>
+      <!--<RandomAccessFile name="RandomAccessFileAppenderError" fileName="logs/BackendWarn.log" immediateFlush="false" append="true">
+          <PatternLayout>
+              <pattern>
+                  [%-5level] %d{ISO8601} [%t] %c{1} - %msg%n
+              </pattern>
+          </PatternLayout>
+      </RandomAccessFile>
+      <RandomAccessFile name="RandomAccessFileAppenderDebug" fileName="logs/BackendDebug.log" immediateFlush="false" append="true">
+          <PatternLayout>
+              <pattern>
+                  [%-5level] %d{ISO8601} [%t] %c{1} - %msg%n
+              </pattern>
+          </PatternLayout>
+      </RandomAccessFile>
+      <RandomAccessFile name="RandomAccessFileAppenderTrace" fileName="logs/BackendTrace.log" immediateFlush="false" append="false">
+          <PatternLayout>
+              <pattern>
+                  [%-5level] %d{ISO8601} [%t] %c{1} - %msg%n
+              </pattern>
+          </PatternLayout>
+      </RandomAccessFile>-->
+    </Appenders>
+    <Loggers>
+        <Root level="trace" includeLocation="false">
+          <!--<AppenderRef ref="RandomAccessFileAppenderWarn" level="warn"/>
+          <AppenderRef ref="RandomAccessFileAppenderDebug" level="debug"/>
+          <AppenderRef ref="RandomAccessFileAppenderTrace" level="trace"/>-->
+            <AppenderRef ref="ConsoleAppender" level="debug"/>
+        </Root>
+    </Loggers>
+</Configuration>

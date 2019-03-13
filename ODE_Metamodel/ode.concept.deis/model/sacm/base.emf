@@ -1,0 +1,53 @@
+@namespace(uri="http://omg.sacm/2.0/base", prefix="base_")
+package base;
+  abstract class Element {
+  }
+
+  class LangString extends Element {
+    attr String lang;
+    attr String content;
+  }
+
+  class ExpressionLangString extends LangString {
+    val ArtifactElement[1] expression;
+  }
+
+  class MultiLangString extends Element {
+    val LangString[+] value;
+  }
+
+  abstract class SACMElement extends Element {
+    attr String gid;
+    attr boolean isCitation = false;
+    attr boolean isAbstract = false;
+    ref SACMElement citedElement;
+    ref SACMElement abstractForm;
+  }
+
+  abstract class UtilityElement extends SACMElement {
+    val MultiLangString content;
+  }
+
+  class Description extends UtilityElement {
+  }
+
+  class ImplementationConstraint extends UtilityElement {
+  }
+
+  class Note extends UtilityElement {
+  }
+
+  class TaggedValue extends UtilityElement {
+    val MultiLangString[1] key;
+  }
+
+  abstract class ModelElement extends SACMElement {
+    val LangString name;
+    val Description description;
+    val ImplementationConstraint[*] implementationConstraint;
+    val Note[*] note;
+    val TaggedValue[*] taggedValue;
+  }
+
+  abstract class ArtifactElement extends ModelElement {
+  }

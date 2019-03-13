@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="base" nsURI="http://omg.sacm/2.0/base" nsPrefix="base_">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LangString" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lang" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionLangString" eSuperTypes="#//LangString">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+        eType="#//ArtifactElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLangString" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" upperBound="-1"
+        eType="#//LangString" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SACMElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCitation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="citedElement" eType="#//SACMElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractForm" eType="#//SACMElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UtilityElement" abstract="true" eSuperTypes="#//SACMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//MultiLangString"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Description" eSuperTypes="#//UtilityElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementationConstraint" eSuperTypes="#//UtilityElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Note" eSuperTypes="#//UtilityElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValue" eSuperTypes="#//UtilityElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//MultiLangString"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//SACMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//LangString"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//Description"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementationConstraint"
+        upperBound="-1" eType="#//ImplementationConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="note" upperBound="-1" eType="#//Note"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taggedValue" upperBound="-1"
+        eType="#//TaggedValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArtifactElement" abstract="true" eSuperTypes="#//ModelElement"/>
+</ecore:EPackage>

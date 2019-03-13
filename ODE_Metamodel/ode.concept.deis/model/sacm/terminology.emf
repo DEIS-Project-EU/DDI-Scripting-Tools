@@ -1,0 +1,43 @@
+@namespace(uri="http://omg.sacm/2.0/terminology", prefix="terminology_")
+package terminology;
+import "platform:/resource/ode.concept.deis/model/sacm/base.ecore";
+
+  abstract class TerminologyElement extends base.ArtifactElement {
+  }
+
+  class TerminologyGroup extends TerminologyElement {
+    ref TerminologyElement[*] terminologyElement;
+  }
+
+  class TerminologyPackage extends TerminologyElement {
+    val TerminologyElement[*] terminologyElement;
+  }
+
+  class TerminologyPackageBinding extends TerminologyPackage {
+    ref TerminologyPackage[2..*] participantPackage;
+  }
+
+  class TerminologyPackageInterface extends TerminologyPackage {
+    ref TerminologyPackage[1] implements;
+  }
+
+  abstract class TerminologyAsset extends TerminologyElement {
+  }
+
+  class Category extends TerminologyAsset {
+  	ref Category category;
+  }
+
+  abstract class ExpressionElement extends TerminologyAsset {
+    attr String[1] value;
+    ref Category[*] category;
+  }
+
+  class Expression extends ExpressionElement {
+    ref ExpressionElement[*] element;
+  }
+
+  class Term extends ExpressionElement {
+    attr String externalReference;
+    ref base.ModelElement origin;
+  }

@@ -1,0 +1,260 @@
+@namespace(uri="http://www.deis-project.eu/ode/dependability", prefix="dependability")
+package dependability;
+
+import "platform:/resource/ode.concept.deis/model/resourcePackage/odeBase.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/failureLogic.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/integration.ecore";
+
+
+  class MaintenanceProcedure extends odeBase.BaseElement {
+  	attr String activityDescription;
+  	attr String technicalDescription;
+  	attr String toolSpecification;
+  	attr int staffNumber;
+  	attr String staffSkillLevel;
+  	attr String staffTrainingDescription;
+  }
+  
+  class MeasureType extends odeBase.BaseElement {
+  	
+  }
+  
+  class Measure extends odeBase.BaseElement {
+  	attr String intrinsicSafety;
+  	attr String safeGuard;
+  	attr String applierInformation;
+  	attr boolean riskAcceptability;
+  	attr String furtherAction;
+  	attr String source;
+  	ref MeasureType[0..1] measureType;
+  	ref AssuranceLevel[0..1] assuranceLevel;
+  }
+  
+  class FaultToleranceMeasure extends Measure {
+  	
+  }
+  
+  class DependabilityPackage extends integration.ODEProductPackage {
+  	val Measure[*] measures;
+  	val MeasureType[*] measureTypes;
+  	val MaintenanceProcedure[*] maintenanceProcedures;
+  	val HARAPackage[*] HARAPackages;
+  	val RequirementPackage[*] requirementPackages;
+  	val DomainPackage[*] domainPackages;
+  	val TARAPackage[*] TARAPackages;
+  }
+
+// HARA PACKAGE
+
+class HARAPackage extends integration.ODEProductPackage { 
+	val Hazard[*] hazards;
+	val HazardType[*] hazardTypes;
+	val HazardTypeSystem[*] hazardTypeSystems;
+	val Malfunction[*] malfunctions;
+	val RiskAssessment[*] riskAssessments;
+	val RiskParameter[*] riskParameters;
+}
+
+class Hazard extends odeBase.BaseElement {
+	attr String condition;
+	ref failureLogic.Failure[*] failures;
+	ref Measure[*] measures;
+	ref HazardType[0..1] hazardType;
+}
+
+class HazardTypeSystem extends odeBase.BaseElement {
+	ref HazardType[*] hazardTypes;
+}
+
+class HazardType extends odeBase.BaseElement {
+	
+}
+
+class Malfunction extends odeBase.BaseElement {
+	ref Hazard[*] hazards;
+}
+
+class RiskAssessment extends odeBase.BaseElement {
+	attr String relatedStandard;
+	ref RiskParameter[*] riskParameters;
+	ref Hazard[0..1] hazard;
+}
+
+class RiskParameter extends odeBase.BaseElement {
+	attr String argument;
+}
+
+class Situation extends RiskParameter {
+	attr String likelihood;
+}
+
+class Accident extends RiskParameter {
+	attr String severity;
+}
+
+class OperatorMeasure extends RiskParameter {
+	attr String controlability;
+}
+
+  
+
+// REQUIREMENT PACKAGE
+
+class RequirementPackage extends integration.ODEProductPackage {
+	val RequirementSource[*] requirementSources;
+	val DependabilityRequirement[*] dependabilityRequirements;
+}
+
+abstract class RequirementSource extends odeBase.BaseElement {
+	
+}
+
+class LegalContract extends RequirementSource{
+	
+}
+
+abstract class DependabilityRequirement extends odeBase.BaseElement {
+	attr String decompositionArgument;
+	ref DependabilityRequirement[*] refinedRequirements;
+	ref RequirementSource[0..1] requirementSource;
+	ref Measure[*] measures;
+	ref failureLogic.Failure[*] failures;
+	ref AssuranceLevel[0..1] assuranceLevel;
+	ref MaintenanceProcedure[*] maintenanceProcedures;
+}
+
+class SafetyRequirement extends DependabilityRequirement {
+	attr double failureReactionTime;
+	attr double failureDetectionTime;
+	attr double failureLatencyTime;
+	attr boolean isSafetyGoal;
+	ref Hazard[*] hazards;
+}
+
+class SecurityRequirement extends DependabilityRequirement {
+	ref SecurityCapability[*] securityCapabilities;
+}
+
+   
+// DOMAIN PACKAGE
+    
+class DomainPackage extends integration.ODEProductPackage {
+  val Standard[*] standards;
+  val AssuranceLevel[*] assuranceLevels;
+}
+
+class Standard extends odeBase.BaseElement {
+}
+
+class AssuranceLevel extends odeBase.BaseElement {
+}
+
+class SafetyStandard extends Standard {
+  ref AssuranceLevel[*] assuranceLevels;
+}
+
+  
+// TARA PACKAGE
+  
+  	enum SecurityApplicationType {
+  		Preventive = 0;
+  		Active = 1;
+  		Passive = 2;
+  	}
+  	
+  	enum FinancialCostType {
+  		USD = 0;
+  		EUR = 1;
+  		GBP = 2;
+  	}
+  	
+  	enum OperationalCostType {
+  		Workhours = 0;
+  		Workdays = 1;
+  		Workmonths = 2;
+  	}
+  	
+  	class TARAPackage extends integration.ODEProductPackage {
+  		val SecurityRisk[*] identifiedRisks;
+  		val SecurityControl[*] controls;
+  		val Asset[*] consideredAssets;
+  		val ThreatAgent[*] consideredThreatAgents;
+  	}
+  	
+  	class Asset extends odeBase.BaseElement {
+  		attr double financialValue;
+  		attr FinancialCostType financialCostType;
+  		attr double operationalCost;
+  		attr OperationalCostType operationalCostType;
+  	}
+  	
+  	class SecurityControl extends Measure {
+  		attr String category;
+  		attr SecurityApplicationType type;
+  		ref Vulnerability[*] vulnerabilities;
+  	}
+  	
+  	class SecurityCapability extends odeBase.BaseElement {
+  		attr String category;
+  		attr SecurityApplicationType type;
+  		ref SecurityControl[*] implementedBy;
+  	}
+  	
+  	class Vulnerability extends odeBase.BaseElement {
+  		attr String category;	
+  	}
+  	
+  	class VulnerableItem extends Asset{
+  		val Vulnerability[*] vulnerabilities;
+  	}
+  	
+  	class AttackerGoal extends odeBase.BaseElement {
+  		attr String category;
+  		val SecurityCapability[*] addressedBy;
+  		val Attack[*] attacks;
+  		ref VulnerableItem[*] attackedItems;
+  	}
+  	
+  	class SecurityRisk extends odeBase.BaseElement {
+  		attr double likelihood;
+  		attr String impactAsset;
+  		attr String impactIndividuals;
+  		attr String impactBusiness;
+  		ref AttackerGoal[*] attackerGoals;
+  	}
+  	
+  	class Attack extends odeBase.BaseElement {
+  		attr String category;
+  		attr double financialCost;
+  		attr FinancialCostType financialCostType;
+  		attr double timeRequired;
+  		attr odeBase.TimeUnit timeUnit;
+  		attr String difficulty;
+  		attr String detectability;
+  		ref failureLogic.SecurityViolation[*] violations;
+  		ref Vulnerability[*] exploitedVulnerabilities;
+  	}
+  	
+  	class Payload extends Attack {
+  		
+  	}
+  	
+  	class Action extends Attack {
+  		
+  	}
+  	
+  	class ThreatAgent extends odeBase.BaseElement {
+  		attr String skillLevel;
+  		attr String motivation;
+  		attr String anonymityDesire;
+  		val AttackerGoal[*] attackerGoals;
+  	}
+  	
+  	class Human extends ThreatAgent {
+  		ref Action[*] actions;
+  	}
+  	
+  	class NonHuman extends ThreatAgent {
+  		ref Payload[*] payloads;
+  	}
+  	

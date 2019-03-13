@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<architecture:ArchitecturePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.deis-project.eu/ode/architecture" xmi:id="_ipHL8G4GEeiqGaAIrmQXdg">
+  <designArtifacts xsi:type="architecture:PhysicalComponent" xmi:id="_p2CFoG4GEeiqGaAIrmQXdg" name="sys1" subSystems="_yomugG4GEeiqGaAIrmQXdg" systemBoundaries="_v9JN0G4GEeiqGaAIrmQXdg"/>
+  <designArtifacts xsi:type="architecture:LogicalComponent" xmi:id="_yomugG4GEeiqGaAIrmQXdg" name="sys2" systemBoundaries="_042S0G4GEeiqGaAIrmQXdg"/>
+  <designArtifacts xsi:type="architecture:SystemBoundary" xmi:id="_042S0G4GEeiqGaAIrmQXdg" name="b2"/>
+  <designArtifacts xsi:type="architecture:SystemBoundary" xmi:id="_v9JN0G4GEeiqGaAIrmQXdg" name="b1"/>
+</architecture:ArchitecturePackage>

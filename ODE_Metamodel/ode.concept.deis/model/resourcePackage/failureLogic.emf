@@ -1,0 +1,132 @@
+@namespace(uri="http://www.deis-project.eu/ode/failureLogic", prefix="failureLogic")
+package failureLogic;
+
+import "platform:/resource/ode.concept.deis/model/resourcePackage/odeBase.ecore";
+import "platform:/resource/ode.concept.deis/model/resourcePackage/integration.ecore";
+  
+  class FailureLogicPackage extends integration.ODEProductPackage {
+  	val FailureModel[*] failureModels;
+  }
+
+  class Failure extends odeBase.BaseElement {
+  	attr FailureOriginType originType;
+  	attr String failureClass;
+    attr double failureRate;
+    attr boolean isCcf;
+    val ProbDist[0..1] failureProbDistribution;
+    ref Failure[*] ccfFailures;
+  }
+
+  class SecurityViolation extends Failure{
+  }
+    
+  enum FailureOriginType{
+  	Input = 0;
+  	Output = 1;
+  	Internal = 2;
+  }
+  
+  class FailureModel extends odeBase.BaseElement{
+  	val MinimalCutSets[*] minimalCutsets;
+  	val Failure[*] failures;
+  	ref FailureModel[*] subModels;
+  }
+ 
+  class MinimalCutSets extends odeBase.BaseElement{
+  	val MinimalCutset[*] cutsets;
+  	ref Failure[*] failures;
+  }
+  
+  class MinimalCutset extends odeBase.BaseElement{
+  	ref Failure[*] failures;
+  }
+ 
+  class ProbDist extends odeBase.BaseElement{
+ 	attr String type;
+ 	val ProbDistParam[*] parameters;
+  }
+ 
+  class ProbDistParam extends odeBase.BaseElement{
+ 	attr String value;
+  }
+ 
+ 
+ //FTA PACKAGE
+ 
+enum GateType {
+  OR = 0;
+  AND = 1;
+  NOT = 2;
+  XOR = 3;
+  VOTE = 4;
+  PAND = 5;
+  POR = 6;
+  SAND = 7;
+  InputEvent = 8;
+  OutputEvent = 9;
+}
+
+enum CauseType {
+	InputEvent = 0;
+	OutputEvent = 1;
+	BasicEvent = 2;
+	Gate = 3;
+}
+
+class FaultTree extends FailureModel {
+	val Cause[*] causes;
+}
+
+class Cause extends odeBase.BaseElement{
+	attr CauseType causeType;
+	ref Failure[0..1] failure;
+}
+
+class Gate extends Cause {
+	attr GateType gateType;
+	ref Cause[*] causes;
+}
+
+ 
+// MARKOV PACKAGE
+ 	
+ 	class MarkovChain extends FailureModel {
+ 		val Transition[*] transitions;
+ 		val State[*] states;
+ 	}
+ 	
+ 	class State extends odeBase.BaseElement {
+ 		attr boolean isInitialState;
+ 		attr boolean isFailState;
+ 		ref Failure[0..1] failState;
+ 	}
+ 	
+ 	class Transition extends odeBase.BaseElement {
+ 		attr double transition;
+ 		val ProbDist[0..1] transitionProbDistribution;
+ 		ref State[*] fromStates;
+ 		ref State[*] toStates;
+ 	}
+  
+  // FMEA PACKAGE
+  
+  	
+ 	enum FMEAType {
+ 		FMEA = 0;
+ 		FMEDA = 1;
+ 	}
+ 	
+ 	class FMEA extends FailureModel {
+ 		attr FMEAType type;
+ 		val FMEAEntry[*] entries;
+ 	}
+ 	
+ 	class FMEAEntry extends odeBase.BaseElement {
+ 		ref Failure[0..1] effect;
+ 		ref Failure[0..1] mode;
+ 	}
+ 	
+ 	class FMEDAEntry extends FMEAEntry {
+ 		attr double diagnosisRate;
+ 		val ProbDist[0..1] diagnosisProbDistribution;
+ 	}

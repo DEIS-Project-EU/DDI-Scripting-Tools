@@ -1,0 +1,731 @@
+// ODE ProductPackages Builders
+
+// Base Builders
+operation base!BaseElement SetID() : Integer {
+	var result : Integer;
+	var javaRandom : new Native("java.util.Random");
+	var newID = javaRandom.nextInt(MAX_ID);
+	while (odeIDMap.keySet().includes(newID)) {
+		newID = javaRandom.nextInt(MAX_ID);
+	}
+	odeIDMap.put(newID, base.getElementId(self));
+	self.Id = newID.asLong();
+	return newID;
+}
+
+operation base!BaseElement SetNameDescription(name : String, description : String) {
+	self.name = name;
+	self.description = description;
+}
+
+operation base!BaseElement AddKeyValue(key : String, value : String) {
+	self.AddKeyValue(key, value, "");
+}
+
+operation base!BaseElement AddKeyValue(key : String, value : String, tag : String) {
+	var existingEntry = self.keyValueMaps.select(entry | entry.key = key).first();
+	if(not existingEntry.isDefined()) {
+		var newEntry = new base!KeyValueMap;
+		newEntry.key = key;
+		self.keyValueMaps.add(newEntry);
+		existingEntry = newEntry;
+	}
+	var newValue : new base!Value;
+	newValue.tag = tag;
+	newValue.value = value;
+	existingEntry.values.add(newValue);
+}
+
+// DesignPackage Builders
+operation base!DesignPackage BuildSystem(name : String, description : String) : base!System {
+	var result : new base!System;
+	result.SetNameDescription(name, description);
+	var defaultBoundary : new base!SystemBoundary;
+	defaultBoundary.name = result.name + " Default Boundary";
+	result.systemBoundaries.add(defaultBoundary);
+	self.systems.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!DesignPackage BuildSystem(name : String, description : String, parentSystem : System) {
+	var result = self.BuildSystem(name, description);
+	parentSystem.subSystems.add(result);
+	return result;
+}
+
+operation base!DesignPackage BuildFunction(name : String, description : String) : base!Function {
+	var result : new base!Function;
+	result.SetNameDescription(name, description);
+	self.functions.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!System BuildPort(name : String, description : String) : base!Port {
+	var result : new base!Port;
+	result.SetNameDescription(name, description);
+	result.direction = base!PortDirection#INOUT;
+	self.ports.add(result);
+	self.systemBoundaries.first().ports.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!System BuildPort(name : String, description : String, direction : String) : base!Port {
+	var result = self.BuildPort(name, description);
+	result.SetDirection(direction);
+	return result;
+}
+
+operation base!Function BuildPort(name : String, description : String, direction : String) : base!Port {
+	var result : new base!Port;
+	result.SetNameDescription(name, description);
+	self.ports.add(result);
+	result.SetDirection(direction);
+	result.SetID();
+	return result;
+}
+
+operation base!Port SetDirection(direction : String) {
+	if (direction = "IN")
+		self.direction = base!PortDirection#IN;
+	else if (direction = "OUT")
+		self.direction = base!PortDirection#OUT;
+	else // if (direction = "INOUT")
+		self.direction = base!PortDirection#INOUT;
+}
+
+operation base!System BuildSignal(name : String, description : String, fromPort : base!Port, toPort : base!Port) : base!Signal {
+	var result : new base!Signal;
+	result.SetNameDescription(name, description);
+	result.fromPort = fromPort;
+	result.toPort = toPort;
+	self.signals.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!System BuildSignal(fromPort : base!Port, toPort : base!Port) : base!Signal {
+	return self.BuildSignal("", "", fromPort, toPort);	
+}
+
+operation base!System AddFailureModel(fm : base!FailureModel) {
+	self.failureModels.add(fm);
+}
+
+operation base!Port AddFailure(f : base!Failure) {
+	self.interfaceFailures.add(f);
+}
+
+operation base!Port AddFailure(f : base!Cause) {
+	self.AddFailure(f.failure);
+}
+
+// FailurePackage Builders
+operation base!FailureLogicPackage BuildFaultTree(name : String) : base!FaultTree {
+	var result : new base!FaultTree;
+	result.name = name;
+	self.failureModels.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!FailureLogicPackage BuildFaultTree(name : String, parent : base!FailureModel) : base!FaultTree {
+	var result = self.BuildFaultTree(name);
+	parent.subModels.add(result);
+	return result;
+}
+
+operation base!FailureModel BuildFailure(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean, originType : String) : base!Failure {
+	var result : new base!Failure;
+	result.SetNameDescription(name, description);
+	result.failureClass = failureClass;
+	if(not (failureRate = 0.0d)) {
+		var probDist : new base!ProbDist;
+		probDist.type = "Fit";
+		probDist.SetID();
+		var probDistParam : new base!ProbDistParam;
+		probDistParam.name = "Value";
+		probDistParam.SetID();
+		probDistParam.value = failureRate.asString();
+		probDist.parameters.add(probDistParam);
+		result.failureProbDistribution = probDist;
+	}
+	result.isCcf = isCCF;
+	result.SetOriginType(originType);
+	self.failures.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!FaultTree BuildGate(name : String, gateType : String) : base!Gate {
+	var result = self.BuildGate(gateType);
+	result.name = name;
+	return result;
+}
+
+operation base!FaultTree BuildGate(gateType : String) : base!Gate {
+	var result : new base!Gate;
+	result.SetGateType(gateType);
+	result.SetCauseType("GATE");
+	self.causes.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!Gate AddCause(c : base!Cause) {
+	self.causes.add(c);
+}
+
+operation base!FaultTree BuildBasicEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : base!Cause {
+	var result : new base!Cause;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "INTERNAL");
+	result.SetCauseType("INTERNAL");
+	self.causes.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!FaultTree BuildInputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : base!Gate {
+	var result : new base!Gate;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "INPUT");
+	result.failure = linkedFailure;
+	result.SetCauseType("INPUT");
+	result.SetGateType("INPUT");
+	self.causes.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!FaultTree BuildOutputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : base!Gate {
+	var result : new base!Gate;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "OUTPUT");
+	result.failure = linkedFailure;
+	result.SetCauseType("OUTPUT");
+	result.SetGateType("OUTPUT");
+	self.causes.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!Failure SetOriginType(originType : String) {
+	if (originType = "INPUT")
+		self.originType = base!FailureOriginType#Input;
+	else if (originType = "OUTPUT")
+		self.originType = base!FailureOriginType#Output;
+	else //if (originType = "INTERNAL")
+		self.originType = base!FailureOriginType#Internal;
+}
+
+operation base!Gate SetGateType(gateType : String) {
+	if (gateType = "OR")
+		self.gateType = base!GateType#OR;
+	else if (gateType = "AND")
+		self.gateType = base!GateType#AND;
+	else if (gateType = "NOT")
+		self.gateType = base!GateType#NOT;
+	else if (gateType = "XOR")
+		self.gateType = base!GateType#XOR;
+	else if (gateType = "VOTE")
+		self.gateType = base!GateType#VOTE;
+	else if (gateType = "PAND")
+		self.gateType = base!GateType#PAND;
+	else if (gateType = "SAND")
+		self.gateType = base!GateType#SAND;
+	else if (gateType = "INPUT")
+		self.gateType = base!GateType#InputEvent;
+	else // if (gateType = "OUTPUT")
+		self.gateType = base!GateType#OutputEvent;
+}
+
+operation base!Cause SetCauseType(causeType : String) {
+	if (causeType = "INPUT")
+		self.causeType = base!CauseType#InputEvent;
+	else if (causeType = "OUTPUT")
+		self.causeType = base!CauseType#OutputEvent;
+	else if (causeType = "GATE")
+		self.causeType = base!CauseType#Gate;
+	else // if (causeType = "INTERNAL")
+		self.causeType = base!CauseType#BasicEvent;
+}
+
+// Dependability Package Builders
+operation base!HARAPackage BuildHazardType(name : String, description : String) : base!HazardType {
+	var result : new base!HazardType;
+	result.SetNameDescription(name, description);
+	self.hazardTypes.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!HARAPackage BuildHazard(name : String, description : String, condition : String, hazardType : base!HazardType, failures : Collection, measures : Collection) : base!Hazard {
+	var result : new base!Hazard;
+	result.SetNameDescription(name, description);
+	result.condition = condition;
+	result.hazardType = hazardType;
+	result.failures.addAll(failures);
+	result.measures.addAll(measures);
+	self.hazards.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!HARAPackage BuildMalfunction(name : String, description : String, hazards : Collection) : base!Malfunction {
+	var result : new base!Malfunction;
+	result.SetNameDescription(name, description);
+	result.hazards.addAll(hazards);
+	self.malfunctions.add(result);
+	result.SetID();
+	return result;
+}
+
+// SACM Builders
+operation base!SACMElement SetID() : Integer {
+	var result : Integer;
+	var javaRandom : new Native("java.util.Random");
+	var newID = javaRandom.nextInt(MAX_ID);
+	while (odeIDMap.keySet().includes(newID)) {
+		newID = javaRandom.nextInt(MAX_ID);
+	}
+	odeIDMap.put(newID, base.getElementId(self));
+	self.gid = newID.asString();
+	return newID;
+}
+
+// Sets the ModelElement's name within a LangString
+// Name set to input, language assumed 'en'
+operation base!ModelElement SetName(input : String) {
+	var name : new base!LangString;
+	name.lang = "en";
+	name.content = input;
+	self.name = name;
+}
+
+operation BuildLangString(content : String, lang : String) : base!LangString {
+	var result : new base!LangString;
+	result.lang = lang;
+	result.content = content;
+	return result;
+}
+
+operation base!MultiLangString BuildLangString(lang : String, content : String) : base!LangString {
+	var result : new base!LangString;
+	result.lang = lang;
+	result.content = content;
+	self.value.add(result);
+	return result;	
+}
+
+operation base!ModelElement BuildTaggedValue(key : String, value : String) : base!TaggedValue {
+	var result : new base!TaggedValue;
+	result.key = new base!MultiLangString;
+	result.key.BuildLangString(key, value);
+	self.taggedValue.add(result);
+	result.SetID();
+	return result;
+}
+
+operation BuildExpressionLangString(expression : base!ExpressionElement) : base!ExpressionLangString {
+	var result : new base!ExpressionLangString;
+	result.expression = expression;
+	return result;
+}
+
+// Sets the ModelElement's description within a Description,
+// MultiLangString, then LangString
+// Description set to input, language assumed to be 'en'
+operation base!ModelElement SetDescription(input : String) {
+	self.description = new base!Description;
+	self.description.content = new base!MultiLangString;
+	var descContentValue : new base!LangString;
+	descContentValue.lang = "en";
+	descContentValue.content = input;
+	self.description.content.value.add(descContentValue);
+}
+
+// Constructs a 'Goal' i.e. SACM Claim
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of claim set to name, Description of claim set to description
+// Returns constructed goal
+operation base!ArgumentPackage BuildGoal(name : String, description : String) : base!Claim {
+	var result : new base!Claim;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!ArgumentPackage BuildGoal(name : String, description : Collection) : base!Claim {
+	var result : new base!Claim;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Constructs an 'Assumption' i.e. SACM Claim with assertionDeclaration = 'assumed'
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of claim set to name, Description of claim set to description
+// Returns constructed assumption
+operation base!ArgumentPackage BuildAssumption(name : String, description : String) : base!Claim {
+	var result = self.BuildGoal(name, description);
+	result.assertionDeclaration = base!AssertionDeclaration#assumed;
+	return result;
+}
+
+// Constructs a 'Justification' i.e. SACM Claim with assertionDeclaration = 'axiomatic'
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of claim set to name, Description of claim set to description
+// Returns constructed justification
+operation base!ArgumentPackage BuildJustification(name : String, description : String) : base!Claim {
+	var result = self.BuildGoal(name, description);
+	result.assertionDeclaration = base!AssertionDeclaration#axiomatic;
+	return result;
+}
+
+// Constructs a 'Strategy' i.e. SACM AssertedInference with (optional) ArgumentReasoning
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of strategy set to name, Description of strategy set to description
+// If name is empty, then no ArgumentReasoning is generated
+// Returns constructed strategy
+operation base!ArgumentPackage BuildStrategy(name : String, description : String) : base!AssertedInference {
+	var result : new base!AssertedInference;
+	if(not (name = "")) {
+		result.reasoning = new base!ArgumentReasoning;
+		result.reasoning.SetName(name);
+		result.reasoning.SetDescription(description);
+	}
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!ArgumentPackage BuildStrategy(name : String, description : Collection) : base!AssertedInference {
+	var result : new base!AssertedInference;
+	result.reasoning = new base!ArgumentReasoning;
+	result.reasoning.SetName(name);
+	result.reasoning.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Constructs a 'Context' i.e. SACM ArtifactReference
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of context set to name, Description of context set to description
+// Returns constructed context
+operation base!ArgumentPackage BuildContext(name : String, description : String) : base!ArtifactReference {
+	var result : new base!ArtifactReference;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Constructs a 'Solution' i.e. SACM ArtifactReference
+// Adds it to the subject ArgumentPackage's argumentationElement(s)
+// Name of solution set to name, Description of solution set to description
+// Returns constructed solution
+operation base!ArgumentPackage BuildSolution(name : String, description : String) : base!ArtifactReference {
+	var result : new base!ArtifactReference;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Constructs an Artifact
+// Adds it to the subject ArtifactPackage's artifactElement(s)
+// Name of artifact set to name, Description of artifact set to description, Version of artifact set to version
+// Date of artifact set to string conversion using java.util.Date
+// Returns constructed artifact
+operation base!ArtifactPackage BuildArtifact(name : String, description : String, version : String, date : String) : base!Artifact {
+	var result : new base!Artifact;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.version = version;
+	result.date = new Native("java.util.Date");
+	var parsedDate = result.date.parse(date);
+	result.date.setTime(parsedDate);
+	self.artifactElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!ArtifactPackage BuildActivity(name : String, description : String, startTime : String, endTime : String) : base!Activity {
+	var result : new base!Activity;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.startTime = new Native("java.util.Date");
+	var parsedStartTime = result.startTime.parse(startTime);
+	result.startTime.setTime(parsedStartTime);
+	result.endTime = new Native("java.util.Date");
+	var parsedEndTime = result.endTime.parse(endTime);
+	result.endTime.setTime(parsedEndTime);
+	self.artifactElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!ArtifactPackage BuildEvent(name : String, description : String, occurence : String) : base!Event {
+	var result : new base!Event;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.occurence = new Native("java.util.Date");
+	var parsedOccurence = result.occurence.parse(occurence);
+	result.occurence.setTime(parsedOccurence);
+	self.artifactElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Links a 'Strategy' (SACM AssertedInference) to zero or more 'Contexts' (ArtifactReferences) via an AssertedContext
+// Adds new AssertedContext to the subject ArgumentPackage's argumentationElement(s)
+// Returns AssertedContext
+operation base!ArgumentPackage LinkStrategyToContexts(s : base!AssertedInference, c : Collection, name : String, description : String) : base!AssertedContext {
+	var result : new base!AssertedContext;
+	result.target.add(s);
+	for (context in c) { 
+		result.source.add(context);
+	}
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Links a Strategy to a single Context via an AssertedContext
+// Adds new AssertedContext to the subject ArgumentPackage
+// Returns AssertedContext 
+operation base!ArgumentPackage LinkStrategyToContext(s : base!AssertedInference, c : base!ArtifactReference) : base!AssertedContext {
+	var result : new base!AssertedContext;
+	result.target.add(s);
+	result.source.add(c);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Links Goal to subGoals
+// Adds linking Strategy to subject ArgumentPackage
+// If name and description are provided, strategy contains ArgumentReasoning accordingly 
+// Returns linking strategy
+operation base!ArgumentPackage LinkGoalToGoals(target : base!Claim, subGoals : Collection, strategyName : String, strategyDescription : String) : base!AssertedInference {
+	var result = self.BuildStrategy(strategyName, strategyDescription);
+	for (subGoal in subGoals) {
+		result.source.add(subGoal);
+	}
+	result.target.add(target);
+	return result;
+}
+
+operation base!ArgumentPackage LinkGoalToGoals(target : base!Claim, subGoals : Collection) : base!AssertedInference {
+	return self.LinkGoalToGoals(target, subGoals, "", "");
+}
+
+// Links Goal to subGoal
+// Adds linking Strategy to subject ArgumentPackage
+// If name and description are provided, strategy contains ArgumentReasoning accordingly
+// Returns linking strategy
+operation base!ArgumentPackage LinkGoalToGoal(target : base!Claim, subGoal : base!Claim, strategyName : String, strategyDescription : String) : base!AssertedInference {
+	var result = self.BuildStrategy(strategyName, strategyDescription);
+	result.source.add(subGoal);
+	result.target.add(target);
+	return result;
+}
+
+// Links Goal to evidence (Collection of ArtifactReferences)
+// Adds linking AssertedEvidence to subject ArgumentPackage
+// Returns linking AssertedEvidence 
+operation base!ArgumentPackage LinkGoalToEvidence(target : base!Claim, evidence : Collection) : base!AssertedEvidence {
+	var result : new base!AssertedEvidence;
+	result.target.add(target);
+	for(item in evidence) {
+		result.source.add(item);
+	}
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+
+// This isn't proper, consider removing
+operation base!ArgumentPackage LinkGoalToEvidence(target : base!Claim, evidence : Collection, strategyName : String, strategyDescription : String) : base!AssertedEvidence {
+	var result = self.LinkGoalToEvidence(target, evidence);
+	result.reasoning = new base!ArgumentReasoning;
+	result.reasoning.SetName(strategyName);
+	result.reasoning.SetDescription(strategyDescription);
+	result.reasoning.SetID();
+	return result;	
+}
+
+// Links Goal to single evidence (ArtifactReference)
+// Adds linking AssertedEvidence to subject ArgumentPackage
+// Returns linking AssertedEvidence 
+operation base!ArgumentPackage LinkGoalToEvidence(target : base!Claim, evidence : base!ArtifactReference) : base!AssertedEvidence {
+	var result : new base!AssertedEvidence;
+		result.source.add(evidence);
+		result.target.add(target);
+		self.argumentationElement.add(result);
+		result.SetID();
+	return result;	
+}
+
+// Links Goal to Contexts (Collection of ArtifactReferences)
+// Adds linking AssertedContext to subject ArgumentPackage
+// Returns linking AssertedContext
+operation base!ArgumentPackage LinkGoalToContexts(target : base!Claim, contexts : Collection) : base!AssertedContext {
+	var result : new base!AssertedContext;
+	result.target.add(target);
+	for(item in contexts) {
+		result.source.add(item);
+	}
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Links Goal to single Context (ArtifactReference)
+// Adds linking AssertedEvidence to subject ArgumentPackage
+// Returns linking AssertedEvidence 
+operation base!ArgumentPackage LinkGoalToContext(target : base!Claim, context : base!ArtifactReference) : base!AssertedContext {
+	var result : new base!AssertedContext;
+	result.source.add(context);
+	result.target.add(target);
+	self.argumentationElement.add(result);
+	result.SetID();
+	return result;
+}
+
+// Links ArtifactReference (e.g. Solution, Context) to Artifact
+operation base!ArtifactReference LinkToArtifact(target : base!ArtifactElement) {
+	self.referencedArtifactElement.add(target);
+}
+
+operation base!Term SetType(type : String) {
+	self.SetName(type);
+}
+
+operation base!Term GetType() : String {
+	return self.GetName();
+}
+
+operation base!TerminologyPackage BuildTerm(name : String) : base!Term {
+	var result : new base!Term;
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!TerminologyPackage BuildTerm(type : String, value : String) : base!Term {
+	var result : new base!Term;
+	result.SetType(type);
+	result.value = value;
+	result.SetID();
+	return result;	
+}
+
+operation base!TerminologyPackage BuildExpression(name : String) : base!Expression {
+	var result : new base!Expression;
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.SetID();
+	return result;
+}
+
+$pre expressions.forAll(e | e.isKindOf(base!ExpressionElement))
+operation base!TerminologyPackage BuildExpression(name : String, expressions : Collection) : base!Expression {
+	var result = self.BuildExpression(name);
+	for (expression in expressions) {
+		result.element.add(expression);
+	}
+	return result;
+}
+
+$pre expressions.forAll(e | e.isKindOf(base!ExpressionElement))
+operation base!TerminologyPackage BuildExpression(expressions : Collection) : base!Expression {
+	var result : new base!Expression;
+	var name : String;
+	for (expression in expressions) {
+		result.element.add(expression);
+		name += expression.name.content;
+	}
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!ModelElement BuildImplementationConstraint(expression : ExpressionElement) : base!ImplementationConstraint {
+	var result : new base!ImplementationConstraint;
+	var content : new base!MultiLangString;
+	result.content = content;
+	var expLangString = BuildExpressionLangString(expression);
+	content.value.add(expLangString);
+	self.implementationConstraint.add(result);
+	result.SetID();
+	return result;
+}
+
+operation base!TerminologyPackage FindTermExternalReference(name : String) : String {
+	// Assumption: Only Terms should match
+	var foundTerm : base!Term = self.terminologyElement.selectOne(t | t.GetName() = name);
+	
+	if(foundTerm.isDefined())
+		if(foundTerm.externalReference.isDefined())
+			return base.getElementById(foundTerm.externalReference).name;
+			
+	return ""; 
+}
+
+operation base!ExpressionLangString GetName() : String {
+	return self.expression.GetName();
+}
+
+operation base!ModelElement GetName() : String {
+	if(self.name.isDefined())
+		if(self.name.content.isDefined())
+			return self.name.content;
+	return "";
+}
+
+operation base!AssertedInference GetName() : String {
+	if(self.reasoning.isDefined())
+		return self.reasoning.GetName();
+	return "";
+}
+
+operation base!Claim GetDescription() : String {
+	if(not self.description.isDefined())
+		return "";
+	if(not self.description.content.isDefined())
+		return "";
+	if(not (self.description.content.value.size() > 0))
+		return "";
+	return self.description.content.value.first().content;
+}
+
+operation base!AssertedInference GetDescription() : String {
+	if(not self.reasoning.isDefined())
+		return "";
+	if(not self.reasoning.description.content.isDefined())
+		return "";
+	if(not (self.reasoning.description.content.value.size() > 0))
+		return "";
+	return self.reasoning.description.content.value.first().content;
+}
+
+operation base!AssertedInference HasImplementationConstraint() : Boolean {
+	if(self.reasoning.isDefined())
+		if(self.reasoning.implementationConstraint.size() > 0)
+			return true;
+	return false;
+}

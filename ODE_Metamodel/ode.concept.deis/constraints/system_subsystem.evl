@@ -1,0 +1,72 @@
+context architecture!PhysicalComponent {
+
+	constraint SubSystemType {
+		check: self.subSystems.forAll(s|s.isTypeOf(architecture!PhysicalComponent))
+		message: "Physical Component " + self.name + " must have only Physical Components as sub-systems."
+	}
+}
+
+context architecture!Function {
+	constraint HasPorts {
+		check: self.ports.size() > 0
+		message: "Function needs to have at least one port"
+	}
+	
+	constraint PortsAreConnected {
+		check: Signal.allInstances().collect(s|s.toPort).exist(p|self.ports.includes(p))
+		message: "Function ports must be a destination of a signal"
+	}
+}
+
+context architecture!Signal {
+	constraint HasFromPort {
+		check: self.fromPort.size() > 0
+		message: "Signal " + self.name + " must have a from port"
+	}
+	
+	constraint HasToPort {
+		check: self.toPort.size() > 0
+		message: "Signal " + self.name + " must have a to port"
+	}
+}
+
+context architecture!SystemBoundary {
+	constraint Ports {
+		check {
+			var package = self.eContainer();
+			var ports = package.designArtifacts.select(d|d.isTypeOf(Port));
+			return ports.includesAll(self.ports);
+		}
+	}
+}
+
+
+context architecture!DesignArtifact {
+	constraint SafetyRelatedElement {
+		check {
+			if(self.dependabilityRequirements.size() > 0 or self.assuranceLevel <> null) 
+			{
+				if(self.isTypeOf(System) or 
+					self.isTypeOf(Port) or 
+					self.isTypeOf(Function) or 
+					self.isTypeOf(SystemBoundary))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+}
+
+context architecture!Port {
+	constraint PortWithInputFailure {
+		check: self.direction = PortDirection#IN implies self.interfaceFailures.forAll(f|f.isTypeOf(InputFailure))
+		message: "Port " + port.name + " should only have input failures"
+	}
+	
+	constraint PortWithOutputFailure {
+		check: self.direction = PortDirection#OUT implies self.interfaceFailures.forAll(f|f.isTypeOf(OutputFailre))
+		message: "Port " + port.name + " should only have output failures"
+	}
+}

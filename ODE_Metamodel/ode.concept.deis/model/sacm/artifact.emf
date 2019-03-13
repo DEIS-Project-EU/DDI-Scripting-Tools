@@ -1,0 +1,54 @@
+@namespace(uri="http://omg.sacm/2.0/artifact", prefix="artifact_")
+package artifact;
+import "platform:/resource/ode.concept.deis/model/sacm/base.ecore";
+
+  class ArtifactGroup extends base.ArtifactElement {
+    ref base.ArtifactElement[*] artifactElement;
+  }
+
+  class ArtifactPackage extends base.ArtifactElement {
+    val base.ArtifactElement[*] artifactElement;
+  }
+
+  class ArtifactPackageBinding extends ArtifactPackage {
+    ref ArtifactPackage[2..*] participantPackage;
+  }
+
+  class ArtifactPackageInterface extends ArtifactPackage {
+    ref ArtifactPackage[1] implements;
+  }
+
+  abstract class ArtifactAsset extends base.ArtifactElement {
+    ref Property[*] artifactProperty;
+  }
+
+  class Property extends ArtifactAsset {
+  }
+
+  class Technique extends ArtifactAsset {
+  }
+
+  class Participant extends ArtifactAsset {
+  }
+
+  class Activity extends ArtifactAsset {
+    attr EDate startTime;
+    attr EDate endTime;
+  }
+
+  class Event extends ArtifactAsset {
+    attr EDate occurence;
+  }
+
+  class Resource extends ArtifactAsset {
+  }
+
+  class Artifact extends ArtifactAsset {
+    attr String version;
+    attr EDate date;
+  }
+
+  class ArtifactAssetRelationship extends ArtifactAsset {
+    ref ArtifactAsset[+] source;
+    ref ArtifactAsset[+] target;
+  }

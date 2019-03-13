@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ode.concept.deis/src" modelPluginID="ode.concept.deis"
+    modelName="Terminology" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="base.genmodel#//base" operationReflection="true" importOrganizing="true">
+  <foreignModel>terminology.ecore</foreignModel>
+  <genPackages prefix="Terminology_" disposableProviderFactory="true" fileExtensions="terminology"
+      ecorePackage="terminology.ecore#/">
+    <genClasses image="false" ecoreClass="terminology.ecore#//TerminologyElement"/>
+    <genClasses ecoreClass="terminology.ecore#//TerminologyGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//TerminologyGroup/terminologyElement"/>
+    </genClasses>
+    <genClasses ecoreClass="terminology.ecore#//TerminologyPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference terminology.ecore#//TerminologyPackage/terminologyElement"/>
+    </genClasses>
+    <genClasses ecoreClass="terminology.ecore#//TerminologyPackageBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//TerminologyPackageBinding/participantPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="terminology.ecore#//TerminologyPackageInterface">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//TerminologyPackageInterface/implements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="terminology.ecore#//TerminologyAsset"/>
+    <genClasses ecoreClass="terminology.ecore#//Category">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//Category/category"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="terminology.ecore#//ExpressionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terminology.ecore#//ExpressionElement/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//ExpressionElement/category"/>
+    </genClasses>
+    <genClasses ecoreClass="terminology.ecore#//Expression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//Expression/element"/>
+    </genClasses>
+    <genClasses ecoreClass="terminology.ecore#//Term">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terminology.ecore#//Term/externalReference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terminology.ecore#//Term/origin"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

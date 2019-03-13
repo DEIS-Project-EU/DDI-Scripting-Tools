@@ -1,0 +1,23 @@
+@namespace(uri="http://omg.sacm/2.0/assurancecase", prefix="assuranceCase_")
+package assuranceCase;
+
+import "platform:/resource/ode.concept.deis/model/sacm/base.ecore";
+import "platform:/resource/ode.concept.deis/model/sacm/argumentation.ecore";
+import "platform:/resource/ode.concept.deis/model/sacm/artifact.ecore";
+import "platform:/resource/ode.concept.deis/model/sacm/terminology.ecore";
+
+  class AssuranceCasePackage extends base.ArtifactElement {
+    val AssuranceCasePackage[*] assuranceCasePackage;
+    ref AssuranceCasePackageInterface[*] ~interface;
+    val artifact.ArtifactPackage[*] artifactPackage;
+    val argumentation.ArgumentPackage[*] argumentPackage;
+    val terminology.TerminologyPackage[*] terminologyPackage;
+  }
+
+  class AssuranceCasePackageBinding extends AssuranceCasePackage {
+    ref AssuranceCasePackage[2..*] participantPackage;
+  }
+
+  class AssuranceCasePackageInterface extends AssuranceCasePackage {
+    ref AssuranceCasePackage[1] implements;
+  }
