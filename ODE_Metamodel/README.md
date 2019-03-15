@@ -6,11 +6,11 @@ This project contains the ODE Metamodel.
 
 ![Image of Metamodel](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Metamodel/Images/ODEv2.tif)
 
-The metamodel is defined with Eclipse Modeling Framework (EMF). For further information about EMF click [here](https://www.eclipse.org/modeling/emf/).
+The metamodel is defined with Eclipse Modeling Framework (EMF). For further information about EMF click [here](https://www.eclipse.org/modeling/emf/)
 
 ## Change metamodel
 
-If you use the ODE Tooladapter, please follow instructions descibed [here] (https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Tooladapter#metamodel-change-adaption) after changing the metamodel.
+If you use the ODE Tooladapter, please follow instructions descibed [here](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Tooladapter#metamodel-change-adaption) after changing the metamodel.
 
 To update the metamodel you have to perform following steps:
 
