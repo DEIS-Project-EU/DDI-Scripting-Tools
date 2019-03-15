@@ -1,20 +1,21 @@
-#ODE_Metamodel
+# ODE_Metamodel
 
 This project contains the ODE Metamodel.
 
-##Metamodel
+## Metamodel
+
 ![Image of Metamodel](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Metamodel/Images/ODEv2.tif)
 
-##Change metamodel
+## Change metamodel
 
 To update the metamodel you have to perform following steps:
 
-###Option 1: Update a model package
+### Option 1: Update a model package
 
 1. Modify .emf files.
 2. Generate ecore model file (Right-click on created .emf file -> Generate Ecore Model)
 
-###Option 2: Create a new model package
+### Option 2: Create a new model package
 
 1. Create new .emf file (Right-click on resourcePackage -> New -> Other... -> General -> File and name it <packageName>.emf)
 2. Define your metamodel package in created .emf file.
@@ -22,13 +23,13 @@ To update the metamodel you have to perform following steps:
 3. Generate ecore model file (Right-click on created .emf file -> **Generate Ecore Model**)
 4. Register ecore model (Right-click on <packageName>.ecore -> **Register EPackages**)
 5. Create .genmodel file for created metamodel package. 
-5.1. Right-click on resourcePackage -> New -> Other... -> EclipseModeling Framework -> **EMF Generator Model**
-5.2. On the next wizard page, define the name and location of the genmodel as <packageName>.genmodel (including file extension) then click *Next*
-5.3. Choose *Ecore model* and click *Next*
-5.4. Browse Workspace and choose your created ecore model (<packageName>.ecore) and click *Next*
-5.5. On the *Package Selection* page choose referenced generator models from the lower list, if you have referenced any model types from other package. Select your created ecore file in the upper list and click *Next*. 
+   1. Right-click on resourcePackage -> New -> Other... -> EclipseModeling Framework -> **EMF Generator Model**
+   2. On the next wizard page, define the name and location of the genmodel as <packageName>.genmodel (including file extension) then click *Next*
+   3. Choose *Ecore model* and click *Next*
+   4. Browse Workspace and choose your created ecore model (<packageName>.ecore) and click *Next*
+   5. On the *Package Selection* page choose referenced generator models from the lower list, if you have referenced any model types from other package. Select your created ecore file in the upper list and click *Next*. 
 
-###Java code generation
+### Java code generation
 
 After changing the metamodel, the new Java code has to be generated.
 
