@@ -4,6 +4,7 @@ This project contains the ODE Metamodel.
 
 ## Metamodel
 
+<img src="https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Metamodel/Images/ODEv2.png" alt="Image of Metamodel" width="500"/>
 ![Image of Metamodel](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Metamodel/Images/ODEv2.png)
 
 The metamodel is defined with Eclipse Modeling Framework (EMF). For further information about EMF click [here](https://www.eclipse.org/modeling/emf/)
