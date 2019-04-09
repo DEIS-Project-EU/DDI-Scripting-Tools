@@ -1,0 +1,92 @@
+/*
+MIT License
+
+Copyright (c) 2019 DEIS Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/*
+	Script must be executed against the following models:
+		1.	ownDDI: the integrator DDI (ETCS in this example)
+			ownDDI is updated with integrated information
+		2.	supplierDDI: the supplier DDI (Trackside in this example)
+*/
+
+import "DDIBuilderHelpers.eol";
+import "DDIIntegrationHelpers.eol";
+
+// For generating IDs of new elements created during integration
+var MAX_ID : Integer = 9999;
+var ID_LIST = Collection {};
+
+// Per steps outlined in D4.4, Section 4.11
+// Preparation of DDIs for integration
+	// ArgumentPackageInterfaces should be provided or generated
+	// for each DDI; we build them from the script for demonstration
+	var etcsElements = ownDDI!ModelElement.all();
+	var tracksideElements = supplierDDI!ModelElement.all();
+	
+	var etcsARGPI : new ownDDI!ArgumentPackageInterface;
+	BuildARGPInterface(etcsARGPI, etcsElements);
+	etcsARGPI.implements = ownDDI!ArgumentPackage.all().first();
+	ownDDI!AssuranceCasePackage.all().first().argumentPackage.add(etcsARGPI);
+	
+	var tracksideARGPI : new supplierDDI!ArgumentPackageInterface;
+	// Cannot use the helper method as it assumes ownDDI is the subject model
+	// Design-wise this is acceptable for now, as interface construction should have occured earlier
+	// per each model's construction
+	// BuildARGPInterface(tracksideARGPI, tracksideElements);
+	for(e in tracksideElements.select(x | x.taggedValue.select(t | t.key.value.first().lang = 'isPublic').size() > 0)) {
+		var copy = e.Clone();
+		// TODO: Should generalize for publishing other types of elements too
+		// Assume all published elements are claims for now -> ArgumentPackage
+		tracksideARGPI.argumentationElement.add(copy);
+		tracksideARGPI.argumentationElement.last().isCitation = true;
+		tracksideARGPI.argumentationElement.last().citedElement = e;
+	}
+	tracksideARGPI.implements = supplierDDI!ArgumentPackage.all().first();
+	supplierDDI!AssuranceCasePackage.all().first().argumentPackage.add(tracksideARGPI);
+	
+// Identify integration points
+	// Integration points should be provided; we build them into 
+	// the script execution for demonstration
+	
+	// TODO: Currently unused, should be used in binding generation
+	// Bind Claim G4 from ETCS to Claim G4 in Trackside
+	var bindingMap : new Map;
+	bindingMap.put("G4", "G4");
+	
+	// Find ports to map from ETCS to Trackside and vice versa	
+	var inputPortMap : new Map;
+	inputPortMap.put("BaliseAntenna", "Balise Antenna Signal");
+	inputPortMap.put("EuroloopAntenna", "Euroloop Antenna Signal");
+	
+	var outputPortMap : new Map;
+	outputPortMap.put("Balise Antenna Signal", "BaliseAntenna");
+	outputPortMap.put("Euroloop Antenna Signal", "EuroloopAntenna");
+
+// Integration
+	// AssuranceCasePackageBinding binds AssuranceCasePackageInterfaces
+	var ETCSACPB = BuildACPBinding(etcsARGPI, tracksideARGPI, bindingMap);
+		
+	ownDDI!DDIPackage.all().first().assuranceCasePackages.add(ETCSACPB);
+	
+	// DesignPackages are integrated directly (without interfaces)
+	IntegrateArchitecture("OnBoard", "Trackside", inputPortMap, outputPortMap);
