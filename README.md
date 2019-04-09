@@ -19,5 +19,5 @@ Repository structure
 * Under ['Examples'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Examples), you can find example models and scripts that use the provided tools
 * Under ['ODE_Metamodel'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/ODE_Metamodel), you can find a working copy of the Open Dependability Exchange (ODE) metamodel; it is the DDI metamodel. A dedicated repository for the ODE's development can be found [here](https://github.com/DEIS-Project-EU/ODEv2)
 * Under ['ODE_ToolAdapter'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/ODE_Tooladapter), you can find the common tool adapter; this tool enables (via Apache Thrift) the exchange of models across tools that support it
-* Under ['Scripts'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Scripts), you can find various scripts (in one of the [Epsilon](https://www.eclipse.org/epsilon/) languages)
+* Under ['Scripts'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Scripts), you can find various scripts (in one of the [Epsilon](https://www.eclipse.org/epsilon/) languages), supporting part of the functionality described above
 
