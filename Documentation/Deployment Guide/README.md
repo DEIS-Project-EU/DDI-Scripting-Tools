@@ -7,7 +7,7 @@
 ## Prerequisites
 
 Much of the toolset provided here is built using the [Eclipse IDE](https://www.eclipse.org/ide/).
-While there are potentially alternatives for some parts of the toolset, the Eclipse IDE is effectively mandatory and the most direct approach to use the provided tools.
+While there are potential alternatives for some parts of the toolset, the Eclipse IDE is effectively mandatory and the most direct approach to use the provided tools.
 
 To make use of the Epsilon scripts from the repository, the [Epsilon distribution of Eclipse](https://www.eclipse.org/epsilon/download/) can be used. When installation is complete, the user should update their distribution via the stable update site URL: http://download.eclipse.org/epsilon/updates/. This is due to the provided distribution (v1.5) having a bug that the update (v1.5.1) fixes.
 
