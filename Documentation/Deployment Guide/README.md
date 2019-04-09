@@ -60,11 +60,11 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Name the new DDI model
     - Choose the ODE metamodel URI (http://www.deis-project.eu/ode/mergedODE)
     
-    Assuming the script the user wants to create is an EOL script:
+5. Assuming the script the user wants to create is an EOL script:
     - File->New->Other->Epsilon->EOL Program
     - Name the script and choose its container project (should be the project currently worked on)
     
-    The script needs to operate on the given DDI model; to setup the script (and the provided script operations) to use the empty DDI model:
+6. The script needs to operate on the given DDI model; to setup the script (and the provided script operations) to use the empty DDI model:
     - Right-click on the user-defined script in the Model Explorer
     - Run-as -> Run Configurations...
     - Double-click on 'EOL Program'
@@ -76,4 +76,5 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Browse Workspace... -> Navigate to the empty DDI model file and select it, its metamodel should be included automatically
 
 TODO: Integration scripts
+
 TODO: Deploy Common Tool Adapter
