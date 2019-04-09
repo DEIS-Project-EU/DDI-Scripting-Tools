@@ -1,6 +1,6 @@
 # Examples
 
-The examples provided here are based on the SIEMENS European Train Control System (ETCS) design for DEIS.
+The examples provided under the ETCS folder are based on the SIEMENS European Train Control System (ETCS) design for DEIS.
 
 - 'etcs.model' contains the overall ETCS system DDI combined with the On-Board Unit DDI
 - 'trackside.model' contains the Trackside Unit DDI
