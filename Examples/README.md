@@ -14,6 +14,8 @@ The idea here is that the OEM has already developed the overall system and a sub
 
 To run the example, the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) must be followed first.
 
+# Viewing the ETCS DDIs
+
 At this point, the user should have an Eclipse IDE instance running, with a project created.
 The 'etcs.model' and 'trackside.model' can be imported into the project by:
 - Right-clicking on the project in the Model Explorer
