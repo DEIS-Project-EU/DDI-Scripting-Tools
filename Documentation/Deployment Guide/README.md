@@ -46,6 +46,12 @@ Users can use these operations in their own scripts to build DDIs for their subj
     
     Alternatively
     - Drag & drop DDIBuilderHelpers.eol into project
+    
+    The DDIBuilderHelpers.eol operations can be used in a user-defined script by adding 
+    ```
+    import "DDIBuilderHelpers.eol";
+    ``` 
+    to the start of the script.
 4. Create initial DDI model
     An empty DDI model is needed for the user-defined script to work with. To create a DDI model, the ODE metamodel from the repository is needed.
     - Right-click on project in Model Explorer
