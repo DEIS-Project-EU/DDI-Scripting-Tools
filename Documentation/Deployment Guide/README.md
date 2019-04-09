@@ -22,8 +22,58 @@ Given that the repository is hosted on GitHub, users unfamiliar with the latter 
 If using Windows or Mac, [GitHub Desktop](https://desktop.github.com/) can be used to clone the repository, just use the 'Clone or download' button on the [main repository page](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools) or use this [URL](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools.git). 
 Using this approach, the copy of the repository can be managed via the GitHub application.
 
-Alternatively, if a local copy is simply needed instead, the 'Download Zip' function can be used instead from the [main repository page](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools). This downloads a compressed folder containing all repository files and folders.
+Alternatively, if a local copy is simply needed instead, the 'Clone or Download->Download Zip' function can be used instead from the [main repository page](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools). This downloads a compressed folder containing all repository files and folders.
 
 ## Deployment
 
 Having acquired the repository by either approach mentioned earlier, the user can now setup the tools provided in the Eclipse IDE.
+The following guide describes deployment of the script-based tools and of the common tool adapter.
+
+### Deploying tools for DDI creation
+
+A collection of Epsilon Object Language (EOL) `operations` are contained within [\Scripts\DDIBuilderHelpers.eol](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Scripts/DDIBuilderHelpers.eol).
+Users can use these operations in their own scripts to build DDIs for their subject systems.
+
+1. Launch the Eclipse IDE (support for Epsilon should be installed, see [Prerequisites](#prerequisites))
+2. Create a new project
+    - File->New->Project->General->Project</li>
+    - Name your new project, decide where to store it (typically in your workspace)</li>
+3. Import the DDIBuilderHelpers.eol file into your project
+    - Right-click on project in Model Explorer
+    - Import...
+    - General->Existing Projects into Workspace
+    - Navigate to DDIBuilderHelpers.eol and choose it
+    
+    Alternatively
+    - Drag & drop DDIBuilderHelpers.eol into project
+4. Create initial DDI model
+    An empty DDI model is needed for the user-defined script to work with. To create a DDI model, the ODE metamodel from the repository is needed.
+    - Right-click on project in Model Explorer
+    - Import...
+    - General->Filesystem
+    - Navigate to ODE metamodel .ecore files from repository, import all
+    - Once imported, select all .ecore files in Model Explorer
+    - Right-click on selected .ecore files
+    - Register EPackages
+    Now the empty DDI model can be created
+    - File->New->Other->Epsilon->EMF Model
+    - Name the new DDI model
+    - Choose the ODE metamodel URI (http://www.deis-project.eu/ode/mergedODE)
+    
+    Assuming the script the user wants to create is an EOL script:
+    - File->New->Other->Epsilon->EOL Program
+    - Name the script and choose its container project (should be the project currently worked on)
+    
+    The script needs to operate on the given DDI model; to setup the script (and the provided script operations) to use the empty DDI model:
+    - Right-click on the user-defined script in the Model Explorer
+    - Run-as -> Run Configurations...
+    - Double-click on 'EOL Program'
+    - Name the configuration for convenience
+    - On the 'Models' tab, click Add...
+    - Choose 'EMF Model'
+    - Provide the empty DDI model with a name to be referenced by the user-defined script
+    - IMPORTANT: The DDIBuilderHelpers.eol assumes the subject model uses the alias 'm', add 'm' to the 'Aliases' section
+    - Browse Workspace... -> Navigate to the empty DDI model file and select it, its metamodel should be included automatically
+
+TODO: Integration scripts
+TODO: Deploy Common Tool Adapter
