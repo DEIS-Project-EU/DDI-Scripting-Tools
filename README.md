@@ -1,4 +1,4 @@
-# DDI-Scripting-Tools
+# DDI Scripting Tools
 Public release of the DEIS tools for semi-automatic synthesis &amp; evaluation of DDIs
 
 What are these tools for ?
