@@ -37,7 +37,7 @@ To generate a new ETCS DDI:
 - Run As->Run Configurations...
 - Double-click 'EOL Program' to create a new configuration
 - Under 'Models', set the model to be the empty DDI model created according to the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) (step 4)
-- IMPORTANT: Add an alias to the model as 'm', required for most of the DDIBuilderHelpers.eol operations
+- IMPORTANT: Add an alias to the model as 'm', required for most of the `DDIBuilderHelpers.eol` operations
 - Apply to save changes to the configuration
 - Run the configuration
 - Review the updated DDI model
