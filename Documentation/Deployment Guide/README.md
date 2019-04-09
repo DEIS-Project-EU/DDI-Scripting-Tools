@@ -59,6 +59,7 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - File->New->Other->Epsilon->EMF Model
     - Name the new DDI model
     - Choose the ODE metamodel URI (http://www.deis-project.eu/ode/mergedODE)
+    - Choose the 'Root instance type' to be 'DDIPackage'
     
 5. Assuming the script the user wants to create is an EOL script:
     - File->New->Other->Epsilon->EOL Program
