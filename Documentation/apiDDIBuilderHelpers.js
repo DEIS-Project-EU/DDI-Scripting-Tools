@@ -1,4 +1,4 @@
-{
+apijson = {
   "Clone": {
 	"context": "Any",
 	"return-type": "Any",
