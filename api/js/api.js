@@ -1606,7 +1606,7 @@ var apijson2 = {
       "!text": "A Collection of ExpressionElements to be added under the Expression\r"
     },
     "comments\r": {
-      "!text": "Builds an Expression, adds it to the context TerminologyPackage and returns it <br>\r\nThe built Expression is initialised with an ID using GetID() <br>\r\nThis variation does not set a name for the built Expression\r"
+      "!text": "Builds an Expression, adds it to the context TerminologyPackage and returns it \r\n<br>The built Expression is initialised with an ID using GetID() \r\n<br>This variation does not set a name for the built Expression\r"
     }
   },
   "BuildImplementationConstraint\r": {
@@ -1624,7 +1624,7 @@ var apijson2 = {
       "!text": "The ExpressionElement referenced by the ImplementationConstraint\r"
     },
     "comments\r": {
-      "!text": "Builds an ImplementationConstraint referencing an ExpressionElement, adds it to the context ModelElement <br>\r\nIt is added by constructing an ExpressionLangString which references the Expression, <br>\r\nthen adding the ExpressionLangString to the ImplementationConstraint by storing the former in a MultiLangString <br>\r\nThe built ImplementationConstraint is initialised with an ID using GetID()\r"
+      "!text": "Builds an ImplementationConstraint referencing an ExpressionElement, adds it to the context ModelElement \r\n<br>It is added by constructing an ExpressionLangString which references the Expression, then adding the ExpressionLangString to the ImplementationConstraint by storing the former in a MultiLangString \r\n<br>The built ImplementationConstraint is initialised with an ID using GetID()\r"
     }
   },
   "FindTermExternalReference\r": {
@@ -1642,7 +1642,7 @@ var apijson2 = {
       "!text": "The external reference\r"
     },
     "comments\r": {
-      "!text": "Looks up the model for a Term element with an external reference matching the one provided <br>\r\nIf found, returns \"\"\r"
+      "!text": "Looks up the model for a Term element with an external reference matching the one provided \r\n<br>If found, returns \"\"\r"
     }
   },
   "GetName(1)\r": {
