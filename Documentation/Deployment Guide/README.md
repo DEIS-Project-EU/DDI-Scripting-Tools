@@ -28,6 +28,9 @@ Using this approach, the copy of the repository can be managed via the GitHub ap
 
 Alternatively, if a local copy is simply needed instead, the 'Clone or Download->Download Zip' function can be used instead from the [main repository page](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools). This downloads a compressed folder containing all repository files and folders.
 
+The 'Clone or download' button can be found as follows:
+![Repository Clone or Download](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/clone_button.png)
+
 ## Deployment
 
 Having acquired the repository by either approach mentioned earlier, the user can now setup the tools provided in the Eclipse IDE.
