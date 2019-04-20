@@ -44,8 +44,9 @@ Users can use these operations in their own scripts to build DDIs for their subj
 1. Launch the Eclipse IDE (support for Epsilon should be installed, see [Prerequisites](#prerequisites))
 2. Create a new project
     - File->New->Project->General->Project</li>
-    - Name your new project, decide where to store it (typically in your workspace)</li>
     ![Eclipse New Project](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_project.png)
+    - Name your new project, decide where to store it (typically in your workspace)</li>
+    ![Eclipse New Project Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_project_wizard_1.PNG)
 3. Import the DDIBuilderHelpers.eol file into your project
     - Right-click on project in Model Explorer
     - Import...
