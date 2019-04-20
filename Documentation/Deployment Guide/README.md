@@ -48,10 +48,13 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Name your new project, decide where to store it (typically in your workspace)</li>
     ![Eclipse New Project Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_project_wizard_1.PNG)
 3. Import the DDIBuilderHelpers.eol file into your project
-    - Right-click on project in Model Explorer
+    - Right-click on project in Navigator
+    ![Import into Project](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_option.png)
     - Import...
+    ![Import Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard.PNG)
     - General->Existing Projects into Workspace
     - Navigate to DDIBuilderHelpers.eol and choose it
+    ![Import Wizard - Choose files](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard_2.PNG)
     
     Alternatively
     - Drag & drop DDIBuilderHelpers.eol into project
