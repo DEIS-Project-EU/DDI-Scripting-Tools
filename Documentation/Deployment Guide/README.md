@@ -51,6 +51,7 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Right-click on project in Navigator
     ![Import into Project](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_option.png)
     - Import...
+    
     ![Import Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard.PNG)
     - General->Existing Projects into Workspace
     - Navigate to DDIBuilderHelpers.eol and choose it
