@@ -13,6 +13,8 @@ To make use of the Epsilon scripts from the repository, the [Epsilon distributio
 ![Eclipse Epsilon Distribution](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_epsilon_distro.png)
 When installation is complete, the user should update their distribution via the stable update site URL: http://download.eclipse.org/epsilon/updates/. This is due to the provided distribution (v1.5) having a bug that the update (v1.5.1) fixes.
 
+![Eclipse Epsilon Update Site](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_epsilon_update.png)
+
 If the user uses/wishes to use a different distribution of Eclipse, the same update site can be used to install Epsilon into the Eclipse IDE.
 
 A detailed guide to updating the Eclipse IDE using update sites can be found [here](https://help.eclipse.org/kepler/topic/org.eclipse.wb.doc.user/html/installation/updatesite_3.8.html?cp=64_2_1).
