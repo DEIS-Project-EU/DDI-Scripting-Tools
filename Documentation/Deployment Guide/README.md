@@ -65,17 +65,25 @@ Users can use these operations in their own scripts to build DDIs for their subj
     An empty DDI model is needed for the user-defined script to work with. To create a DDI model, the ODE metamodel from the repository is needed.
     - Right-click on project in Model Explorer
     - Import...
-    - General->Filesystem
+    - General->File System
     - Navigate to ODE metamodel .ecore files from repository, import all
-    - Once imported, select all .ecore files in Model Explorer
+    ![Import ODE Metamodel .ecore files](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_metamodel.PNG)
+    - Once imported, select all .ecore files in Navigator
     - Right-click on selected .ecore files
     - Register EPackages
+    ![Register EPackages](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_register_epackages.png)
     Now the empty DDI model can be created
     - File->New->Other->Epsilon->EMF Model
+    ![New DDI Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_other.png)
+    ![EMF Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_other_emf_model.PNG)
     - Name the new DDI model
     - Choose the ODE metamodel URI (http://www.deis-project.eu/ode/mergedODE)
     - Choose the 'Root instance type' to be 'DDIPackage'
     
+    ![DDI Model Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_other_emf_model_wizard.PNG)
+    
+    It can be viewed immediately by double-clicking on it from the Navigator
+    ![New DDI Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_emf_model.png)
 5. Assuming the script the user wants to create is an EOL script:
     - File->New->Other->Epsilon->EOL Program
     - Name the script and choose its container project (should be the project currently worked on)
@@ -84,17 +92,21 @@ Users can use these operations in their own scripts to build DDIs for their subj
         import "DDIBuilderHelpers.eol";
         ``` 
         to the start of the script.
-    
 6. The script needs to operate on the given DDI model; to setup the script (and the provided script operations) to use the empty DDI model:
-    - Right-click on the user-defined script in the Model Explorer
+    - Right-click on the user-defined script in the Navigator
     - Run-as -> Run Configurations...
+    ![Run Configurations option](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_run_configuration_option.png)
     - Double-click on 'EOL Program'
     - Name the configuration for convenience
+    ![Run Configuration](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_1.PNG)
     - On the 'Models' tab, click Add...
+    ![Add Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_2.PNG)
     - Choose 'EMF Model'
+    ![Choose EMF Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_3.PNG)
     - Provide the empty DDI model with a name to be referenced by the user-defined script
-    - IMPORTANT: The DDIBuilderHelpers.eol assumes the subject model uses the alias 'm', add 'm' to the 'Aliases' section
+    - IMPORTANT: The DDIBuilderHelpers.eol assumes the subject model uses the alias 'm', add 'm' to the 'Name' or 'Aliases' section
     - Browse Workspace... -> Navigate to the empty DDI model file and select it, its metamodel should be included automatically
+    ![Model Configuration](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_4.PNG)
 
 TODO: Integration scripts
 
