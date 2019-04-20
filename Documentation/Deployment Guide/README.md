@@ -102,10 +102,12 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - On the 'Models' tab, click Add...
     ![Add Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_2.PNG)
     - Choose 'EMF Model'
+    
     ![Choose EMF Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_3.PNG)
     - Provide the empty DDI model with a name to be referenced by the user-defined script
     - IMPORTANT: The DDIBuilderHelpers.eol assumes the subject model uses the alias 'm', add 'm' to the 'Name' or 'Aliases' section
     - Browse Workspace... -> Navigate to the empty DDI model file and select it, its metamodel should be included automatically
+    
     ![Model Configuration](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_eol_configuration_4.PNG)
 
 TODO: Integration scripts
