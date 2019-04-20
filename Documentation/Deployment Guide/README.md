@@ -53,7 +53,7 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Import...
     
     ![Import Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard.PNG)
-    - General->Existing Projects into Workspace
+    - General->Filesystem into Workspace
     - Navigate to DDIBuilderHelpers.eol and choose it
     ![Import Wizard - Choose files](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard_2.PNG)
     
