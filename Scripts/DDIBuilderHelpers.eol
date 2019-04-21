@@ -1,0 +1,2017 @@
+/*
+MIT License
+
+Copyright (c) 2019 DEIS Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/*
+	Script must be executed against the following models:
+		1.	m: the subject DDI which helpers reference
+*/
+
+// General Helpers
+
+/**
+@Clone
+ @context
+  @type Any
+  The subject EMF element to be cloned
+ @return-type 
+  @type Any
+  The clone of the context EMF element
+ @comments
+  Clone deep-copies a EMF element using org.eclipse.epsilon.emc.emf.tools.EmfTool.EcoreUtil.copy 
+  <br><b>IMPORTANT: </b>For the cloned element to be usable (properties accessible), it must be copied into a container element in the subject model
+*/
+operation Any Clone() : Any {
+	var emfTool : new Native("org.eclipse.epsilon.emc.emf.tools.EmfTool");
+	var result = emfTool.ecoreUtil.copy(self);
+	return result;
+}
+
+// ODE ProductPackages Builders
+
+// Base Builders
+
+/**
+@GetID
+ @return-type
+  @type Integer
+  A randomly generated integer to serve as an element ID
+ @comments
+  Generates a unique pseudo-random ID using java.util.Random 
+  <br> The range is [0, MAX_ID], MAX_ID is a global Integer that should be defined by the user 
+  <br> The user must also define a global ID_LIST Collection of existing IDs for checking the uniqueness 
+*/
+operation GetID() : Integer {
+	var result : Integer;
+	var javaRandom : new Native("java.util.Random");
+	var newID = javaRandom.nextInt(MAX_ID);
+	while (ID_LIST.includes(newID))
+		newID = javaRandom.nextInt(MAX_ID);
+	ID_LIST.add(newID);
+	return newID;
+}
+
+/**
+@SetNameDescription
+ @context
+  @type BaseElement
+  The BaseElement whose name and description should be set
+ @param name
+  @type String
+  The name the element should be set to
+ @param description
+  @type String
+  The description the element should be set to
+ @comments
+  SetNameDescription sets a BaseElement's name and description
+*/
+operation m!BaseElement SetNameDescription(name : String, description : String) {
+	self.name = name;
+	self.description = description;
+}
+
+/**
+@AddKeyValue(1)
+ @context
+  @type BaseElement
+  The BaseElement to which the key-value pair is to be added
+ @param key
+  @type String
+  The key of the key-value pair
+ @param value
+  @type String
+  The value of the key-value pair
+ @comments
+  Adds the key-value pair to the context BaseElement
+*/
+operation m!BaseElement AddKeyValue(key : String, value : String) {
+	self.AddKeyValue(key, value, "");
+}
+
+/**
+@AddKeyValue(2)
+ @context
+  @type BaseElement
+  The BaseElement to which the key-value pair is to be added
+ @param key
+  @type String
+  The key of the key-value pair
+ @param value
+  @type String
+  The value of the key-value pair
+ @param tag
+  @type String
+  Additional specification of key-value pair
+ @comments
+  Adds the key-value pair to the context BaseElement, also adds tag with pair
+*/
+operation m!BaseElement AddKeyValue(key : String, value : String, tag : String) {
+	var existingEntry = self.keyValueMaps.select(entry | entry.key = key).first();
+	if(not existingEntry.isDefined()) {
+		var newEntry = new m!KeyValueMap;
+		newEntry.key = key;
+		self.keyValueMaps.add(newEntry);
+		existingEntry = newEntry;
+	}
+	var newValue : new m!Value;
+	newValue.tag = tag;
+	newValue.value = value;
+	existingEntry.values.add(newValue);
+}
+
+// DesignPackage Builders
+
+/**
+@BuildSystem(1)
+ @context
+  @type DesignPackage
+  The DesignPackage to which the built System should be added to
+ @return-type
+  @type System
+  The built System
+ @param name
+  @type String
+  The name of the built System
+ @param description
+  @type String
+  The description of the built System
+ @comments
+  Builds a new System with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built System is initialised with an ID using GetID()
+*/
+operation m!DesignPackage BuildSystem(name : String, description : String) : m!System {
+	var result : new m!System;
+	result.SetNameDescription(name, description);
+	var defaultBoundary : new m!SystemBoundary;
+	defaultBoundary.name = result.name + " Default Boundary";
+	result.systemBoundaries.add(defaultBoundary);
+	self.systems.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildSystem(2)
+ @context
+  @type DesignPackage
+  The DesignPackage to which the built System should be added to
+ @return-type
+  @type System
+  The built System
+ @param name
+  @type String
+  The name of the built System
+ @param description
+  @type String
+  The description of the built System
+ @param parentSystem
+  @type System
+  The parent system under which the built System is added
+ @comments
+  Builds a new System with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built System is initialised with an ID using GetID() 
+  <br> Adds the built System under the parentSystem's subSystems
+*/
+operation m!DesignPackage BuildSystem(name : String, description : String, parentSystem : System) {
+	var result = self.BuildSystem(name, description);
+	parentSystem.subSystems.add(result);
+	return result;
+}
+
+/**
+@BuildFunction
+ @context
+  @type DesignPackage
+  The DesignPackage to which the built Function should be added to
+ @return-type
+  @type Function
+  The built Function
+ @param name
+  @type String
+  The name of the built Function
+ @param description
+  @type String
+  The description of the built Function
+ @comments
+  Builds a new Function with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built Function is initialised with an ID using GetID()
+*/
+operation m!DesignPackage BuildFunction(name : String, description : String) : m!Function {
+	var result : new m!Function;
+	result.SetNameDescription(name, description);
+	self.functions.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildPort(1)
+ @context
+  @type System
+  The System to which the built Port should be added to
+ @return-type
+  @type Port
+  The built Port
+ @param name
+  @type String
+  The name of the built Port
+ @param description
+  @type String
+  The description of the built Port
+ @comments
+  Builds a new Port with given name and description, adds it to the context System's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID()
+*/
+operation m!System BuildPort(name : String, description : String) : m!Port {
+	var result : new m!Port;
+	result.SetNameDescription(name, description);
+	result.direction = m!PortDirection#INOUT;
+	self.ports.add(result);
+	self.systemBoundaries.first().ports.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildPort(2)
+ @context
+  @type System
+  The System to which the built Port should be added to
+ @return-type
+  @type Port
+  The built Port
+ @param name
+  @type String
+  The name of the built Port
+ @param description
+  @type String
+  The description of the built Port
+ @param direction
+  @type String
+  The direction ("IN", "OUT", "INOUT") of the Port
+ @comments
+  Builds a new Port with given name and description, adds it to the context System's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID()
+  <br> Also sets the Port's direction
+*/
+operation m!System BuildPort(name : String, description : String, direction : String) : m!Port {
+	var result = self.BuildPort(name, description);
+	result.SetDirection(direction);
+	return result;
+}
+
+/**
+@BuildPort(3)
+ @context
+  @type Function
+  The Function to which the built Port should be added to
+ @return-type
+  @type Port
+  The built Port
+ @param name
+  @type String
+  The name of the built Port
+ @param description
+  @type String
+  The description of the built Port
+ @param direction
+  @type String
+  The direction ("IN", "OUT", "INOUT") of the Port
+ @comments
+  Builds a new Port with given name and description, adds it to the context Function's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID() 
+  <br> Also sets the Port's direction
+*/
+operation m!Function BuildPort(name : String, description : String, direction : String) : m!Port {
+	var result : new m!Port;
+	result.SetNameDescription(name, description);
+	self.ports.add(result);
+	result.SetDirection(direction);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@SetDirection
+ @context
+  @type Port
+  The Port whose direction is set
+ @param direction
+  @type String
+  The direction ("IN", "OUT", "INOUT") to be set
+ @comments
+  Sets the direction of the context Port 
+  <br> "INOUT" is assumed if the input does not match the other options
+*/
+operation m!Port SetDirection(direction : String) {
+	if (direction = "IN")
+		self.direction = m!PortDirection#IN;
+	else if (direction = "OUT")
+		self.direction = m!PortDirection#OUT;
+	else // if (direction = "INOUT")
+		self.direction = m!PortDirection#INOUT;
+}
+
+/**
+@BuildSignal(1)
+ @context
+  @type System
+  The System to which the Signal will be added
+ @return-type
+  @type Signal
+  The built Signal
+ @param name
+  @type String
+  The name of the built String
+ @param description
+  @type String
+  The description of the built String
+ @param fromPort
+  @type Port
+  The Port from which the built Signal originates
+ @param toPort
+  @type Port
+  The Port to which the built Signal connects
+ @comments
+  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it 
+  <br> The built Signal is initialised with an ID using GetID()
+*/
+operation m!System BuildSignal(name : String, description : String, fromPort : m!Port, toPort : m!Port) : m!Signal {
+	var result : new m!Signal;
+	result.SetNameDescription(name, description);
+	result.fromPort = fromPort;
+	result.toPort = toPort;
+	self.signals.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildSignal(2)
+ @context
+  @type System
+  The System to which the Signal will be added
+ @return-type
+  @type Signal
+  The built Signal
+ @param fromPort
+  @type Port
+  The Port from which the built Signal originates
+ @param toPort
+  @type Port
+  The Port to which the built Signal connects
+ @comments
+  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it 
+  <br> The built Signal is initialised with an ID using GetID()
+*/
+operation m!System BuildSignal(fromPort : m!Port, toPort : m!Port) : m!Signal {
+	return self.BuildSignal("", "", fromPort, toPort);	
+}
+
+/**
+@AddFailureModel
+ @context
+  @type System
+  The System to which the FailureModel will be added
+ @param fm
+  @type FailureModel
+  The FailureModel to be added to the context System
+ @comments
+  Adds the input FailureModel under the context System's failureModels
+*/
+operation m!System AddFailureModel(fm : m!FailureModel) {
+	self.failureModels.add(fm);
+}
+
+/**
+@AddFailure(1)
+ @context
+  @type Port
+  The Port to which the Failure will be added
+ @param f
+  @type Failure
+  The Failure to be added to the Port
+ @comments
+  Adds the input Failure to the context Port
+*/
+operation m!Port AddFailure(f : m!Failure) {
+	self.interfaceFailures.add(f);
+}
+
+/**
+@AddFailure(2)
+ @context
+  @type Port
+  The Port to which the Cause will be added
+ @param f
+  @type Cause
+  The Cause to be added to the Port
+ @comments
+  Adds the input Cause to the context Port
+*/
+operation m!Port AddFailure(f : m!Cause) {
+	self.AddFailure(f.failure);
+}
+
+// FailurePackage Builders
+
+/**
+@BuildFaultTree(1)
+ @context
+  @type FailureLogicPackage
+  The FailureLogicPackage under which the built FaultTree is to be added
+ @return-type
+  @type FaultTree
+  The built FaultTree
+ @param name
+  @type String
+  The name of the built FaultTree
+ @comments
+  Builds a FaultTree, adds it under the context FailureLogicPackage and returns it 
+  <br> The built FaultTree is initialised with an ID using GetID()
+*/
+operation m!FailureLogicPackage BuildFaultTree(name : String) : m!FaultTree {
+	var result : new m!FaultTree;
+	result.name = name;
+	self.failureModels.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildFaultTree(2)
+ @context
+  @type FailureLogicPackage
+  The FailureLogicPackage under which the built FaultTree is to be added
+ @return-type
+  @type FaultTree
+  The built FaultTree
+ @param name
+  @type String
+  The name of the built FaultTree
+ @param parent
+  @type FailureModel
+  The FailureModel under which the built FaultTree is to be added
+ @comments
+  Builds a FaultTree, adds it under the context FailureLogicPackage and the FailureModel and returns it 
+  <br> The built FaultTree is initialised with an ID using GetID()
+*/
+operation m!FailureLogicPackage BuildFaultTree(name : String, parent : m!FailureModel) : m!FaultTree {
+	var result = self.BuildFaultTree(name);
+	parent.subModels.add(result);
+	return result;
+}
+
+/**
+@BuildFailure
+ @context
+  @type FailureModel
+  The FailureModel under which the built Failure is to be added
+ @return-type
+  @type Failure
+  The built Failure
+ @param name
+  @type String
+  The name of the built Failure
+ @param description
+  @type String
+  The description of the built Failure
+ @param failureClass
+  @type String
+  The class of the built Failure
+ @param failureRate
+  @type Real
+  The failure rate of the built Failure
+ @comments
+  Builds a Failure, adds it to the context FailureModel and returns it 
+  <br> The Failure is initialised with an ID using GetID()
+*/
+operation m!FailureModel BuildFailure(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean, originType : String) : m!Failure {
+	var result : new m!Failure;
+	result.SetNameDescription(name, description);
+	result.failureClass = failureClass;
+	if(not (failureRate = 0.0d)) {
+		var probDist : new m!ProbDist;
+		probDist.type = "Fit";
+		probDist.Id = GetID().asLong();
+		var probDistParam : new m!ProbDistParam;
+		probDistParam.name = "Value";
+		probDistParam.Id = GetID().asLong();
+		probDistParam.value = failureRate.asString();
+		probDist.parameters.add(probDistParam);
+		result.failureProbDistribution = probDist;
+	}
+	result.isCcf = isCCF;
+	result.SetOriginType(originType);
+	self.failures.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildGate(1)
+ @context
+  @type FaultTree
+  The FaultTree under which the built Gate is to be added
+ @return-type
+  @type Gate
+  The built Gate
+ @param name
+  @type String
+  The name of the built Gate
+ @param gateType
+  @type String
+  The type of the built Gate, set using SetGateType
+ @comments
+  Builds a Gate, adds it to the context FaultTree and returns it 
+  <br> The built Gate is initialised with an ID usign GetID()
+*/
+operation m!FaultTree BuildGate(name : String, gateType : String) : m!Gate {
+	var result = self.BuildGate(gateType);
+	result.name = name;
+	return result;
+}
+
+/**
+@BuildGate(2)
+ @context
+  @type FaultTree
+  The FaultTree under which the built Gate is to be added
+ @return-type
+  @type Gate
+  The built Gate
+ @param gateType
+  @type String
+  The type of the built Gate, set using SetGateType
+ @comments
+  Builds a Gate, adds it to the context FaultTree and returns it 
+  <br> The built Gate is initialised with an ID usign GetID()
+*/
+operation m!FaultTree BuildGate(gateType : String) : m!Gate {
+	var result : new m!Gate;
+	result.SetGateType(gateType);
+	result.SetCauseType("GATE");
+	self.causes.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@AddCause
+ @context
+  @type Gate
+  The Gate under which the built Cause will be added
+ @param c
+  @type Cause
+  The Cause to be added to the context Gate
+ @comments
+  Adds a Cause to the context Gate
+*/
+operation m!Gate AddCause(c : m!Cause) {
+	self.causes.add(c);
+}
+
+/**
+@BuildBasicEvent
+ @context
+  @type FaultTree
+  The FaultTree under which the built BasicEvent is to be added
+ @return-type
+  @type Cause
+  The built Cause
+ @param name
+  @type String
+  The name of the built BasicEvent
+ @param description
+  @type String
+  The description of the built BasicEvent
+ @param failureClass
+  @type String
+  The failure class of the built BasicEvent
+ @param failureRate
+  @type Real
+  The failure rate of the built BasicEvent
+ @param isCCF
+  @type Boolean
+  Whether the built BasicEvent is a Common Cause Failure
+ @comments
+  Builds a BasicEvent, adds it under the context FaultTree and returns it 
+  <br> The built BasicEvent is initialised with an ID using GetID()
+*/
+operation m!FaultTree BuildBasicEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Cause {
+	var result : new m!Cause;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "INTERNAL");
+	result.failure = linkedFailure;
+	result.SetCauseType("INTERNAL");
+	self.causes.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildInputEvent
+ @context
+  @type FaultTree
+  The FaultTree under which the built Gate(InputEvent) is to be added
+ @return-type
+  @type Gate
+  The built Gate(InputEvent)
+ @param name
+  @type String
+  The name of the built Gate
+ @param description
+  @type String
+  The description of the built Gate
+ @param failureClass
+  @type String
+  The failure class of the built Gate
+ @param failureRate
+  @type Real
+  The failure rate of the built Gate
+ @param isCCF
+  @type Boolean
+  Whether the built Gate is also a Common Cause Failure
+ @comments
+  Builds a Gate(InputEvent), adds it under the FaultTree and returns it 
+  <br> The build Gate is initialised with an ID using GetID()
+*/
+operation m!FaultTree BuildInputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Gate {
+	var result : new m!Gate;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "INPUT");
+	result.failure = linkedFailure;
+	result.SetCauseType("INPUT");
+	result.SetGateType("INPUT");
+	self.causes.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildOutputEvent
+ @context
+  @type FaultTree
+  The FaultTree under which the built Gate(OutputEvent) is to be added
+ @return-type
+  @type Gate
+  The built Gate(OutputEvent)
+ @param name
+  @type String
+  The name of the built Gate
+ @param description
+  @type String
+  The description of the built Gate
+ @param failureClass
+  @type String
+  The failure class of the built Gate
+ @param failureRate
+  @type Real
+  The failure rate of the built Gate
+ @param isCCF
+  @type Boolean
+  Whether the built Gate is also a Common Cause Failure
+ @comments
+  Builds a Gate(OutputEvent), adds it under the FaultTree and returns it 
+  <br> The build Gate is initialised with an ID using GetID()
+*/
+operation m!FaultTree BuildOutputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Gate {
+	var result : new m!Gate;
+	result.SetNameDescription(name, description);
+	var linkedFailure = self.BuildFailure(name, description, failureClass, failureRate, isCCF, "OUTPUT");
+	result.failure = linkedFailure;
+	result.SetCauseType("OUTPUT");
+	result.SetGateType("OUTPUT");
+	self.causes.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@SetOriginType
+ @context
+  @type Failure
+  Sets the origin type of the context Failure
+ @param originType
+  @type String
+  The origin type ("INPUT", "OUTPUT", "INTERNAL") the context Failure should be set to
+ @comments
+  Sets the Failure to the origin type ("INPUT", "OUTPUT", "INTERNAL") 
+  <br> Set by default to "INTERNAL" if the other options are not chosen instead
+*/
+operation m!Failure SetOriginType(originType : String) {
+	if (originType = "INPUT")
+		self.originType = m!FailureOriginType#Input;
+	else if (originType = "OUTPUT")
+		self.originType = m!FailureOriginType#Output;
+	else //if (originType = "INTERNAL")
+		self.originType = m!FailureOriginType#Internal;
+}
+
+/**
+@SetGateType
+ @context
+  @type Gate
+  The Gate whose type should be set
+ @param gateType
+  @type String
+  The type the context Gate should be set to
+ @comments
+  The type ("OR", "AND", "NOT", "XOR", "VOTE", "PAND", "SAND", "INPUT", "OUTPUT") the context Gate should be set to 
+  <br> Defaults to "OUTPUT" if the other options are not chosen
+*/
+operation m!Gate SetGateType(gateType : String) {
+	if (gateType = "OR")
+		self.gateType = m!GateType#OR;
+	else if (gateType = "AND")
+		self.gateType = m!GateType#AND;
+	else if (gateType = "NOT")
+		self.gateType = m!GateType#NOT;
+	else if (gateType = "XOR")
+		self.gateType = m!GateType#XOR;
+	else if (gateType = "VOTE")
+		self.gateType = m!GateType#VOTE;
+	else if (gateType = "PAND")
+		self.gateType = m!GateType#PAND;
+	else if (gateType = "SAND")
+		self.gateType = m!GateType#SAND;
+	else if (gateType = "INPUT")
+		self.gateType = m!GateType#InputEvent;
+	else // if (gateType = "OUTPUT")
+		self.gateType = m!GateType#OutputEvent;
+}
+
+/**
+@SetCauseType
+ @context
+  @type Cause
+  The Cause whose type should be set
+ @param causeType
+  @type String
+  The type ("INPUT", "OUTPUT", "GATE", "INTERNAL") the context Cause should be set to
+ @comments
+  Sets the type of the context Cause to one of the mentioned options 
+  <br> If no other options match, defaults to "INTERNAL"
+*/
+operation m!Cause SetCauseType(causeType : String) {
+	if (causeType = "INPUT")
+		self.causeType = m!CauseType#InputEvent;
+	else if (causeType = "OUTPUT")
+		self.causeType = m!CauseType#OutputEvent;
+	else if (causeType = "GATE")
+		self.causeType = m!CauseType#Gate;
+	else // if (causeType = "INTERNAL")
+		self.causeType = m!CauseType#BasicEvent;
+}
+
+// Dependability Package Builders
+
+/**
+@BuildHazardType
+ @context 
+  @type HARAPackage
+  The HARAPackage under which the built HazardType should be added
+ @return-type
+  @type HazardType
+  The built HazardType
+ @param name
+  @type String
+  The name of the built HazardType
+ @param description
+  @type String
+  The description of the built HazardType
+ @comments
+  Builds a HazardType, adds it to the HARAPackage and returns it 
+  <br> The built HazardType is initialised with an ID using GetID()
+*/
+operation m!HARAPackage BuildHazardType(name : String, description : String) : m!HazardType {
+	var result : new m!HazardType;
+	result.SetNameDescription(name, description);
+	self.hazardTypes.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildHazard
+ @context
+  @type HARAPackage
+  The HARAPackage under which the built Hazard should be added
+ @return-type
+  @type Hazard
+  The built Hazard
+ @param name
+  @type String
+  The name of the built Hazard
+ @param description
+  @type String
+  The desription of the built Hazard
+ @param condition
+  @type String
+  The condition of the built Hazard
+ @param hazardType
+  @type HazardType
+  The HazardType of the built Hazard
+ @param failures
+  @type Collection
+  A Collection containing Failures to be added to the Hazard
+ @param measures
+  @type Collection
+  A Collection containing Measures to be added to the Hazard
+ @comments
+  Builds a Hazard, adds it to the context HARAPackage and returns it 
+  <br> The built Hazard is initialised with an ID using GetID() 
+*/
+operation m!HARAPackage BuildHazard(name : String, description : String, condition : String, hazardType : m!HazardType, failures : Collection, measures : Collection) : m!Hazard {
+	var result : new m!Hazard;
+	result.SetNameDescription(name, description);
+	result.condition = condition;
+	result.hazardType = hazardType;
+	result.failures.addAll(failures);
+	result.measures.addAll(measures);
+	self.hazards.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+/**
+@BuildMalfunction
+ @context
+  @type HARAPackage
+  The HARAPackage under which the built Malfunction should be added
+ @return-type
+  @type Malfunction
+  The built Malfunction
+ @param name
+  @type String
+  The name of the built Malfunction
+ @param description
+  @type String
+  The description of the built Malfunction
+ @param hazards
+  @type Collection
+  A Collection of Hazards to be added to the built Malfunction
+ @comments
+  Builds a Malfunction, adds it to the context HARAPackage and returns it 
+  <br> The built Malfunction is initialised with an ID using GetID()
+*/
+operation m!HARAPackage BuildMalfunction(name : String, description : String, hazards : Collection) : m!Malfunction {
+	var result : new m!Malfunction;
+	result.SetNameDescription(name, description);
+	result.hazards.addAll(hazards);
+	self.malfunctions.add(result);
+	result.Id = GetID().asLong();
+	return result;
+}
+
+// SACM Builders
+
+/**
+@SetName
+ @context
+  @type ModelElement
+  The ModelElement whose 'name' should be set
+ @param input
+  @type String
+  The name of the ModelElement
+ @comments
+  Sets the 'name' of a ModelElement; given ModelElements do not have an explicit 'name' property, 
+  <br> the name is set as a LangString and added to the ModelElement. 
+  <br> The LangString's lang is 'en' and its content is the name
+*/
+operation m!ModelElement SetName(input : String) {
+	var name : new m!LangString;
+	name.lang = "en";
+	name.content = input;
+	self.name = name;
+}
+
+/**
+@BuildLangString(1)
+ @return-type
+  @type LangString
+  The built LangString
+ @param content
+  @type String
+  The content of the LangString
+ @param lang
+  @type String
+  The language of the LangString e.g. 'eng' for english
+ @comments
+  Builds a LangString
+*/
+operation BuildLangString(content : String, lang : String) : m!LangString {
+	var result : new m!LangString;
+	result.lang = lang;
+	result.content = content;
+	return result;
+}
+
+/**
+@BuildLangString(2)
+ @context
+  @type MultiLangString
+  The MultiLangString to which the built LangString will be added
+ @return-type
+  @type LangString
+  The built LangString
+ @param content
+  @type String
+  The content of the LangString
+ @param lang
+  @type String
+  The language of the LangString e.g. 'eng' for english
+ @comments
+  Builds a LangString, adds it to the context MultiLangString
+*/
+operation m!MultiLangString BuildLangString(lang : String, content : String) : m!LangString {
+	var result : new m!LangString;
+	result.lang = lang;
+	result.content = content;
+	self.value.add(result);
+	return result;	
+}
+
+/**
+@BuildTaggedValue
+ @context
+  @type ModelElement
+  The ModelElement to which the constructed TaggedValue will be added
+ @return-type
+  @type TaggedValue
+  The built TaggedValue
+ @param key
+  @type String
+  The 'key' of the TaggedValue
+ @param value
+  @type String
+  The 'value' of the TaggedValue
+ @comments
+  Builds a TaggedValue, adds it to the context ModelElement and returns it 
+  <br> Note that a MultiLangString does not have an explicit 'key' or 'value' property; 
+  <br> the key is set as the lang of a LangString contained in the MultiLangString, the 'value' being the content 
+  <br> The built TaggedValue is initialised with an ID using GetID() 
+*/
+operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!TaggedValue {
+	var result : new m!TaggedValue;
+	result.key = new m!MultiLangString;
+	result.key.BuildLangString(key, value);
+	self.taggedValue.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@HasTaggedValue
+ @context
+  @type ModelElement
+  The ModelElement whose TaggedValues are being queried
+ @return-type
+  @type Boolean
+  Returns 'true' if the context ModelElement has 1+ TaggedValues whose name equals the parameter <br>
+  Returns 'false' otherwise
+ @param name
+  @type String
+  The name being searched for in TaggedValues of the context ModelElement
+ @comments
+  Searches across the context ModelElement's TaggedValues to find whether 
+  <br> there is at least one with the same name as the parameter
+*/
+operation m!ModelElement HasTaggedValue(name : String) : Boolean {
+	for(t in self.taggedValue) 
+		if(t.key.value.first().lang = name)
+			return true;
+	return false;
+	// This should be equivalent and work because taggedValue is an OrderedSet
+	// OrderedSet is a subclass of Collection and Collection::includes should work
+	//return self.taggedValue.includes(t | t.key.value.first().lang = name);
+}
+
+/**
+@BuildExpressionLangString
+ @return-type
+  @type ExpressionLangString
+  The built ExpressionLangString
+ @param expression
+  @type ExpressionElement
+  The Expression to be referenced by the ExpressionLangString
+ @comments
+  Builds an ExpressionLangString referencing the input ExpressionElement
+*/
+operation BuildExpressionLangString(expression : m!ExpressionElement) : m!ExpressionLangString {
+	var result : new m!ExpressionLangString;
+	result.expression = expression;
+	return result;
+}
+
+/**
+@SetDescription
+ @context
+  @type ModelElement
+ @param input
+  @type String
+  The description of the context ModelElement
+ @comments
+  Sets the context ModelElement's Description, contained in a
+  <br> MultiLangString and then LangString
+  <br> The LangString language is set to be 'en'
+*/
+operation m!ModelElement SetDescription(input : String) {
+	self.description = new m!Description;
+	self.description.content = new m!MultiLangString;
+	var descContentValue : new m!LangString;
+	descContentValue.lang = "en";
+	descContentValue.content = input;
+	self.description.content.value.add(descContentValue);
+}
+
+/**
+@BuildGoal(1)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the built Claim(Goal) will be added
+ @return-type
+  @type Claim
+  The built Claim(Goal)
+ @param name
+  @type String
+  The title of the Claim(Goal)
+ @param description
+  @type String
+  The description/content of the Claim(Goal)
+ @comments
+  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Goal) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildGoal(name : String, description : String) : m!Claim {
+	var result : new m!Claim;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildGoal(2)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the built Claim(Goal) will be added
+ @return-type
+  @type Claim
+  The built Claim(Goal)
+ @param name
+  @type String
+  The title of the Claim(Goal)
+ @param description
+  @type Collection
+  A Collection of 'desriptions' to be set as the Claim(Goal)'s description/content
+ @comments
+  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Goal) is initialised with an ID using GetID() 
+  <br> This variant enables convenient construction of Claims(Goals) which have abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
+*/
+operation m!ArgumentPackage BuildGoal(name : String, description : Collection) : m!Claim {
+	var result : new m!Claim;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildAssumption
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built Claim(Assumption)
+ @return-type
+  @type Claim
+  The built Claim(Assumption)
+ @param name
+  @type String
+  The name of the built Claim(Assumption)
+ @param description
+  @type String
+  The description of the built Claim(Assumption)
+ @comments
+  Builds a Claim(Assumption), with the assertionDeclaration property set to 'assumed' 
+  <br> Adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Assumption) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildAssumption(name : String, description : String) : m!Claim {
+	var result = self.BuildGoal(name, description);
+	result.assertionDeclaration = m!AssertionDeclaration#assumed;
+	return result;
+}
+
+/**
+@BuildJustification
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built Claim(Justification)
+ @return-type
+  @type Claim
+  The built Claim(Justification)
+ @param name
+  @type String
+  The name of the built Claim(Justification)
+ @param description
+  @type String
+  The description of the built Claim(Justification)
+ @comments
+  Builds a Claim(Justification), with the assertionDeclaration property set to 'axiomatic' 
+  <br> Adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Justification) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildJustification(name : String, description : String) : m!Claim {
+	var result = self.BuildGoal(name, description);
+	result.assertionDeclaration = m!AssertionDeclaration#axiomatic;
+	return result;
+}
+
+/**
+@BuildStrategy(1)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built AssertedInference(Strategy)
+ @return-type
+  @type AssertedInference
+  The built AssertedInference(Strategy)
+ @param name
+  @type String
+  The name of the built AssertedInference(Strategy)
+ @param description
+  @type String
+  The description of the built AssertedInference(Strategy)
+ @comments
+  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it 
+  <br> Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) 
+  <br> The built AssertedInference(Strategy) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildStrategy(name : String, description : String) : m!AssertedInference {
+	var result : new m!AssertedInference;
+	if(not (name = "")) {
+		result.reasoning = new m!ArgumentReasoning;
+		result.reasoning.SetName(name);
+		result.reasoning.SetDescription(description);
+		self.argumentationElement.add(result.reasoning);
+	}
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildStrategy(2)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built AssertedInference(Strategy)
+ @return-type
+  @type AssertedInference
+  The built AssertedInference(Strategy)
+ @param name
+  @type String
+  The name of the built AssertedInference(Strategy)
+ @param description
+  @type Collection
+  A Collection of descriptions of the built AssertedInference(Strategy)
+ @comments
+  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it 
+  <br> Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) 
+  <br> The built AssertedInference(Strategy) is initialised with an ID using GetID() 
+  <br> This variant allows convenient construction of AssertedInferences(Strategies) containing abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
+*/
+operation m!ArgumentPackage BuildStrategy(name : String, description : Collection) : m!AssertedInference {
+	var result : new m!AssertedInference;
+	result.reasoning = new m!ArgumentReasoning;
+	result.reasoning.SetName(name);
+	result.reasoning.SetDescription(description);
+	self.argumentationElement.add(result.reasoning);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildContext
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built ArtifactReference(Context)
+ @return-type
+  @type ArtifactReference
+  The built ArtifactReference(Context)
+ @param name
+  @type String
+  The name of the built ArtifactReference(Context)
+ @param description
+  @type String
+  The description of the built ArtifactReference(Context)
+ @comments
+  Builds an ArtifactReference(Context), adds it to the context ArgumentPackage and returns it 
+  <br> The built ArtifactReference(Context) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildContext(name : String, description : String) : m!ArtifactReference {
+	var result : new m!ArtifactReference;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildSolution
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage that will contain the built ArtifactReference(Solution)
+ @return-type
+  @type ArtifactReference
+  The built ArtifactReference(Solution)
+ @param name
+  @type String
+  The name of the built ArtifactReference(Solution)
+ @param description
+  @type String
+  The description of the built ArtifactReference(Solution)
+ @comments
+  Builds an ArtifactReference(Solution), adds it to the context ArgumentPackage and returns it 
+  <br> The built ArtifactReference(Solution) is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage BuildSolution(name : String, description : String) : m!ArtifactReference {
+	var result : new m!ArtifactReference;
+	result.SetName(name);
+	result.SetDescription(description);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildArtifact
+ @context
+  @type ArtifactPackage
+  The ArtifactPackage that will contain the built Artifact
+ @return-type
+  @type Artifact
+  The built Artifact
+ @param name
+  @type String
+  The name of the built Artifact
+ @param description
+  @type String
+  The description of the built Artifact
+ @param version
+  @type String
+  Version of the built Artifact
+ @param date
+  @type String
+  Date of the built Artifact
+ @comments
+  Builds an Artifact, adds it to the context ArtifactPackage and returns it 
+  <br> The built Artifact is initialised with an ID using GetID() 
+  <br> The date is converted using java.util.Date for parsing the parameter
+*/
+operation m!ArtifactPackage BuildArtifact(name : String, description : String, version : String, date : String) : m!Artifact {
+	var result : new m!Artifact;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.version = version;
+	result.date = new Native("java.util.Date");
+	var parsedDate = result.date.parse(date);
+	result.date.setTime(parsedDate);
+	self.artifactElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildActivity
+ @context
+  @type ArtifactPackage
+  The ArtifactPackage that will contain the built Activity
+ @return-type
+  @type Activity
+  The built Activity
+ @param name
+  @type String
+  The name of the built Activity
+ @param description
+  @type String
+  The description of the built Activity
+ @param startTime
+  @type String
+  Start time of the built Activity
+ @param endTime
+  @type String
+  End time of the built Activity
+ @comments
+  Builds an Activity, adds it to the context ArtifactPackage and returns it 
+  <br> The built Activity is initialised with an ID using GetID() 
+  <br> The startTime and endTime are converted using java.util.Date for parsing the parameters
+*/
+operation m!ArtifactPackage BuildActivity(name : String, description : String, startTime : String, endTime : String) : m!Activity {
+	var result : new m!Activity;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.startTime = new Native("java.util.Date");
+	var parsedStartTime = result.startTime.parse(startTime);
+	result.startTime.setTime(parsedStartTime);
+	result.endTime = new Native("java.util.Date");
+	var parsedEndTime = result.endTime.parse(endTime);
+	result.endTime.setTime(parsedEndTime);
+	self.artifactElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildEvent
+ @context
+  @type ArtifactPackage
+  The ArtifactPackage that will contain the built Event
+ @return-type
+  @type Event
+  The built Event
+ @param name
+  @type String
+  The name of the built Event
+ @param description
+  @type String
+  The description of the built Event
+ @param occurence
+  @type String
+  Occurence of the built Event
+ @comments
+  Builds an Event, adds it to the context ArtifactPackage and returns it 
+  <br> The built Event is initialised with an ID using GetID() 
+  <br> The occurence is converted using java.util.Date for parsing the parameter
+*/
+operation m!ArtifactPackage BuildEvent(name : String, description : String, occurence : String) : m!Event {
+	var result : new m!Event;
+	result.SetName(name);
+	result.SetDescription(description);
+	result.occurence = new Native("java.util.Date");
+	var parsedOccurence = result.occurence.parse(occurence);
+	result.occurence.setTime(parsedOccurence);
+	self.artifactElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@LinkStrategyToContexts
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedContext will be added
+ @return-type
+  @type AssertedContext
+  The AssertedContext linking the AssertedInference(Strategy) and Collection of ArtifactReferences(Contexts)
+ @param s
+  @type AssertedInference
+  The AssertedInference(Strategy) to be linked to the Collection of ArtifactReferences(Contexts)
+ @param c
+  @type Collection
+  A Collection of ArtifactReferences(Contexts) to be linked to
+ @param name
+  @type String
+  The name of the created AssertedContext
+ @param description
+  @type String
+  The description of the created AssertedContext
+ @comments
+  Links an AssertedInference(Strategy) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext 
+  <br> The Strategy is the target of the AssertedContext, the linked Contexts are the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkStrategyToContexts(s : m!AssertedInference, c : Collection, name : String, description : String) : m!AssertedContext {
+	var result : new m!AssertedContext;
+	result.target.add(s);
+	for (context in c) { 
+		result.source.add(context);
+	}
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@LinkStrategyToContext
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedContext will be added
+ @return-type
+  @type AssertedContext
+  The AssertedContext linking the AssertedInference(Strategy) and ArtifactReference(Context)
+ @param s
+  @type AssertedInference
+  The AssertedInference(Strategy) to be linked to the ArtifactReference(Context)
+ @param c
+  @type ArtifactReference
+  An ArtifactReference(Context) to be linked to
+ @param name
+  @type String
+  The name of the created AssertedContext
+ @param description
+  @type String
+  The description of the created AssertedContext
+ @comments
+  Links an AssertedInference(Strategy) to an ArtifactReference(Context) by creating an AssertedContext 
+  <br> The Strategy is the target of the AssertedContext, the linked Context is the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkStrategyToContext(s : m!AssertedInference, c : m!ArtifactReference) : m!AssertedContext {
+	var result : new m!AssertedContext;
+	result.target.add(s);
+	result.source.add(c);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@LinkGoalToGoals(1)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedInference(Strategy) will be added
+ @return-type
+  @type AssertedInference
+  The AssertedInference linking the Claims(Goals)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to by the Collection of Claims(Goals)
+ @param subGoals
+  @type Collection
+  A Collection of Claims(Goals) to be linked to the target Claim
+ @param strategyName
+  @type String
+  The name of the created AssertedInference(Strategy)
+ @param strategyDescription
+  @type String
+  The description of the created AssertedInference(Strategy)
+ @comments
+  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the Collection of Claims are the source 
+  <br> The created AssertedInference is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collection, strategyName : String, strategyDescription : String) : m!AssertedInference {
+	var result = self.BuildStrategy(strategyName, strategyDescription);
+	for (subGoal in subGoals) {
+		result.source.add(subGoal);
+	}
+	result.target.add(target);
+	return result;
+}
+
+/**
+@LinkGoalToGoals(2)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedInference(Strategy) will be added
+ @return-type
+  @type AssertedInference
+  The AssertedInference linking the Claims(Goals)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to by the Collection of Claims(Goals)
+ @param subGoals
+  @type Collection
+  A Collection of Claims(Goals) to be linked to the target Claim
+ @comments
+  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the Collection of Claims are the source 
+  <br> The created AssertedInference is initialised with an ID using GetID() 
+  <br> This variation links the Claims(Goals) via an AssertedInference(Strategy) without a title or description
+*/
+operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collection) : m!AssertedInference {
+	return self.LinkGoalToGoals(target, subGoals, "", "");
+}
+
+/**
+@LinkGoalToGoal
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedInference(Strategy) will be added
+ @return-type
+  @type AssertedInference
+  The AssertedInference linking the Claims(Goals)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to by the subGoal Claim(Goal)
+ @param subGoal
+  @type Claim
+  A Claim(Goal) to be linked to the target Claim
+ @param strategyName
+  @type String
+  The name of the created AssertedInference(Strategy)
+ @param strategyDescription
+  @type String
+  The description of the created AssertedInference(Strategy)
+ @comments
+  Links a Claim(Goal) to a Claim(Goal) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the subGoal Claim is the source 
+  <br> The created AssertedInference is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToGoal(target : m!Claim, subGoal : m!Claim, strategyName : String, strategyDescription : String) : m!AssertedInference {
+	var result = self.BuildStrategy(strategyName, strategyDescription);
+	result.source.add(subGoal);
+	result.target.add(target);
+	return result;
+}
+
+// Links Goal to evidence (Collection of ArtifactReferences)
+// Adds linking AssertedEvidence to subject ArgumentPackage
+// Returns linking AssertedEvidence 
+
+/**
+@LinkGoalToEvidence(1)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedEvidence will be added
+ @return-type
+  @type AssertedEvidence
+  The AssertedEvidence linking the Claim(Goal) with the ArtifactReferences(Evidence)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to the Collection of ArtifactReferences(Evidence)
+ @param evidence
+  @type Collection
+  A Collection of ArtifactReferences(Evidence) to be linked to the target Claim
+ @comments
+  Links a Claim(Goal) to a Collection of ArtifactReferences(Evidence) by creating an AssertedEvidence 
+  <br> The Claim is the target of the AssertedEvidence, the Collection of Evidence are the source 
+  <br> The created AssertedEvidence is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Collection) : m!AssertedEvidence {
+	var result : new m!AssertedEvidence;
+	result.target.add(target);
+	for(item in evidence) {
+		result.source.add(item);
+	}
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+// This isn't proper, consider removing
+operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Collection, strategyName : String, strategyDescription : String) : m!AssertedEvidence {
+	var result = self.LinkGoalToEvidence(target, evidence);
+	result.reasoning = new m!ArgumentReasoning;
+	result.reasoning.SetName(strategyName);
+	result.reasoning.SetDescription(strategyDescription);
+	result.reasoning.gid = GetID().asString();
+	self.argumentationElement.add(result.reasoning);
+	return result;	
+}
+
+/**
+@LinkGoalToEvidence(2)
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedEvidence will be added
+ @return-type
+  @type AssertedEvidence
+  The AssertedEvidence linking the Claim(Goal) with the ArtifactReference(Evidence)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to the ArtifactReference(Evidence)
+ @param evidence
+  @type ArtifactReference
+  An ArtifactReference(Evidence) to be linked to the target Claim
+ @comments
+  Links a Claim(Goal) to an ArtifactReference(Evidence) by creating an AssertedEvidence 
+  <br> The Claim is the target of the AssertedEvidence, the Evidence is the source 
+  <br> The created AssertedEvidence is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : m!ArtifactReference) : m!AssertedEvidence {
+	var result : new m!AssertedEvidence;
+	result.source.add(evidence);
+	result.target.add(target);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;	
+}
+
+/**
+@LinkGoalToContexts
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedContext will be added
+ @return-type
+  @type AssertedContext
+  The AssertedContext linking the Claim(Goal) with the ArtifactReferences(Contexts)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to the ArtifactReferences(Contexts)
+ @param contexts
+  @type Collection
+  A Collection of ArtifactReferences(Contexts) to be linked to the target Claim
+ @comments
+  Links a Claim(Goal) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext 
+  <br> The Claim is the target of the AssertedContext, the Contexts are the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToContexts(target : m!Claim, contexts : Collection) : m!AssertedContext {
+	var result : new m!AssertedContext;
+	result.target.add(target);
+	for(item in contexts) {
+		result.source.add(item);
+	}
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@LinkGoalToContext
+ @context
+  @type ArgumentPackage
+  The ArgumentPackage to which the created AssertedContext will be added
+ @return-type
+  @type AssertedContext
+  The AssertedContext linking the Claim(Goal) with the ArtifactReference(Context)
+ @param target
+  @type Claim
+  The Claim(Goal) to be linked to the ArtifactReference(Context)
+ @param context
+  @type ArtifactReference
+  An ArtifactReference(Context) to be linked to the target Claim
+ @comments
+  Links a Claim(Goal) to an ArtifactReference(Context) by creating an AssertedContext 
+  <br> The Claim is the target of the AssertedContext, the Context is the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
+*/
+operation m!ArgumentPackage LinkGoalToContext(target : m!Claim, context : m!ArtifactReference) : m!AssertedContext {
+	var result : new m!AssertedContext;
+	result.source.add(context);
+	result.target.add(target);
+	self.argumentationElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+// Links ArtifactReference (e.g. Solution, Context) to Artifact
+
+/**
+@LinkToArtifact
+ @context
+  @type ArtifactReference
+  The ArtifactReference to be linked
+ @param target
+  @type ArtifactElement
+  The ArtifactElement to be linked
+ @comments
+  Links an ArtifactReference to a concrete ArtifactElement, adding it to the referenced list
+*/
+operation m!ArtifactReference LinkToArtifact(target : m!ArtifactElement) {
+	self.referencedArtifactElement.add(target);
+}
+
+/**
+@SetType
+ @context
+  @type Term
+  The Term whose type is being set
+ @param type
+  @type String
+  The type to set the Term to
+ @comments
+  Sets the context Term's type; since a Term does not have an explicit type, 
+  <br> the type is set as the name of the Term using ModelElement::SetName
+*/
+operation m!Term SetType(type : String) {
+	self.SetName(type);
+}
+
+/**
+@GetType
+ @context
+  @type Term
+  The Term whose type is retrieved
+ @return-type
+  @type String
+  Returns the type of the Term
+ @comments
+  See Term::SetType
+*/
+operation m!Term GetType() : String {
+	return self.GetName();
+}
+
+/**
+@BuildTerm(1)
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage the built Term should be added to
+ @return-type
+  @type Term
+  The built Term
+ @param name
+  @type String
+  The name of the built Term
+ @comments
+  Builds a Term, adds it to the context TerminologyPackage and returns it 
+  <br> The built Term is initialised with an ID using GetID() 
+*/
+operation m!TerminologyPackage BuildTerm(name : String) : m!Term {
+	var result : new m!Term;
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildTerm(2)
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage the built Term should be added to
+ @return-type
+  @type Term
+  The built Term
+ @param name
+  @type String
+  The name of the built Term
+ @param value
+  @type String
+  The value of the built Term
+ @comments
+  Builds a Term, adds it to the context TerminologyPackage and returns it 
+  <br> The built Term is initialised with an ID using GetID() 
+  <br> This variation also sets the Term's value
+*/
+operation m!TerminologyPackage BuildTerm(type : String, value : String) : m!Term {
+	var result : new m!Term;
+	result.SetType(type);
+	result.value = value;
+	result.gid = GetID().asString();
+	return result;	
+}
+
+/**
+@BuildExpression(1)
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage the built Expression should be added to
+ @return-type
+  @type Expression
+  The built Expression
+ @param name
+  @type String
+  The name of the built Expression
+ @comments
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
+*/
+operation m!TerminologyPackage BuildExpression(name : String) : m!Expression {
+	var result : new m!Expression;
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildExpression(2)
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage the built Expression should be added to
+ @return-type
+  @type Expression
+  The built Expression
+ @param name
+  @type String
+  The name of the built Expression
+ @param expressions
+  @type Collection
+  A Collection of ExpressionElements to be added under the Expression
+ @comments
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
+  <br> This variation adds a Collection of ExpressionElements under the built Expression
+*/
+$pre expressions.forAll(e | e.isKindOf(m!ExpressionElement))
+operation m!TerminologyPackage BuildExpression(name : String, expressions : Collection) : m!Expression {
+	var result = self.BuildExpression(name);
+	for (expression in expressions) {
+		result.element.add(expression);
+	}
+	return result;
+}
+
+/**
+@BuildExpression(3)
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage the built Expression should be added to
+ @return-type
+  @type Expression
+  The built Expression
+ @param expressions
+  @type Collection
+  A Collection of ExpressionElements to be added under the Expression
+ @comments
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
+  <br> This variation does not set a name for the built Expression
+*/
+$pre expressions.forAll(e | e.isKindOf(m!ExpressionElement))
+operation m!TerminologyPackage BuildExpression(expressions : Collection) : m!Expression {
+	var result : new m!Expression;
+	var name : String;
+	for (expression in expressions) {
+		result.element.add(expression);
+		name += expression.name.content;
+	}
+	result.SetName(name);
+	self.terminologyElement.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@BuildImplementationConstraint
+ @context
+  @type ModelElement
+  The ModelElement to which the built ImplementationConstraint will be added
+ @return-type
+  @type ImplementationConstraint
+  The built ImplementationConstraint
+ @param expression
+  @type ExpressionElement
+  The ExpressionElement referenced by the ImplementationConstraint
+ @comments
+  Builds an ImplementationConstraint referencing an ExpressionElement, adds it to the context ModelElement 
+  <br> It is added by constructing an ExpressionLangString which references the Expression, 
+  <br> then adding the ExpressionLangString to the ImplementationConstraint by storing the former in a MultiLangString 
+  <br> The built ImplementationConstraint is initialised with an ID using GetID()
+*/
+operation m!ModelElement BuildImplementationConstraint(expression : ExpressionElement) : m!ImplementationConstraint {
+	var result : new m!ImplementationConstraint;
+	var content : new m!MultiLangString;
+	result.content = content;
+	var expLangString = BuildExpressionLangString(expression);
+	content.value.add(expLangString);
+	self.implementationConstraint.add(result);
+	result.gid = GetID().asString();
+	return result;
+}
+
+/**
+@FindTermExternalReference
+ @context
+  @type TerminologyPackage
+  The TerminologyPackage that is queried for its external reference
+ @return-type
+  @type String
+  Returns the name of the element which matches the external reference provided
+  If none is found, returns ""
+ @param name
+  @type String
+  The external reference
+ @comments
+  Looks up the model for a Term element with an external reference matching the one provided
+  <br> If found, returns ""
+*/
+operation m!TerminologyPackage FindTermExternalReference(name : String) : String {
+	// Assumption: Only Terms should match
+	var foundTerm : m!Term = self.terminologyElement.selectOne(t | t.GetName() = name);
+	
+	if(foundTerm.isDefined())
+		if(foundTerm.externalReference.isDefined())
+			return base.getElementById(foundTerm.externalReference).name;
+			
+	return ""; 
+}
+
+/**
+@GetName(1)
+ @context
+  @type ExpressionLangString
+  The ExpressionLangString whose name is queried
+ @return-type
+  @type String
+  The name of the context ExpressionLangString
+ @comments
+  Retrieves the name of an ExpressionLangString
+*/
+operation m!ExpressionLangString GetName() : String {
+	return self.expression.GetName();
+}
+
+/**
+@GetName(2)
+ @context
+  @type ModelElement
+  The ModelElement whose name is queried
+ @return-type
+  @type String
+  The name of the context ModelElement
+ @comments
+  Retrieves the name of an ModelElement
+*/
+operation m!ModelElement GetName() : String {
+	if(self.name.isDefined())
+		if(self.name.content.isDefined())
+			return self.name.content;
+	return "";
+}
+
+/**
+@GetName(3)
+ @context
+  @type AssertedInference
+  The AssertedInference whose name is queried
+ @return-type
+  @type String
+  The name of the context AssertedInference
+ @comments
+  Retrieves the name of an AssertedInference
+*/
+operation m!AssertedInference GetName() : String {
+	if(self.reasoning.isDefined())
+		return self.reasoning.GetName();
+	return "";
+}
+
+/**
+@GetDescription(1)
+ @context
+  @type Claim
+  The Claim whose description is queried
+ @return-type
+  @type String
+  The description of the context Claim
+ @comments
+  Retrieves the description of an Claim
+*/
+operation m!Claim GetDescription() : String {
+	if(not self.description.isDefined())
+		return "";
+	if(not self.description.content.isDefined())
+		return "";
+	if(not (self.description.content.value.size() > 0))
+		return "";
+	return self.description.content.value.first().content;
+}
+
+/**
+@GetDescription(2)
+ @context
+  @type AssertedInference
+  The AssertedInference whose description is queried
+ @return-type
+  @type String
+  The description of the context AssertedInference
+ @comments
+  Retrieves the description of an AssertedInference
+*/
+operation m!AssertedInference GetDescription() : String {
+	if(not self.reasoning.isDefined())
+		return "";
+	if(not self.reasoning.description.content.isDefined())
+		return "";
+	if(not (self.reasoning.description.content.value.size() > 0))
+		return "";
+	return self.reasoning.description.content.value.first().content;
+}
+
+/**
+@HasImplementationConstraint
+ @context
+  @type AssertedInference
+  The AssertedInference whose ImplementationConstraint is queried
+ @return-type
+  @type Boolean
+  Returns 'true' if the AssertedInference has an ImplementationConstraint
+  Returns 'false' otherwise
+ @comments
+  Returns 'true' if the AssertedInference has an ImplementationConstraint
+  <br> Returns 'false' otherwise
+*/
+operation m!AssertedInference HasImplementationConstraint() : Boolean {
+	if(self.reasoning.isDefined())
+		if(self.reasoning.implementationConstraint.size() > 0)
+			return true;
+	return false;
+}

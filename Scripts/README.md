@@ -1,3 +1,6 @@
-DDI Scripts
+# DDI Scripts
+***********
 
-TODO: More specific folder structure
+Under 'common' are script files containing commonly used operations for
+  - Creating DDIs
+  - Integrating DDIs
