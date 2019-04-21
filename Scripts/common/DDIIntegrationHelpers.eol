@@ -33,6 +33,20 @@ import "DDIBuilderHelpers.eol";
 
 // Integration Operations
 
+/**
+@BuildARGPInterface
+ @param ARGPI
+  @type Any
+  The ArgumentPackageInterface being built
+ @param ModelElements
+  @type Collection
+  Collection of ModelElements which should be considered for inclusion in the ARGPI
+ @comments
+  Adds to the ArgumentPackageInterface the ModelElements from the input that have a TaggedValue 'isPublic'
+  <br> The check for the tag is performed using DDIBuilderHelpers.eol : HasTaggedValue operation
+  <br> Included elements are cloned and set as citations of the originals 
+  <br> (isCitation = true and set the ModelElement as the citedElement)
+*/
 operation BuildARGPInterface(ARGPI : Any, ModelElements : Collection) {
 	// Collect ModelElements with property 'isPublic'
 	var publishedElements = ModelElements.select(e | e.HasTaggedValue('isPublic'));
@@ -46,6 +60,21 @@ operation BuildARGPInterface(ARGPI : Any, ModelElements : Collection) {
 	}
 }
 
+/**
+@BuildACPBinding
+ @param alphaARGPI
+  @type ArgumentPackageInterface
+  The first ARGPI to be bound
+ @param betaARGPI
+  @type ArgumentPackageInterface
+  The second ARGPI to be bound
+ @param bindingMap
+  @type Map
+  A Map used to associate elements from one ARGPI to the other
+ @comments
+  Binds two ArgumentPackageInterfaces under a AssuranceCasePackageBinding, indirectly
+  <br> the ACPB also contains a ArgumentPackageBinding under which the interfaces are directly bound
+*/
 operation BuildACPBinding(
 	alphaARGPI : ownDDI!ArgumentPackageInterface, 
 	betaARGPI : supplierDDI!ArgumentPackageInterface, 
@@ -55,6 +84,7 @@ operation BuildACPBinding(
 	var result : new m!AssuranceCasePackageBinding;
 	var argP : new m!ArgumentPackageBinding;
 	
+	// TODO: These need to be collected via declarations in the input
 	var originalG1 = m!Claim.all().selectOne(c | c.name.content = "G1");
 	var originalG2 = m!Claim.all().selectOne(c | c.name.content = "G2");
 	var originalG4 = supplierDDI!Claim.all().selectOne(c | c.name.content = "G4");
@@ -84,7 +114,29 @@ operation BuildACPBinding(
 	
 	return result;
 }
-		
+
+/**
+@IntegrateArchitecture
+ @param systemName
+  @type String
+  The name of the parent system
+ @param subSystemName
+  @type String
+  The name of the subsystem
+ @param inputPortMapping
+  @type Map
+  Maps parent system's input ports to the subsystem's output ports
+ @param outputPortMapping
+  @type Map
+  Maps the parent system's output ports to the subsystem's input ports
+ @comments
+  Integrates a system with a subsystem, mapping I/O ports
+  <br> Searches parent system from ownDDI for a placeholder subsystem with the provided subsystem name
+  <br> Then removes references and signals from/to that subsystem (from just the parent system)
+  <br> Then retrieves the subsystem from the supplierDDI, clones and adds it to the parent system's subsystems
+  <br> Also adds it to the design package containing the parent system
+  <br> Connects the parent system's input ports to the subsystem's output ports and vice versa
+*/		
 operation IntegrateArchitecture(
 	systemName : String, subSystemName : String, 
 	inputPortMapping : Map, outputPortMapping : Map) {

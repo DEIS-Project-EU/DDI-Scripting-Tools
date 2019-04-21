@@ -57,9 +57,9 @@ operation Any Clone() : Any {
   @type Integer
   A randomly generated integer to serve as an element ID
  @comments
-  Generates a unique pseudo-random ID using java.util.Random <br>
-  The range is [0, MAX_ID], MAX_ID is a global Integer that should be defined by the user <br>
-  The user must also define a global ID_LIST Collection of existing IDs for checking the uniqueness 
+  Generates a unique pseudo-random ID using java.util.Random 
+  <br> The range is [0, MAX_ID], MAX_ID is a global Integer that should be defined by the user 
+  <br> The user must also define a global ID_LIST Collection of existing IDs for checking the uniqueness 
 */
 operation GetID() : Integer {
 	var result : Integer;
@@ -156,8 +156,8 @@ operation m!BaseElement AddKeyValue(key : String, value : String, tag : String) 
   @type String
   The description of the built System
  @comments
-  Builds a new System with given name and description, adds it to the context DesignPackage and returns it <br>
-  The built System is initialised with an ID using GetID()
+  Builds a new System with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built System is initialised with an ID using GetID()
 */
 operation m!DesignPackage BuildSystem(name : String, description : String) : m!System {
 	var result : new m!System;
@@ -188,9 +188,9 @@ operation m!DesignPackage BuildSystem(name : String, description : String) : m!S
   @type System
   The parent system under which the built System is added
  @comments
-  Builds a new System with given name and description, adds it to the context DesignPackage and returns it <br>
-  The built System is initialised with an ID using GetID() <br>
-  Adds the built System under the parentSystem's subSystems
+  Builds a new System with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built System is initialised with an ID using GetID() 
+  <br> Adds the built System under the parentSystem's subSystems
 */
 operation m!DesignPackage BuildSystem(name : String, description : String, parentSystem : System) {
 	var result = self.BuildSystem(name, description);
@@ -213,8 +213,8 @@ operation m!DesignPackage BuildSystem(name : String, description : String, paren
   @type String
   The description of the built Function
  @comments
-  Builds a new Function with given name and description, adds it to the context DesignPackage and returns it <br>
-  The built Function is initialised with an ID using GetID()
+  Builds a new Function with given name and description, adds it to the context DesignPackage and returns it 
+  <br> The built Function is initialised with an ID using GetID()
 */
 operation m!DesignPackage BuildFunction(name : String, description : String) : m!Function {
 	var result : new m!Function;
@@ -239,8 +239,8 @@ operation m!DesignPackage BuildFunction(name : String, description : String) : m
   @type String
   The description of the built Port
  @comments
-  Builds a new Port with given name and description, adds it to the context System's ports and returns it <br>
-  The built Port is initialised with an ID using GetID()
+  Builds a new Port with given name and description, adds it to the context System's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID()
 */
 operation m!System BuildPort(name : String, description : String) : m!Port {
 	var result : new m!Port;
@@ -270,9 +270,9 @@ operation m!System BuildPort(name : String, description : String) : m!Port {
   @type String
   The direction ("IN", "OUT", "INOUT") of the Port
  @comments
-  Builds a new Port with given name and description, adds it to the context System's ports and returns it <br>
-  The built Port is initialised with an ID using GetID()
-  Also sets the Port's direction
+  Builds a new Port with given name and description, adds it to the context System's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID()
+  <br> Also sets the Port's direction
 */
 operation m!System BuildPort(name : String, description : String, direction : String) : m!Port {
 	var result = self.BuildPort(name, description);
@@ -298,9 +298,9 @@ operation m!System BuildPort(name : String, description : String, direction : St
   @type String
   The direction ("IN", "OUT", "INOUT") of the Port
  @comments
-  Builds a new Port with given name and description, adds it to the context Function's ports and returns it <br>
-  The built Port is initialised with an ID using GetID() <br>
-  Also sets the Port's direction
+  Builds a new Port with given name and description, adds it to the context Function's ports and returns it 
+  <br> The built Port is initialised with an ID using GetID() 
+  <br> Also sets the Port's direction
 */
 operation m!Function BuildPort(name : String, description : String, direction : String) : m!Port {
 	var result : new m!Port;
@@ -320,8 +320,8 @@ operation m!Function BuildPort(name : String, description : String, direction : 
   @type String
   The direction ("IN", "OUT", "INOUT") to be set
  @comments
-  Sets the direction of the context Port <br>
-  "INOUT" is assumed if the input does not match the other options
+  Sets the direction of the context Port 
+  <br> "INOUT" is assumed if the input does not match the other options
 */
 operation m!Port SetDirection(direction : String) {
 	if (direction = "IN")
@@ -353,8 +353,8 @@ operation m!Port SetDirection(direction : String) {
   @type Port
   The Port to which the built Signal connects
  @comments
-  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it <br>
-  The built Signal is initialised with an ID using GetID()
+  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it 
+  <br> The built Signal is initialised with an ID using GetID()
 */
 operation m!System BuildSignal(name : String, description : String, fromPort : m!Port, toPort : m!Port) : m!Signal {
 	var result : new m!Signal;
@@ -381,8 +381,8 @@ operation m!System BuildSignal(name : String, description : String, fromPort : m
   @type Port
   The Port to which the built Signal connects
  @comments
-  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it <br>
-  The built Signal is initialised with an ID using GetID()
+  Builds a Signal connecting two Ports, adding it under the context System's signals and returns it 
+  <br> The built Signal is initialised with an ID using GetID()
 */
 operation m!System BuildSignal(fromPort : m!Port, toPort : m!Port) : m!Signal {
 	return self.BuildSignal("", "", fromPort, toPort);	
@@ -447,8 +447,8 @@ operation m!Port AddFailure(f : m!Cause) {
   @type String
   The name of the built FaultTree
  @comments
-  Builds a FaultTree, adds it under the context FailureLogicPackage and returns it <br>
-  The built FaultTree is initialised with an ID using GetID()
+  Builds a FaultTree, adds it under the context FailureLogicPackage and returns it 
+  <br> The built FaultTree is initialised with an ID using GetID()
 */
 operation m!FailureLogicPackage BuildFaultTree(name : String) : m!FaultTree {
 	var result : new m!FaultTree;
@@ -473,8 +473,8 @@ operation m!FailureLogicPackage BuildFaultTree(name : String) : m!FaultTree {
   @type FailureModel
   The FailureModel under which the built FaultTree is to be added
  @comments
-  Builds a FaultTree, adds it under the context FailureLogicPackage and the FailureModel and returns it <br>
-  The built FaultTree is initialised with an ID using GetID()
+  Builds a FaultTree, adds it under the context FailureLogicPackage and the FailureModel and returns it 
+  <br> The built FaultTree is initialised with an ID using GetID()
 */
 operation m!FailureLogicPackage BuildFaultTree(name : String, parent : m!FailureModel) : m!FaultTree {
 	var result = self.BuildFaultTree(name);
@@ -503,8 +503,8 @@ operation m!FailureLogicPackage BuildFaultTree(name : String, parent : m!Failure
   @type Real
   The failure rate of the built Failure
  @comments
-  Builds a Failure, adds it to the context FailureModel and returns it <br>
-  The Failure is initialised with an ID using GetID()
+  Builds a Failure, adds it to the context FailureModel and returns it 
+  <br> The Failure is initialised with an ID using GetID()
 */
 operation m!FailureModel BuildFailure(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean, originType : String) : m!Failure {
 	var result : new m!Failure;
@@ -543,8 +543,8 @@ operation m!FailureModel BuildFailure(name : String, description : String, failu
   @type String
   The type of the built Gate, set using SetGateType
  @comments
-  Builds a Gate, adds it to the context FaultTree and returns it <br>
-  The built Gate is initialised with an ID usign GetID()
+  Builds a Gate, adds it to the context FaultTree and returns it 
+  <br> The built Gate is initialised with an ID usign GetID()
 */
 operation m!FaultTree BuildGate(name : String, gateType : String) : m!Gate {
 	var result = self.BuildGate(gateType);
@@ -564,8 +564,8 @@ operation m!FaultTree BuildGate(name : String, gateType : String) : m!Gate {
   @type String
   The type of the built Gate, set using SetGateType
  @comments
-  Builds a Gate, adds it to the context FaultTree and returns it <br>
-  The built Gate is initialised with an ID usign GetID()
+  Builds a Gate, adds it to the context FaultTree and returns it 
+  <br> The built Gate is initialised with an ID usign GetID()
 */
 operation m!FaultTree BuildGate(gateType : String) : m!Gate {
 	var result : new m!Gate;
@@ -615,8 +615,8 @@ operation m!Gate AddCause(c : m!Cause) {
   @type Boolean
   Whether the built BasicEvent is a Common Cause Failure
  @comments
-  Builds a BasicEvent, adds it under the context FaultTree and returns it <br>
-  The built BasicEvent is initialised with an ID using GetID()
+  Builds a BasicEvent, adds it under the context FaultTree and returns it 
+  <br> The built BasicEvent is initialised with an ID using GetID()
 */
 operation m!FaultTree BuildBasicEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Cause {
 	var result : new m!Cause;
@@ -653,8 +653,8 @@ operation m!FaultTree BuildBasicEvent(name : String, description : String, failu
   @type Boolean
   Whether the built Gate is also a Common Cause Failure
  @comments
-  Builds a Gate(InputEvent), adds it under the FaultTree and returns it <br>
-  The build Gate is initialised with an ID using GetID()
+  Builds a Gate(InputEvent), adds it under the FaultTree and returns it 
+  <br> The build Gate is initialised with an ID using GetID()
 */
 operation m!FaultTree BuildInputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Gate {
 	var result : new m!Gate;
@@ -692,8 +692,8 @@ operation m!FaultTree BuildInputEvent(name : String, description : String, failu
   @type Boolean
   Whether the built Gate is also a Common Cause Failure
  @comments
-  Builds a Gate(OutputEvent), adds it under the FaultTree and returns it <br>
-  The build Gate is initialised with an ID using GetID()
+  Builds a Gate(OutputEvent), adds it under the FaultTree and returns it 
+  <br> The build Gate is initialised with an ID using GetID()
 */
 operation m!FaultTree BuildOutputEvent(name : String, description : String, failureClass : String, failureRate : Real, isCCF : Boolean) : m!Gate {
 	var result : new m!Gate;
@@ -716,8 +716,8 @@ operation m!FaultTree BuildOutputEvent(name : String, description : String, fail
   @type String
   The origin type ("INPUT", "OUTPUT", "INTERNAL") the context Failure should be set to
  @comments
-  Sets the Failure to the origin type ("INPUT", "OUTPUT", "INTERNAL") <br>
-  Set by default to "INTERNAL" if the other options are not chosen instead
+  Sets the Failure to the origin type ("INPUT", "OUTPUT", "INTERNAL") 
+  <br> Set by default to "INTERNAL" if the other options are not chosen instead
 */
 operation m!Failure SetOriginType(originType : String) {
 	if (originType = "INPUT")
@@ -737,8 +737,8 @@ operation m!Failure SetOriginType(originType : String) {
   @type String
   The type the context Gate should be set to
  @comments
-  The type ("OR", "AND", "NOT", "XOR", "VOTE", "PAND", "SAND", "INPUT", "OUTPUT") the context Gate should be set to <br>
-  Defaults to "OUTPUT" if the other options are not chosen
+  The type ("OR", "AND", "NOT", "XOR", "VOTE", "PAND", "SAND", "INPUT", "OUTPUT") the context Gate should be set to 
+  <br> Defaults to "OUTPUT" if the other options are not chosen
 */
 operation m!Gate SetGateType(gateType : String) {
 	if (gateType = "OR")
@@ -770,8 +770,8 @@ operation m!Gate SetGateType(gateType : String) {
   @type String
   The type ("INPUT", "OUTPUT", "GATE", "INTERNAL") the context Cause should be set to
  @comments
-  Sets the type of the context Cause to one of the mentioned options <br>
-  If no other options match, defaults to "INTERNAL"
+  Sets the type of the context Cause to one of the mentioned options 
+  <br> If no other options match, defaults to "INTERNAL"
 */
 operation m!Cause SetCauseType(causeType : String) {
 	if (causeType = "INPUT")
@@ -801,8 +801,8 @@ operation m!Cause SetCauseType(causeType : String) {
   @type String
   The description of the built HazardType
  @comments
-  Builds a HazardType, adds it to the HARAPackage and returns it <br>
-  The built HazardType is initialised with an ID using GetID()
+  Builds a HazardType, adds it to the HARAPackage and returns it 
+  <br> The built HazardType is initialised with an ID using GetID()
 */
 operation m!HARAPackage BuildHazardType(name : String, description : String) : m!HazardType {
 	var result : new m!HazardType;
@@ -839,8 +839,8 @@ operation m!HARAPackage BuildHazardType(name : String, description : String) : m
   @type Collection
   A Collection containing Measures to be added to the Hazard
  @comments
-  Builds a Hazard, adds it to the context HARAPackage and returns it <br>
-  The built Hazard is initialised with an ID using GetID() 
+  Builds a Hazard, adds it to the context HARAPackage and returns it 
+  <br> The built Hazard is initialised with an ID using GetID() 
 */
 operation m!HARAPackage BuildHazard(name : String, description : String, condition : String, hazardType : m!HazardType, failures : Collection, measures : Collection) : m!Hazard {
 	var result : new m!Hazard;
@@ -872,8 +872,8 @@ operation m!HARAPackage BuildHazard(name : String, description : String, conditi
   @type Collection
   A Collection of Hazards to be added to the built Malfunction
  @comments
-  Builds a Malfunction, adds it to the context HARAPackage and returns it  <br>
-  The built Malfunction is initialised with an ID using GetID()
+  Builds a Malfunction, adds it to the context HARAPackage and returns it 
+  <br> The built Malfunction is initialised with an ID using GetID()
 */
 operation m!HARAPackage BuildMalfunction(name : String, description : String, hazards : Collection) : m!Malfunction {
 	var result : new m!Malfunction;
@@ -895,8 +895,9 @@ operation m!HARAPackage BuildMalfunction(name : String, description : String, ha
   @type String
   The name of the ModelElement
  @comments
-  Sets the 'name' of a ModelElement; given ModelElements do not have an explicit 'name' property, <br>
-  The name is set as a LangString, added to the ModelElement. The LangString's lang is 'en' and its content is the name
+  Sets the 'name' of a ModelElement; given ModelElements do not have an explicit 'name' property, 
+  <br> the name is set as a LangString and added to the ModelElement. 
+  <br> The LangString's lang is 'en' and its content is the name
 */
 operation m!ModelElement SetName(input : String) {
 	var name : new m!LangString;
@@ -941,7 +942,7 @@ operation BuildLangString(content : String, lang : String) : m!LangString {
   @type String
   The language of the LangString e.g. 'eng' for english
  @comments
-  Builds a LangString, adds it to the context MultiLangString <br>
+  Builds a LangString, adds it to the context MultiLangString
 */
 operation m!MultiLangString BuildLangString(lang : String, content : String) : m!LangString {
 	var result : new m!LangString;
@@ -966,10 +967,10 @@ operation m!MultiLangString BuildLangString(lang : String, content : String) : m
   @type String
   The 'value' of the TaggedValue
  @comments
-  Builds a TaggedValue, adds it to the context ModelElement and returns it <br>
-  Note that a MultiLangString does not have an explicit 'key' or 'value' property; <br>
-  the key is set as the lang of a LangString contained in the MultiLangString, the 'value' being the content <br>
-  The built TaggedValue is initialised with an ID using GetID() 
+  Builds a TaggedValue, adds it to the context ModelElement and returns it 
+  <br> Note that a MultiLangString does not have an explicit 'key' or 'value' property; 
+  <br> the key is set as the lang of a LangString contained in the MultiLangString, the 'value' being the content 
+  <br> The built TaggedValue is initialised with an ID using GetID() 
 */
 operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!TaggedValue {
 	var result : new m!TaggedValue;
@@ -993,8 +994,8 @@ operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!Tagg
   @type String
   The name being searched for in TaggedValues of the context ModelElement
  @comments
-  Searches across the context ModelElement's TaggedValues to find whether <br> 
-  there is at least one with the same name as the parameter
+  Searches across the context ModelElement's TaggedValues to find whether 
+  <br> there is at least one with the same name as the parameter
 */
 operation m!ModelElement HasTaggedValue(name : String) : Boolean {
 	for(t in self.taggedValue) 
@@ -1023,10 +1024,6 @@ operation BuildExpressionLangString(expression : m!ExpressionElement) : m!Expres
 	return result;
 }
 
-// Sets the ModelElement's description within a Description,
-// MultiLangString, then LangString
-// Description set to input, language assumed to be 'en'
-
 /**
 @SetDescription
  @context
@@ -1035,7 +1032,9 @@ operation BuildExpressionLangString(expression : m!ExpressionElement) : m!Expres
   @type String
   The description of the context ModelElement
  @comments
-  Sets the context ModelElement's description
+  Sets the context ModelElement's Description, contained in a
+  <br> MultiLangString and then LangString
+  <br> The LangString language is set to be 'en'
 */
 operation m!ModelElement SetDescription(input : String) {
 	self.description = new m!Description;
@@ -1045,11 +1044,6 @@ operation m!ModelElement SetDescription(input : String) {
 	descContentValue.content = input;
 	self.description.content.value.add(descContentValue);
 }
-
-// Constructs a 'Goal' i.e. SACM Claim
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of claim set to name, Description of claim set to description
-// Returns constructed goal
 
 /**
 @BuildGoal(1)
@@ -1066,8 +1060,8 @@ operation m!ModelElement SetDescription(input : String) {
   @type String
   The description/content of the Claim(Goal)
  @comments
-  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it <br>
-  The built Claim(Goal) is initialised with an ID using GetID()
+  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Goal) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildGoal(name : String, description : String) : m!Claim {
 	var result : new m!Claim;
@@ -1093,9 +1087,9 @@ operation m!ArgumentPackage BuildGoal(name : String, description : String) : m!C
   @type Collection
   A Collection of 'desriptions' to be set as the Claim(Goal)'s description/content
  @comments
-  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it <br>
-  The built Claim(Goal) is initialised with an ID using GetID() <br>
-  This variant enables convenient construction of Claims(Goals) which have abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
+  Builds a Claim(Goal), adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Goal) is initialised with an ID using GetID() 
+  <br> This variant enables convenient construction of Claims(Goals) which have abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
 */
 operation m!ArgumentPackage BuildGoal(name : String, description : Collection) : m!Claim {
 	var result : new m!Claim;
@@ -1105,11 +1099,6 @@ operation m!ArgumentPackage BuildGoal(name : String, description : Collection) :
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Constructs an 'Assumption' i.e. SACM Claim with assertionDeclaration = 'assumed'
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of claim set to name, Description of claim set to description
-// Returns constructed assumption
 
 /**
 @BuildAssumption
@@ -1126,20 +1115,15 @@ operation m!ArgumentPackage BuildGoal(name : String, description : Collection) :
   @type String
   The description of the built Claim(Assumption)
  @comments
-  Builds a Claim(Assumption), with the assertionDeclaration property set to 'assumed' <br>
-  Adds it to the context ArgumentPackage and returns it <br>
-  The built Claim(Assumption) is initialised with an ID using GetID()
+  Builds a Claim(Assumption), with the assertionDeclaration property set to 'assumed' 
+  <br> Adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Assumption) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildAssumption(name : String, description : String) : m!Claim {
 	var result = self.BuildGoal(name, description);
 	result.assertionDeclaration = m!AssertionDeclaration#assumed;
 	return result;
 }
-
-// Constructs a 'Justification' i.e. SACM Claim with assertionDeclaration = 'axiomatic'
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of claim set to name, Description of claim set to description
-// Returns constructed justification
 
 /**
 @BuildJustification
@@ -1156,21 +1140,15 @@ operation m!ArgumentPackage BuildAssumption(name : String, description : String)
   @type String
   The description of the built Claim(Justification)
  @comments
-  Builds a Claim(Justification), with the assertionDeclaration property set to 'axiomatic' <br>
-  Adds it to the context ArgumentPackage and returns it <br>
-  The built Claim(Justification) is initialised with an ID using GetID()
+  Builds a Claim(Justification), with the assertionDeclaration property set to 'axiomatic' 
+  <br> Adds it to the context ArgumentPackage and returns it 
+  <br> The built Claim(Justification) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildJustification(name : String, description : String) : m!Claim {
 	var result = self.BuildGoal(name, description);
 	result.assertionDeclaration = m!AssertionDeclaration#axiomatic;
 	return result;
 }
-
-// Constructs a 'Strategy' i.e. SACM AssertedInference with (optional) ArgumentReasoning
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of strategy set to name, Description of strategy set to description
-// If name is empty, then no ArgumentReasoning is generated
-// Returns constructed strategy
 
 /**
 @BuildStrategy(1)
@@ -1187,9 +1165,9 @@ operation m!ArgumentPackage BuildJustification(name : String, description : Stri
   @type String
   The description of the built AssertedInference(Strategy)
  @comments
-  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it <br>
-  Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) <br>
-  The built AssertedInference(Strategy) is initialised with an ID using GetID()
+  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it 
+  <br> Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) 
+  <br> The built AssertedInference(Strategy) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildStrategy(name : String, description : String) : m!AssertedInference {
 	var result : new m!AssertedInference;
@@ -1219,10 +1197,10 @@ operation m!ArgumentPackage BuildStrategy(name : String, description : String) :
   @type Collection
   A Collection of descriptions of the built AssertedInference(Strategy)
  @comments
-  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it <br>
-  Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) <br>
-  The built AssertedInference(Strategy) is initialised with an ID using GetID() <br>
-  This variant allows convenient construction of AssertedInferences(Strategies) containing abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
+  Builds an AssertedInference(Strategy), adds it to the context ArgumentPackage and returns it 
+  <br> Internally builds an ArgumentReasoning, sets its name and description using the parameters and adds it to the AssertedInference(Strategy) 
+  <br> The built AssertedInference(Strategy) is initialised with an ID using GetID() 
+  <br> This variant allows convenient construction of AssertedInferences(Strategies) containing abstract descriptions, consisting of multiple LangString and ExpressionLangStrings
 */
 operation m!ArgumentPackage BuildStrategy(name : String, description : Collection) : m!AssertedInference {
 	var result : new m!AssertedInference;
@@ -1234,11 +1212,6 @@ operation m!ArgumentPackage BuildStrategy(name : String, description : Collectio
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Constructs a 'Context' i.e. SACM ArtifactReference
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of context set to name, Description of context set to description
-// Returns constructed context
 
 /**
 @BuildContext
@@ -1255,8 +1228,8 @@ operation m!ArgumentPackage BuildStrategy(name : String, description : Collectio
   @type String
   The description of the built ArtifactReference(Context)
  @comments
-  Builds an ArtifactReference(Context), adds it to the context ArgumentPackage and returns it <br>
-  The built ArtifactReference(Context) is initialised with an ID using GetID()
+  Builds an ArtifactReference(Context), adds it to the context ArgumentPackage and returns it 
+  <br> The built ArtifactReference(Context) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildContext(name : String, description : String) : m!ArtifactReference {
 	var result : new m!ArtifactReference;
@@ -1266,11 +1239,6 @@ operation m!ArgumentPackage BuildContext(name : String, description : String) : 
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Constructs a 'Solution' i.e. SACM ArtifactReference
-// Adds it to the subject ArgumentPackage's argumentationElement(s)
-// Name of solution set to name, Description of solution set to description
-// Returns constructed solution
 
 /**
 @BuildSolution
@@ -1287,8 +1255,8 @@ operation m!ArgumentPackage BuildContext(name : String, description : String) : 
   @type String
   The description of the built ArtifactReference(Solution)
  @comments
-  Builds an ArtifactReference(Solution), adds it to the context ArgumentPackage and returns it <br>
-  The built ArtifactReference(Solution) is initialised with an ID using GetID()
+  Builds an ArtifactReference(Solution), adds it to the context ArgumentPackage and returns it 
+  <br> The built ArtifactReference(Solution) is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage BuildSolution(name : String, description : String) : m!ArtifactReference {
 	var result : new m!ArtifactReference;
@@ -1298,12 +1266,6 @@ operation m!ArgumentPackage BuildSolution(name : String, description : String) :
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Constructs an Artifact
-// Adds it to the subject ArtifactPackage's artifactElement(s)
-// Name of artifact set to name, Description of artifact set to description, Version of artifact set to version
-// Date of artifact set to string conversion using java.util.Date
-// Returns constructed artifact
 
 /**
 @BuildArtifact
@@ -1326,9 +1288,9 @@ operation m!ArgumentPackage BuildSolution(name : String, description : String) :
   @type String
   Date of the built Artifact
  @comments
-  Builds an Artifact, adds it to the context ArtifactPackage and returns it <br>
-  The built Artifact is initialised with an ID using GetID() <br>
-  The date is converted using java.util.Date for parsing the parameter
+  Builds an Artifact, adds it to the context ArtifactPackage and returns it 
+  <br> The built Artifact is initialised with an ID using GetID() 
+  <br> The date is converted using java.util.Date for parsing the parameter
 */
 operation m!ArtifactPackage BuildArtifact(name : String, description : String, version : String, date : String) : m!Artifact {
 	var result : new m!Artifact;
@@ -1364,9 +1326,9 @@ operation m!ArtifactPackage BuildArtifact(name : String, description : String, v
   @type String
   End time of the built Activity
  @comments
-  Builds an Activity, adds it to the context ArtifactPackage and returns it <br>
-  The built Activity is initialised with an ID using GetID() <br>
-  The startTime and endTime are converted using java.util.Date for parsing the parameters
+  Builds an Activity, adds it to the context ArtifactPackage and returns it 
+  <br> The built Activity is initialised with an ID using GetID() 
+  <br> The startTime and endTime are converted using java.util.Date for parsing the parameters
 */
 operation m!ArtifactPackage BuildActivity(name : String, description : String, startTime : String, endTime : String) : m!Activity {
 	var result : new m!Activity;
@@ -1401,9 +1363,9 @@ operation m!ArtifactPackage BuildActivity(name : String, description : String, s
   @type String
   Occurence of the built Event
  @comments
-  Builds an Event, adds it to the context ArtifactPackage and returns it <br>
-  The built Event is initialised with an ID using GetID() <br>
-  The occurence is converted using java.util.Date for parsing the parameter
+  Builds an Event, adds it to the context ArtifactPackage and returns it 
+  <br> The built Event is initialised with an ID using GetID() 
+  <br> The occurence is converted using java.util.Date for parsing the parameter
 */
 operation m!ArtifactPackage BuildEvent(name : String, description : String, occurence : String) : m!Event {
 	var result : new m!Event;
@@ -1416,10 +1378,6 @@ operation m!ArtifactPackage BuildEvent(name : String, description : String, occu
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Links a 'Strategy' (SACM AssertedInference) to zero or more 'Contexts' (ArtifactReferences) via an AssertedContext
-// Adds new AssertedContext to the subject ArgumentPackage's argumentationElement(s)
-// Returns AssertedContext
 
 /**
 @LinkStrategyToContexts
@@ -1442,9 +1400,9 @@ operation m!ArtifactPackage BuildEvent(name : String, description : String, occu
   @type String
   The description of the created AssertedContext
  @comments
-  Links an AssertedInference(Strategy) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext <br>
-  The Strategy is the target of the AssertedContext, the linked Contexts are the source <br>
-  The created AssertedContext is initialised with an ID using GetID()
+  Links an AssertedInference(Strategy) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext 
+  <br> The Strategy is the target of the AssertedContext, the linked Contexts are the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkStrategyToContexts(s : m!AssertedInference, c : Collection, name : String, description : String) : m!AssertedContext {
 	var result : new m!AssertedContext;
@@ -1456,10 +1414,6 @@ operation m!ArgumentPackage LinkStrategyToContexts(s : m!AssertedInference, c : 
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Links a Strategy to a single Context via an AssertedContext
-// Adds new AssertedContext to the subject ArgumentPackage
-// Returns AssertedContext 
 
 /**
 @LinkStrategyToContext
@@ -1482,9 +1436,9 @@ operation m!ArgumentPackage LinkStrategyToContexts(s : m!AssertedInference, c : 
   @type String
   The description of the created AssertedContext
  @comments
-  Links an AssertedInference(Strategy) to an ArtifactReference(Context) by creating an AssertedContext <br>
-  The Strategy is the target of the AssertedContext, the linked Context is the source <br>
-  The created AssertedContext is initialised with an ID using GetID()
+  Links an AssertedInference(Strategy) to an ArtifactReference(Context) by creating an AssertedContext 
+  <br> The Strategy is the target of the AssertedContext, the linked Context is the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkStrategyToContext(s : m!AssertedInference, c : m!ArtifactReference) : m!AssertedContext {
 	var result : new m!AssertedContext;
@@ -1494,11 +1448,6 @@ operation m!ArgumentPackage LinkStrategyToContext(s : m!AssertedInference, c : m
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Links Goal to subGoals
-// Adds linking Strategy to subject ArgumentPackage
-// If name and description are provided, strategy contains ArgumentReasoning accordingly 
-// Returns linking strategy
 
 /**
 @LinkGoalToGoals(1)
@@ -1521,9 +1470,9 @@ operation m!ArgumentPackage LinkStrategyToContext(s : m!AssertedInference, c : m
   @type String
   The description of the created AssertedInference(Strategy)
  @comments
-  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) <br>
-  The Claim is the target of the AssertedInference, the Collection of Claims are the source <br>
-  The created AssertedInference is initialised with an ID using GetID()
+  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the Collection of Claims are the source 
+  <br> The created AssertedInference is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collection, strategyName : String, strategyDescription : String) : m!AssertedInference {
 	var result = self.BuildStrategy(strategyName, strategyDescription);
@@ -1549,19 +1498,14 @@ operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collect
   @type Collection
   A Collection of Claims(Goals) to be linked to the target Claim
  @comments
-  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) <br>
-  The Claim is the target of the AssertedInference, the Collection of Claims are the source <br>
-  The created AssertedInference is initialised with an ID using GetID() <br>
-  This variation links the Claims(Goals) via an AssertedInference(Strategy) without a title or description
+  Links a Claim(Goal) to a Collection of Claims(Goals) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the Collection of Claims are the source 
+  <br> The created AssertedInference is initialised with an ID using GetID() 
+  <br> This variation links the Claims(Goals) via an AssertedInference(Strategy) without a title or description
 */
 operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collection) : m!AssertedInference {
 	return self.LinkGoalToGoals(target, subGoals, "", "");
 }
-
-// Links Goal to subGoal
-// Adds linking Strategy to subject ArgumentPackage
-// If name and description are provided, strategy contains ArgumentReasoning accordingly
-// Returns linking strategy
 
 /**
 @LinkGoalToGoal
@@ -1584,9 +1528,9 @@ operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collect
   @type String
   The description of the created AssertedInference(Strategy)
  @comments
-  Links a Claim(Goal) to a Claim(Goal) by creating an AssertedInference(Strategy) <br>
-  The Claim is the target of the AssertedInference, the subGoal Claim is the source <br>
-  The created AssertedInference is initialised with an ID using GetID()
+  Links a Claim(Goal) to a Claim(Goal) by creating an AssertedInference(Strategy) 
+  <br> The Claim is the target of the AssertedInference, the subGoal Claim is the source 
+  <br> The created AssertedInference is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToGoal(target : m!Claim, subGoal : m!Claim, strategyName : String, strategyDescription : String) : m!AssertedInference {
 	var result = self.BuildStrategy(strategyName, strategyDescription);
@@ -1614,9 +1558,9 @@ operation m!ArgumentPackage LinkGoalToGoal(target : m!Claim, subGoal : m!Claim, 
   @type Collection
   A Collection of ArtifactReferences(Evidence) to be linked to the target Claim
  @comments
-  Links a Claim(Goal) to a Collection of ArtifactReferences(Evidence) by creating an AssertedEvidence <br>
-  The Claim is the target of the AssertedEvidence, the Collection of Evidence are the source <br>
-  The created AssertedEvidence is initialised with an ID using GetID()
+  Links a Claim(Goal) to a Collection of ArtifactReferences(Evidence) by creating an AssertedEvidence 
+  <br> The Claim is the target of the AssertedEvidence, the Collection of Evidence are the source 
+  <br> The created AssertedEvidence is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Collection) : m!AssertedEvidence {
 	var result : new m!AssertedEvidence;
@@ -1629,7 +1573,6 @@ operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Coll
 	return result;
 }
 
-
 // This isn't proper, consider removing
 operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Collection, strategyName : String, strategyDescription : String) : m!AssertedEvidence {
 	var result = self.LinkGoalToEvidence(target, evidence);
@@ -1640,10 +1583,6 @@ operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Coll
 	self.argumentationElement.add(result.reasoning);
 	return result;	
 }
-
-// Links Goal to single evidence (ArtifactReference)
-// Adds linking AssertedEvidence to subject ArgumentPackage
-// Returns linking AssertedEvidence 
 
 /**
 @LinkGoalToEvidence(2)
@@ -1660,9 +1599,9 @@ operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : Coll
   @type ArtifactReference
   An ArtifactReference(Evidence) to be linked to the target Claim
  @comments
-  Links a Claim(Goal) to an ArtifactReference(Evidence) by creating an AssertedEvidence <br>
-  The Claim is the target of the AssertedEvidence, the Evidence is the source <br>
-  The created AssertedEvidence is initialised with an ID using GetID()
+  Links a Claim(Goal) to an ArtifactReference(Evidence) by creating an AssertedEvidence 
+  <br> The Claim is the target of the AssertedEvidence, the Evidence is the source 
+  <br> The created AssertedEvidence is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : m!ArtifactReference) : m!AssertedEvidence {
 	var result : new m!AssertedEvidence;
@@ -1672,10 +1611,6 @@ operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : m!Ar
 	result.gid = GetID().asString();
 	return result;	
 }
-
-// Links Goal to Contexts (Collection of ArtifactReferences)
-// Adds linking AssertedContext to subject ArgumentPackage
-// Returns linking AssertedContext
 
 /**
 @LinkGoalToContexts
@@ -1692,9 +1627,9 @@ operation m!ArgumentPackage LinkGoalToEvidence(target : m!Claim, evidence : m!Ar
   @type Collection
   A Collection of ArtifactReferences(Contexts) to be linked to the target Claim
  @comments
-  Links a Claim(Goal) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext <br>
-  The Claim is the target of the AssertedContext, the Contexts are the source <br>
-  The created AssertedContext is initialised with an ID using GetID()
+  Links a Claim(Goal) to a Collection of ArtifactReferences(Contexts) by creating an AssertedContext 
+  <br> The Claim is the target of the AssertedContext, the Contexts are the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToContexts(target : m!Claim, contexts : Collection) : m!AssertedContext {
 	var result : new m!AssertedContext;
@@ -1706,10 +1641,6 @@ operation m!ArgumentPackage LinkGoalToContexts(target : m!Claim, contexts : Coll
 	result.gid = GetID().asString();
 	return result;
 }
-
-// Links Goal to single Context (ArtifactReference)
-// Adds linking AssertedEvidence to subject ArgumentPackage
-// Returns linking AssertedEvidence 
 
 /**
 @LinkGoalToContext
@@ -1726,9 +1657,9 @@ operation m!ArgumentPackage LinkGoalToContexts(target : m!Claim, contexts : Coll
   @type ArtifactReference
   An ArtifactReference(Context) to be linked to the target Claim
  @comments
-  Links a Claim(Goal) to an ArtifactReference(Context) by creating an AssertedContext <br>
-  The Claim is the target of the AssertedContext, the Context is the source <br>
-  The created AssertedContext is initialised with an ID using GetID()
+  Links a Claim(Goal) to an ArtifactReference(Context) by creating an AssertedContext 
+  <br> The Claim is the target of the AssertedContext, the Context is the source 
+  <br> The created AssertedContext is initialised with an ID using GetID()
 */
 operation m!ArgumentPackage LinkGoalToContext(target : m!Claim, context : m!ArtifactReference) : m!AssertedContext {
 	var result : new m!AssertedContext;
@@ -1765,8 +1696,8 @@ operation m!ArtifactReference LinkToArtifact(target : m!ArtifactElement) {
   @type String
   The type to set the Term to
  @comments
-  Sets the context Term's type; since a Term does not have an explicit type, <br>
-  the type is set as the name of the Term using ModelElement::SetName
+  Sets the context Term's type; since a Term does not have an explicit type, 
+  <br> the type is set as the name of the Term using ModelElement::SetName
 */
 operation m!Term SetType(type : String) {
 	self.SetName(type);
@@ -1799,8 +1730,8 @@ operation m!Term GetType() : String {
   @type String
   The name of the built Term
  @comments
-  Builds a Term, adds it to the context TerminologyPackage and returns it <br>
-  The built Term is initialised with an ID using GetID() 
+  Builds a Term, adds it to the context TerminologyPackage and returns it 
+  <br> The built Term is initialised with an ID using GetID() 
 */
 operation m!TerminologyPackage BuildTerm(name : String) : m!Term {
 	var result : new m!Term;
@@ -1825,9 +1756,9 @@ operation m!TerminologyPackage BuildTerm(name : String) : m!Term {
   @type String
   The value of the built Term
  @comments
-  Builds a Term, adds it to the context TerminologyPackage and returns it <br>
-  The built Term is initialised with an ID using GetID() <br>
-  This variation also sets the Term's value
+  Builds a Term, adds it to the context TerminologyPackage and returns it 
+  <br> The built Term is initialised with an ID using GetID() 
+  <br> This variation also sets the Term's value
 */
 operation m!TerminologyPackage BuildTerm(type : String, value : String) : m!Term {
 	var result : new m!Term;
@@ -1849,8 +1780,8 @@ operation m!TerminologyPackage BuildTerm(type : String, value : String) : m!Term
   @type String
   The name of the built Expression
  @comments
-  Builds an Expression, adds it to the context TerminologyPackage and returns it <br>
-  The built Expression is initialised with an ID using GetID() 
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
 */
 operation m!TerminologyPackage BuildExpression(name : String) : m!Expression {
 	var result : new m!Expression;
@@ -1875,9 +1806,9 @@ operation m!TerminologyPackage BuildExpression(name : String) : m!Expression {
   @type Collection
   A Collection of ExpressionElements to be added under the Expression
  @comments
-  Builds an Expression, adds it to the context TerminologyPackage and returns it <br>
-  The built Expression is initialised with an ID using GetID() <br>
-  This variation adds a Collection of ExpressionElements under the built Expression
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
+  <br> This variation adds a Collection of ExpressionElements under the built Expression
 */
 $pre expressions.forAll(e | e.isKindOf(m!ExpressionElement))
 operation m!TerminologyPackage BuildExpression(name : String, expressions : Collection) : m!Expression {
@@ -1900,9 +1831,9 @@ operation m!TerminologyPackage BuildExpression(name : String, expressions : Coll
   @type Collection
   A Collection of ExpressionElements to be added under the Expression
  @comments
-  Builds an Expression, adds it to the context TerminologyPackage and returns it <br>
-  The built Expression is initialised with an ID using GetID() <br>
-  This variation does not set a name for the built Expression
+  Builds an Expression, adds it to the context TerminologyPackage and returns it 
+  <br> The built Expression is initialised with an ID using GetID() 
+  <br> This variation does not set a name for the built Expression
 */
 $pre expressions.forAll(e | e.isKindOf(m!ExpressionElement))
 operation m!TerminologyPackage BuildExpression(expressions : Collection) : m!Expression {
@@ -1930,10 +1861,10 @@ operation m!TerminologyPackage BuildExpression(expressions : Collection) : m!Exp
   @type ExpressionElement
   The ExpressionElement referenced by the ImplementationConstraint
  @comments
-  Builds an ImplementationConstraint referencing an ExpressionElement, adds it to the context ModelElement <br>
-  It is added by constructing an ExpressionLangString which references the Expression, <br>
-  then adding the ExpressionLangString to the ImplementationConstraint by storing the former in a MultiLangString <br>
-  The built ImplementationConstraint is initialised with an ID using GetID()
+  Builds an ImplementationConstraint referencing an ExpressionElement, adds it to the context ModelElement 
+  <br> It is added by constructing an ExpressionLangString which references the Expression, 
+  <br> then adding the ExpressionLangString to the ImplementationConstraint by storing the former in a MultiLangString 
+  <br> The built ImplementationConstraint is initialised with an ID using GetID()
 */
 operation m!ModelElement BuildImplementationConstraint(expression : ExpressionElement) : m!ImplementationConstraint {
 	var result : new m!ImplementationConstraint;
@@ -1959,8 +1890,8 @@ operation m!ModelElement BuildImplementationConstraint(expression : ExpressionEl
   @type String
   The external reference
  @comments
-  Looks up the model for a Term element with an external reference matching the one provided <br>
-  If found, returns ""
+  Looks up the model for a Term element with an external reference matching the one provided
+  <br> If found, returns ""
 */
 operation m!TerminologyPackage FindTermExternalReference(name : String) : String {
 	// Assumption: Only Terms should match
@@ -2076,7 +2007,7 @@ operation m!AssertedInference GetDescription() : String {
   Returns 'false' otherwise
  @comments
   Returns 'true' if the AssertedInference has an ImplementationConstraint
-  Returns 'false' otherwise
+  <br> Returns 'false' otherwise
 */
 operation m!AssertedInference HasImplementationConstraint() : Boolean {
 	if(self.reasoning.isDefined())
