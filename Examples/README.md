@@ -45,6 +45,7 @@ To generate a new ETCS DDI:
 - Review the updated DDI model
 
 At the end of the process, the ETCS model generated should appear as follows:
+
 ![Generated ETCS Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/etcs.PNG)
 
 The steps for re-generating the Trackside Unit DDI are almost identical, just use the [`generateTrackside.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateTrackside.eol) script instead
