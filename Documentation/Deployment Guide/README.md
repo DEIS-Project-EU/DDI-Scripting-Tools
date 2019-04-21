@@ -49,7 +49,9 @@ Users can use these operations in their own scripts to build DDIs for their subj
     ![Eclipse New Project Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_project_wizard_1.PNG)
 3. Import the DDIBuilderHelpers.eol file into your project
     - Right-click on project in Navigator
+    
     ![Import into Project](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_option.png)
+    
     - Import...
     
     ![Import Wizard](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_import_wizard.PNG)
