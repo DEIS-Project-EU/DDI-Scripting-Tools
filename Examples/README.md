@@ -27,7 +27,7 @@ The .model files can now be viewed in a tree-based editor within Eclipse (known 
 
 # Re-generating the DDIs
 
-To illustrate how these models can be created programmatically, the `generateETCS.eol` and `generateTrackside.eol` scripts can be used.
+To illustrate how these models can be created programmatically, the [`generateETCS.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateETCS.eol) and [`generateTrackside.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateTrackside.eol) scripts can be used.
 Follow the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) to create a project in Eclipse with the `DDIBuilderHelpers.eol` script setup. Instead of using a user-defined script, the provided `generateETCS.eol` or `generateTrackside.eol` scripts can be used instead.
 
 To generate a new ETCS DDI:
@@ -35,7 +35,7 @@ To generate a new ETCS DDI:
 - Import...
 - General->Filesystem
 - Navigate to the generateETCS.eol file and select it
-- Right-click on the imported generateETCS.eol file in the Model Explorer
+- Right-click on the imported generateETCS.eol file in the Navigator
 - Run As->Run Configurations...
 - Double-click 'EOL Program' to create a new configuration
 - Under 'Models', set the model to be the empty DDI model created according to the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) (step 4)
@@ -44,4 +44,4 @@ To generate a new ETCS DDI:
 - Run the configuration
 - Review the updated DDI model
 
-The steps for re-generating the Trackside Unit DDI are almost identical, just use the `generateTrackside.eol` script instead
+The steps for re-generating the Trackside Unit DDI are almost identical, just use the [`generateTrackside.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateTrackside.eol) script instead
