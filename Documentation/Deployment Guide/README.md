@@ -73,7 +73,9 @@ Users can use these operations in their own scripts to build DDIs for their subj
     - Once imported, select all .ecore files in Navigator
     - Right-click on selected .ecore files
     - Register EPackages
+    
     ![Register EPackages](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_register_epackages.png)
+    
     Now the empty DDI model can be created
     - File->New->Other->Epsilon->EMF Model
     ![New DDI Model](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_new_other.png)
