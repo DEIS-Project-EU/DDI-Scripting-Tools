@@ -28,7 +28,7 @@ The .model files can now be viewed in a tree-based editor within Eclipse (known 
 # Re-generating the DDIs
 
 To illustrate how these models can be created programmatically, the [`generateETCS.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateETCS.eol) and [`generateTrackside.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Examples/ETCS/generateTrackside.eol) scripts can be used.
-Follow the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) to create a project in Eclipse with the `DDIBuilderHelpers.eol` script setup. Instead of using a user-defined script, the provided `generateETCS.eol` or `generateTrackside.eol` scripts can be used instead.
+Follow the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/documentation_01/Documentation/Deployment%20Guide) to create a project in Eclipse with the `DDIBuilderHelpers.eol` script setup.
 
 To generate a new ETCS DDI:
 - Right-click on the project in the Model Explorer
