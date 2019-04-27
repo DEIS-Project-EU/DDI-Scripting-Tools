@@ -1,3 +1,3 @@
-Documentation
+# Documentation
 
-TODO: General info, html, api doc, etc.
+This section contains documentation for acquiring, deploying and using the provided tools.
