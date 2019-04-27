@@ -34,6 +34,6 @@ The 'Clone or download' button can be found as follows:
 ## Deployment
 
 Having acquired the repository by either approach mentioned earlier, the user can now setup the tools provided in the Eclipse IDE.
-The guides in the other folders describe deployment of the script-based tools and of the common tool adapter.
+The guides in the other folders and/or documents describe deployment of the script-based tools and of the common tool adapter.
 
   * [DDI Creation Tools Deployment](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Documentation/DDI_Creation.md)
