@@ -10,10 +10,10 @@ Much of the toolset provided here is built using the [Eclipse IDE](https://www.e
 While there are potential alternatives for some parts of the toolset, the Eclipse IDE is effectively mandatory and the most direct approach to use the provided tools.
 
 To make use of the Epsilon scripts from the repository, the [Epsilon distribution of Eclipse](https://www.eclipse.org/epsilon/download/) can be used. 
-![Eclipse Epsilon Distribution](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_epsilon_distro.png)
+![Eclipse Epsilon Distribution](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/master/Documentation/img/eclipse_epsilon_distro.png)
 When installation is complete, the user should update their distribution via the stable update site URL: http://download.eclipse.org/epsilon/updates/. This is due to the provided distribution (v1.5) having a bug that the update (v1.5.1) fixes.
 
-![Eclipse Epsilon Update Site](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/eclipse_epsilon_update.png)
+![Eclipse Epsilon Update Site](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/master/Documentation/img/eclipse_epsilon_update.png)
 
 If the user uses/wishes to use a different distribution of Eclipse, the same update site can be used to install Epsilon into the Eclipse IDE.
 
@@ -29,11 +29,11 @@ Using this approach, the copy of the repository can be managed via the GitHub ap
 Alternatively, if a local copy is simply needed instead, the 'Clone or Download->Download Zip' function can be used instead from the [main repository page](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools). This downloads a compressed folder containing all repository files and folders.
 
 The 'Clone or download' button can be found as follows:
-![Repository Clone or Download](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/documentation_01/Documentation/img/clone_button.png)
+![Repository Clone or Download](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/master/Documentation/img/clone_button.png)
 
 ## Deployment
 
 Having acquired the repository by either approach mentioned earlier, the user can now setup the tools provided in the Eclipse IDE.
 The guides in the other folders and/or documents describe deployment of the script-based tools and of the common tool adapter.
 
-  * [DDI Creation Tools Deployment](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/documentation_01/Documentation/DDI_Creation.md)
+  * [DDI Creation Tools Deployment](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Documentation/DDI_Creation.md)
