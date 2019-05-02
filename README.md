@@ -21,3 +21,10 @@ Repository structure
 * Under ['ODE_ToolAdapter'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Tooladapter), you can find the common tool adapter; this tool enables (via Apache Thrift) the exchange of models across tools that support it
 * Under ['Scripts'](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Scripts), you can find various scripts (in one of the [Epsilon](https://www.eclipse.org/epsilon/) languages), supporting part of the functionality described above
 
+Dependencies and License Information
+============
+The work provided here uses the following open-source software:
+* [Apache Thrift](https://thrift.apache.org/) under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* [Apache Log4j2](https://logging.apache.org/log4j/2.x/) under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* [cod](https://github.com/namuol/cod) under the [MIT License](https://github.com/namuol/cod/blob/master/LICENSE) - Used to generate the [API documentation](https://deis-project-eu.github.io/DDI-Scripting-Tools/) and is not part of the source code provided here
+* [MkDocs](https://www.mkdocs.org/) under the [BSD License](https://www.mkdocs.org/about/license/) - Used to generate the [API documentation](https://deis-project-eu.github.io/DDI-Scripting-Tools/) and is not part of the source code provided here
