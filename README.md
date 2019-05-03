@@ -26,5 +26,7 @@ Dependencies and License Information
 The work provided here uses the following open-source software:
 * [Apache Thrift](https://thrift.apache.org/) under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * [Apache Log4j2](https://logging.apache.org/log4j/2.x/) under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* [picocli](https://picocli.info) under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* [slf4j](https://www.slf4j.org) under the [MIT License](https://www.slf4j.org/license.html)
 * [cod](https://github.com/namuol/cod) under the [MIT License](https://github.com/namuol/cod/blob/master/LICENSE) - Used to generate the [API documentation](https://deis-project-eu.github.io/DDI-Scripting-Tools/) and is not part of the source code provided here
 * [MkDocs](https://www.mkdocs.org/) under the [BSD License](https://www.mkdocs.org/about/license/) - Used to generate the [API documentation](https://deis-project-eu.github.io/DDI-Scripting-Tools/) and is not part of the source code provided here
