@@ -12,7 +12,7 @@ The idea here is that the OEM has already developed the overall system and a sub
 
 # Prerequisites
 
-To run the example, the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment%20Guide) must be followed first.
+To run the example, the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment.md) must be followed first.
 
 # Viewing the ETCS DDIs
 
@@ -28,7 +28,7 @@ The .model files can now be viewed in a tree-based editor within Eclipse (known 
 # Re-generating the DDIs
 
 To illustrate how these models can be created programmatically, the [`generateETCS.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Examples/ETCS/generateETCS.eol) and [`generateTrackside.eol`](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Examples/ETCS/generateTrackside.eol) scripts can be used.
-Follow the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment%20Guide) to create a project in Eclipse with the `DDIBuilderHelpers.eol` script setup.
+Follow the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment.md) to create a project in Eclipse with the `DDIBuilderHelpers.eol` script setup.
 
 To generate a new ETCS DDI:
 - Right-click on the project in the Model Explorer
@@ -38,7 +38,7 @@ To generate a new ETCS DDI:
 - Right-click on the imported generateETCS.eol file in the Navigator
 - Run As->Run Configurations...
 - Double-click 'EOL Program' to create a new configuration
-- Under 'Models', set the model to be the empty DDI model created according to the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment%20Guide) (step 4)
+- Under 'Models', set the model to be the empty DDI model created according to the [Deployment Guide](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/Documentation/Deployment.md) (step 4)
 - IMPORTANT: Add an alias to the model as 'm', required for most of the `DDIBuilderHelpers.eol` operations
 - Apply to save changes to the configuration
 - Run the configuration

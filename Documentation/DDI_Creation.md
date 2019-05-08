@@ -3,7 +3,7 @@
 A collection of Epsilon Object Language (EOL) `operations` are contained within [\Scripts\DDIBuilderHelpers.eol](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Scripts/DDIBuilderHelpers.eol).
 Users can use these operations in their own scripts to build DDIs for their subject systems.
 
-1. Launch the Eclipse IDE (support for Epsilon should be installed, see [Deployment Guide:Prerequisites](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Documentation/Deployment%20Guide/README.md#prerequisites))
+1. Launch the Eclipse IDE (support for Epsilon should be installed, see [Deployment Guide:Prerequisites](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Documentation/Deployment.md#prerequisites))
 2. Create a new project
     - File->New->Project->General->Project</li>
     ![Eclipse New Project](https://raw.githubusercontent.com/DEIS-Project-EU/DDI-Scripting-Tools/master/Documentation/img/eclipse_new_project.png)
