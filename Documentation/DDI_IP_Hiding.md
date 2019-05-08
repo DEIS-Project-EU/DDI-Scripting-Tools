@@ -8,6 +8,7 @@ As the information captured in a DDI is centered around the ODE Product Packages
  TODO: IESE's architecture black box IP hiding example here
  
  2. SACM Package IP Hiding
+ 
   For SACM packages, users need to tag SACM elements they're interested in maintaining in the public DDI. The tag used in the scripts provided in [DDIIntegrationHelpers.eol](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/blob/master/Scripts/DDIIntegrationHelpers.eol) expect 'isPublic'.
  
   Example: if the SACM ModelElement x should be included in the public DDI, use:
