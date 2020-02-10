@@ -149,13 +149,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         if(!__first) { __sb.Append(", "); }
         __first = false;
         __sb.Append("ValidationFailedException: ");
-        __sb.Append(ValidationFailedException);
+        __sb.Append(ValidationFailedException== null ? "<null>" : ValidationFailedException.ToString());
       }
       if (EpsilonScriptExecutionException != null && __isset.EpsilonScriptExecutionException) {
         if(!__first) { __sb.Append(", "); }
         __first = false;
         __sb.Append("EpsilonScriptExecutionException: ");
-        __sb.Append(EpsilonScriptExecutionException);
+        __sb.Append(EpsilonScriptExecutionException== null ? "<null>" : EpsilonScriptExecutionException.ToString());
       }
       __sb.Append(")");
       return __sb.ToString();

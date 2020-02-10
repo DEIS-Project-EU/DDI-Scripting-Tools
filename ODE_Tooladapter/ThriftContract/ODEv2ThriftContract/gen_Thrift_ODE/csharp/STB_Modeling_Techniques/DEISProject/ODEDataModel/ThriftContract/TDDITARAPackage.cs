@@ -201,13 +201,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1516 = iprot.ReadListBegin();
-                  for( int _i1517 = 0; _i1517 < _list1516.Count; ++_i1517)
+                  TList _list1512 = iprot.ReadListBegin();
+                  for( int _i1513 = 0; _i1513 < _list1512.Count; ++_i1513)
                   {
-                    TDDIKeyValueMap _elem1518;
-                    _elem1518 = new TDDIKeyValueMap();
-                    _elem1518.Read(iprot);
-                    KeyValueMaps.Add(_elem1518);
+                    TDDIKeyValueMap _elem1514;
+                    _elem1514 = new TDDIKeyValueMap();
+                    _elem1514.Read(iprot);
+                    KeyValueMaps.Add(_elem1514);
                   }
                   iprot.ReadListEnd();
                 }
@@ -219,13 +219,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   IdentifiedRisks = new List<TDDISecurityRisk>();
-                  TList _list1519 = iprot.ReadListBegin();
-                  for( int _i1520 = 0; _i1520 < _list1519.Count; ++_i1520)
+                  TList _list1515 = iprot.ReadListBegin();
+                  for( int _i1516 = 0; _i1516 < _list1515.Count; ++_i1516)
                   {
-                    TDDISecurityRisk _elem1521;
-                    _elem1521 = new TDDISecurityRisk();
-                    _elem1521.Read(iprot);
-                    IdentifiedRisks.Add(_elem1521);
+                    TDDISecurityRisk _elem1517;
+                    _elem1517 = new TDDISecurityRisk();
+                    _elem1517.Read(iprot);
+                    IdentifiedRisks.Add(_elem1517);
                   }
                   iprot.ReadListEnd();
                 }
@@ -237,13 +237,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   Controls = new List<TDDISecurityControl>();
-                  TList _list1522 = iprot.ReadListBegin();
-                  for( int _i1523 = 0; _i1523 < _list1522.Count; ++_i1523)
+                  TList _list1518 = iprot.ReadListBegin();
+                  for( int _i1519 = 0; _i1519 < _list1518.Count; ++_i1519)
                   {
-                    TDDISecurityControl _elem1524;
-                    _elem1524 = new TDDISecurityControl();
-                    _elem1524.Read(iprot);
-                    Controls.Add(_elem1524);
+                    TDDISecurityControl _elem1520;
+                    _elem1520 = new TDDISecurityControl();
+                    _elem1520.Read(iprot);
+                    Controls.Add(_elem1520);
                   }
                   iprot.ReadListEnd();
                 }
@@ -255,13 +255,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ConsideredAssets = new List<TDDIAbstractAsset>();
-                  TList _list1525 = iprot.ReadListBegin();
-                  for( int _i1526 = 0; _i1526 < _list1525.Count; ++_i1526)
+                  TList _list1521 = iprot.ReadListBegin();
+                  for( int _i1522 = 0; _i1522 < _list1521.Count; ++_i1522)
                   {
-                    TDDIAbstractAsset _elem1527;
-                    _elem1527 = new TDDIAbstractAsset();
-                    _elem1527.Read(iprot);
-                    ConsideredAssets.Add(_elem1527);
+                    TDDIAbstractAsset _elem1523;
+                    _elem1523 = new TDDIAbstractAsset();
+                    _elem1523.Read(iprot);
+                    ConsideredAssets.Add(_elem1523);
                   }
                   iprot.ReadListEnd();
                 }
@@ -273,13 +273,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ConsideredThreatAgents = new List<TDDIAbstractThreatAgent>();
-                  TList _list1528 = iprot.ReadListBegin();
-                  for( int _i1529 = 0; _i1529 < _list1528.Count; ++_i1529)
+                  TList _list1524 = iprot.ReadListBegin();
+                  for( int _i1525 = 0; _i1525 < _list1524.Count; ++_i1525)
                   {
-                    TDDIAbstractThreatAgent _elem1530;
-                    _elem1530 = new TDDIAbstractThreatAgent();
-                    _elem1530.Read(iprot);
-                    ConsideredThreatAgents.Add(_elem1530);
+                    TDDIAbstractThreatAgent _elem1526;
+                    _elem1526 = new TDDIAbstractThreatAgent();
+                    _elem1526.Read(iprot);
+                    ConsideredThreatAgents.Add(_elem1526);
                   }
                   iprot.ReadListEnd();
                 }
@@ -339,9 +339,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1531 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1527 in KeyValueMaps)
             {
-              _iter1531.Write(oprot);
+              _iter1527.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -354,9 +354,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, IdentifiedRisks.Count));
-            foreach (TDDISecurityRisk _iter1532 in IdentifiedRisks)
+            foreach (TDDISecurityRisk _iter1528 in IdentifiedRisks)
             {
-              _iter1532.Write(oprot);
+              _iter1528.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -369,9 +369,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, Controls.Count));
-            foreach (TDDISecurityControl _iter1533 in Controls)
+            foreach (TDDISecurityControl _iter1529 in Controls)
             {
-              _iter1533.Write(oprot);
+              _iter1529.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -384,9 +384,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ConsideredAssets.Count));
-            foreach (TDDIAbstractAsset _iter1534 in ConsideredAssets)
+            foreach (TDDIAbstractAsset _iter1530 in ConsideredAssets)
             {
-              _iter1534.Write(oprot);
+              _iter1530.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -399,9 +399,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ConsideredThreatAgents.Count));
-            foreach (TDDIAbstractThreatAgent _iter1535 in ConsideredThreatAgents)
+            foreach (TDDIAbstractThreatAgent _iter1531 in ConsideredThreatAgents)
             {
-              _iter1535.Write(oprot);
+              _iter1531.Write(oprot);
             }
             oprot.WriteListEnd();
           }

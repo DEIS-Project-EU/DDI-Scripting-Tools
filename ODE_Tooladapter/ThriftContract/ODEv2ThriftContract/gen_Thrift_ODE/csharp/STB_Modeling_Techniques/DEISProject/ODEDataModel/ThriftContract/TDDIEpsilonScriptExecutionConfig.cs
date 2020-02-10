@@ -218,13 +218,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ModelConfigs = new List<TDDIEpsilonScriptModelConfig>();
-                  TList _list1380 = iprot.ReadListBegin();
-                  for( int _i1381 = 0; _i1381 < _list1380.Count; ++_i1381)
+                  TList _list1376 = iprot.ReadListBegin();
+                  for( int _i1377 = 0; _i1377 < _list1376.Count; ++_i1377)
                   {
-                    TDDIEpsilonScriptModelConfig _elem1382;
-                    _elem1382 = new TDDIEpsilonScriptModelConfig();
-                    _elem1382.Read(iprot);
-                    ModelConfigs.Add(_elem1382);
+                    TDDIEpsilonScriptModelConfig _elem1378;
+                    _elem1378 = new TDDIEpsilonScriptModelConfig();
+                    _elem1378.Read(iprot);
+                    ModelConfigs.Add(_elem1378);
                   }
                   iprot.ReadListEnd();
                 }
@@ -236,13 +236,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ExportParameters = new List<TDDIEpsilonParameter>();
-                  TList _list1383 = iprot.ReadListBegin();
-                  for( int _i1384 = 0; _i1384 < _list1383.Count; ++_i1384)
+                  TList _list1379 = iprot.ReadListBegin();
+                  for( int _i1380 = 0; _i1380 < _list1379.Count; ++_i1380)
                   {
-                    TDDIEpsilonParameter _elem1385;
-                    _elem1385 = new TDDIEpsilonParameter();
-                    _elem1385.Read(iprot);
-                    ExportParameters.Add(_elem1385);
+                    TDDIEpsilonParameter _elem1381;
+                    _elem1381 = new TDDIEpsilonParameter();
+                    _elem1381.Read(iprot);
+                    ExportParameters.Add(_elem1381);
                   }
                   iprot.ReadListEnd();
                 }
@@ -254,13 +254,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ImportParameters = new List<TDDIEpsilonParameter>();
-                  TList _list1386 = iprot.ReadListBegin();
-                  for( int _i1387 = 0; _i1387 < _list1386.Count; ++_i1387)
+                  TList _list1382 = iprot.ReadListBegin();
+                  for( int _i1383 = 0; _i1383 < _list1382.Count; ++_i1383)
                   {
-                    TDDIEpsilonParameter _elem1388;
-                    _elem1388 = new TDDIEpsilonParameter();
-                    _elem1388.Read(iprot);
-                    ImportParameters.Add(_elem1388);
+                    TDDIEpsilonParameter _elem1384;
+                    _elem1384 = new TDDIEpsilonParameter();
+                    _elem1384.Read(iprot);
+                    ImportParameters.Add(_elem1384);
                   }
                   iprot.ReadListEnd();
                 }
@@ -335,9 +335,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ModelConfigs.Count));
-            foreach (TDDIEpsilonScriptModelConfig _iter1389 in ModelConfigs)
+            foreach (TDDIEpsilonScriptModelConfig _iter1385 in ModelConfigs)
             {
-              _iter1389.Write(oprot);
+              _iter1385.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -350,9 +350,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ExportParameters.Count));
-            foreach (TDDIEpsilonParameter _iter1390 in ExportParameters)
+            foreach (TDDIEpsilonParameter _iter1386 in ExportParameters)
             {
-              _iter1390.Write(oprot);
+              _iter1386.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -365,9 +365,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ImportParameters.Count));
-            foreach (TDDIEpsilonParameter _iter1391 in ImportParameters)
+            foreach (TDDIEpsilonParameter _iter1387 in ImportParameters)
             {
-              _iter1391.Write(oprot);
+              _iter1387.Write(oprot);
             }
             oprot.WriteListEnd();
           }

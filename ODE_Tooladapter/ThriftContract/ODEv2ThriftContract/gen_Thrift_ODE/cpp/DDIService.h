@@ -21,11 +21,10 @@ namespace thriftContract {
 class DDIServiceIf {
  public:
   virtual ~DDIServiceIf() {}
-  virtual void ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage) = 0;
-  virtual void ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration) = 0;
-  virtual void ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath) = 0;
-  virtual void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage) = 0;
-  virtual void ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage) = 0;
+  virtual void ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage) = 0;
+  virtual void ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath) = 0;
+  virtual void ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath) = 0;
+  virtual void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage) = 0;
 };
 
 class DDIServiceIfFactory {
@@ -55,26 +54,23 @@ class DDIServiceIfSingletonFactory : virtual public DDIServiceIfFactory {
 class DDIServiceNull : virtual public DDIServiceIf {
  public:
   virtual ~DDIServiceNull() {}
-  void ExportModelToDDIFile(const TDDIServiceConfig& /* ServiceConfiguration */, const TDDIDDIPackage& /* DDIPackage */) {
+  void ExportModelToDDIFile(const std::string& /* DDIFilePath */, const TDDIDDIPackage& /* DDIPackage */) {
     return;
   }
-  void ImportDDIModel(TDDIDDIPackage& /* _return */, const TDDIServiceConfig& /* ServiceConfiguration */) {
+  void ImportDDIModel(TDDIDDIPackage& /* _return */, const std::string& /* DDIFilePath */) {
     return;
   }
-  void ValidateDDI(TDDIValidationResult& /* _return */, const std::string& /* DdiPath */, const std::string& /* EvlFilePath */) {
+  void ValidateDDI(TDDIValidationResult& /* _return */, const std::string& /* DDIFilePath */, const std::string& /* EvlFilePath */) {
     return;
   }
-  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& /* _return */, const TDDIServiceConfig& /* ServiceConfiguration */, const bool /* BackupDDIFile */, const bool /* ReturnDDIPackage */) {
-    return;
-  }
-  void ExecuteEpsilonSripts(TDDIDDIPackage& /* _return */, const TDDIDDIPackage& /* DDIPackage */, const TDDIServiceConfig& /* ServiceConfiguration */, const bool /* ExportDDIFile */, const bool /* ReturnDDIPackage */) {
+  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& /* _return */, const std::vector<TDDIEpsilonScriptExecutionConfig> & /* EpsilonScriptExecutionConfigs */, const bool /* BackupDDIFile */, const bool /* ReturnDDIPackage */) {
     return;
   }
 };
 
 typedef struct _DDIService_ExportModelToDDIFile_args__isset {
-  _DDIService_ExportModelToDDIFile_args__isset() : ServiceConfiguration(false), DDIPackage(false) {}
-  bool ServiceConfiguration :1;
+  _DDIService_ExportModelToDDIFile_args__isset() : DDIFilePath(false), DDIPackage(false) {}
+  bool DDIFilePath :1;
   bool DDIPackage :1;
 } _DDIService_ExportModelToDDIFile_args__isset;
 
@@ -83,22 +79,22 @@ class DDIService_ExportModelToDDIFile_args {
 
   DDIService_ExportModelToDDIFile_args(const DDIService_ExportModelToDDIFile_args&);
   DDIService_ExportModelToDDIFile_args& operator=(const DDIService_ExportModelToDDIFile_args&);
-  DDIService_ExportModelToDDIFile_args() {
+  DDIService_ExportModelToDDIFile_args() : DDIFilePath() {
   }
 
   virtual ~DDIService_ExportModelToDDIFile_args() throw();
-  TDDIServiceConfig ServiceConfiguration;
+  std::string DDIFilePath;
   TDDIDDIPackage DDIPackage;
 
   _DDIService_ExportModelToDDIFile_args__isset __isset;
 
-  void __set_ServiceConfiguration(const TDDIServiceConfig& val);
+  void __set_DDIFilePath(const std::string& val);
 
   void __set_DDIPackage(const TDDIDDIPackage& val);
 
   bool operator == (const DDIService_ExportModelToDDIFile_args & rhs) const
   {
-    if (!(ServiceConfiguration == rhs.ServiceConfiguration))
+    if (!(DDIFilePath == rhs.DDIFilePath))
       return false;
     if (!(DDIPackage == rhs.DDIPackage))
       return false;
@@ -121,7 +117,7 @@ class DDIService_ExportModelToDDIFile_pargs {
 
 
   virtual ~DDIService_ExportModelToDDIFile_pargs() throw();
-  const TDDIServiceConfig* ServiceConfiguration;
+  const std::string* DDIFilePath;
   const TDDIDDIPackage* DDIPackage;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -184,8 +180,8 @@ class DDIService_ExportModelToDDIFile_presult {
 };
 
 typedef struct _DDIService_ImportDDIModel_args__isset {
-  _DDIService_ImportDDIModel_args__isset() : ServiceConfiguration(false) {}
-  bool ServiceConfiguration :1;
+  _DDIService_ImportDDIModel_args__isset() : DDIFilePath(false) {}
+  bool DDIFilePath :1;
 } _DDIService_ImportDDIModel_args__isset;
 
 class DDIService_ImportDDIModel_args {
@@ -193,19 +189,19 @@ class DDIService_ImportDDIModel_args {
 
   DDIService_ImportDDIModel_args(const DDIService_ImportDDIModel_args&);
   DDIService_ImportDDIModel_args& operator=(const DDIService_ImportDDIModel_args&);
-  DDIService_ImportDDIModel_args() {
+  DDIService_ImportDDIModel_args() : DDIFilePath() {
   }
 
   virtual ~DDIService_ImportDDIModel_args() throw();
-  TDDIServiceConfig ServiceConfiguration;
+  std::string DDIFilePath;
 
   _DDIService_ImportDDIModel_args__isset __isset;
 
-  void __set_ServiceConfiguration(const TDDIServiceConfig& val);
+  void __set_DDIFilePath(const std::string& val);
 
   bool operator == (const DDIService_ImportDDIModel_args & rhs) const
   {
-    if (!(ServiceConfiguration == rhs.ServiceConfiguration))
+    if (!(DDIFilePath == rhs.DDIFilePath))
       return false;
     return true;
   }
@@ -226,7 +222,7 @@ class DDIService_ImportDDIModel_pargs {
 
 
   virtual ~DDIService_ImportDDIModel_pargs() throw();
-  const TDDIServiceConfig* ServiceConfiguration;
+  const std::string* DDIFilePath;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -296,8 +292,8 @@ class DDIService_ImportDDIModel_presult {
 };
 
 typedef struct _DDIService_ValidateDDI_args__isset {
-  _DDIService_ValidateDDI_args__isset() : DdiPath(false), EvlFilePath(false) {}
-  bool DdiPath :1;
+  _DDIService_ValidateDDI_args__isset() : DDIFilePath(false), EvlFilePath(false) {}
+  bool DDIFilePath :1;
   bool EvlFilePath :1;
 } _DDIService_ValidateDDI_args__isset;
 
@@ -306,22 +302,22 @@ class DDIService_ValidateDDI_args {
 
   DDIService_ValidateDDI_args(const DDIService_ValidateDDI_args&);
   DDIService_ValidateDDI_args& operator=(const DDIService_ValidateDDI_args&);
-  DDIService_ValidateDDI_args() : DdiPath(), EvlFilePath() {
+  DDIService_ValidateDDI_args() : DDIFilePath(), EvlFilePath() {
   }
 
   virtual ~DDIService_ValidateDDI_args() throw();
-  std::string DdiPath;
+  std::string DDIFilePath;
   std::string EvlFilePath;
 
   _DDIService_ValidateDDI_args__isset __isset;
 
-  void __set_DdiPath(const std::string& val);
+  void __set_DDIFilePath(const std::string& val);
 
   void __set_EvlFilePath(const std::string& val);
 
   bool operator == (const DDIService_ValidateDDI_args & rhs) const
   {
-    if (!(DdiPath == rhs.DdiPath))
+    if (!(DDIFilePath == rhs.DDIFilePath))
       return false;
     if (!(EvlFilePath == rhs.EvlFilePath))
       return false;
@@ -344,7 +340,7 @@ class DDIService_ValidateDDI_pargs {
 
 
   virtual ~DDIService_ValidateDDI_pargs() throw();
-  const std::string* DdiPath;
+  const std::string* DDIFilePath;
   const std::string* EvlFilePath;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -407,8 +403,8 @@ class DDIService_ValidateDDI_presult {
 };
 
 typedef struct _DDIService_ExecuteEpsilonSriptsOnDDIFile_args__isset {
-  _DDIService_ExecuteEpsilonSriptsOnDDIFile_args__isset() : ServiceConfiguration(false), BackupDDIFile(false), ReturnDDIPackage(false) {}
-  bool ServiceConfiguration :1;
+  _DDIService_ExecuteEpsilonSriptsOnDDIFile_args__isset() : EpsilonScriptExecutionConfigs(false), BackupDDIFile(false), ReturnDDIPackage(false) {}
+  bool EpsilonScriptExecutionConfigs :1;
   bool BackupDDIFile :1;
   bool ReturnDDIPackage :1;
 } _DDIService_ExecuteEpsilonSriptsOnDDIFile_args__isset;
@@ -422,13 +418,13 @@ class DDIService_ExecuteEpsilonSriptsOnDDIFile_args {
   }
 
   virtual ~DDIService_ExecuteEpsilonSriptsOnDDIFile_args() throw();
-  TDDIServiceConfig ServiceConfiguration;
+  std::vector<TDDIEpsilonScriptExecutionConfig>  EpsilonScriptExecutionConfigs;
   bool BackupDDIFile;
   bool ReturnDDIPackage;
 
   _DDIService_ExecuteEpsilonSriptsOnDDIFile_args__isset __isset;
 
-  void __set_ServiceConfiguration(const TDDIServiceConfig& val);
+  void __set_EpsilonScriptExecutionConfigs(const std::vector<TDDIEpsilonScriptExecutionConfig> & val);
 
   void __set_BackupDDIFile(const bool val);
 
@@ -436,7 +432,7 @@ class DDIService_ExecuteEpsilonSriptsOnDDIFile_args {
 
   bool operator == (const DDIService_ExecuteEpsilonSriptsOnDDIFile_args & rhs) const
   {
-    if (!(ServiceConfiguration == rhs.ServiceConfiguration))
+    if (!(EpsilonScriptExecutionConfigs == rhs.EpsilonScriptExecutionConfigs))
       return false;
     if (!(BackupDDIFile == rhs.BackupDDIFile))
       return false;
@@ -461,7 +457,7 @@ class DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs {
 
 
   virtual ~DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs() throw();
-  const TDDIServiceConfig* ServiceConfiguration;
+  const std::vector<TDDIEpsilonScriptExecutionConfig> * EpsilonScriptExecutionConfigs;
   const bool* BackupDDIFile;
   const bool* ReturnDDIPackage;
 
@@ -532,139 +528,6 @@ class DDIService_ExecuteEpsilonSriptsOnDDIFile_presult {
 
 };
 
-typedef struct _DDIService_ExecuteEpsilonSripts_args__isset {
-  _DDIService_ExecuteEpsilonSripts_args__isset() : DDIPackage(false), ServiceConfiguration(false), ExportDDIFile(false), ReturnDDIPackage(false) {}
-  bool DDIPackage :1;
-  bool ServiceConfiguration :1;
-  bool ExportDDIFile :1;
-  bool ReturnDDIPackage :1;
-} _DDIService_ExecuteEpsilonSripts_args__isset;
-
-class DDIService_ExecuteEpsilonSripts_args {
- public:
-
-  DDIService_ExecuteEpsilonSripts_args(const DDIService_ExecuteEpsilonSripts_args&);
-  DDIService_ExecuteEpsilonSripts_args& operator=(const DDIService_ExecuteEpsilonSripts_args&);
-  DDIService_ExecuteEpsilonSripts_args() : ExportDDIFile(0), ReturnDDIPackage(0) {
-  }
-
-  virtual ~DDIService_ExecuteEpsilonSripts_args() throw();
-  TDDIDDIPackage DDIPackage;
-  TDDIServiceConfig ServiceConfiguration;
-  bool ExportDDIFile;
-  bool ReturnDDIPackage;
-
-  _DDIService_ExecuteEpsilonSripts_args__isset __isset;
-
-  void __set_DDIPackage(const TDDIDDIPackage& val);
-
-  void __set_ServiceConfiguration(const TDDIServiceConfig& val);
-
-  void __set_ExportDDIFile(const bool val);
-
-  void __set_ReturnDDIPackage(const bool val);
-
-  bool operator == (const DDIService_ExecuteEpsilonSripts_args & rhs) const
-  {
-    if (!(DDIPackage == rhs.DDIPackage))
-      return false;
-    if (!(ServiceConfiguration == rhs.ServiceConfiguration))
-      return false;
-    if (!(ExportDDIFile == rhs.ExportDDIFile))
-      return false;
-    if (!(ReturnDDIPackage == rhs.ReturnDDIPackage))
-      return false;
-    return true;
-  }
-  bool operator != (const DDIService_ExecuteEpsilonSripts_args &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const DDIService_ExecuteEpsilonSripts_args & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class DDIService_ExecuteEpsilonSripts_pargs {
- public:
-
-
-  virtual ~DDIService_ExecuteEpsilonSripts_pargs() throw();
-  const TDDIDDIPackage* DDIPackage;
-  const TDDIServiceConfig* ServiceConfiguration;
-  const bool* ExportDDIFile;
-  const bool* ReturnDDIPackage;
-
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-typedef struct _DDIService_ExecuteEpsilonSripts_result__isset {
-  _DDIService_ExecuteEpsilonSripts_result__isset() : success(false), EpsilonScriptExecutionException(false) {}
-  bool success :1;
-  bool EpsilonScriptExecutionException :1;
-} _DDIService_ExecuteEpsilonSripts_result__isset;
-
-class DDIService_ExecuteEpsilonSripts_result {
- public:
-
-  DDIService_ExecuteEpsilonSripts_result(const DDIService_ExecuteEpsilonSripts_result&);
-  DDIService_ExecuteEpsilonSripts_result& operator=(const DDIService_ExecuteEpsilonSripts_result&);
-  DDIService_ExecuteEpsilonSripts_result() {
-  }
-
-  virtual ~DDIService_ExecuteEpsilonSripts_result() throw();
-  TDDIDDIPackage success;
-  TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException;
-
-  _DDIService_ExecuteEpsilonSripts_result__isset __isset;
-
-  void __set_success(const TDDIDDIPackage& val);
-
-  void __set_EpsilonScriptExecutionException(const TDDIAbstractEpsilonScriptExecutionException& val);
-
-  bool operator == (const DDIService_ExecuteEpsilonSripts_result & rhs) const
-  {
-    if (!(success == rhs.success))
-      return false;
-    if (!(EpsilonScriptExecutionException == rhs.EpsilonScriptExecutionException))
-      return false;
-    return true;
-  }
-  bool operator != (const DDIService_ExecuteEpsilonSripts_result &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const DDIService_ExecuteEpsilonSripts_result & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-typedef struct _DDIService_ExecuteEpsilonSripts_presult__isset {
-  _DDIService_ExecuteEpsilonSripts_presult__isset() : success(false), EpsilonScriptExecutionException(false) {}
-  bool success :1;
-  bool EpsilonScriptExecutionException :1;
-} _DDIService_ExecuteEpsilonSripts_presult__isset;
-
-class DDIService_ExecuteEpsilonSripts_presult {
- public:
-
-
-  virtual ~DDIService_ExecuteEpsilonSripts_presult() throw();
-  TDDIDDIPackage* success;
-  TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException;
-
-  _DDIService_ExecuteEpsilonSripts_presult__isset __isset;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-
-};
-
 class DDIServiceClient : virtual public DDIServiceIf {
  public:
   DDIServiceClient(apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) {
@@ -690,21 +553,18 @@ class DDIServiceClient : virtual public DDIServiceIf {
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage);
-  void send_ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage);
+  void ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage);
+  void send_ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage);
   void recv_ExportModelToDDIFile();
-  void ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration);
-  void send_ImportDDIModel(const TDDIServiceConfig& ServiceConfiguration);
+  void ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath);
+  void send_ImportDDIModel(const std::string& DDIFilePath);
   void recv_ImportDDIModel(TDDIDDIPackage& _return);
-  void ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath);
-  void send_ValidateDDI(const std::string& DdiPath, const std::string& EvlFilePath);
+  void ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath);
+  void send_ValidateDDI(const std::string& DDIFilePath, const std::string& EvlFilePath);
   void recv_ValidateDDI(TDDIValidationResult& _return);
-  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage);
-  void send_ExecuteEpsilonSriptsOnDDIFile(const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage);
+  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage);
+  void send_ExecuteEpsilonSriptsOnDDIFile(const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage);
   void recv_ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return);
-  void ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage);
-  void send_ExecuteEpsilonSripts(const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage);
-  void recv_ExecuteEpsilonSripts(TDDIDDIPackage& _return);
  protected:
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -724,7 +584,6 @@ class DDIServiceProcessor : public ::apache::thrift::TDispatchProcessor {
   void process_ImportDDIModel(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_ValidateDDI(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_ExecuteEpsilonSriptsOnDDIFile(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_ExecuteEpsilonSripts(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   DDIServiceProcessor(::apache::thrift::stdcxx::shared_ptr<DDIServiceIf> iface) :
     iface_(iface) {
@@ -732,7 +591,6 @@ class DDIServiceProcessor : public ::apache::thrift::TDispatchProcessor {
     processMap_["ImportDDIModel"] = &DDIServiceProcessor::process_ImportDDIModel;
     processMap_["ValidateDDI"] = &DDIServiceProcessor::process_ValidateDDI;
     processMap_["ExecuteEpsilonSriptsOnDDIFile"] = &DDIServiceProcessor::process_ExecuteEpsilonSriptsOnDDIFile;
-    processMap_["ExecuteEpsilonSripts"] = &DDIServiceProcessor::process_ExecuteEpsilonSripts;
   }
 
   virtual ~DDIServiceProcessor() {}
@@ -761,52 +619,42 @@ class DDIServiceMultiface : virtual public DDIServiceIf {
     ifaces_.push_back(iface);
   }
  public:
-  void ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage) {
+  void ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->ExportModelToDDIFile(ServiceConfiguration, DDIPackage);
+      ifaces_[i]->ExportModelToDDIFile(DDIFilePath, DDIPackage);
     }
-    ifaces_[i]->ExportModelToDDIFile(ServiceConfiguration, DDIPackage);
+    ifaces_[i]->ExportModelToDDIFile(DDIFilePath, DDIPackage);
   }
 
-  void ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration) {
+  void ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->ImportDDIModel(_return, ServiceConfiguration);
+      ifaces_[i]->ImportDDIModel(_return, DDIFilePath);
     }
-    ifaces_[i]->ImportDDIModel(_return, ServiceConfiguration);
+    ifaces_[i]->ImportDDIModel(_return, DDIFilePath);
     return;
   }
 
-  void ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath) {
+  void ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->ValidateDDI(_return, DdiPath, EvlFilePath);
+      ifaces_[i]->ValidateDDI(_return, DDIFilePath, EvlFilePath);
     }
-    ifaces_[i]->ValidateDDI(_return, DdiPath, EvlFilePath);
+    ifaces_[i]->ValidateDDI(_return, DDIFilePath, EvlFilePath);
     return;
   }
 
-  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage) {
+  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->ExecuteEpsilonSriptsOnDDIFile(_return, ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+      ifaces_[i]->ExecuteEpsilonSriptsOnDDIFile(_return, EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
     }
-    ifaces_[i]->ExecuteEpsilonSriptsOnDDIFile(_return, ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
-    return;
-  }
-
-  void ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage) {
-    size_t sz = ifaces_.size();
-    size_t i = 0;
-    for (; i < (sz - 1); ++i) {
-      ifaces_[i]->ExecuteEpsilonSripts(_return, DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-    }
-    ifaces_[i]->ExecuteEpsilonSripts(_return, DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
+    ifaces_[i]->ExecuteEpsilonSriptsOnDDIFile(_return, EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
     return;
   }
 
@@ -840,21 +688,18 @@ class DDIServiceConcurrentClient : virtual public DDIServiceIf {
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage);
-  int32_t send_ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage);
+  void ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage);
+  int32_t send_ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage);
   void recv_ExportModelToDDIFile(const int32_t seqid);
-  void ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration);
-  int32_t send_ImportDDIModel(const TDDIServiceConfig& ServiceConfiguration);
+  void ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath);
+  int32_t send_ImportDDIModel(const std::string& DDIFilePath);
   void recv_ImportDDIModel(TDDIDDIPackage& _return, const int32_t seqid);
-  void ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath);
-  int32_t send_ValidateDDI(const std::string& DdiPath, const std::string& EvlFilePath);
+  void ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath);
+  int32_t send_ValidateDDI(const std::string& DDIFilePath, const std::string& EvlFilePath);
   void recv_ValidateDDI(TDDIValidationResult& _return, const int32_t seqid);
-  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage);
-  int32_t send_ExecuteEpsilonSriptsOnDDIFile(const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage);
+  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage);
+  int32_t send_ExecuteEpsilonSriptsOnDDIFile(const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage);
   void recv_ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const int32_t seqid);
-  void ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage);
-  int32_t send_ExecuteEpsilonSripts(const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage);
-  void recv_ExecuteEpsilonSripts(TDDIDDIPackage& _return, const int32_t seqid);
  protected:
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   apache::thrift::stdcxx::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;

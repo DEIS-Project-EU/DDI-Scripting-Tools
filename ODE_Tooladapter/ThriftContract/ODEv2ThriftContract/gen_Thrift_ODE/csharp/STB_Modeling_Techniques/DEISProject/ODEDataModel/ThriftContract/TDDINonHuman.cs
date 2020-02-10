@@ -226,13 +226,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1504 = iprot.ReadListBegin();
-                  for( int _i1505 = 0; _i1505 < _list1504.Count; ++_i1505)
+                  TList _list1500 = iprot.ReadListBegin();
+                  for( int _i1501 = 0; _i1501 < _list1500.Count; ++_i1501)
                   {
-                    TDDIKeyValueMap _elem1506;
-                    _elem1506 = new TDDIKeyValueMap();
-                    _elem1506.Read(iprot);
-                    KeyValueMaps.Add(_elem1506);
+                    TDDIKeyValueMap _elem1502;
+                    _elem1502 = new TDDIKeyValueMap();
+                    _elem1502.Read(iprot);
+                    KeyValueMaps.Add(_elem1502);
                   }
                   iprot.ReadListEnd();
                 }
@@ -265,13 +265,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   AttackerGoals = new List<TDDIAttackerGoal>();
-                  TList _list1507 = iprot.ReadListBegin();
-                  for( int _i1508 = 0; _i1508 < _list1507.Count; ++_i1508)
+                  TList _list1503 = iprot.ReadListBegin();
+                  for( int _i1504 = 0; _i1504 < _list1503.Count; ++_i1504)
                   {
-                    TDDIAttackerGoal _elem1509;
-                    _elem1509 = new TDDIAttackerGoal();
-                    _elem1509.Read(iprot);
-                    AttackerGoals.Add(_elem1509);
+                    TDDIAttackerGoal _elem1505;
+                    _elem1505 = new TDDIAttackerGoal();
+                    _elem1505.Read(iprot);
+                    AttackerGoals.Add(_elem1505);
                   }
                   iprot.ReadListEnd();
                 }
@@ -283,13 +283,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   Payloads = new List<TDDIPayloadRef>();
-                  TList _list1510 = iprot.ReadListBegin();
-                  for( int _i1511 = 0; _i1511 < _list1510.Count; ++_i1511)
+                  TList _list1506 = iprot.ReadListBegin();
+                  for( int _i1507 = 0; _i1507 < _list1506.Count; ++_i1507)
                   {
-                    TDDIPayloadRef _elem1512;
-                    _elem1512 = new TDDIPayloadRef();
-                    _elem1512.Read(iprot);
-                    Payloads.Add(_elem1512);
+                    TDDIPayloadRef _elem1508;
+                    _elem1508 = new TDDIPayloadRef();
+                    _elem1508.Read(iprot);
+                    Payloads.Add(_elem1508);
                   }
                   iprot.ReadListEnd();
                 }
@@ -349,9 +349,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1513 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1509 in KeyValueMaps)
             {
-              _iter1513.Write(oprot);
+              _iter1509.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -388,9 +388,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, AttackerGoals.Count));
-            foreach (TDDIAttackerGoal _iter1514 in AttackerGoals)
+            foreach (TDDIAttackerGoal _iter1510 in AttackerGoals)
             {
-              _iter1514.Write(oprot);
+              _iter1510.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -403,9 +403,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, Payloads.Count));
-            foreach (TDDIPayloadRef _iter1515 in Payloads)
+            foreach (TDDIPayloadRef _iter1511 in Payloads)
             {
-              _iter1515.Write(oprot);
+              _iter1511.Write(oprot);
             }
             oprot.WriteListEnd();
           }

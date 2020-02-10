@@ -618,11 +618,11 @@ class TDDIAbstractAssuranceCasePackageRef;
 
 class TDDIAssuranceCasePackageInterfaceRef;
 
-class TDDIAbstractArtifactPackageRef;
-
 class TDDIAbstractTerminologyPackageRef;
 
 class TDDIAbstractExpressionElementRef;
+
+class TDDIAbstractTerminologyElementRef;
 
 class TDDICategoryRef;
 
@@ -946,25 +946,23 @@ class TDDITerminologyAssetUnion;
 
 class TDDIAbstractTerminologyAsset;
 
-class TDDIAbstractEpsilonScriptExecutionException;
-
-class TDDIEpsilonScriptExecutionExceptionUnion;
-
 class TDDIEpsilonScriptExecutionException;
-
-class TDDIValidationFailedException;
-
-class TDDIValidationResult;
 
 class TDDIValidationViolationMessage;
 
-class TDDIServiceConfig;
+class TDDIValidationResult;
 
-class TDDIEpsilonScriptExecutionConfig;
+class TDDIValidationFailedException;
+
+class TDDIEpsilonScriptExecutionExceptionUnion;
+
+class TDDIAbstractEpsilonScriptExecutionException;
 
 class TDDIEpsilonScriptModelConfig;
 
 class TDDIEpsilonParameter;
+
+class TDDIEpsilonScriptExecutionConfig;
 
 class TDDIExternalServiceParameter;
 
@@ -2562,48 +2560,6 @@ void swap(TDDIAssuranceCasePackageInterfaceRef &a, TDDIAssuranceCasePackageInter
 
 std::ostream& operator<<(std::ostream& out, const TDDIAssuranceCasePackageInterfaceRef& obj);
 
-typedef struct _TDDIAbstractArtifactPackageRef__isset {
-  _TDDIAbstractArtifactPackageRef__isset() : ref(false) {}
-  bool ref :1;
-} _TDDIAbstractArtifactPackageRef__isset;
-
-class TDDIAbstractArtifactPackageRef : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIAbstractArtifactPackageRef(const TDDIAbstractArtifactPackageRef&);
-  TDDIAbstractArtifactPackageRef& operator=(const TDDIAbstractArtifactPackageRef&);
-  TDDIAbstractArtifactPackageRef() : ref() {
-  }
-
-  virtual ~TDDIAbstractArtifactPackageRef() throw();
-  ::apache::thrift::stdcxx::shared_ptr<TDDIAbstractArtifactPackage> ref;
-
-  _TDDIAbstractArtifactPackageRef__isset __isset;
-
-  void __set_ref(::apache::thrift::stdcxx::shared_ptr<TDDIAbstractArtifactPackage> val);
-
-  bool operator == (const TDDIAbstractArtifactPackageRef & rhs) const
-  {
-    if (!(ref == rhs.ref))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIAbstractArtifactPackageRef &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIAbstractArtifactPackageRef & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIAbstractArtifactPackageRef &a, TDDIAbstractArtifactPackageRef &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIAbstractArtifactPackageRef& obj);
-
 typedef struct _TDDIAbstractTerminologyPackageRef__isset {
   _TDDIAbstractTerminologyPackageRef__isset() : ref(false) {}
   bool ref :1;
@@ -2687,6 +2643,48 @@ class TDDIAbstractExpressionElementRef : public virtual ::apache::thrift::TBase 
 void swap(TDDIAbstractExpressionElementRef &a, TDDIAbstractExpressionElementRef &b);
 
 std::ostream& operator<<(std::ostream& out, const TDDIAbstractExpressionElementRef& obj);
+
+typedef struct _TDDIAbstractTerminologyElementRef__isset {
+  _TDDIAbstractTerminologyElementRef__isset() : ref(false) {}
+  bool ref :1;
+} _TDDIAbstractTerminologyElementRef__isset;
+
+class TDDIAbstractTerminologyElementRef : public virtual ::apache::thrift::TBase {
+ public:
+
+  TDDIAbstractTerminologyElementRef(const TDDIAbstractTerminologyElementRef&);
+  TDDIAbstractTerminologyElementRef& operator=(const TDDIAbstractTerminologyElementRef&);
+  TDDIAbstractTerminologyElementRef() : ref() {
+  }
+
+  virtual ~TDDIAbstractTerminologyElementRef() throw();
+  ::apache::thrift::stdcxx::shared_ptr<TDDIAbstractTerminologyElement> ref;
+
+  _TDDIAbstractTerminologyElementRef__isset __isset;
+
+  void __set_ref(::apache::thrift::stdcxx::shared_ptr<TDDIAbstractTerminologyElement> val);
+
+  bool operator == (const TDDIAbstractTerminologyElementRef & rhs) const
+  {
+    if (!(ref == rhs.ref))
+      return false;
+    return true;
+  }
+  bool operator != (const TDDIAbstractTerminologyElementRef &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const TDDIAbstractTerminologyElementRef & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(TDDIAbstractTerminologyElementRef &a, TDDIAbstractTerminologyElementRef &b);
+
+std::ostream& operator<<(std::ostream& out, const TDDIAbstractTerminologyElementRef& obj);
 
 typedef struct _TDDICategoryRef__isset {
   _TDDICategoryRef__isset() : ref(false) {}
@@ -4052,11 +4050,13 @@ void swap(TDDISystemBoundary &a, TDDISystemBoundary &b);
 std::ostream& operator<<(std::ostream& out, const TDDISystemBoundary& obj);
 
 typedef struct _TDDISignal__isset {
-  _TDDISignal__isset() : Id(false), Name(true), Description(true), KeyValueMaps(true) {}
+  _TDDISignal__isset() : Id(false), Name(true), Description(true), KeyValueMaps(true), FromPort(false), ToPort(false) {}
   bool Id :1;
   bool Name :1;
   bool Description :1;
   bool KeyValueMaps :1;
+  bool FromPort :1;
+  bool ToPort :1;
 } _TDDISignal__isset;
 
 class TDDISignal : public virtual ::apache::thrift::TBase {
@@ -13242,11 +13242,11 @@ class TDDIAssuranceCasePackage : public virtual ::apache::thrift::TBase {
   std::vector<TDDIImplementationConstraintRef>  ImplementationConstraint;
   std::vector<TDDINoteRef>  Note;
   std::vector<TDDITaggedValueRef>  TaggedValue;
-  std::vector<TDDIAbstractAssuranceCasePackageRef>  AssuranceCasePackage;
+  std::vector<TDDIAbstractAssuranceCasePackage>  AssuranceCasePackage;
   std::vector<TDDIAssuranceCasePackageInterfaceRef>  Interface;
-  std::vector<TDDIAbstractArtifactPackageRef>  ArtifactPackage;
-  std::vector<TDDIAbstractArgumentPackageRef>  ArgumentPackage;
-  std::vector<TDDIAbstractTerminologyPackageRef>  TerminologyPackage;
+  std::vector<TDDIAbstractArtifactPackage>  ArtifactPackage;
+  std::vector<TDDIAbstractArgumentPackage>  ArgumentPackage;
+  std::vector<TDDIAbstractTerminologyPackage>  TerminologyPackage;
 
   _TDDIAssuranceCasePackage__isset __isset;
 
@@ -13270,15 +13270,15 @@ class TDDIAssuranceCasePackage : public virtual ::apache::thrift::TBase {
 
   void __set_TaggedValue(const std::vector<TDDITaggedValueRef> & val);
 
-  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val);
+  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val);
 
   void __set_Interface(const std::vector<TDDIAssuranceCasePackageInterfaceRef> & val);
 
-  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val);
+  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val);
 
-  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val);
+  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val);
 
-  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val);
+  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val);
 
   bool operator == (const TDDIAssuranceCasePackage & rhs) const
   {
@@ -13377,11 +13377,11 @@ class TDDIAssuranceCasePackageInterface : public virtual ::apache::thrift::TBase
   std::vector<TDDIImplementationConstraintRef>  ImplementationConstraint;
   std::vector<TDDINoteRef>  Note;
   std::vector<TDDITaggedValueRef>  TaggedValue;
-  std::vector<TDDIAbstractAssuranceCasePackageRef>  AssuranceCasePackage;
+  std::vector<TDDIAbstractAssuranceCasePackage>  AssuranceCasePackage;
   std::vector<TDDIAssuranceCasePackageInterfaceRef>  Interface;
-  std::vector<TDDIAbstractArtifactPackageRef>  ArtifactPackage;
-  std::vector<TDDIAbstractArgumentPackageRef>  ArgumentPackage;
-  std::vector<TDDIAbstractTerminologyPackageRef>  TerminologyPackage;
+  std::vector<TDDIAbstractArtifactPackage>  ArtifactPackage;
+  std::vector<TDDIAbstractArgumentPackage>  ArgumentPackage;
+  std::vector<TDDIAbstractTerminologyPackage>  TerminologyPackage;
   TDDIAbstractAssuranceCasePackage Implements;
 
   _TDDIAssuranceCasePackageInterface__isset __isset;
@@ -13406,15 +13406,15 @@ class TDDIAssuranceCasePackageInterface : public virtual ::apache::thrift::TBase
 
   void __set_TaggedValue(const std::vector<TDDITaggedValueRef> & val);
 
-  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val);
+  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val);
 
   void __set_Interface(const std::vector<TDDIAssuranceCasePackageInterfaceRef> & val);
 
-  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val);
+  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val);
 
-  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val);
+  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val);
 
-  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val);
+  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val);
 
   void __set_Implements(const TDDIAbstractAssuranceCasePackage& val);
 
@@ -13518,11 +13518,11 @@ class TDDIAssuranceCasePackageBinding : public virtual ::apache::thrift::TBase {
   std::vector<TDDIImplementationConstraintRef>  ImplementationConstraint;
   std::vector<TDDINoteRef>  Note;
   std::vector<TDDITaggedValueRef>  TaggedValue;
-  std::vector<TDDIAbstractAssuranceCasePackageRef>  AssuranceCasePackage;
+  std::vector<TDDIAbstractAssuranceCasePackage>  AssuranceCasePackage;
   std::vector<TDDIAssuranceCasePackageInterfaceRef>  Interface;
-  std::vector<TDDIAbstractArtifactPackageRef>  ArtifactPackage;
-  std::vector<TDDIAbstractArgumentPackageRef>  ArgumentPackage;
-  std::vector<TDDIAbstractTerminologyPackageRef>  TerminologyPackage;
+  std::vector<TDDIAbstractArtifactPackage>  ArtifactPackage;
+  std::vector<TDDIAbstractArgumentPackage>  ArgumentPackage;
+  std::vector<TDDIAbstractTerminologyPackage>  TerminologyPackage;
   std::vector<TDDIAbstractAssuranceCasePackageRef>  ParticipantPackage;
 
   _TDDIAssuranceCasePackageBinding__isset __isset;
@@ -13547,15 +13547,15 @@ class TDDIAssuranceCasePackageBinding : public virtual ::apache::thrift::TBase {
 
   void __set_TaggedValue(const std::vector<TDDITaggedValueRef> & val);
 
-  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val);
+  void __set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val);
 
   void __set_Interface(const std::vector<TDDIAssuranceCasePackageInterfaceRef> & val);
 
-  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val);
+  void __set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val);
 
-  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val);
+  void __set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val);
 
-  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val);
+  void __set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val);
 
   void __set_ParticipantPackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val);
 
@@ -14844,7 +14844,7 @@ class TDDITerminologyGroup : public virtual ::apache::thrift::TBase {
   std::vector<TDDIImplementationConstraintRef>  ImplementationConstraint;
   std::vector<TDDINoteRef>  Note;
   std::vector<TDDITaggedValueRef>  TaggedValue;
-  std::vector<TDDIAbstractTerminologyElement>  TerminologyElement;
+  std::vector<TDDIAbstractTerminologyElementRef>  TerminologyElement;
 
   _TDDITerminologyGroup__isset __isset;
 
@@ -14868,7 +14868,7 @@ class TDDITerminologyGroup : public virtual ::apache::thrift::TBase {
 
   void __set_TaggedValue(const std::vector<TDDITaggedValueRef> & val);
 
-  void __set_TerminologyElement(const std::vector<TDDIAbstractTerminologyElement> & val);
+  void __set_TerminologyElement(const std::vector<TDDIAbstractTerminologyElementRef> & val);
 
   bool operator == (const TDDITerminologyGroup & rhs) const
   {
@@ -15167,7 +15167,7 @@ class TDDITerminologyPackageBinding : public virtual ::apache::thrift::TBase {
   std::vector<TDDINoteRef>  Note;
   std::vector<TDDITaggedValueRef>  TaggedValue;
   std::vector<TDDIAbstractTerminologyElement>  TerminologyElement;
-  std::vector<TDDIAbstractTerminologyPackage>  ParticipantPackage;
+  std::vector<TDDIAbstractTerminologyPackageRef>  ParticipantPackage;
 
   _TDDITerminologyPackageBinding__isset __isset;
 
@@ -15193,7 +15193,7 @@ class TDDITerminologyPackageBinding : public virtual ::apache::thrift::TBase {
 
   void __set_TerminologyElement(const std::vector<TDDIAbstractTerminologyElement> & val);
 
-  void __set_ParticipantPackage(const std::vector<TDDIAbstractTerminologyPackage> & val);
+  void __set_ParticipantPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val);
 
   bool operator == (const TDDITerminologyPackageBinding & rhs) const
   {
@@ -15892,55 +15892,186 @@ void swap(TDDIAbstractTerminologyAsset &a, TDDIAbstractTerminologyAsset &b);
 
 std::ostream& operator<<(std::ostream& out, const TDDIAbstractTerminologyAsset& obj);
 
-typedef struct _TDDIAbstractEpsilonScriptExecutionException__isset {
-  _TDDIAbstractEpsilonScriptExecutionException__isset() : UsedException(false), UsedExceptionType(false) {}
-  bool UsedException :1;
-  bool UsedExceptionType :1;
-} _TDDIAbstractEpsilonScriptExecutionException__isset;
+typedef struct _TDDIEpsilonScriptExecutionException__isset {
+  _TDDIEpsilonScriptExecutionException__isset() : Message(true) {}
+  bool Message :1;
+} _TDDIEpsilonScriptExecutionException__isset;
 
-class TDDIAbstractEpsilonScriptExecutionException : public ::apache::thrift::TException {
+class TDDIEpsilonScriptExecutionException : public virtual ::apache::thrift::TBase {
  public:
 
-  TDDIAbstractEpsilonScriptExecutionException(const TDDIAbstractEpsilonScriptExecutionException&);
-  TDDIAbstractEpsilonScriptExecutionException& operator=(const TDDIAbstractEpsilonScriptExecutionException&);
-  TDDIAbstractEpsilonScriptExecutionException() : UsedExceptionType((TDDIEpsilonScriptExecutionExceptionUnionType)0) {
+  TDDIEpsilonScriptExecutionException(const TDDIEpsilonScriptExecutionException&);
+  TDDIEpsilonScriptExecutionException& operator=(const TDDIEpsilonScriptExecutionException&);
+  TDDIEpsilonScriptExecutionException() : Message("") {
   }
 
-  virtual ~TDDIAbstractEpsilonScriptExecutionException() throw();
-  TDDIEpsilonScriptExecutionExceptionUnion UsedException;
-  TDDIEpsilonScriptExecutionExceptionUnionType UsedExceptionType;
+  virtual ~TDDIEpsilonScriptExecutionException() throw();
+  std::string Message;
 
-  _TDDIAbstractEpsilonScriptExecutionException__isset __isset;
+  _TDDIEpsilonScriptExecutionException__isset __isset;
 
-  void __set_UsedException(const TDDIEpsilonScriptExecutionExceptionUnion& val);
+  void __set_Message(const std::string& val);
 
-  void __set_UsedExceptionType(const TDDIEpsilonScriptExecutionExceptionUnionType val);
-
-  bool operator == (const TDDIAbstractEpsilonScriptExecutionException & rhs) const
+  bool operator == (const TDDIEpsilonScriptExecutionException & rhs) const
   {
-    if (!(UsedException == rhs.UsedException))
-      return false;
-    if (!(UsedExceptionType == rhs.UsedExceptionType))
+    if (!(Message == rhs.Message))
       return false;
     return true;
   }
-  bool operator != (const TDDIAbstractEpsilonScriptExecutionException &rhs) const {
+  bool operator != (const TDDIEpsilonScriptExecutionException &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const TDDIAbstractEpsilonScriptExecutionException & ) const;
+  bool operator < (const TDDIEpsilonScriptExecutionException & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
   virtual void printTo(std::ostream& out) const;
-  mutable std::string thriftTExceptionMessageHolder_;
-  const char* what() const throw();
 };
 
-void swap(TDDIAbstractEpsilonScriptExecutionException &a, TDDIAbstractEpsilonScriptExecutionException &b);
+void swap(TDDIEpsilonScriptExecutionException &a, TDDIEpsilonScriptExecutionException &b);
 
-std::ostream& operator<<(std::ostream& out, const TDDIAbstractEpsilonScriptExecutionException& obj);
+std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionException& obj);
+
+typedef struct _TDDIValidationViolationMessage__isset {
+  _TDDIValidationViolationMessage__isset() : Context(true), Message(true) {}
+  bool Context :1;
+  bool Message :1;
+} _TDDIValidationViolationMessage__isset;
+
+class TDDIValidationViolationMessage : public virtual ::apache::thrift::TBase {
+ public:
+
+  TDDIValidationViolationMessage(const TDDIValidationViolationMessage&);
+  TDDIValidationViolationMessage& operator=(const TDDIValidationViolationMessage&);
+  TDDIValidationViolationMessage() : Context(""), Message("") {
+  }
+
+  virtual ~TDDIValidationViolationMessage() throw();
+  std::string Context;
+  std::string Message;
+
+  _TDDIValidationViolationMessage__isset __isset;
+
+  void __set_Context(const std::string& val);
+
+  void __set_Message(const std::string& val);
+
+  bool operator == (const TDDIValidationViolationMessage & rhs) const
+  {
+    if (!(Context == rhs.Context))
+      return false;
+    if (!(Message == rhs.Message))
+      return false;
+    return true;
+  }
+  bool operator != (const TDDIValidationViolationMessage &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const TDDIValidationViolationMessage & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(TDDIValidationViolationMessage &a, TDDIValidationViolationMessage &b);
+
+std::ostream& operator<<(std::ostream& out, const TDDIValidationViolationMessage& obj);
+
+typedef struct _TDDIValidationResult__isset {
+  _TDDIValidationResult__isset() : ValidationViolationOccurred(true), ValidationViolationMessages(true) {}
+  bool ValidationViolationOccurred :1;
+  bool ValidationViolationMessages :1;
+} _TDDIValidationResult__isset;
+
+class TDDIValidationResult : public virtual ::apache::thrift::TBase {
+ public:
+
+  TDDIValidationResult(const TDDIValidationResult&);
+  TDDIValidationResult& operator=(const TDDIValidationResult&);
+  TDDIValidationResult() : ValidationViolationOccurred(false) {
+
+  }
+
+  virtual ~TDDIValidationResult() throw();
+  bool ValidationViolationOccurred;
+  std::vector<TDDIValidationViolationMessage>  ValidationViolationMessages;
+
+  _TDDIValidationResult__isset __isset;
+
+  void __set_ValidationViolationOccurred(const bool val);
+
+  void __set_ValidationViolationMessages(const std::vector<TDDIValidationViolationMessage> & val);
+
+  bool operator == (const TDDIValidationResult & rhs) const
+  {
+    if (!(ValidationViolationOccurred == rhs.ValidationViolationOccurred))
+      return false;
+    if (!(ValidationViolationMessages == rhs.ValidationViolationMessages))
+      return false;
+    return true;
+  }
+  bool operator != (const TDDIValidationResult &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const TDDIValidationResult & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(TDDIValidationResult &a, TDDIValidationResult &b);
+
+std::ostream& operator<<(std::ostream& out, const TDDIValidationResult& obj);
+
+typedef struct _TDDIValidationFailedException__isset {
+  _TDDIValidationFailedException__isset() : ValidationResult(false) {}
+  bool ValidationResult :1;
+} _TDDIValidationFailedException__isset;
+
+class TDDIValidationFailedException : public virtual ::apache::thrift::TBase {
+ public:
+
+  TDDIValidationFailedException(const TDDIValidationFailedException&);
+  TDDIValidationFailedException& operator=(const TDDIValidationFailedException&);
+  TDDIValidationFailedException() {
+  }
+
+  virtual ~TDDIValidationFailedException() throw();
+  TDDIValidationResult ValidationResult;
+
+  _TDDIValidationFailedException__isset __isset;
+
+  void __set_ValidationResult(const TDDIValidationResult& val);
+
+  bool operator == (const TDDIValidationFailedException & rhs) const
+  {
+    if (!(ValidationResult == rhs.ValidationResult))
+      return false;
+    return true;
+  }
+  bool operator != (const TDDIValidationFailedException &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const TDDIValidationFailedException & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(TDDIValidationFailedException &a, TDDIValidationFailedException &b);
+
+std::ostream& operator<<(std::ostream& out, const TDDIValidationFailedException& obj);
 
 typedef struct _TDDIEpsilonScriptExecutionExceptionUnion__isset {
   _TDDIEpsilonScriptExecutionExceptionUnion__isset() : ValidationFailedException(false), EpsilonScriptExecutionException(false) {}
@@ -15994,322 +16125,55 @@ void swap(TDDIEpsilonScriptExecutionExceptionUnion &a, TDDIEpsilonScriptExecutio
 
 std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionExceptionUnion& obj);
 
-typedef struct _TDDIEpsilonScriptExecutionException__isset {
-  _TDDIEpsilonScriptExecutionException__isset() : Message(true) {}
-  bool Message :1;
-} _TDDIEpsilonScriptExecutionException__isset;
+typedef struct _TDDIAbstractEpsilonScriptExecutionException__isset {
+  _TDDIAbstractEpsilonScriptExecutionException__isset() : UsedException(false), UsedExceptionType(false) {}
+  bool UsedException :1;
+  bool UsedExceptionType :1;
+} _TDDIAbstractEpsilonScriptExecutionException__isset;
 
-class TDDIEpsilonScriptExecutionException : public virtual ::apache::thrift::TBase {
+class TDDIAbstractEpsilonScriptExecutionException : public ::apache::thrift::TException {
  public:
 
-  TDDIEpsilonScriptExecutionException(const TDDIEpsilonScriptExecutionException&);
-  TDDIEpsilonScriptExecutionException& operator=(const TDDIEpsilonScriptExecutionException&);
-  TDDIEpsilonScriptExecutionException() : Message("") {
+  TDDIAbstractEpsilonScriptExecutionException(const TDDIAbstractEpsilonScriptExecutionException&);
+  TDDIAbstractEpsilonScriptExecutionException& operator=(const TDDIAbstractEpsilonScriptExecutionException&);
+  TDDIAbstractEpsilonScriptExecutionException() : UsedExceptionType((TDDIEpsilonScriptExecutionExceptionUnionType)0) {
   }
 
-  virtual ~TDDIEpsilonScriptExecutionException() throw();
-  std::string Message;
+  virtual ~TDDIAbstractEpsilonScriptExecutionException() throw();
+  TDDIEpsilonScriptExecutionExceptionUnion UsedException;
+  TDDIEpsilonScriptExecutionExceptionUnionType UsedExceptionType;
 
-  _TDDIEpsilonScriptExecutionException__isset __isset;
+  _TDDIAbstractEpsilonScriptExecutionException__isset __isset;
 
-  void __set_Message(const std::string& val);
+  void __set_UsedException(const TDDIEpsilonScriptExecutionExceptionUnion& val);
 
-  bool operator == (const TDDIEpsilonScriptExecutionException & rhs) const
+  void __set_UsedExceptionType(const TDDIEpsilonScriptExecutionExceptionUnionType val);
+
+  bool operator == (const TDDIAbstractEpsilonScriptExecutionException & rhs) const
   {
-    if (!(Message == rhs.Message))
+    if (!(UsedException == rhs.UsedException))
+      return false;
+    if (!(UsedExceptionType == rhs.UsedExceptionType))
       return false;
     return true;
   }
-  bool operator != (const TDDIEpsilonScriptExecutionException &rhs) const {
+  bool operator != (const TDDIAbstractEpsilonScriptExecutionException &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const TDDIEpsilonScriptExecutionException & ) const;
+  bool operator < (const TDDIAbstractEpsilonScriptExecutionException & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
   virtual void printTo(std::ostream& out) const;
+  mutable std::string thriftTExceptionMessageHolder_;
+  const char* what() const throw();
 };
 
-void swap(TDDIEpsilonScriptExecutionException &a, TDDIEpsilonScriptExecutionException &b);
+void swap(TDDIAbstractEpsilonScriptExecutionException &a, TDDIAbstractEpsilonScriptExecutionException &b);
 
-std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionException& obj);
-
-typedef struct _TDDIValidationFailedException__isset {
-  _TDDIValidationFailedException__isset() : ValidationResult(false) {}
-  bool ValidationResult :1;
-} _TDDIValidationFailedException__isset;
-
-class TDDIValidationFailedException : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIValidationFailedException(const TDDIValidationFailedException&);
-  TDDIValidationFailedException& operator=(const TDDIValidationFailedException&);
-  TDDIValidationFailedException() {
-  }
-
-  virtual ~TDDIValidationFailedException() throw();
-  TDDIValidationResult ValidationResult;
-
-  _TDDIValidationFailedException__isset __isset;
-
-  void __set_ValidationResult(const TDDIValidationResult& val);
-
-  bool operator == (const TDDIValidationFailedException & rhs) const
-  {
-    if (!(ValidationResult == rhs.ValidationResult))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIValidationFailedException &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIValidationFailedException & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIValidationFailedException &a, TDDIValidationFailedException &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIValidationFailedException& obj);
-
-typedef struct _TDDIValidationResult__isset {
-  _TDDIValidationResult__isset() : ValidationViolationOccurred(true), ValidationViolationMessages(true) {}
-  bool ValidationViolationOccurred :1;
-  bool ValidationViolationMessages :1;
-} _TDDIValidationResult__isset;
-
-class TDDIValidationResult : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIValidationResult(const TDDIValidationResult&);
-  TDDIValidationResult& operator=(const TDDIValidationResult&);
-  TDDIValidationResult() : ValidationViolationOccurred(false) {
-
-  }
-
-  virtual ~TDDIValidationResult() throw();
-  bool ValidationViolationOccurred;
-  std::vector<TDDIValidationViolationMessage>  ValidationViolationMessages;
-
-  _TDDIValidationResult__isset __isset;
-
-  void __set_ValidationViolationOccurred(const bool val);
-
-  void __set_ValidationViolationMessages(const std::vector<TDDIValidationViolationMessage> & val);
-
-  bool operator == (const TDDIValidationResult & rhs) const
-  {
-    if (!(ValidationViolationOccurred == rhs.ValidationViolationOccurred))
-      return false;
-    if (!(ValidationViolationMessages == rhs.ValidationViolationMessages))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIValidationResult &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIValidationResult & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIValidationResult &a, TDDIValidationResult &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIValidationResult& obj);
-
-typedef struct _TDDIValidationViolationMessage__isset {
-  _TDDIValidationViolationMessage__isset() : Context(true), Message(true) {}
-  bool Context :1;
-  bool Message :1;
-} _TDDIValidationViolationMessage__isset;
-
-class TDDIValidationViolationMessage : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIValidationViolationMessage(const TDDIValidationViolationMessage&);
-  TDDIValidationViolationMessage& operator=(const TDDIValidationViolationMessage&);
-  TDDIValidationViolationMessage() : Context(""), Message("") {
-  }
-
-  virtual ~TDDIValidationViolationMessage() throw();
-  std::string Context;
-  std::string Message;
-
-  _TDDIValidationViolationMessage__isset __isset;
-
-  void __set_Context(const std::string& val);
-
-  void __set_Message(const std::string& val);
-
-  bool operator == (const TDDIValidationViolationMessage & rhs) const
-  {
-    if (!(Context == rhs.Context))
-      return false;
-    if (!(Message == rhs.Message))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIValidationViolationMessage &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIValidationViolationMessage & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIValidationViolationMessage &a, TDDIValidationViolationMessage &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIValidationViolationMessage& obj);
-
-typedef struct _TDDIServiceConfig__isset {
-  _TDDIServiceConfig__isset() : DDIFilePath(true), EpsilonScriptExecutionConfig(true) {}
-  bool DDIFilePath :1;
-  bool EpsilonScriptExecutionConfig :1;
-} _TDDIServiceConfig__isset;
-
-class TDDIServiceConfig : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIServiceConfig(const TDDIServiceConfig&);
-  TDDIServiceConfig& operator=(const TDDIServiceConfig&);
-  TDDIServiceConfig() : DDIFilePath("") {
-
-  }
-
-  virtual ~TDDIServiceConfig() throw();
-  std::string DDIFilePath;
-  std::vector<TDDIEpsilonScriptExecutionConfig>  EpsilonScriptExecutionConfig;
-
-  _TDDIServiceConfig__isset __isset;
-
-  void __set_DDIFilePath(const std::string& val);
-
-  void __set_EpsilonScriptExecutionConfig(const std::vector<TDDIEpsilonScriptExecutionConfig> & val);
-
-  bool operator == (const TDDIServiceConfig & rhs) const
-  {
-    if (!(DDIFilePath == rhs.DDIFilePath))
-      return false;
-    if (!(EpsilonScriptExecutionConfig == rhs.EpsilonScriptExecutionConfig))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIServiceConfig &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIServiceConfig & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIServiceConfig &a, TDDIServiceConfig &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIServiceConfig& obj);
-
-typedef struct _TDDIEpsilonScriptExecutionConfig__isset {
-  _TDDIEpsilonScriptExecutionConfig__isset() : ScriptFilePath(true), ScriptContent(true), ExecuteWithScriptFile(false), EpsilonLanguage(false), ModelConfigs(true), ExportParameters(true), ImportParameters(true), VariableNameOfReturnValue(true) {}
-  bool ScriptFilePath :1;
-  bool ScriptContent :1;
-  bool ExecuteWithScriptFile :1;
-  bool EpsilonLanguage :1;
-  bool ModelConfigs :1;
-  bool ExportParameters :1;
-  bool ImportParameters :1;
-  bool VariableNameOfReturnValue :1;
-} _TDDIEpsilonScriptExecutionConfig__isset;
-
-class TDDIEpsilonScriptExecutionConfig : public virtual ::apache::thrift::TBase {
- public:
-
-  TDDIEpsilonScriptExecutionConfig(const TDDIEpsilonScriptExecutionConfig&);
-  TDDIEpsilonScriptExecutionConfig& operator=(const TDDIEpsilonScriptExecutionConfig&);
-  TDDIEpsilonScriptExecutionConfig() : ScriptFilePath(""), ScriptContent(""), ExecuteWithScriptFile(0), EpsilonLanguage((TDDIEpsilonLanguage)0), VariableNameOfReturnValue("") {
-
-
-
-  }
-
-  virtual ~TDDIEpsilonScriptExecutionConfig() throw();
-  std::string ScriptFilePath;
-  std::string ScriptContent;
-  bool ExecuteWithScriptFile;
-  TDDIEpsilonLanguage EpsilonLanguage;
-  std::vector<TDDIEpsilonScriptModelConfig>  ModelConfigs;
-  std::vector<TDDIEpsilonParameter>  ExportParameters;
-  std::vector<TDDIEpsilonParameter>  ImportParameters;
-  std::string VariableNameOfReturnValue;
-
-  _TDDIEpsilonScriptExecutionConfig__isset __isset;
-
-  void __set_ScriptFilePath(const std::string& val);
-
-  void __set_ScriptContent(const std::string& val);
-
-  void __set_ExecuteWithScriptFile(const bool val);
-
-  void __set_EpsilonLanguage(const TDDIEpsilonLanguage val);
-
-  void __set_ModelConfigs(const std::vector<TDDIEpsilonScriptModelConfig> & val);
-
-  void __set_ExportParameters(const std::vector<TDDIEpsilonParameter> & val);
-
-  void __set_ImportParameters(const std::vector<TDDIEpsilonParameter> & val);
-
-  void __set_VariableNameOfReturnValue(const std::string& val);
-
-  bool operator == (const TDDIEpsilonScriptExecutionConfig & rhs) const
-  {
-    if (!(ScriptFilePath == rhs.ScriptFilePath))
-      return false;
-    if (!(ScriptContent == rhs.ScriptContent))
-      return false;
-    if (!(ExecuteWithScriptFile == rhs.ExecuteWithScriptFile))
-      return false;
-    if (!(EpsilonLanguage == rhs.EpsilonLanguage))
-      return false;
-    if (!(ModelConfigs == rhs.ModelConfigs))
-      return false;
-    if (!(ExportParameters == rhs.ExportParameters))
-      return false;
-    if (!(ImportParameters == rhs.ImportParameters))
-      return false;
-    if (!(VariableNameOfReturnValue == rhs.VariableNameOfReturnValue))
-      return false;
-    return true;
-  }
-  bool operator != (const TDDIEpsilonScriptExecutionConfig &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const TDDIEpsilonScriptExecutionConfig & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(TDDIEpsilonScriptExecutionConfig &a, TDDIEpsilonScriptExecutionConfig &b);
-
-std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionConfig& obj);
+std::ostream& operator<<(std::ostream& out, const TDDIAbstractEpsilonScriptExecutionException& obj);
 
 typedef struct _TDDIEpsilonScriptModelConfig__isset {
   _TDDIEpsilonScriptModelConfig__isset() : ModelUri(true), ModelName(true), Alias(true), ReadOnLoad(false), StoreOnDisposal(false) {}
@@ -16424,6 +16288,93 @@ class TDDIEpsilonParameter : public virtual ::apache::thrift::TBase {
 void swap(TDDIEpsilonParameter &a, TDDIEpsilonParameter &b);
 
 std::ostream& operator<<(std::ostream& out, const TDDIEpsilonParameter& obj);
+
+typedef struct _TDDIEpsilonScriptExecutionConfig__isset {
+  _TDDIEpsilonScriptExecutionConfig__isset() : ScriptFilePath(true), ScriptContent(true), ExecuteWithScriptFile(false), EpsilonLanguage(false), ModelConfigs(true), ExportParameters(true), ImportParameters(true), VariableNameOfReturnValue(true) {}
+  bool ScriptFilePath :1;
+  bool ScriptContent :1;
+  bool ExecuteWithScriptFile :1;
+  bool EpsilonLanguage :1;
+  bool ModelConfigs :1;
+  bool ExportParameters :1;
+  bool ImportParameters :1;
+  bool VariableNameOfReturnValue :1;
+} _TDDIEpsilonScriptExecutionConfig__isset;
+
+class TDDIEpsilonScriptExecutionConfig : public virtual ::apache::thrift::TBase {
+ public:
+
+  TDDIEpsilonScriptExecutionConfig(const TDDIEpsilonScriptExecutionConfig&);
+  TDDIEpsilonScriptExecutionConfig& operator=(const TDDIEpsilonScriptExecutionConfig&);
+  TDDIEpsilonScriptExecutionConfig() : ScriptFilePath(""), ScriptContent(""), ExecuteWithScriptFile(0), EpsilonLanguage((TDDIEpsilonLanguage)0), VariableNameOfReturnValue("") {
+
+
+
+  }
+
+  virtual ~TDDIEpsilonScriptExecutionConfig() throw();
+  std::string ScriptFilePath;
+  std::string ScriptContent;
+  bool ExecuteWithScriptFile;
+  TDDIEpsilonLanguage EpsilonLanguage;
+  std::vector<TDDIEpsilonScriptModelConfig>  ModelConfigs;
+  std::vector<TDDIEpsilonParameter>  ExportParameters;
+  std::vector<TDDIEpsilonParameter>  ImportParameters;
+  std::string VariableNameOfReturnValue;
+
+  _TDDIEpsilonScriptExecutionConfig__isset __isset;
+
+  void __set_ScriptFilePath(const std::string& val);
+
+  void __set_ScriptContent(const std::string& val);
+
+  void __set_ExecuteWithScriptFile(const bool val);
+
+  void __set_EpsilonLanguage(const TDDIEpsilonLanguage val);
+
+  void __set_ModelConfigs(const std::vector<TDDIEpsilonScriptModelConfig> & val);
+
+  void __set_ExportParameters(const std::vector<TDDIEpsilonParameter> & val);
+
+  void __set_ImportParameters(const std::vector<TDDIEpsilonParameter> & val);
+
+  void __set_VariableNameOfReturnValue(const std::string& val);
+
+  bool operator == (const TDDIEpsilonScriptExecutionConfig & rhs) const
+  {
+    if (!(ScriptFilePath == rhs.ScriptFilePath))
+      return false;
+    if (!(ScriptContent == rhs.ScriptContent))
+      return false;
+    if (!(ExecuteWithScriptFile == rhs.ExecuteWithScriptFile))
+      return false;
+    if (!(EpsilonLanguage == rhs.EpsilonLanguage))
+      return false;
+    if (!(ModelConfigs == rhs.ModelConfigs))
+      return false;
+    if (!(ExportParameters == rhs.ExportParameters))
+      return false;
+    if (!(ImportParameters == rhs.ImportParameters))
+      return false;
+    if (!(VariableNameOfReturnValue == rhs.VariableNameOfReturnValue))
+      return false;
+    return true;
+  }
+  bool operator != (const TDDIEpsilonScriptExecutionConfig &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const TDDIEpsilonScriptExecutionConfig & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(TDDIEpsilonScriptExecutionConfig &a, TDDIEpsilonScriptExecutionConfig &b);
+
+std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionConfig& obj);
 
 typedef struct _TDDIExternalServiceParameter__isset {
   _TDDIExternalServiceParameter__isset() : Name(true), Value(false) {}

@@ -33,11 +33,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     private List<TDDIImplementationConstraintRef> _ImplementationConstraint;
     private List<TDDINoteRef> _Note;
     private List<TDDITaggedValueRef> _TaggedValue;
-    private List<TDDIAbstractAssuranceCasePackageRef> _AssuranceCasePackage;
+    private List<TDDIAbstractAssuranceCasePackage> _AssuranceCasePackage;
     private List<TDDIAssuranceCasePackageInterfaceRef> _Interface;
-    private List<TDDIAbstractArtifactPackageRef> _ArtifactPackage;
-    private List<TDDIAbstractArgumentPackageRef> _ArgumentPackage;
-    private List<TDDIAbstractTerminologyPackageRef> _TerminologyPackage;
+    private List<TDDIAbstractArtifactPackage> _ArtifactPackage;
+    private List<TDDIAbstractArgumentPackage> _ArgumentPackage;
+    private List<TDDIAbstractTerminologyPackage> _TerminologyPackage;
     private List<TDDIAbstractAssuranceCasePackageRef> _ParticipantPackage;
 
     public string Gid
@@ -170,7 +170,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractAssuranceCasePackageRef> AssuranceCasePackage
+    public List<TDDIAbstractAssuranceCasePackage> AssuranceCasePackage
     {
       get
       {
@@ -196,7 +196,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractArtifactPackageRef> ArtifactPackage
+    public List<TDDIAbstractArtifactPackage> ArtifactPackage
     {
       get
       {
@@ -209,7 +209,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractArgumentPackageRef> ArgumentPackage
+    public List<TDDIAbstractArgumentPackage> ArgumentPackage
     {
       get
       {
@@ -222,7 +222,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractTerminologyPackageRef> TerminologyPackage
+    public List<TDDIAbstractTerminologyPackage> TerminologyPackage
     {
       get
       {
@@ -285,15 +285,15 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       this.__isset.Note = true;
       this._TaggedValue = new List<TDDITaggedValueRef>();
       this.__isset.TaggedValue = true;
-      this._AssuranceCasePackage = new List<TDDIAbstractAssuranceCasePackageRef>();
+      this._AssuranceCasePackage = new List<TDDIAbstractAssuranceCasePackage>();
       this.__isset.AssuranceCasePackage = true;
       this._Interface = new List<TDDIAssuranceCasePackageInterfaceRef>();
       this.__isset.@Interface = true;
-      this._ArtifactPackage = new List<TDDIAbstractArtifactPackageRef>();
+      this._ArtifactPackage = new List<TDDIAbstractArtifactPackage>();
       this.__isset.ArtifactPackage = true;
-      this._ArgumentPackage = new List<TDDIAbstractArgumentPackageRef>();
+      this._ArgumentPackage = new List<TDDIAbstractArgumentPackage>();
       this.__isset.ArgumentPackage = true;
-      this._TerminologyPackage = new List<TDDIAbstractTerminologyPackageRef>();
+      this._TerminologyPackage = new List<TDDIAbstractTerminologyPackage>();
       this.__isset.TerminologyPackage = true;
       this._ParticipantPackage = new List<TDDIAbstractAssuranceCasePackageRef>();
       this.__isset.ParticipantPackage = true;
@@ -424,12 +424,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 11:
               if (field.Type == TType.List) {
                 {
-                  AssuranceCasePackage = new List<TDDIAbstractAssuranceCasePackageRef>();
+                  AssuranceCasePackage = new List<TDDIAbstractAssuranceCasePackage>();
                   TList _list1225 = iprot.ReadListBegin();
                   for( int _i1226 = 0; _i1226 < _list1225.Count; ++_i1226)
                   {
-                    TDDIAbstractAssuranceCasePackageRef _elem1227;
-                    _elem1227 = new TDDIAbstractAssuranceCasePackageRef();
+                    TDDIAbstractAssuranceCasePackage _elem1227;
+                    _elem1227 = new TDDIAbstractAssuranceCasePackage();
                     _elem1227.Read(iprot);
                     AssuranceCasePackage.Add(_elem1227);
                   }
@@ -460,12 +460,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 13:
               if (field.Type == TType.List) {
                 {
-                  ArtifactPackage = new List<TDDIAbstractArtifactPackageRef>();
+                  ArtifactPackage = new List<TDDIAbstractArtifactPackage>();
                   TList _list1231 = iprot.ReadListBegin();
                   for( int _i1232 = 0; _i1232 < _list1231.Count; ++_i1232)
                   {
-                    TDDIAbstractArtifactPackageRef _elem1233;
-                    _elem1233 = new TDDIAbstractArtifactPackageRef();
+                    TDDIAbstractArtifactPackage _elem1233;
+                    _elem1233 = new TDDIAbstractArtifactPackage();
                     _elem1233.Read(iprot);
                     ArtifactPackage.Add(_elem1233);
                   }
@@ -478,12 +478,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 14:
               if (field.Type == TType.List) {
                 {
-                  ArgumentPackage = new List<TDDIAbstractArgumentPackageRef>();
+                  ArgumentPackage = new List<TDDIAbstractArgumentPackage>();
                   TList _list1234 = iprot.ReadListBegin();
                   for( int _i1235 = 0; _i1235 < _list1234.Count; ++_i1235)
                   {
-                    TDDIAbstractArgumentPackageRef _elem1236;
-                    _elem1236 = new TDDIAbstractArgumentPackageRef();
+                    TDDIAbstractArgumentPackage _elem1236;
+                    _elem1236 = new TDDIAbstractArgumentPackage();
                     _elem1236.Read(iprot);
                     ArgumentPackage.Add(_elem1236);
                   }
@@ -496,12 +496,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 15:
               if (field.Type == TType.List) {
                 {
-                  TerminologyPackage = new List<TDDIAbstractTerminologyPackageRef>();
+                  TerminologyPackage = new List<TDDIAbstractTerminologyPackage>();
                   TList _list1237 = iprot.ReadListBegin();
                   for( int _i1238 = 0; _i1238 < _list1237.Count; ++_i1238)
                   {
-                    TDDIAbstractTerminologyPackageRef _elem1239;
-                    _elem1239 = new TDDIAbstractTerminologyPackageRef();
+                    TDDIAbstractTerminologyPackage _elem1239;
+                    _elem1239 = new TDDIAbstractTerminologyPackage();
                     _elem1239.Read(iprot);
                     TerminologyPackage.Add(_elem1239);
                   }
@@ -658,7 +658,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, AssuranceCasePackage.Count));
-            foreach (TDDIAbstractAssuranceCasePackageRef _iter1246 in AssuranceCasePackage)
+            foreach (TDDIAbstractAssuranceCasePackage _iter1246 in AssuranceCasePackage)
             {
               _iter1246.Write(oprot);
             }
@@ -688,7 +688,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ArtifactPackage.Count));
-            foreach (TDDIAbstractArtifactPackageRef _iter1248 in ArtifactPackage)
+            foreach (TDDIAbstractArtifactPackage _iter1248 in ArtifactPackage)
             {
               _iter1248.Write(oprot);
             }
@@ -703,7 +703,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ArgumentPackage.Count));
-            foreach (TDDIAbstractArgumentPackageRef _iter1249 in ArgumentPackage)
+            foreach (TDDIAbstractArgumentPackage _iter1249 in ArgumentPackage)
             {
               _iter1249.Write(oprot);
             }
@@ -718,7 +718,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, TerminologyPackage.Count));
-            foreach (TDDIAbstractTerminologyPackageRef _iter1250 in TerminologyPackage)
+            foreach (TDDIAbstractTerminologyPackage _iter1250 in TerminologyPackage)
             {
               _iter1250.Write(oprot);
             }

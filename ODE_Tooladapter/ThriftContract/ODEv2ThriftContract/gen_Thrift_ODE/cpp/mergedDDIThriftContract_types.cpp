@@ -5162,110 +5162,6 @@ void TDDIAssuranceCasePackageInterfaceRef::printTo(std::ostream& out) const {
 }
 
 
-TDDIAbstractArtifactPackageRef::~TDDIAbstractArtifactPackageRef() throw() {
-}
-
-
-void TDDIAbstractArtifactPackageRef::__set_ref(::apache::thrift::stdcxx::shared_ptr<TDDIAbstractArtifactPackage> val) {
-  this->ref = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIAbstractArtifactPackageRef& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIAbstractArtifactPackageRef::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          if (!this->ref) { 
-            this->ref = ::apache::thrift::stdcxx::shared_ptr<TDDIAbstractArtifactPackage>(new TDDIAbstractArtifactPackage);
-          }
-          xfer += this->ref->read(iprot);
-          bool wasSet = false;
-          if (this->ref->__isset.UsedArtifactPackage) { wasSet = true; }
-          if (this->ref->__isset.UsedArtifactPackageType) { wasSet = true; }
-          if (!wasSet) { this->ref.reset(); }
-          this->__isset.ref = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIAbstractArtifactPackageRef::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIAbstractArtifactPackageRef");
-
-  xfer += oprot->writeFieldBegin("ref", ::apache::thrift::protocol::T_STRUCT, 1);
-  if (this->ref) {
-    xfer += this->ref->write(oprot); 
-  } else {oprot->writeStructBegin("TDDIAbstractArtifactPackage"); 
-    oprot->writeStructEnd();
-    oprot->writeFieldStop();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIAbstractArtifactPackageRef &a, TDDIAbstractArtifactPackageRef &b) {
-  using ::std::swap;
-  swap(a.ref, b.ref);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIAbstractArtifactPackageRef::TDDIAbstractArtifactPackageRef(const TDDIAbstractArtifactPackageRef& other74) {
-  ref = other74.ref;
-  __isset = other74.__isset;
-}
-TDDIAbstractArtifactPackageRef& TDDIAbstractArtifactPackageRef::operator=(const TDDIAbstractArtifactPackageRef& other75) {
-  ref = other75.ref;
-  __isset = other75.__isset;
-  return *this;
-}
-void TDDIAbstractArtifactPackageRef::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIAbstractArtifactPackageRef(";
-  out << "ref=" << to_string(ref);
-  out << ")";
-}
-
-
 TDDIAbstractTerminologyPackageRef::~TDDIAbstractTerminologyPackageRef() throw() {
 }
 
@@ -5353,13 +5249,13 @@ void swap(TDDIAbstractTerminologyPackageRef &a, TDDIAbstractTerminologyPackageRe
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractTerminologyPackageRef::TDDIAbstractTerminologyPackageRef(const TDDIAbstractTerminologyPackageRef& other76) {
-  ref = other76.ref;
-  __isset = other76.__isset;
+TDDIAbstractTerminologyPackageRef::TDDIAbstractTerminologyPackageRef(const TDDIAbstractTerminologyPackageRef& other74) {
+  ref = other74.ref;
+  __isset = other74.__isset;
 }
-TDDIAbstractTerminologyPackageRef& TDDIAbstractTerminologyPackageRef::operator=(const TDDIAbstractTerminologyPackageRef& other77) {
-  ref = other77.ref;
-  __isset = other77.__isset;
+TDDIAbstractTerminologyPackageRef& TDDIAbstractTerminologyPackageRef::operator=(const TDDIAbstractTerminologyPackageRef& other75) {
+  ref = other75.ref;
+  __isset = other75.__isset;
   return *this;
 }
 void TDDIAbstractTerminologyPackageRef::printTo(std::ostream& out) const {
@@ -5457,18 +5353,122 @@ void swap(TDDIAbstractExpressionElementRef &a, TDDIAbstractExpressionElementRef 
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractExpressionElementRef::TDDIAbstractExpressionElementRef(const TDDIAbstractExpressionElementRef& other78) {
-  ref = other78.ref;
-  __isset = other78.__isset;
+TDDIAbstractExpressionElementRef::TDDIAbstractExpressionElementRef(const TDDIAbstractExpressionElementRef& other76) {
+  ref = other76.ref;
+  __isset = other76.__isset;
 }
-TDDIAbstractExpressionElementRef& TDDIAbstractExpressionElementRef::operator=(const TDDIAbstractExpressionElementRef& other79) {
-  ref = other79.ref;
-  __isset = other79.__isset;
+TDDIAbstractExpressionElementRef& TDDIAbstractExpressionElementRef::operator=(const TDDIAbstractExpressionElementRef& other77) {
+  ref = other77.ref;
+  __isset = other77.__isset;
   return *this;
 }
 void TDDIAbstractExpressionElementRef::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
   out << "TDDIAbstractExpressionElementRef(";
+  out << "ref=" << to_string(ref);
+  out << ")";
+}
+
+
+TDDIAbstractTerminologyElementRef::~TDDIAbstractTerminologyElementRef() throw() {
+}
+
+
+void TDDIAbstractTerminologyElementRef::__set_ref(::apache::thrift::stdcxx::shared_ptr<TDDIAbstractTerminologyElement> val) {
+  this->ref = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIAbstractTerminologyElementRef& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+
+uint32_t TDDIAbstractTerminologyElementRef::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          if (!this->ref) { 
+            this->ref = ::apache::thrift::stdcxx::shared_ptr<TDDIAbstractTerminologyElement>(new TDDIAbstractTerminologyElement);
+          }
+          xfer += this->ref->read(iprot);
+          bool wasSet = false;
+          if (this->ref->__isset.UsedTerminologyElement) { wasSet = true; }
+          if (this->ref->__isset.UsedTerminologyElementType) { wasSet = true; }
+          if (!wasSet) { this->ref.reset(); }
+          this->__isset.ref = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t TDDIAbstractTerminologyElementRef::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("TDDIAbstractTerminologyElementRef");
+
+  xfer += oprot->writeFieldBegin("ref", ::apache::thrift::protocol::T_STRUCT, 1);
+  if (this->ref) {
+    xfer += this->ref->write(oprot); 
+  } else {oprot->writeStructBegin("TDDIAbstractTerminologyElement"); 
+    oprot->writeStructEnd();
+    oprot->writeFieldStop();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(TDDIAbstractTerminologyElementRef &a, TDDIAbstractTerminologyElementRef &b) {
+  using ::std::swap;
+  swap(a.ref, b.ref);
+  swap(a.__isset, b.__isset);
+}
+
+TDDIAbstractTerminologyElementRef::TDDIAbstractTerminologyElementRef(const TDDIAbstractTerminologyElementRef& other78) {
+  ref = other78.ref;
+  __isset = other78.__isset;
+}
+TDDIAbstractTerminologyElementRef& TDDIAbstractTerminologyElementRef::operator=(const TDDIAbstractTerminologyElementRef& other79) {
+  ref = other79.ref;
+  __isset = other79.__isset;
+  return *this;
+}
+void TDDIAbstractTerminologyElementRef::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "TDDIAbstractTerminologyElementRef(";
   out << "ref=" << to_string(ref);
   out << ")";
 }
@@ -10351,8 +10351,6 @@ uint32_t TDDISignal::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   using ::apache::thrift::protocol::TProtocolException;
 
-  bool isset_FromPort = false;
-  bool isset_ToPort = false;
 
   while (true)
   {
@@ -10424,7 +10422,7 @@ uint32_t TDDISignal::read(::apache::thrift::protocol::TProtocol* iprot) {
           if (this->FromPort->__isset.RefinedPorts) { wasSet = true; }
           if (this->FromPort->__isset.InterfaceFailures) { wasSet = true; }
           if (!wasSet) { this->FromPort.reset(); }
-          isset_FromPort = true;
+          this->__isset.FromPort = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -10447,7 +10445,7 @@ uint32_t TDDISignal::read(::apache::thrift::protocol::TProtocol* iprot) {
           if (this->ToPort->__isset.RefinedPorts) { wasSet = true; }
           if (this->ToPort->__isset.InterfaceFailures) { wasSet = true; }
           if (!wasSet) { this->ToPort.reset(); }
-          isset_ToPort = true;
+          this->__isset.ToPort = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -10461,10 +10459,6 @@ uint32_t TDDISignal::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   xfer += iprot->readStructEnd();
 
-  if (!isset_FromPort)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_ToPort)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -42658,7 +42652,7 @@ void TDDIAssuranceCasePackage::__set_TaggedValue(const std::vector<TDDITaggedVal
   this->TaggedValue = val;
 }
 
-void TDDIAssuranceCasePackage::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val) {
+void TDDIAssuranceCasePackage::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val) {
   this->AssuranceCasePackage = val;
 }
 
@@ -42666,15 +42660,15 @@ void TDDIAssuranceCasePackage::__set_Interface(const std::vector<TDDIAssuranceCa
   this->Interface = val;
 }
 
-void TDDIAssuranceCasePackage::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val) {
+void TDDIAssuranceCasePackage::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val) {
   this->ArtifactPackage = val;
 }
 
-void TDDIAssuranceCasePackage::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val) {
+void TDDIAssuranceCasePackage::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val) {
   this->ArgumentPackage = val;
 }
 
-void TDDIAssuranceCasePackage::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val) {
+void TDDIAssuranceCasePackage::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val) {
   this->TerminologyPackage = val;
 }
 std::ostream& operator<<(std::ostream& out, const TDDIAssuranceCasePackage& obj)
@@ -43057,7 +43051,7 @@ uint32_t TDDIAssuranceCasePackage::write(::apache::thrift::protocol::TProtocol* 
   xfer += oprot->writeFieldBegin("AssuranceCasePackage", ::apache::thrift::protocol::T_LIST, 11);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AssuranceCasePackage.size()));
-    std::vector<TDDIAbstractAssuranceCasePackageRef> ::const_iterator _iter2139;
+    std::vector<TDDIAbstractAssuranceCasePackage> ::const_iterator _iter2139;
     for (_iter2139 = this->AssuranceCasePackage.begin(); _iter2139 != this->AssuranceCasePackage.end(); ++_iter2139)
     {
       xfer += (*_iter2139).write(oprot);
@@ -43081,7 +43075,7 @@ uint32_t TDDIAssuranceCasePackage::write(::apache::thrift::protocol::TProtocol* 
   xfer += oprot->writeFieldBegin("ArtifactPackage", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArtifactPackage.size()));
-    std::vector<TDDIAbstractArtifactPackageRef> ::const_iterator _iter2141;
+    std::vector<TDDIAbstractArtifactPackage> ::const_iterator _iter2141;
     for (_iter2141 = this->ArtifactPackage.begin(); _iter2141 != this->ArtifactPackage.end(); ++_iter2141)
     {
       xfer += (*_iter2141).write(oprot);
@@ -43093,7 +43087,7 @@ uint32_t TDDIAssuranceCasePackage::write(::apache::thrift::protocol::TProtocol* 
   xfer += oprot->writeFieldBegin("ArgumentPackage", ::apache::thrift::protocol::T_LIST, 14);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArgumentPackage.size()));
-    std::vector<TDDIAbstractArgumentPackageRef> ::const_iterator _iter2142;
+    std::vector<TDDIAbstractArgumentPackage> ::const_iterator _iter2142;
     for (_iter2142 = this->ArgumentPackage.begin(); _iter2142 != this->ArgumentPackage.end(); ++_iter2142)
     {
       xfer += (*_iter2142).write(oprot);
@@ -43105,7 +43099,7 @@ uint32_t TDDIAssuranceCasePackage::write(::apache::thrift::protocol::TProtocol* 
   xfer += oprot->writeFieldBegin("TerminologyPackage", ::apache::thrift::protocol::T_LIST, 15);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->TerminologyPackage.size()));
-    std::vector<TDDIAbstractTerminologyPackageRef> ::const_iterator _iter2143;
+    std::vector<TDDIAbstractTerminologyPackage> ::const_iterator _iter2143;
     for (_iter2143 = this->TerminologyPackage.begin(); _iter2143 != this->TerminologyPackage.end(); ++_iter2143)
     {
       xfer += (*_iter2143).write(oprot);
@@ -43242,7 +43236,7 @@ void TDDIAssuranceCasePackageInterface::__set_TaggedValue(const std::vector<TDDI
   this->TaggedValue = val;
 }
 
-void TDDIAssuranceCasePackageInterface::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val) {
+void TDDIAssuranceCasePackageInterface::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val) {
   this->AssuranceCasePackage = val;
 }
 
@@ -43250,15 +43244,15 @@ void TDDIAssuranceCasePackageInterface::__set_Interface(const std::vector<TDDIAs
   this->Interface = val;
 }
 
-void TDDIAssuranceCasePackageInterface::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val) {
+void TDDIAssuranceCasePackageInterface::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val) {
   this->ArtifactPackage = val;
 }
 
-void TDDIAssuranceCasePackageInterface::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val) {
+void TDDIAssuranceCasePackageInterface::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val) {
   this->ArgumentPackage = val;
 }
 
-void TDDIAssuranceCasePackageInterface::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val) {
+void TDDIAssuranceCasePackageInterface::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val) {
   this->TerminologyPackage = val;
 }
 
@@ -43653,7 +43647,7 @@ uint32_t TDDIAssuranceCasePackageInterface::write(::apache::thrift::protocol::TP
   xfer += oprot->writeFieldBegin("AssuranceCasePackage", ::apache::thrift::protocol::T_LIST, 11);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AssuranceCasePackage.size()));
-    std::vector<TDDIAbstractAssuranceCasePackageRef> ::const_iterator _iter2189;
+    std::vector<TDDIAbstractAssuranceCasePackage> ::const_iterator _iter2189;
     for (_iter2189 = this->AssuranceCasePackage.begin(); _iter2189 != this->AssuranceCasePackage.end(); ++_iter2189)
     {
       xfer += (*_iter2189).write(oprot);
@@ -43677,7 +43671,7 @@ uint32_t TDDIAssuranceCasePackageInterface::write(::apache::thrift::protocol::TP
   xfer += oprot->writeFieldBegin("ArtifactPackage", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArtifactPackage.size()));
-    std::vector<TDDIAbstractArtifactPackageRef> ::const_iterator _iter2191;
+    std::vector<TDDIAbstractArtifactPackage> ::const_iterator _iter2191;
     for (_iter2191 = this->ArtifactPackage.begin(); _iter2191 != this->ArtifactPackage.end(); ++_iter2191)
     {
       xfer += (*_iter2191).write(oprot);
@@ -43689,7 +43683,7 @@ uint32_t TDDIAssuranceCasePackageInterface::write(::apache::thrift::protocol::TP
   xfer += oprot->writeFieldBegin("ArgumentPackage", ::apache::thrift::protocol::T_LIST, 14);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArgumentPackage.size()));
-    std::vector<TDDIAbstractArgumentPackageRef> ::const_iterator _iter2192;
+    std::vector<TDDIAbstractArgumentPackage> ::const_iterator _iter2192;
     for (_iter2192 = this->ArgumentPackage.begin(); _iter2192 != this->ArgumentPackage.end(); ++_iter2192)
     {
       xfer += (*_iter2192).write(oprot);
@@ -43701,7 +43695,7 @@ uint32_t TDDIAssuranceCasePackageInterface::write(::apache::thrift::protocol::TP
   xfer += oprot->writeFieldBegin("TerminologyPackage", ::apache::thrift::protocol::T_LIST, 15);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->TerminologyPackage.size()));
-    std::vector<TDDIAbstractTerminologyPackageRef> ::const_iterator _iter2193;
+    std::vector<TDDIAbstractTerminologyPackage> ::const_iterator _iter2193;
     for (_iter2193 = this->TerminologyPackage.begin(); _iter2193 != this->TerminologyPackage.end(); ++_iter2193)
     {
       xfer += (*_iter2193).write(oprot);
@@ -43846,7 +43840,7 @@ void TDDIAssuranceCasePackageBinding::__set_TaggedValue(const std::vector<TDDITa
   this->TaggedValue = val;
 }
 
-void TDDIAssuranceCasePackageBinding::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackageRef> & val) {
+void TDDIAssuranceCasePackageBinding::__set_AssuranceCasePackage(const std::vector<TDDIAbstractAssuranceCasePackage> & val) {
   this->AssuranceCasePackage = val;
 }
 
@@ -43854,15 +43848,15 @@ void TDDIAssuranceCasePackageBinding::__set_Interface(const std::vector<TDDIAssu
   this->Interface = val;
 }
 
-void TDDIAssuranceCasePackageBinding::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackageRef> & val) {
+void TDDIAssuranceCasePackageBinding::__set_ArtifactPackage(const std::vector<TDDIAbstractArtifactPackage> & val) {
   this->ArtifactPackage = val;
 }
 
-void TDDIAssuranceCasePackageBinding::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackageRef> & val) {
+void TDDIAssuranceCasePackageBinding::__set_ArgumentPackage(const std::vector<TDDIAbstractArgumentPackage> & val) {
   this->ArgumentPackage = val;
 }
 
-void TDDIAssuranceCasePackageBinding::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val) {
+void TDDIAssuranceCasePackageBinding::__set_TerminologyPackage(const std::vector<TDDIAbstractTerminologyPackage> & val) {
   this->TerminologyPackage = val;
 }
 
@@ -44269,7 +44263,7 @@ uint32_t TDDIAssuranceCasePackageBinding::write(::apache::thrift::protocol::TPro
   xfer += oprot->writeFieldBegin("AssuranceCasePackage", ::apache::thrift::protocol::T_LIST, 11);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AssuranceCasePackage.size()));
-    std::vector<TDDIAbstractAssuranceCasePackageRef> ::const_iterator _iter2244;
+    std::vector<TDDIAbstractAssuranceCasePackage> ::const_iterator _iter2244;
     for (_iter2244 = this->AssuranceCasePackage.begin(); _iter2244 != this->AssuranceCasePackage.end(); ++_iter2244)
     {
       xfer += (*_iter2244).write(oprot);
@@ -44293,7 +44287,7 @@ uint32_t TDDIAssuranceCasePackageBinding::write(::apache::thrift::protocol::TPro
   xfer += oprot->writeFieldBegin("ArtifactPackage", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArtifactPackage.size()));
-    std::vector<TDDIAbstractArtifactPackageRef> ::const_iterator _iter2246;
+    std::vector<TDDIAbstractArtifactPackage> ::const_iterator _iter2246;
     for (_iter2246 = this->ArtifactPackage.begin(); _iter2246 != this->ArtifactPackage.end(); ++_iter2246)
     {
       xfer += (*_iter2246).write(oprot);
@@ -44305,7 +44299,7 @@ uint32_t TDDIAssuranceCasePackageBinding::write(::apache::thrift::protocol::TPro
   xfer += oprot->writeFieldBegin("ArgumentPackage", ::apache::thrift::protocol::T_LIST, 14);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ArgumentPackage.size()));
-    std::vector<TDDIAbstractArgumentPackageRef> ::const_iterator _iter2247;
+    std::vector<TDDIAbstractArgumentPackage> ::const_iterator _iter2247;
     for (_iter2247 = this->ArgumentPackage.begin(); _iter2247 != this->ArgumentPackage.end(); ++_iter2247)
     {
       xfer += (*_iter2247).write(oprot);
@@ -44317,7 +44311,7 @@ uint32_t TDDIAssuranceCasePackageBinding::write(::apache::thrift::protocol::TPro
   xfer += oprot->writeFieldBegin("TerminologyPackage", ::apache::thrift::protocol::T_LIST, 15);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->TerminologyPackage.size()));
-    std::vector<TDDIAbstractTerminologyPackageRef> ::const_iterator _iter2248;
+    std::vector<TDDIAbstractTerminologyPackage> ::const_iterator _iter2248;
     for (_iter2248 = this->TerminologyPackage.begin(); _iter2248 != this->TerminologyPackage.end(); ++_iter2248)
     {
       xfer += (*_iter2248).write(oprot);
@@ -47773,7 +47767,7 @@ void TDDITerminologyGroup::__set_TaggedValue(const std::vector<TDDITaggedValueRe
   this->TaggedValue = val;
 }
 
-void TDDITerminologyGroup::__set_TerminologyElement(const std::vector<TDDIAbstractTerminologyElement> & val) {
+void TDDITerminologyGroup::__set_TerminologyElement(const std::vector<TDDIAbstractTerminologyElementRef> & val) {
   this->TerminologyElement = val;
 }
 std::ostream& operator<<(std::ostream& out, const TDDITerminologyGroup& obj)
@@ -48076,7 +48070,7 @@ uint32_t TDDITerminologyGroup::write(::apache::thrift::protocol::TProtocol* opro
   xfer += oprot->writeFieldBegin("TerminologyElement", ::apache::thrift::protocol::T_LIST, 11);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->TerminologyElement.size()));
-    std::vector<TDDIAbstractTerminologyElement> ::const_iterator _iter2330;
+    std::vector<TDDIAbstractTerminologyElementRef> ::const_iterator _iter2330;
     for (_iter2330 = this->TerminologyElement.begin(); _iter2330 != this->TerminologyElement.end(); ++_iter2330)
     {
       xfer += (*_iter2330).write(oprot);
@@ -48942,7 +48936,7 @@ void TDDITerminologyPackageBinding::__set_TerminologyElement(const std::vector<T
   this->TerminologyElement = val;
 }
 
-void TDDITerminologyPackageBinding::__set_ParticipantPackage(const std::vector<TDDIAbstractTerminologyPackage> & val) {
+void TDDITerminologyPackageBinding::__set_ParticipantPackage(const std::vector<TDDIAbstractTerminologyPackageRef> & val) {
   this->ParticipantPackage = val;
 }
 std::ostream& operator<<(std::ostream& out, const TDDITerminologyPackageBinding& obj)
@@ -49277,7 +49271,7 @@ uint32_t TDDITerminologyPackageBinding::write(::apache::thrift::protocol::TProto
   xfer += oprot->writeFieldBegin("ParticipantPackage", ::apache::thrift::protocol::T_LIST, 12);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ParticipantPackage.size()));
-    std::vector<TDDIAbstractTerminologyPackage> ::const_iterator _iter2393;
+    std::vector<TDDIAbstractTerminologyPackageRef> ::const_iterator _iter2393;
     for (_iter2393 = this->ParticipantPackage.begin(); _iter2393 != this->ParticipantPackage.end(); ++_iter2393)
     {
       xfer += (*_iter2393).write(oprot);
@@ -51705,25 +51699,357 @@ void TDDIAbstractTerminologyAsset::printTo(std::ostream& out) const {
 }
 
 
-TDDIAbstractEpsilonScriptExecutionException::~TDDIAbstractEpsilonScriptExecutionException() throw() {
+TDDIEpsilonScriptExecutionException::~TDDIEpsilonScriptExecutionException() throw() {
 }
 
 
-void TDDIAbstractEpsilonScriptExecutionException::__set_UsedException(const TDDIEpsilonScriptExecutionExceptionUnion& val) {
-  this->UsedException = val;
+void TDDIEpsilonScriptExecutionException::__set_Message(const std::string& val) {
+  this->Message = val;
 }
-
-void TDDIAbstractEpsilonScriptExecutionException::__set_UsedExceptionType(const TDDIEpsilonScriptExecutionExceptionUnionType val) {
-  this->UsedExceptionType = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIAbstractEpsilonScriptExecutionException& obj)
+std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionException& obj)
 {
   obj.printTo(out);
   return out;
 }
 
 
-uint32_t TDDIAbstractEpsilonScriptExecutionException::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t TDDIEpsilonScriptExecutionException::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->Message);
+          this->__isset.Message = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t TDDIEpsilonScriptExecutionException::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("TDDIEpsilonScriptExecutionException");
+
+  xfer += oprot->writeFieldBegin("Message", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->Message);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(TDDIEpsilonScriptExecutionException &a, TDDIEpsilonScriptExecutionException &b) {
+  using ::std::swap;
+  swap(a.Message, b.Message);
+  swap(a.__isset, b.__isset);
+}
+
+TDDIEpsilonScriptExecutionException::TDDIEpsilonScriptExecutionException(const TDDIEpsilonScriptExecutionException& other2510) {
+  Message = other2510.Message;
+  __isset = other2510.__isset;
+}
+TDDIEpsilonScriptExecutionException& TDDIEpsilonScriptExecutionException::operator=(const TDDIEpsilonScriptExecutionException& other2511) {
+  Message = other2511.Message;
+  __isset = other2511.__isset;
+  return *this;
+}
+void TDDIEpsilonScriptExecutionException::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "TDDIEpsilonScriptExecutionException(";
+  out << "Message=" << to_string(Message);
+  out << ")";
+}
+
+
+TDDIValidationViolationMessage::~TDDIValidationViolationMessage() throw() {
+}
+
+
+void TDDIValidationViolationMessage::__set_Context(const std::string& val) {
+  this->Context = val;
+}
+
+void TDDIValidationViolationMessage::__set_Message(const std::string& val) {
+  this->Message = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIValidationViolationMessage& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+
+uint32_t TDDIValidationViolationMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->Context);
+          this->__isset.Context = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->Message);
+          this->__isset.Message = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t TDDIValidationViolationMessage::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("TDDIValidationViolationMessage");
+
+  xfer += oprot->writeFieldBegin("Context", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->Context);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("Message", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->Message);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(TDDIValidationViolationMessage &a, TDDIValidationViolationMessage &b) {
+  using ::std::swap;
+  swap(a.Context, b.Context);
+  swap(a.Message, b.Message);
+  swap(a.__isset, b.__isset);
+}
+
+TDDIValidationViolationMessage::TDDIValidationViolationMessage(const TDDIValidationViolationMessage& other2512) {
+  Context = other2512.Context;
+  Message = other2512.Message;
+  __isset = other2512.__isset;
+}
+TDDIValidationViolationMessage& TDDIValidationViolationMessage::operator=(const TDDIValidationViolationMessage& other2513) {
+  Context = other2513.Context;
+  Message = other2513.Message;
+  __isset = other2513.__isset;
+  return *this;
+}
+void TDDIValidationViolationMessage::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "TDDIValidationViolationMessage(";
+  out << "Context=" << to_string(Context);
+  out << ", " << "Message=" << to_string(Message);
+  out << ")";
+}
+
+
+TDDIValidationResult::~TDDIValidationResult() throw() {
+}
+
+
+void TDDIValidationResult::__set_ValidationViolationOccurred(const bool val) {
+  this->ValidationViolationOccurred = val;
+}
+
+void TDDIValidationResult::__set_ValidationViolationMessages(const std::vector<TDDIValidationViolationMessage> & val) {
+  this->ValidationViolationMessages = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIValidationResult& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+
+uint32_t TDDIValidationResult::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_BOOL) {
+          xfer += iprot->readBool(this->ValidationViolationOccurred);
+          this->__isset.ValidationViolationOccurred = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->ValidationViolationMessages.clear();
+            uint32_t _size2514;
+            ::apache::thrift::protocol::TType _etype2517;
+            xfer += iprot->readListBegin(_etype2517, _size2514);
+            this->ValidationViolationMessages.resize(_size2514);
+            uint32_t _i2518;
+            for (_i2518 = 0; _i2518 < _size2514; ++_i2518)
+            {
+              xfer += this->ValidationViolationMessages[_i2518].read(iprot);
+            }
+            xfer += iprot->readListEnd();
+          }
+          this->__isset.ValidationViolationMessages = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t TDDIValidationResult::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("TDDIValidationResult");
+
+  xfer += oprot->writeFieldBegin("ValidationViolationOccurred", ::apache::thrift::protocol::T_BOOL, 1);
+  xfer += oprot->writeBool(this->ValidationViolationOccurred);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ValidationViolationMessages", ::apache::thrift::protocol::T_LIST, 2);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ValidationViolationMessages.size()));
+    std::vector<TDDIValidationViolationMessage> ::const_iterator _iter2519;
+    for (_iter2519 = this->ValidationViolationMessages.begin(); _iter2519 != this->ValidationViolationMessages.end(); ++_iter2519)
+    {
+      xfer += (*_iter2519).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(TDDIValidationResult &a, TDDIValidationResult &b) {
+  using ::std::swap;
+  swap(a.ValidationViolationOccurred, b.ValidationViolationOccurred);
+  swap(a.ValidationViolationMessages, b.ValidationViolationMessages);
+  swap(a.__isset, b.__isset);
+}
+
+TDDIValidationResult::TDDIValidationResult(const TDDIValidationResult& other2520) {
+  ValidationViolationOccurred = other2520.ValidationViolationOccurred;
+  ValidationViolationMessages = other2520.ValidationViolationMessages;
+  __isset = other2520.__isset;
+}
+TDDIValidationResult& TDDIValidationResult::operator=(const TDDIValidationResult& other2521) {
+  ValidationViolationOccurred = other2521.ValidationViolationOccurred;
+  ValidationViolationMessages = other2521.ValidationViolationMessages;
+  __isset = other2521.__isset;
+  return *this;
+}
+void TDDIValidationResult::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "TDDIValidationResult(";
+  out << "ValidationViolationOccurred=" << to_string(ValidationViolationOccurred);
+  out << ", " << "ValidationViolationMessages=" << to_string(ValidationViolationMessages);
+  out << ")";
+}
+
+
+TDDIValidationFailedException::~TDDIValidationFailedException() throw() {
+}
+
+
+void TDDIValidationFailedException::__set_ValidationResult(const TDDIValidationResult& val) {
+  this->ValidationResult = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIValidationFailedException& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+
+uint32_t TDDIValidationFailedException::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -51746,18 +52072,8 @@ uint32_t TDDIAbstractEpsilonScriptExecutionException::read(::apache::thrift::pro
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->UsedException.read(iprot);
-          this->__isset.UsedException = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2510;
-          xfer += iprot->readI32(ecast2510);
-          this->UsedExceptionType = (TDDIEpsilonScriptExecutionExceptionUnionType)ecast2510;
-          this->__isset.UsedExceptionType = true;
+          xfer += this->ValidationResult.read(iprot);
+          this->__isset.ValidationResult = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -51774,17 +52090,13 @@ uint32_t TDDIAbstractEpsilonScriptExecutionException::read(::apache::thrift::pro
   return xfer;
 }
 
-uint32_t TDDIAbstractEpsilonScriptExecutionException::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t TDDIValidationFailedException::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIAbstractEpsilonScriptExecutionException");
+  xfer += oprot->writeStructBegin("TDDIValidationFailedException");
 
-  xfer += oprot->writeFieldBegin("UsedException", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->UsedException.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("UsedExceptionType", ::apache::thrift::protocol::T_I32, 2);
-  xfer += oprot->writeI32((int32_t)this->UsedExceptionType);
+  xfer += oprot->writeFieldBegin("ValidationResult", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->ValidationResult.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -51792,41 +52104,26 @@ uint32_t TDDIAbstractEpsilonScriptExecutionException::write(::apache::thrift::pr
   return xfer;
 }
 
-void swap(TDDIAbstractEpsilonScriptExecutionException &a, TDDIAbstractEpsilonScriptExecutionException &b) {
+void swap(TDDIValidationFailedException &a, TDDIValidationFailedException &b) {
   using ::std::swap;
-  swap(a.UsedException, b.UsedException);
-  swap(a.UsedExceptionType, b.UsedExceptionType);
+  swap(a.ValidationResult, b.ValidationResult);
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractEpsilonScriptExecutionException::TDDIAbstractEpsilonScriptExecutionException(const TDDIAbstractEpsilonScriptExecutionException& other2511) : TException() {
-  UsedException = other2511.UsedException;
-  UsedExceptionType = other2511.UsedExceptionType;
-  __isset = other2511.__isset;
+TDDIValidationFailedException::TDDIValidationFailedException(const TDDIValidationFailedException& other2522) {
+  ValidationResult = other2522.ValidationResult;
+  __isset = other2522.__isset;
 }
-TDDIAbstractEpsilonScriptExecutionException& TDDIAbstractEpsilonScriptExecutionException::operator=(const TDDIAbstractEpsilonScriptExecutionException& other2512) {
-  UsedException = other2512.UsedException;
-  UsedExceptionType = other2512.UsedExceptionType;
-  __isset = other2512.__isset;
+TDDIValidationFailedException& TDDIValidationFailedException::operator=(const TDDIValidationFailedException& other2523) {
+  ValidationResult = other2523.ValidationResult;
+  __isset = other2523.__isset;
   return *this;
 }
-void TDDIAbstractEpsilonScriptExecutionException::printTo(std::ostream& out) const {
+void TDDIValidationFailedException::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
-  out << "TDDIAbstractEpsilonScriptExecutionException(";
-  out << "UsedException=" << to_string(UsedException);
-  out << ", " << "UsedExceptionType=" << to_string(UsedExceptionType);
+  out << "TDDIValidationFailedException(";
+  out << "ValidationResult=" << to_string(ValidationResult);
   out << ")";
-}
-
-const char* TDDIAbstractEpsilonScriptExecutionException::what() const throw() {
-  try {
-    std::stringstream ss;
-    ss << "TException - service has thrown: " << *this;
-    this->thriftTExceptionMessageHolder_ = ss.str();
-    return this->thriftTExceptionMessageHolder_.c_str();
-  } catch (const std::exception&) {
-    return "TException - service has thrown: TDDIAbstractEpsilonScriptExecutionException";
-  }
 }
 
 
@@ -51948,15 +52245,15 @@ void swap(TDDIEpsilonScriptExecutionExceptionUnion &a, TDDIEpsilonScriptExecutio
   swap(a.__isset, b.__isset);
 }
 
-TDDIEpsilonScriptExecutionExceptionUnion::TDDIEpsilonScriptExecutionExceptionUnion(const TDDIEpsilonScriptExecutionExceptionUnion& other2513) {
-  ValidationFailedException = other2513.ValidationFailedException;
-  EpsilonScriptExecutionException = other2513.EpsilonScriptExecutionException;
-  __isset = other2513.__isset;
+TDDIEpsilonScriptExecutionExceptionUnion::TDDIEpsilonScriptExecutionExceptionUnion(const TDDIEpsilonScriptExecutionExceptionUnion& other2524) {
+  ValidationFailedException = other2524.ValidationFailedException;
+  EpsilonScriptExecutionException = other2524.EpsilonScriptExecutionException;
+  __isset = other2524.__isset;
 }
-TDDIEpsilonScriptExecutionExceptionUnion& TDDIEpsilonScriptExecutionExceptionUnion::operator=(const TDDIEpsilonScriptExecutionExceptionUnion& other2514) {
-  ValidationFailedException = other2514.ValidationFailedException;
-  EpsilonScriptExecutionException = other2514.EpsilonScriptExecutionException;
-  __isset = other2514.__isset;
+TDDIEpsilonScriptExecutionExceptionUnion& TDDIEpsilonScriptExecutionExceptionUnion::operator=(const TDDIEpsilonScriptExecutionExceptionUnion& other2525) {
+  ValidationFailedException = other2525.ValidationFailedException;
+  EpsilonScriptExecutionException = other2525.EpsilonScriptExecutionException;
+  __isset = other2525.__isset;
   return *this;
 }
 void TDDIEpsilonScriptExecutionExceptionUnion::printTo(std::ostream& out) const {
@@ -51968,113 +52265,25 @@ void TDDIEpsilonScriptExecutionExceptionUnion::printTo(std::ostream& out) const 
 }
 
 
-TDDIEpsilonScriptExecutionException::~TDDIEpsilonScriptExecutionException() throw() {
+TDDIAbstractEpsilonScriptExecutionException::~TDDIAbstractEpsilonScriptExecutionException() throw() {
 }
 
 
-void TDDIEpsilonScriptExecutionException::__set_Message(const std::string& val) {
-  this->Message = val;
+void TDDIAbstractEpsilonScriptExecutionException::__set_UsedException(const TDDIEpsilonScriptExecutionExceptionUnion& val) {
+  this->UsedException = val;
 }
-std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionException& obj)
+
+void TDDIAbstractEpsilonScriptExecutionException::__set_UsedExceptionType(const TDDIEpsilonScriptExecutionExceptionUnionType val) {
+  this->UsedExceptionType = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIAbstractEpsilonScriptExecutionException& obj)
 {
   obj.printTo(out);
   return out;
 }
 
 
-uint32_t TDDIEpsilonScriptExecutionException::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->Message);
-          this->__isset.Message = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIEpsilonScriptExecutionException::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIEpsilonScriptExecutionException");
-
-  xfer += oprot->writeFieldBegin("Message", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->Message);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIEpsilonScriptExecutionException &a, TDDIEpsilonScriptExecutionException &b) {
-  using ::std::swap;
-  swap(a.Message, b.Message);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIEpsilonScriptExecutionException::TDDIEpsilonScriptExecutionException(const TDDIEpsilonScriptExecutionException& other2515) {
-  Message = other2515.Message;
-  __isset = other2515.__isset;
-}
-TDDIEpsilonScriptExecutionException& TDDIEpsilonScriptExecutionException::operator=(const TDDIEpsilonScriptExecutionException& other2516) {
-  Message = other2516.Message;
-  __isset = other2516.__isset;
-  return *this;
-}
-void TDDIEpsilonScriptExecutionException::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIEpsilonScriptExecutionException(";
-  out << "Message=" << to_string(Message);
-  out << ")";
-}
-
-
-TDDIValidationFailedException::~TDDIValidationFailedException() throw() {
-}
-
-
-void TDDIValidationFailedException::__set_ValidationResult(const TDDIValidationResult& val) {
-  this->ValidationResult = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIValidationFailedException& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIValidationFailedException::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t TDDIAbstractEpsilonScriptExecutionException::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -52097,124 +52306,18 @@ uint32_t TDDIValidationFailedException::read(::apache::thrift::protocol::TProtoc
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->ValidationResult.read(iprot);
-          this->__isset.ValidationResult = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIValidationFailedException::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIValidationFailedException");
-
-  xfer += oprot->writeFieldBegin("ValidationResult", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->ValidationResult.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIValidationFailedException &a, TDDIValidationFailedException &b) {
-  using ::std::swap;
-  swap(a.ValidationResult, b.ValidationResult);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIValidationFailedException::TDDIValidationFailedException(const TDDIValidationFailedException& other2517) {
-  ValidationResult = other2517.ValidationResult;
-  __isset = other2517.__isset;
-}
-TDDIValidationFailedException& TDDIValidationFailedException::operator=(const TDDIValidationFailedException& other2518) {
-  ValidationResult = other2518.ValidationResult;
-  __isset = other2518.__isset;
-  return *this;
-}
-void TDDIValidationFailedException::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIValidationFailedException(";
-  out << "ValidationResult=" << to_string(ValidationResult);
-  out << ")";
-}
-
-
-TDDIValidationResult::~TDDIValidationResult() throw() {
-}
-
-
-void TDDIValidationResult::__set_ValidationViolationOccurred(const bool val) {
-  this->ValidationViolationOccurred = val;
-}
-
-void TDDIValidationResult::__set_ValidationViolationMessages(const std::vector<TDDIValidationViolationMessage> & val) {
-  this->ValidationViolationMessages = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIValidationResult& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIValidationResult::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_BOOL) {
-          xfer += iprot->readBool(this->ValidationViolationOccurred);
-          this->__isset.ValidationViolationOccurred = true;
+          xfer += this->UsedException.read(iprot);
+          this->__isset.UsedException = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->ValidationViolationMessages.clear();
-            uint32_t _size2519;
-            ::apache::thrift::protocol::TType _etype2522;
-            xfer += iprot->readListBegin(_etype2522, _size2519);
-            this->ValidationViolationMessages.resize(_size2519);
-            uint32_t _i2523;
-            for (_i2523 = 0; _i2523 < _size2519; ++_i2523)
-            {
-              xfer += this->ValidationViolationMessages[_i2523].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.ValidationViolationMessages = true;
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          int32_t ecast2526;
+          xfer += iprot->readI32(ecast2526);
+          this->UsedExceptionType = (TDDIEpsilonScriptExecutionExceptionUnionType)ecast2526;
+          this->__isset.UsedExceptionType = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -52231,25 +52334,17 @@ uint32_t TDDIValidationResult::read(::apache::thrift::protocol::TProtocol* iprot
   return xfer;
 }
 
-uint32_t TDDIValidationResult::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t TDDIAbstractEpsilonScriptExecutionException::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIValidationResult");
+  xfer += oprot->writeStructBegin("TDDIAbstractEpsilonScriptExecutionException");
 
-  xfer += oprot->writeFieldBegin("ValidationViolationOccurred", ::apache::thrift::protocol::T_BOOL, 1);
-  xfer += oprot->writeBool(this->ValidationViolationOccurred);
+  xfer += oprot->writeFieldBegin("UsedException", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->UsedException.write(oprot);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("ValidationViolationMessages", ::apache::thrift::protocol::T_LIST, 2);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ValidationViolationMessages.size()));
-    std::vector<TDDIValidationViolationMessage> ::const_iterator _iter2524;
-    for (_iter2524 = this->ValidationViolationMessages.begin(); _iter2524 != this->ValidationViolationMessages.end(); ++_iter2524)
-    {
-      xfer += (*_iter2524).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
+  xfer += oprot->writeFieldBegin("UsedExceptionType", ::apache::thrift::protocol::T_I32, 2);
+  xfer += oprot->writeI32((int32_t)this->UsedExceptionType);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -52257,568 +52352,41 @@ uint32_t TDDIValidationResult::write(::apache::thrift::protocol::TProtocol* opro
   return xfer;
 }
 
-void swap(TDDIValidationResult &a, TDDIValidationResult &b) {
+void swap(TDDIAbstractEpsilonScriptExecutionException &a, TDDIAbstractEpsilonScriptExecutionException &b) {
   using ::std::swap;
-  swap(a.ValidationViolationOccurred, b.ValidationViolationOccurred);
-  swap(a.ValidationViolationMessages, b.ValidationViolationMessages);
+  swap(a.UsedException, b.UsedException);
+  swap(a.UsedExceptionType, b.UsedExceptionType);
   swap(a.__isset, b.__isset);
 }
 
-TDDIValidationResult::TDDIValidationResult(const TDDIValidationResult& other2525) {
-  ValidationViolationOccurred = other2525.ValidationViolationOccurred;
-  ValidationViolationMessages = other2525.ValidationViolationMessages;
-  __isset = other2525.__isset;
-}
-TDDIValidationResult& TDDIValidationResult::operator=(const TDDIValidationResult& other2526) {
-  ValidationViolationOccurred = other2526.ValidationViolationOccurred;
-  ValidationViolationMessages = other2526.ValidationViolationMessages;
-  __isset = other2526.__isset;
-  return *this;
-}
-void TDDIValidationResult::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIValidationResult(";
-  out << "ValidationViolationOccurred=" << to_string(ValidationViolationOccurred);
-  out << ", " << "ValidationViolationMessages=" << to_string(ValidationViolationMessages);
-  out << ")";
-}
-
-
-TDDIValidationViolationMessage::~TDDIValidationViolationMessage() throw() {
-}
-
-
-void TDDIValidationViolationMessage::__set_Context(const std::string& val) {
-  this->Context = val;
-}
-
-void TDDIValidationViolationMessage::__set_Message(const std::string& val) {
-  this->Message = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIValidationViolationMessage& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIValidationViolationMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->Context);
-          this->__isset.Context = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->Message);
-          this->__isset.Message = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIValidationViolationMessage::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIValidationViolationMessage");
-
-  xfer += oprot->writeFieldBegin("Context", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->Context);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("Message", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->Message);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIValidationViolationMessage &a, TDDIValidationViolationMessage &b) {
-  using ::std::swap;
-  swap(a.Context, b.Context);
-  swap(a.Message, b.Message);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIValidationViolationMessage::TDDIValidationViolationMessage(const TDDIValidationViolationMessage& other2527) {
-  Context = other2527.Context;
-  Message = other2527.Message;
+TDDIAbstractEpsilonScriptExecutionException::TDDIAbstractEpsilonScriptExecutionException(const TDDIAbstractEpsilonScriptExecutionException& other2527) : TException() {
+  UsedException = other2527.UsedException;
+  UsedExceptionType = other2527.UsedExceptionType;
   __isset = other2527.__isset;
 }
-TDDIValidationViolationMessage& TDDIValidationViolationMessage::operator=(const TDDIValidationViolationMessage& other2528) {
-  Context = other2528.Context;
-  Message = other2528.Message;
+TDDIAbstractEpsilonScriptExecutionException& TDDIAbstractEpsilonScriptExecutionException::operator=(const TDDIAbstractEpsilonScriptExecutionException& other2528) {
+  UsedException = other2528.UsedException;
+  UsedExceptionType = other2528.UsedExceptionType;
   __isset = other2528.__isset;
   return *this;
 }
-void TDDIValidationViolationMessage::printTo(std::ostream& out) const {
+void TDDIAbstractEpsilonScriptExecutionException::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
-  out << "TDDIValidationViolationMessage(";
-  out << "Context=" << to_string(Context);
-  out << ", " << "Message=" << to_string(Message);
+  out << "TDDIAbstractEpsilonScriptExecutionException(";
+  out << "UsedException=" << to_string(UsedException);
+  out << ", " << "UsedExceptionType=" << to_string(UsedExceptionType);
   out << ")";
 }
 
-
-TDDIServiceConfig::~TDDIServiceConfig() throw() {
-}
-
-
-void TDDIServiceConfig::__set_DDIFilePath(const std::string& val) {
-  this->DDIFilePath = val;
-}
-
-void TDDIServiceConfig::__set_EpsilonScriptExecutionConfig(const std::vector<TDDIEpsilonScriptExecutionConfig> & val) {
-  this->EpsilonScriptExecutionConfig = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIServiceConfig& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIServiceConfig::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->DDIFilePath);
-          this->__isset.DDIFilePath = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->EpsilonScriptExecutionConfig.clear();
-            uint32_t _size2529;
-            ::apache::thrift::protocol::TType _etype2532;
-            xfer += iprot->readListBegin(_etype2532, _size2529);
-            this->EpsilonScriptExecutionConfig.resize(_size2529);
-            uint32_t _i2533;
-            for (_i2533 = 0; _i2533 < _size2529; ++_i2533)
-            {
-              xfer += this->EpsilonScriptExecutionConfig[_i2533].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.EpsilonScriptExecutionConfig = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
+const char* TDDIAbstractEpsilonScriptExecutionException::what() const throw() {
+  try {
+    std::stringstream ss;
+    ss << "TException - service has thrown: " << *this;
+    this->thriftTExceptionMessageHolder_ = ss.str();
+    return this->thriftTExceptionMessageHolder_.c_str();
+  } catch (const std::exception&) {
+    return "TException - service has thrown: TDDIAbstractEpsilonScriptExecutionException";
   }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIServiceConfig::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIServiceConfig");
-
-  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->DDIFilePath);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("EpsilonScriptExecutionConfig", ::apache::thrift::protocol::T_LIST, 2);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->EpsilonScriptExecutionConfig.size()));
-    std::vector<TDDIEpsilonScriptExecutionConfig> ::const_iterator _iter2534;
-    for (_iter2534 = this->EpsilonScriptExecutionConfig.begin(); _iter2534 != this->EpsilonScriptExecutionConfig.end(); ++_iter2534)
-    {
-      xfer += (*_iter2534).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIServiceConfig &a, TDDIServiceConfig &b) {
-  using ::std::swap;
-  swap(a.DDIFilePath, b.DDIFilePath);
-  swap(a.EpsilonScriptExecutionConfig, b.EpsilonScriptExecutionConfig);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIServiceConfig::TDDIServiceConfig(const TDDIServiceConfig& other2535) {
-  DDIFilePath = other2535.DDIFilePath;
-  EpsilonScriptExecutionConfig = other2535.EpsilonScriptExecutionConfig;
-  __isset = other2535.__isset;
-}
-TDDIServiceConfig& TDDIServiceConfig::operator=(const TDDIServiceConfig& other2536) {
-  DDIFilePath = other2536.DDIFilePath;
-  EpsilonScriptExecutionConfig = other2536.EpsilonScriptExecutionConfig;
-  __isset = other2536.__isset;
-  return *this;
-}
-void TDDIServiceConfig::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIServiceConfig(";
-  out << "DDIFilePath=" << to_string(DDIFilePath);
-  out << ", " << "EpsilonScriptExecutionConfig=" << to_string(EpsilonScriptExecutionConfig);
-  out << ")";
-}
-
-
-TDDIEpsilonScriptExecutionConfig::~TDDIEpsilonScriptExecutionConfig() throw() {
-}
-
-
-void TDDIEpsilonScriptExecutionConfig::__set_ScriptFilePath(const std::string& val) {
-  this->ScriptFilePath = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_ScriptContent(const std::string& val) {
-  this->ScriptContent = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_ExecuteWithScriptFile(const bool val) {
-  this->ExecuteWithScriptFile = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_EpsilonLanguage(const TDDIEpsilonLanguage val) {
-  this->EpsilonLanguage = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_ModelConfigs(const std::vector<TDDIEpsilonScriptModelConfig> & val) {
-  this->ModelConfigs = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_ExportParameters(const std::vector<TDDIEpsilonParameter> & val) {
-  this->ExportParameters = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_ImportParameters(const std::vector<TDDIEpsilonParameter> & val) {
-  this->ImportParameters = val;
-}
-
-void TDDIEpsilonScriptExecutionConfig::__set_VariableNameOfReturnValue(const std::string& val) {
-  this->VariableNameOfReturnValue = val;
-}
-std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionConfig& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t TDDIEpsilonScriptExecutionConfig::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->ScriptFilePath);
-          this->__isset.ScriptFilePath = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->ScriptContent);
-          this->__isset.ScriptContent = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_BOOL) {
-          xfer += iprot->readBool(this->ExecuteWithScriptFile);
-          this->__isset.ExecuteWithScriptFile = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2537;
-          xfer += iprot->readI32(ecast2537);
-          this->EpsilonLanguage = (TDDIEpsilonLanguage)ecast2537;
-          this->__isset.EpsilonLanguage = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 5:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->ModelConfigs.clear();
-            uint32_t _size2538;
-            ::apache::thrift::protocol::TType _etype2541;
-            xfer += iprot->readListBegin(_etype2541, _size2538);
-            this->ModelConfigs.resize(_size2538);
-            uint32_t _i2542;
-            for (_i2542 = 0; _i2542 < _size2538; ++_i2542)
-            {
-              xfer += this->ModelConfigs[_i2542].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.ModelConfigs = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 6:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->ExportParameters.clear();
-            uint32_t _size2543;
-            ::apache::thrift::protocol::TType _etype2546;
-            xfer += iprot->readListBegin(_etype2546, _size2543);
-            this->ExportParameters.resize(_size2543);
-            uint32_t _i2547;
-            for (_i2547 = 0; _i2547 < _size2543; ++_i2547)
-            {
-              xfer += this->ExportParameters[_i2547].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.ExportParameters = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 7:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->ImportParameters.clear();
-            uint32_t _size2548;
-            ::apache::thrift::protocol::TType _etype2551;
-            xfer += iprot->readListBegin(_etype2551, _size2548);
-            this->ImportParameters.resize(_size2548);
-            uint32_t _i2552;
-            for (_i2552 = 0; _i2552 < _size2548; ++_i2552)
-            {
-              xfer += this->ImportParameters[_i2552].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
-          this->__isset.ImportParameters = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 8:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->VariableNameOfReturnValue);
-          this->__isset.VariableNameOfReturnValue = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t TDDIEpsilonScriptExecutionConfig::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("TDDIEpsilonScriptExecutionConfig");
-
-  xfer += oprot->writeFieldBegin("ScriptFilePath", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->ScriptFilePath);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ScriptContent", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->ScriptContent);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ExecuteWithScriptFile", ::apache::thrift::protocol::T_BOOL, 3);
-  xfer += oprot->writeBool(this->ExecuteWithScriptFile);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("EpsilonLanguage", ::apache::thrift::protocol::T_I32, 4);
-  xfer += oprot->writeI32((int32_t)this->EpsilonLanguage);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ModelConfigs", ::apache::thrift::protocol::T_LIST, 5);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ModelConfigs.size()));
-    std::vector<TDDIEpsilonScriptModelConfig> ::const_iterator _iter2553;
-    for (_iter2553 = this->ModelConfigs.begin(); _iter2553 != this->ModelConfigs.end(); ++_iter2553)
-    {
-      xfer += (*_iter2553).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ExportParameters", ::apache::thrift::protocol::T_LIST, 6);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ExportParameters.size()));
-    std::vector<TDDIEpsilonParameter> ::const_iterator _iter2554;
-    for (_iter2554 = this->ExportParameters.begin(); _iter2554 != this->ExportParameters.end(); ++_iter2554)
-    {
-      xfer += (*_iter2554).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ImportParameters", ::apache::thrift::protocol::T_LIST, 7);
-  {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ImportParameters.size()));
-    std::vector<TDDIEpsilonParameter> ::const_iterator _iter2555;
-    for (_iter2555 = this->ImportParameters.begin(); _iter2555 != this->ImportParameters.end(); ++_iter2555)
-    {
-      xfer += (*_iter2555).write(oprot);
-    }
-    xfer += oprot->writeListEnd();
-  }
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("VariableNameOfReturnValue", ::apache::thrift::protocol::T_STRING, 8);
-  xfer += oprot->writeString(this->VariableNameOfReturnValue);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(TDDIEpsilonScriptExecutionConfig &a, TDDIEpsilonScriptExecutionConfig &b) {
-  using ::std::swap;
-  swap(a.ScriptFilePath, b.ScriptFilePath);
-  swap(a.ScriptContent, b.ScriptContent);
-  swap(a.ExecuteWithScriptFile, b.ExecuteWithScriptFile);
-  swap(a.EpsilonLanguage, b.EpsilonLanguage);
-  swap(a.ModelConfigs, b.ModelConfigs);
-  swap(a.ExportParameters, b.ExportParameters);
-  swap(a.ImportParameters, b.ImportParameters);
-  swap(a.VariableNameOfReturnValue, b.VariableNameOfReturnValue);
-  swap(a.__isset, b.__isset);
-}
-
-TDDIEpsilonScriptExecutionConfig::TDDIEpsilonScriptExecutionConfig(const TDDIEpsilonScriptExecutionConfig& other2556) {
-  ScriptFilePath = other2556.ScriptFilePath;
-  ScriptContent = other2556.ScriptContent;
-  ExecuteWithScriptFile = other2556.ExecuteWithScriptFile;
-  EpsilonLanguage = other2556.EpsilonLanguage;
-  ModelConfigs = other2556.ModelConfigs;
-  ExportParameters = other2556.ExportParameters;
-  ImportParameters = other2556.ImportParameters;
-  VariableNameOfReturnValue = other2556.VariableNameOfReturnValue;
-  __isset = other2556.__isset;
-}
-TDDIEpsilonScriptExecutionConfig& TDDIEpsilonScriptExecutionConfig::operator=(const TDDIEpsilonScriptExecutionConfig& other2557) {
-  ScriptFilePath = other2557.ScriptFilePath;
-  ScriptContent = other2557.ScriptContent;
-  ExecuteWithScriptFile = other2557.ExecuteWithScriptFile;
-  EpsilonLanguage = other2557.EpsilonLanguage;
-  ModelConfigs = other2557.ModelConfigs;
-  ExportParameters = other2557.ExportParameters;
-  ImportParameters = other2557.ImportParameters;
-  VariableNameOfReturnValue = other2557.VariableNameOfReturnValue;
-  __isset = other2557.__isset;
-  return *this;
-}
-void TDDIEpsilonScriptExecutionConfig::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "TDDIEpsilonScriptExecutionConfig(";
-  out << "ScriptFilePath=" << to_string(ScriptFilePath);
-  out << ", " << "ScriptContent=" << to_string(ScriptContent);
-  out << ", " << "ExecuteWithScriptFile=" << to_string(ExecuteWithScriptFile);
-  out << ", " << "EpsilonLanguage=" << to_string(EpsilonLanguage);
-  out << ", " << "ModelConfigs=" << to_string(ModelConfigs);
-  out << ", " << "ExportParameters=" << to_string(ExportParameters);
-  out << ", " << "ImportParameters=" << to_string(ImportParameters);
-  out << ", " << "VariableNameOfReturnValue=" << to_string(VariableNameOfReturnValue);
-  out << ")";
 }
 
 
@@ -52965,21 +52533,21 @@ void swap(TDDIEpsilonScriptModelConfig &a, TDDIEpsilonScriptModelConfig &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIEpsilonScriptModelConfig::TDDIEpsilonScriptModelConfig(const TDDIEpsilonScriptModelConfig& other2558) {
-  ModelUri = other2558.ModelUri;
-  ModelName = other2558.ModelName;
-  Alias = other2558.Alias;
-  ReadOnLoad = other2558.ReadOnLoad;
-  StoreOnDisposal = other2558.StoreOnDisposal;
-  __isset = other2558.__isset;
+TDDIEpsilonScriptModelConfig::TDDIEpsilonScriptModelConfig(const TDDIEpsilonScriptModelConfig& other2529) {
+  ModelUri = other2529.ModelUri;
+  ModelName = other2529.ModelName;
+  Alias = other2529.Alias;
+  ReadOnLoad = other2529.ReadOnLoad;
+  StoreOnDisposal = other2529.StoreOnDisposal;
+  __isset = other2529.__isset;
 }
-TDDIEpsilonScriptModelConfig& TDDIEpsilonScriptModelConfig::operator=(const TDDIEpsilonScriptModelConfig& other2559) {
-  ModelUri = other2559.ModelUri;
-  ModelName = other2559.ModelName;
-  Alias = other2559.Alias;
-  ReadOnLoad = other2559.ReadOnLoad;
-  StoreOnDisposal = other2559.StoreOnDisposal;
-  __isset = other2559.__isset;
+TDDIEpsilonScriptModelConfig& TDDIEpsilonScriptModelConfig::operator=(const TDDIEpsilonScriptModelConfig& other2530) {
+  ModelUri = other2530.ModelUri;
+  ModelName = other2530.ModelName;
+  Alias = other2530.Alias;
+  ReadOnLoad = other2530.ReadOnLoad;
+  StoreOnDisposal = other2530.StoreOnDisposal;
+  __isset = other2530.__isset;
   return *this;
 }
 void TDDIEpsilonScriptModelConfig::printTo(std::ostream& out) const {
@@ -53086,15 +52654,15 @@ void swap(TDDIEpsilonParameter &a, TDDIEpsilonParameter &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIEpsilonParameter::TDDIEpsilonParameter(const TDDIEpsilonParameter& other2560) {
-  Name = other2560.Name;
-  Alias = other2560.Alias;
-  __isset = other2560.__isset;
+TDDIEpsilonParameter::TDDIEpsilonParameter(const TDDIEpsilonParameter& other2531) {
+  Name = other2531.Name;
+  Alias = other2531.Alias;
+  __isset = other2531.__isset;
 }
-TDDIEpsilonParameter& TDDIEpsilonParameter::operator=(const TDDIEpsilonParameter& other2561) {
-  Name = other2561.Name;
-  Alias = other2561.Alias;
-  __isset = other2561.__isset;
+TDDIEpsilonParameter& TDDIEpsilonParameter::operator=(const TDDIEpsilonParameter& other2532) {
+  Name = other2532.Name;
+  Alias = other2532.Alias;
+  __isset = other2532.__isset;
   return *this;
 }
 void TDDIEpsilonParameter::printTo(std::ostream& out) const {
@@ -53102,6 +52670,300 @@ void TDDIEpsilonParameter::printTo(std::ostream& out) const {
   out << "TDDIEpsilonParameter(";
   out << "Name=" << to_string(Name);
   out << ", " << "Alias=" << to_string(Alias);
+  out << ")";
+}
+
+
+TDDIEpsilonScriptExecutionConfig::~TDDIEpsilonScriptExecutionConfig() throw() {
+}
+
+
+void TDDIEpsilonScriptExecutionConfig::__set_ScriptFilePath(const std::string& val) {
+  this->ScriptFilePath = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_ScriptContent(const std::string& val) {
+  this->ScriptContent = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_ExecuteWithScriptFile(const bool val) {
+  this->ExecuteWithScriptFile = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_EpsilonLanguage(const TDDIEpsilonLanguage val) {
+  this->EpsilonLanguage = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_ModelConfigs(const std::vector<TDDIEpsilonScriptModelConfig> & val) {
+  this->ModelConfigs = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_ExportParameters(const std::vector<TDDIEpsilonParameter> & val) {
+  this->ExportParameters = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_ImportParameters(const std::vector<TDDIEpsilonParameter> & val) {
+  this->ImportParameters = val;
+}
+
+void TDDIEpsilonScriptExecutionConfig::__set_VariableNameOfReturnValue(const std::string& val) {
+  this->VariableNameOfReturnValue = val;
+}
+std::ostream& operator<<(std::ostream& out, const TDDIEpsilonScriptExecutionConfig& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+
+uint32_t TDDIEpsilonScriptExecutionConfig::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->ScriptFilePath);
+          this->__isset.ScriptFilePath = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->ScriptContent);
+          this->__isset.ScriptContent = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_BOOL) {
+          xfer += iprot->readBool(this->ExecuteWithScriptFile);
+          this->__isset.ExecuteWithScriptFile = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 4:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          int32_t ecast2533;
+          xfer += iprot->readI32(ecast2533);
+          this->EpsilonLanguage = (TDDIEpsilonLanguage)ecast2533;
+          this->__isset.EpsilonLanguage = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 5:
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->ModelConfigs.clear();
+            uint32_t _size2534;
+            ::apache::thrift::protocol::TType _etype2537;
+            xfer += iprot->readListBegin(_etype2537, _size2534);
+            this->ModelConfigs.resize(_size2534);
+            uint32_t _i2538;
+            for (_i2538 = 0; _i2538 < _size2534; ++_i2538)
+            {
+              xfer += this->ModelConfigs[_i2538].read(iprot);
+            }
+            xfer += iprot->readListEnd();
+          }
+          this->__isset.ModelConfigs = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 6:
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->ExportParameters.clear();
+            uint32_t _size2539;
+            ::apache::thrift::protocol::TType _etype2542;
+            xfer += iprot->readListBegin(_etype2542, _size2539);
+            this->ExportParameters.resize(_size2539);
+            uint32_t _i2543;
+            for (_i2543 = 0; _i2543 < _size2539; ++_i2543)
+            {
+              xfer += this->ExportParameters[_i2543].read(iprot);
+            }
+            xfer += iprot->readListEnd();
+          }
+          this->__isset.ExportParameters = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 7:
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->ImportParameters.clear();
+            uint32_t _size2544;
+            ::apache::thrift::protocol::TType _etype2547;
+            xfer += iprot->readListBegin(_etype2547, _size2544);
+            this->ImportParameters.resize(_size2544);
+            uint32_t _i2548;
+            for (_i2548 = 0; _i2548 < _size2544; ++_i2548)
+            {
+              xfer += this->ImportParameters[_i2548].read(iprot);
+            }
+            xfer += iprot->readListEnd();
+          }
+          this->__isset.ImportParameters = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 8:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->VariableNameOfReturnValue);
+          this->__isset.VariableNameOfReturnValue = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t TDDIEpsilonScriptExecutionConfig::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("TDDIEpsilonScriptExecutionConfig");
+
+  xfer += oprot->writeFieldBegin("ScriptFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->ScriptFilePath);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ScriptContent", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->ScriptContent);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ExecuteWithScriptFile", ::apache::thrift::protocol::T_BOOL, 3);
+  xfer += oprot->writeBool(this->ExecuteWithScriptFile);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("EpsilonLanguage", ::apache::thrift::protocol::T_I32, 4);
+  xfer += oprot->writeI32((int32_t)this->EpsilonLanguage);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ModelConfigs", ::apache::thrift::protocol::T_LIST, 5);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ModelConfigs.size()));
+    std::vector<TDDIEpsilonScriptModelConfig> ::const_iterator _iter2549;
+    for (_iter2549 = this->ModelConfigs.begin(); _iter2549 != this->ModelConfigs.end(); ++_iter2549)
+    {
+      xfer += (*_iter2549).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ExportParameters", ::apache::thrift::protocol::T_LIST, 6);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ExportParameters.size()));
+    std::vector<TDDIEpsilonParameter> ::const_iterator _iter2550;
+    for (_iter2550 = this->ExportParameters.begin(); _iter2550 != this->ExportParameters.end(); ++_iter2550)
+    {
+      xfer += (*_iter2550).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("ImportParameters", ::apache::thrift::protocol::T_LIST, 7);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ImportParameters.size()));
+    std::vector<TDDIEpsilonParameter> ::const_iterator _iter2551;
+    for (_iter2551 = this->ImportParameters.begin(); _iter2551 != this->ImportParameters.end(); ++_iter2551)
+    {
+      xfer += (*_iter2551).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("VariableNameOfReturnValue", ::apache::thrift::protocol::T_STRING, 8);
+  xfer += oprot->writeString(this->VariableNameOfReturnValue);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(TDDIEpsilonScriptExecutionConfig &a, TDDIEpsilonScriptExecutionConfig &b) {
+  using ::std::swap;
+  swap(a.ScriptFilePath, b.ScriptFilePath);
+  swap(a.ScriptContent, b.ScriptContent);
+  swap(a.ExecuteWithScriptFile, b.ExecuteWithScriptFile);
+  swap(a.EpsilonLanguage, b.EpsilonLanguage);
+  swap(a.ModelConfigs, b.ModelConfigs);
+  swap(a.ExportParameters, b.ExportParameters);
+  swap(a.ImportParameters, b.ImportParameters);
+  swap(a.VariableNameOfReturnValue, b.VariableNameOfReturnValue);
+  swap(a.__isset, b.__isset);
+}
+
+TDDIEpsilonScriptExecutionConfig::TDDIEpsilonScriptExecutionConfig(const TDDIEpsilonScriptExecutionConfig& other2552) {
+  ScriptFilePath = other2552.ScriptFilePath;
+  ScriptContent = other2552.ScriptContent;
+  ExecuteWithScriptFile = other2552.ExecuteWithScriptFile;
+  EpsilonLanguage = other2552.EpsilonLanguage;
+  ModelConfigs = other2552.ModelConfigs;
+  ExportParameters = other2552.ExportParameters;
+  ImportParameters = other2552.ImportParameters;
+  VariableNameOfReturnValue = other2552.VariableNameOfReturnValue;
+  __isset = other2552.__isset;
+}
+TDDIEpsilonScriptExecutionConfig& TDDIEpsilonScriptExecutionConfig::operator=(const TDDIEpsilonScriptExecutionConfig& other2553) {
+  ScriptFilePath = other2553.ScriptFilePath;
+  ScriptContent = other2553.ScriptContent;
+  ExecuteWithScriptFile = other2553.ExecuteWithScriptFile;
+  EpsilonLanguage = other2553.EpsilonLanguage;
+  ModelConfigs = other2553.ModelConfigs;
+  ExportParameters = other2553.ExportParameters;
+  ImportParameters = other2553.ImportParameters;
+  VariableNameOfReturnValue = other2553.VariableNameOfReturnValue;
+  __isset = other2553.__isset;
+  return *this;
+}
+void TDDIEpsilonScriptExecutionConfig::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "TDDIEpsilonScriptExecutionConfig(";
+  out << "ScriptFilePath=" << to_string(ScriptFilePath);
+  out << ", " << "ScriptContent=" << to_string(ScriptContent);
+  out << ", " << "ExecuteWithScriptFile=" << to_string(ExecuteWithScriptFile);
+  out << ", " << "EpsilonLanguage=" << to_string(EpsilonLanguage);
+  out << ", " << "ModelConfigs=" << to_string(ModelConfigs);
+  out << ", " << "ExportParameters=" << to_string(ExportParameters);
+  out << ", " << "ImportParameters=" << to_string(ImportParameters);
+  out << ", " << "VariableNameOfReturnValue=" << to_string(VariableNameOfReturnValue);
   out << ")";
 }
 
@@ -53198,15 +53060,15 @@ void swap(TDDIExternalServiceParameter &a, TDDIExternalServiceParameter &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIExternalServiceParameter::TDDIExternalServiceParameter(const TDDIExternalServiceParameter& other2562) {
-  Name = other2562.Name;
-  Value = other2562.Value;
-  __isset = other2562.__isset;
+TDDIExternalServiceParameter::TDDIExternalServiceParameter(const TDDIExternalServiceParameter& other2554) {
+  Name = other2554.Name;
+  Value = other2554.Value;
+  __isset = other2554.__isset;
 }
-TDDIExternalServiceParameter& TDDIExternalServiceParameter::operator=(const TDDIExternalServiceParameter& other2563) {
-  Name = other2563.Name;
-  Value = other2563.Value;
-  __isset = other2563.__isset;
+TDDIExternalServiceParameter& TDDIExternalServiceParameter::operator=(const TDDIExternalServiceParameter& other2555) {
+  Name = other2555.Name;
+  Value = other2555.Value;
+  __isset = other2555.__isset;
   return *this;
 }
 void TDDIExternalServiceParameter::printTo(std::ostream& out) const {
@@ -53297,14 +53159,14 @@ uint32_t TDDIVulnerability::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2564;
-            ::apache::thrift::protocol::TType _etype2567;
-            xfer += iprot->readListBegin(_etype2567, _size2564);
-            this->KeyValueMaps.resize(_size2564);
-            uint32_t _i2568;
-            for (_i2568 = 0; _i2568 < _size2564; ++_i2568)
+            uint32_t _size2556;
+            ::apache::thrift::protocol::TType _etype2559;
+            xfer += iprot->readListBegin(_etype2559, _size2556);
+            this->KeyValueMaps.resize(_size2556);
+            uint32_t _i2560;
+            for (_i2560 = 0; _i2560 < _size2556; ++_i2560)
             {
-              xfer += this->KeyValueMaps[_i2568].read(iprot);
+              xfer += this->KeyValueMaps[_i2560].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -53353,10 +53215,10 @@ uint32_t TDDIVulnerability::write(::apache::thrift::protocol::TProtocol* oprot) 
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2569;
-    for (_iter2569 = this->KeyValueMaps.begin(); _iter2569 != this->KeyValueMaps.end(); ++_iter2569)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2561;
+    for (_iter2561 = this->KeyValueMaps.begin(); _iter2561 != this->KeyValueMaps.end(); ++_iter2561)
     {
-      xfer += (*_iter2569).write(oprot);
+      xfer += (*_iter2561).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -53381,21 +53243,21 @@ void swap(TDDIVulnerability &a, TDDIVulnerability &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIVulnerability::TDDIVulnerability(const TDDIVulnerability& other2570) {
-  Id = other2570.Id;
-  Name = other2570.Name;
-  Description = other2570.Description;
-  KeyValueMaps = other2570.KeyValueMaps;
-  Category = other2570.Category;
-  __isset = other2570.__isset;
+TDDIVulnerability::TDDIVulnerability(const TDDIVulnerability& other2562) {
+  Id = other2562.Id;
+  Name = other2562.Name;
+  Description = other2562.Description;
+  KeyValueMaps = other2562.KeyValueMaps;
+  Category = other2562.Category;
+  __isset = other2562.__isset;
 }
-TDDIVulnerability& TDDIVulnerability::operator=(const TDDIVulnerability& other2571) {
-  Id = other2571.Id;
-  Name = other2571.Name;
-  Description = other2571.Description;
-  KeyValueMaps = other2571.KeyValueMaps;
-  Category = other2571.Category;
-  __isset = other2571.__isset;
+TDDIVulnerability& TDDIVulnerability::operator=(const TDDIVulnerability& other2563) {
+  Id = other2563.Id;
+  Name = other2563.Name;
+  Description = other2563.Description;
+  KeyValueMaps = other2563.KeyValueMaps;
+  Category = other2563.Category;
+  __isset = other2563.__isset;
   return *this;
 }
 void TDDIVulnerability::printTo(std::ostream& out) const {
@@ -53501,14 +53363,14 @@ uint32_t TDDIAsset::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2572;
-            ::apache::thrift::protocol::TType _etype2575;
-            xfer += iprot->readListBegin(_etype2575, _size2572);
-            this->KeyValueMaps.resize(_size2572);
-            uint32_t _i2576;
-            for (_i2576 = 0; _i2576 < _size2572; ++_i2576)
+            uint32_t _size2564;
+            ::apache::thrift::protocol::TType _etype2567;
+            xfer += iprot->readListBegin(_etype2567, _size2564);
+            this->KeyValueMaps.resize(_size2564);
+            uint32_t _i2568;
+            for (_i2568 = 0; _i2568 < _size2564; ++_i2568)
             {
-              xfer += this->KeyValueMaps[_i2576].read(iprot);
+              xfer += this->KeyValueMaps[_i2568].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -53527,9 +53389,9 @@ uint32_t TDDIAsset::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 6:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2577;
-          xfer += iprot->readI32(ecast2577);
-          this->FinancialCostType = (TDDIFinancialCostType)ecast2577;
+          int32_t ecast2569;
+          xfer += iprot->readI32(ecast2569);
+          this->FinancialCostType = (TDDIFinancialCostType)ecast2569;
           this->__isset.FinancialCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -53545,9 +53407,9 @@ uint32_t TDDIAsset::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 8:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2578;
-          xfer += iprot->readI32(ecast2578);
-          this->OperationalCostType = (TDDIOperationalCostType)ecast2578;
+          int32_t ecast2570;
+          xfer += iprot->readI32(ecast2570);
+          this->OperationalCostType = (TDDIOperationalCostType)ecast2570;
           this->__isset.OperationalCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -53585,10 +53447,10 @@ uint32_t TDDIAsset::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2579;
-    for (_iter2579 = this->KeyValueMaps.begin(); _iter2579 != this->KeyValueMaps.end(); ++_iter2579)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2571;
+    for (_iter2571 = this->KeyValueMaps.begin(); _iter2571 != this->KeyValueMaps.end(); ++_iter2571)
     {
-      xfer += (*_iter2579).write(oprot);
+      xfer += (*_iter2571).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -53628,27 +53490,27 @@ void swap(TDDIAsset &a, TDDIAsset &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAsset::TDDIAsset(const TDDIAsset& other2580) {
-  Id = other2580.Id;
-  Name = other2580.Name;
-  Description = other2580.Description;
-  KeyValueMaps = other2580.KeyValueMaps;
-  FinancialValue = other2580.FinancialValue;
-  FinancialCostType = other2580.FinancialCostType;
-  OperationalCost = other2580.OperationalCost;
-  OperationalCostType = other2580.OperationalCostType;
-  __isset = other2580.__isset;
+TDDIAsset::TDDIAsset(const TDDIAsset& other2572) {
+  Id = other2572.Id;
+  Name = other2572.Name;
+  Description = other2572.Description;
+  KeyValueMaps = other2572.KeyValueMaps;
+  FinancialValue = other2572.FinancialValue;
+  FinancialCostType = other2572.FinancialCostType;
+  OperationalCost = other2572.OperationalCost;
+  OperationalCostType = other2572.OperationalCostType;
+  __isset = other2572.__isset;
 }
-TDDIAsset& TDDIAsset::operator=(const TDDIAsset& other2581) {
-  Id = other2581.Id;
-  Name = other2581.Name;
-  Description = other2581.Description;
-  KeyValueMaps = other2581.KeyValueMaps;
-  FinancialValue = other2581.FinancialValue;
-  FinancialCostType = other2581.FinancialCostType;
-  OperationalCost = other2581.OperationalCost;
-  OperationalCostType = other2581.OperationalCostType;
-  __isset = other2581.__isset;
+TDDIAsset& TDDIAsset::operator=(const TDDIAsset& other2573) {
+  Id = other2573.Id;
+  Name = other2573.Name;
+  Description = other2573.Description;
+  KeyValueMaps = other2573.KeyValueMaps;
+  FinancialValue = other2573.FinancialValue;
+  FinancialCostType = other2573.FinancialCostType;
+  OperationalCost = other2573.OperationalCost;
+  OperationalCostType = other2573.OperationalCostType;
+  __isset = other2573.__isset;
   return *this;
 }
 void TDDIAsset::printTo(std::ostream& out) const {
@@ -53761,14 +53623,14 @@ uint32_t TDDIVulnerableItem::read(::apache::thrift::protocol::TProtocol* iprot) 
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2582;
-            ::apache::thrift::protocol::TType _etype2585;
-            xfer += iprot->readListBegin(_etype2585, _size2582);
-            this->KeyValueMaps.resize(_size2582);
-            uint32_t _i2586;
-            for (_i2586 = 0; _i2586 < _size2582; ++_i2586)
+            uint32_t _size2574;
+            ::apache::thrift::protocol::TType _etype2577;
+            xfer += iprot->readListBegin(_etype2577, _size2574);
+            this->KeyValueMaps.resize(_size2574);
+            uint32_t _i2578;
+            for (_i2578 = 0; _i2578 < _size2574; ++_i2578)
             {
-              xfer += this->KeyValueMaps[_i2586].read(iprot);
+              xfer += this->KeyValueMaps[_i2578].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -53787,9 +53649,9 @@ uint32_t TDDIVulnerableItem::read(::apache::thrift::protocol::TProtocol* iprot) 
         break;
       case 6:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2587;
-          xfer += iprot->readI32(ecast2587);
-          this->FinancialCostType = (TDDIFinancialCostType)ecast2587;
+          int32_t ecast2579;
+          xfer += iprot->readI32(ecast2579);
+          this->FinancialCostType = (TDDIFinancialCostType)ecast2579;
           this->__isset.FinancialCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -53805,9 +53667,9 @@ uint32_t TDDIVulnerableItem::read(::apache::thrift::protocol::TProtocol* iprot) 
         break;
       case 8:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2588;
-          xfer += iprot->readI32(ecast2588);
-          this->OperationalCostType = (TDDIOperationalCostType)ecast2588;
+          int32_t ecast2580;
+          xfer += iprot->readI32(ecast2580);
+          this->OperationalCostType = (TDDIOperationalCostType)ecast2580;
           this->__isset.OperationalCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -53817,14 +53679,14 @@ uint32_t TDDIVulnerableItem::read(::apache::thrift::protocol::TProtocol* iprot) 
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Vulnerabilities.clear();
-            uint32_t _size2589;
-            ::apache::thrift::protocol::TType _etype2592;
-            xfer += iprot->readListBegin(_etype2592, _size2589);
-            this->Vulnerabilities.resize(_size2589);
-            uint32_t _i2593;
-            for (_i2593 = 0; _i2593 < _size2589; ++_i2593)
+            uint32_t _size2581;
+            ::apache::thrift::protocol::TType _etype2584;
+            xfer += iprot->readListBegin(_etype2584, _size2581);
+            this->Vulnerabilities.resize(_size2581);
+            uint32_t _i2585;
+            for (_i2585 = 0; _i2585 < _size2581; ++_i2585)
             {
-              xfer += this->Vulnerabilities[_i2593].read(iprot);
+              xfer += this->Vulnerabilities[_i2585].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -53865,10 +53727,10 @@ uint32_t TDDIVulnerableItem::write(::apache::thrift::protocol::TProtocol* oprot)
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2594;
-    for (_iter2594 = this->KeyValueMaps.begin(); _iter2594 != this->KeyValueMaps.end(); ++_iter2594)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2586;
+    for (_iter2586 = this->KeyValueMaps.begin(); _iter2586 != this->KeyValueMaps.end(); ++_iter2586)
     {
-      xfer += (*_iter2594).write(oprot);
+      xfer += (*_iter2586).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -53893,10 +53755,10 @@ uint32_t TDDIVulnerableItem::write(::apache::thrift::protocol::TProtocol* oprot)
   xfer += oprot->writeFieldBegin("Vulnerabilities", ::apache::thrift::protocol::T_LIST, 9);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Vulnerabilities.size()));
-    std::vector<TDDIVulnerability> ::const_iterator _iter2595;
-    for (_iter2595 = this->Vulnerabilities.begin(); _iter2595 != this->Vulnerabilities.end(); ++_iter2595)
+    std::vector<TDDIVulnerability> ::const_iterator _iter2587;
+    for (_iter2587 = this->Vulnerabilities.begin(); _iter2587 != this->Vulnerabilities.end(); ++_iter2587)
     {
-      xfer += (*_iter2595).write(oprot);
+      xfer += (*_iter2587).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -53921,29 +53783,29 @@ void swap(TDDIVulnerableItem &a, TDDIVulnerableItem &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIVulnerableItem::TDDIVulnerableItem(const TDDIVulnerableItem& other2596) {
-  Id = other2596.Id;
-  Name = other2596.Name;
-  Description = other2596.Description;
-  KeyValueMaps = other2596.KeyValueMaps;
-  FinancialValue = other2596.FinancialValue;
-  FinancialCostType = other2596.FinancialCostType;
-  OperationalCost = other2596.OperationalCost;
-  OperationalCostType = other2596.OperationalCostType;
-  Vulnerabilities = other2596.Vulnerabilities;
-  __isset = other2596.__isset;
+TDDIVulnerableItem::TDDIVulnerableItem(const TDDIVulnerableItem& other2588) {
+  Id = other2588.Id;
+  Name = other2588.Name;
+  Description = other2588.Description;
+  KeyValueMaps = other2588.KeyValueMaps;
+  FinancialValue = other2588.FinancialValue;
+  FinancialCostType = other2588.FinancialCostType;
+  OperationalCost = other2588.OperationalCost;
+  OperationalCostType = other2588.OperationalCostType;
+  Vulnerabilities = other2588.Vulnerabilities;
+  __isset = other2588.__isset;
 }
-TDDIVulnerableItem& TDDIVulnerableItem::operator=(const TDDIVulnerableItem& other2597) {
-  Id = other2597.Id;
-  Name = other2597.Name;
-  Description = other2597.Description;
-  KeyValueMaps = other2597.KeyValueMaps;
-  FinancialValue = other2597.FinancialValue;
-  FinancialCostType = other2597.FinancialCostType;
-  OperationalCost = other2597.OperationalCost;
-  OperationalCostType = other2597.OperationalCostType;
-  Vulnerabilities = other2597.Vulnerabilities;
-  __isset = other2597.__isset;
+TDDIVulnerableItem& TDDIVulnerableItem::operator=(const TDDIVulnerableItem& other2589) {
+  Id = other2589.Id;
+  Name = other2589.Name;
+  Description = other2589.Description;
+  KeyValueMaps = other2589.KeyValueMaps;
+  FinancialValue = other2589.FinancialValue;
+  FinancialCostType = other2589.FinancialCostType;
+  OperationalCost = other2589.OperationalCost;
+  OperationalCostType = other2589.OperationalCostType;
+  Vulnerabilities = other2589.Vulnerabilities;
+  __isset = other2589.__isset;
   return *this;
 }
 void TDDIVulnerableItem::printTo(std::ostream& out) const {
@@ -54095,15 +53957,15 @@ void swap(TDDIAbstractAssetUnion &a, TDDIAbstractAssetUnion &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractAssetUnion::TDDIAbstractAssetUnion(const TDDIAbstractAssetUnion& other2598) {
-  Asset = other2598.Asset;
-  VulnerableItem = other2598.VulnerableItem;
-  __isset = other2598.__isset;
+TDDIAbstractAssetUnion::TDDIAbstractAssetUnion(const TDDIAbstractAssetUnion& other2590) {
+  Asset = other2590.Asset;
+  VulnerableItem = other2590.VulnerableItem;
+  __isset = other2590.__isset;
 }
-TDDIAbstractAssetUnion& TDDIAbstractAssetUnion::operator=(const TDDIAbstractAssetUnion& other2599) {
-  Asset = other2599.Asset;
-  VulnerableItem = other2599.VulnerableItem;
-  __isset = other2599.__isset;
+TDDIAbstractAssetUnion& TDDIAbstractAssetUnion::operator=(const TDDIAbstractAssetUnion& other2591) {
+  Asset = other2591.Asset;
+  VulnerableItem = other2591.VulnerableItem;
+  __isset = other2591.__isset;
   return *this;
 }
 void TDDIAbstractAssetUnion::printTo(std::ostream& out) const {
@@ -54164,9 +54026,9 @@ uint32_t TDDIAbstractAsset::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2600;
-          xfer += iprot->readI32(ecast2600);
-          this->UsedAssetType = (TDDIAbstractAssetUnionType)ecast2600;
+          int32_t ecast2592;
+          xfer += iprot->readI32(ecast2592);
+          this->UsedAssetType = (TDDIAbstractAssetUnionType)ecast2592;
           this->__isset.UsedAssetType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -54209,15 +54071,15 @@ void swap(TDDIAbstractAsset &a, TDDIAbstractAsset &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractAsset::TDDIAbstractAsset(const TDDIAbstractAsset& other2601) {
-  UsedAsset = other2601.UsedAsset;
-  UsedAssetType = other2601.UsedAssetType;
-  __isset = other2601.__isset;
+TDDIAbstractAsset::TDDIAbstractAsset(const TDDIAbstractAsset& other2593) {
+  UsedAsset = other2593.UsedAsset;
+  UsedAssetType = other2593.UsedAssetType;
+  __isset = other2593.__isset;
 }
-TDDIAbstractAsset& TDDIAbstractAsset::operator=(const TDDIAbstractAsset& other2602) {
-  UsedAsset = other2602.UsedAsset;
-  UsedAssetType = other2602.UsedAssetType;
-  __isset = other2602.__isset;
+TDDIAbstractAsset& TDDIAbstractAsset::operator=(const TDDIAbstractAsset& other2594) {
+  UsedAsset = other2594.UsedAsset;
+  UsedAssetType = other2594.UsedAssetType;
+  __isset = other2594.__isset;
   return *this;
 }
 void TDDIAbstractAsset::printTo(std::ostream& out) const {
@@ -54348,14 +54210,14 @@ uint32_t TDDISecurityControl::read(::apache::thrift::protocol::TProtocol* iprot)
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2603;
-            ::apache::thrift::protocol::TType _etype2606;
-            xfer += iprot->readListBegin(_etype2606, _size2603);
-            this->KeyValueMaps.resize(_size2603);
-            uint32_t _i2607;
-            for (_i2607 = 0; _i2607 < _size2603; ++_i2607)
+            uint32_t _size2595;
+            ::apache::thrift::protocol::TType _etype2598;
+            xfer += iprot->readListBegin(_etype2598, _size2595);
+            this->KeyValueMaps.resize(_size2595);
+            uint32_t _i2599;
+            for (_i2599 = 0; _i2599 < _size2595; ++_i2599)
             {
-              xfer += this->KeyValueMaps[_i2607].read(iprot);
+              xfer += this->KeyValueMaps[_i2599].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -54456,9 +54318,9 @@ uint32_t TDDISecurityControl::read(::apache::thrift::protocol::TProtocol* iprot)
         break;
       case 14:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2608;
-          xfer += iprot->readI32(ecast2608);
-          this->Type = (TDDISecurityApplicationType)ecast2608;
+          int32_t ecast2600;
+          xfer += iprot->readI32(ecast2600);
+          this->Type = (TDDISecurityApplicationType)ecast2600;
           this->__isset.Type = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -54468,14 +54330,14 @@ uint32_t TDDISecurityControl::read(::apache::thrift::protocol::TProtocol* iprot)
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Vulnerabilities.clear();
-            uint32_t _size2609;
-            ::apache::thrift::protocol::TType _etype2612;
-            xfer += iprot->readListBegin(_etype2612, _size2609);
-            this->Vulnerabilities.resize(_size2609);
-            uint32_t _i2613;
-            for (_i2613 = 0; _i2613 < _size2609; ++_i2613)
+            uint32_t _size2601;
+            ::apache::thrift::protocol::TType _etype2604;
+            xfer += iprot->readListBegin(_etype2604, _size2601);
+            this->Vulnerabilities.resize(_size2601);
+            uint32_t _i2605;
+            for (_i2605 = 0; _i2605 < _size2601; ++_i2605)
             {
-              xfer += this->Vulnerabilities[_i2613].read(iprot);
+              xfer += this->Vulnerabilities[_i2605].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -54516,10 +54378,10 @@ uint32_t TDDISecurityControl::write(::apache::thrift::protocol::TProtocol* oprot
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2614;
-    for (_iter2614 = this->KeyValueMaps.begin(); _iter2614 != this->KeyValueMaps.end(); ++_iter2614)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2606;
+    for (_iter2606 = this->KeyValueMaps.begin(); _iter2606 != this->KeyValueMaps.end(); ++_iter2606)
     {
-      xfer += (*_iter2614).write(oprot);
+      xfer += (*_iter2606).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -54578,10 +54440,10 @@ uint32_t TDDISecurityControl::write(::apache::thrift::protocol::TProtocol* oprot
   xfer += oprot->writeFieldBegin("Vulnerabilities", ::apache::thrift::protocol::T_LIST, 15);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Vulnerabilities.size()));
-    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2615;
-    for (_iter2615 = this->Vulnerabilities.begin(); _iter2615 != this->Vulnerabilities.end(); ++_iter2615)
+    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2607;
+    for (_iter2607 = this->Vulnerabilities.begin(); _iter2607 != this->Vulnerabilities.end(); ++_iter2607)
     {
-      xfer += (*_iter2615).write(oprot);
+      xfer += (*_iter2607).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -54612,41 +54474,41 @@ void swap(TDDISecurityControl &a, TDDISecurityControl &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDISecurityControl::TDDISecurityControl(const TDDISecurityControl& other2616) {
-  Id = other2616.Id;
-  Name = other2616.Name;
-  Description = other2616.Description;
-  KeyValueMaps = other2616.KeyValueMaps;
-  IntrinsicSafety = other2616.IntrinsicSafety;
-  SafeGuard = other2616.SafeGuard;
-  ApplierInformation = other2616.ApplierInformation;
-  RiskAcceptability = other2616.RiskAcceptability;
-  FurtherAction = other2616.FurtherAction;
-  Source = other2616.Source;
-  AssuranceLevel = other2616.AssuranceLevel;
-  MeasureType = other2616.MeasureType;
-  Category = other2616.Category;
-  Type = other2616.Type;
-  Vulnerabilities = other2616.Vulnerabilities;
-  __isset = other2616.__isset;
+TDDISecurityControl::TDDISecurityControl(const TDDISecurityControl& other2608) {
+  Id = other2608.Id;
+  Name = other2608.Name;
+  Description = other2608.Description;
+  KeyValueMaps = other2608.KeyValueMaps;
+  IntrinsicSafety = other2608.IntrinsicSafety;
+  SafeGuard = other2608.SafeGuard;
+  ApplierInformation = other2608.ApplierInformation;
+  RiskAcceptability = other2608.RiskAcceptability;
+  FurtherAction = other2608.FurtherAction;
+  Source = other2608.Source;
+  AssuranceLevel = other2608.AssuranceLevel;
+  MeasureType = other2608.MeasureType;
+  Category = other2608.Category;
+  Type = other2608.Type;
+  Vulnerabilities = other2608.Vulnerabilities;
+  __isset = other2608.__isset;
 }
-TDDISecurityControl& TDDISecurityControl::operator=(const TDDISecurityControl& other2617) {
-  Id = other2617.Id;
-  Name = other2617.Name;
-  Description = other2617.Description;
-  KeyValueMaps = other2617.KeyValueMaps;
-  IntrinsicSafety = other2617.IntrinsicSafety;
-  SafeGuard = other2617.SafeGuard;
-  ApplierInformation = other2617.ApplierInformation;
-  RiskAcceptability = other2617.RiskAcceptability;
-  FurtherAction = other2617.FurtherAction;
-  Source = other2617.Source;
-  AssuranceLevel = other2617.AssuranceLevel;
-  MeasureType = other2617.MeasureType;
-  Category = other2617.Category;
-  Type = other2617.Type;
-  Vulnerabilities = other2617.Vulnerabilities;
-  __isset = other2617.__isset;
+TDDISecurityControl& TDDISecurityControl::operator=(const TDDISecurityControl& other2609) {
+  Id = other2609.Id;
+  Name = other2609.Name;
+  Description = other2609.Description;
+  KeyValueMaps = other2609.KeyValueMaps;
+  IntrinsicSafety = other2609.IntrinsicSafety;
+  SafeGuard = other2609.SafeGuard;
+  ApplierInformation = other2609.ApplierInformation;
+  RiskAcceptability = other2609.RiskAcceptability;
+  FurtherAction = other2609.FurtherAction;
+  Source = other2609.Source;
+  AssuranceLevel = other2609.AssuranceLevel;
+  MeasureType = other2609.MeasureType;
+  Category = other2609.Category;
+  Type = other2609.Type;
+  Vulnerabilities = other2609.Vulnerabilities;
+  __isset = other2609.__isset;
   return *this;
 }
 void TDDISecurityControl::printTo(std::ostream& out) const {
@@ -54758,14 +54620,14 @@ uint32_t TDDISecurityCapability::read(::apache::thrift::protocol::TProtocol* ipr
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2618;
-            ::apache::thrift::protocol::TType _etype2621;
-            xfer += iprot->readListBegin(_etype2621, _size2618);
-            this->KeyValueMaps.resize(_size2618);
-            uint32_t _i2622;
-            for (_i2622 = 0; _i2622 < _size2618; ++_i2622)
+            uint32_t _size2610;
+            ::apache::thrift::protocol::TType _etype2613;
+            xfer += iprot->readListBegin(_etype2613, _size2610);
+            this->KeyValueMaps.resize(_size2610);
+            uint32_t _i2614;
+            for (_i2614 = 0; _i2614 < _size2610; ++_i2614)
             {
-              xfer += this->KeyValueMaps[_i2622].read(iprot);
+              xfer += this->KeyValueMaps[_i2614].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -54784,9 +54646,9 @@ uint32_t TDDISecurityCapability::read(::apache::thrift::protocol::TProtocol* ipr
         break;
       case 6:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2623;
-          xfer += iprot->readI32(ecast2623);
-          this->Type = (TDDISecurityApplicationType)ecast2623;
+          int32_t ecast2615;
+          xfer += iprot->readI32(ecast2615);
+          this->Type = (TDDISecurityApplicationType)ecast2615;
           this->__isset.Type = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -54796,14 +54658,14 @@ uint32_t TDDISecurityCapability::read(::apache::thrift::protocol::TProtocol* ipr
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ImplementedBy.clear();
-            uint32_t _size2624;
-            ::apache::thrift::protocol::TType _etype2627;
-            xfer += iprot->readListBegin(_etype2627, _size2624);
-            this->ImplementedBy.resize(_size2624);
-            uint32_t _i2628;
-            for (_i2628 = 0; _i2628 < _size2624; ++_i2628)
+            uint32_t _size2616;
+            ::apache::thrift::protocol::TType _etype2619;
+            xfer += iprot->readListBegin(_etype2619, _size2616);
+            this->ImplementedBy.resize(_size2616);
+            uint32_t _i2620;
+            for (_i2620 = 0; _i2620 < _size2616; ++_i2620)
             {
-              xfer += this->ImplementedBy[_i2628].read(iprot);
+              xfer += this->ImplementedBy[_i2620].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -54844,10 +54706,10 @@ uint32_t TDDISecurityCapability::write(::apache::thrift::protocol::TProtocol* op
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2629;
-    for (_iter2629 = this->KeyValueMaps.begin(); _iter2629 != this->KeyValueMaps.end(); ++_iter2629)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2621;
+    for (_iter2621 = this->KeyValueMaps.begin(); _iter2621 != this->KeyValueMaps.end(); ++_iter2621)
     {
-      xfer += (*_iter2629).write(oprot);
+      xfer += (*_iter2621).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -54864,10 +54726,10 @@ uint32_t TDDISecurityCapability::write(::apache::thrift::protocol::TProtocol* op
   xfer += oprot->writeFieldBegin("ImplementedBy", ::apache::thrift::protocol::T_LIST, 7);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ImplementedBy.size()));
-    std::vector<TDDISecurityControlRef> ::const_iterator _iter2630;
-    for (_iter2630 = this->ImplementedBy.begin(); _iter2630 != this->ImplementedBy.end(); ++_iter2630)
+    std::vector<TDDISecurityControlRef> ::const_iterator _iter2622;
+    for (_iter2622 = this->ImplementedBy.begin(); _iter2622 != this->ImplementedBy.end(); ++_iter2622)
     {
-      xfer += (*_iter2630).write(oprot);
+      xfer += (*_iter2622).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -54890,25 +54752,25 @@ void swap(TDDISecurityCapability &a, TDDISecurityCapability &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDISecurityCapability::TDDISecurityCapability(const TDDISecurityCapability& other2631) {
-  Id = other2631.Id;
-  Name = other2631.Name;
-  Description = other2631.Description;
-  KeyValueMaps = other2631.KeyValueMaps;
-  Category = other2631.Category;
-  Type = other2631.Type;
-  ImplementedBy = other2631.ImplementedBy;
-  __isset = other2631.__isset;
+TDDISecurityCapability::TDDISecurityCapability(const TDDISecurityCapability& other2623) {
+  Id = other2623.Id;
+  Name = other2623.Name;
+  Description = other2623.Description;
+  KeyValueMaps = other2623.KeyValueMaps;
+  Category = other2623.Category;
+  Type = other2623.Type;
+  ImplementedBy = other2623.ImplementedBy;
+  __isset = other2623.__isset;
 }
-TDDISecurityCapability& TDDISecurityCapability::operator=(const TDDISecurityCapability& other2632) {
-  Id = other2632.Id;
-  Name = other2632.Name;
-  Description = other2632.Description;
-  KeyValueMaps = other2632.KeyValueMaps;
-  Category = other2632.Category;
-  Type = other2632.Type;
-  ImplementedBy = other2632.ImplementedBy;
-  __isset = other2632.__isset;
+TDDISecurityCapability& TDDISecurityCapability::operator=(const TDDISecurityCapability& other2624) {
+  Id = other2624.Id;
+  Name = other2624.Name;
+  Description = other2624.Description;
+  KeyValueMaps = other2624.KeyValueMaps;
+  Category = other2624.Category;
+  Type = other2624.Type;
+  ImplementedBy = other2624.ImplementedBy;
+  __isset = other2624.__isset;
   return *this;
 }
 void TDDISecurityCapability::printTo(std::ostream& out) const {
@@ -55020,14 +54882,14 @@ uint32_t TDDISecurityRisk::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2633;
-            ::apache::thrift::protocol::TType _etype2636;
-            xfer += iprot->readListBegin(_etype2636, _size2633);
-            this->KeyValueMaps.resize(_size2633);
-            uint32_t _i2637;
-            for (_i2637 = 0; _i2637 < _size2633; ++_i2637)
+            uint32_t _size2625;
+            ::apache::thrift::protocol::TType _etype2628;
+            xfer += iprot->readListBegin(_etype2628, _size2625);
+            this->KeyValueMaps.resize(_size2625);
+            uint32_t _i2629;
+            for (_i2629 = 0; _i2629 < _size2625; ++_i2629)
             {
-              xfer += this->KeyValueMaps[_i2637].read(iprot);
+              xfer += this->KeyValueMaps[_i2629].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55072,14 +54934,14 @@ uint32_t TDDISecurityRisk::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AttackerGoals.clear();
-            uint32_t _size2638;
-            ::apache::thrift::protocol::TType _etype2641;
-            xfer += iprot->readListBegin(_etype2641, _size2638);
-            this->AttackerGoals.resize(_size2638);
-            uint32_t _i2642;
-            for (_i2642 = 0; _i2642 < _size2638; ++_i2642)
+            uint32_t _size2630;
+            ::apache::thrift::protocol::TType _etype2633;
+            xfer += iprot->readListBegin(_etype2633, _size2630);
+            this->AttackerGoals.resize(_size2630);
+            uint32_t _i2634;
+            for (_i2634 = 0; _i2634 < _size2630; ++_i2634)
             {
-              xfer += this->AttackerGoals[_i2642].read(iprot);
+              xfer += this->AttackerGoals[_i2634].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55120,10 +54982,10 @@ uint32_t TDDISecurityRisk::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2643;
-    for (_iter2643 = this->KeyValueMaps.begin(); _iter2643 != this->KeyValueMaps.end(); ++_iter2643)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2635;
+    for (_iter2635 = this->KeyValueMaps.begin(); _iter2635 != this->KeyValueMaps.end(); ++_iter2635)
     {
-      xfer += (*_iter2643).write(oprot);
+      xfer += (*_iter2635).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55148,10 +55010,10 @@ uint32_t TDDISecurityRisk::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("AttackerGoals", ::apache::thrift::protocol::T_LIST, 9);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AttackerGoals.size()));
-    std::vector<TDDIAttackerGoalRef> ::const_iterator _iter2644;
-    for (_iter2644 = this->AttackerGoals.begin(); _iter2644 != this->AttackerGoals.end(); ++_iter2644)
+    std::vector<TDDIAttackerGoalRef> ::const_iterator _iter2636;
+    for (_iter2636 = this->AttackerGoals.begin(); _iter2636 != this->AttackerGoals.end(); ++_iter2636)
     {
-      xfer += (*_iter2644).write(oprot);
+      xfer += (*_iter2636).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55176,29 +55038,29 @@ void swap(TDDISecurityRisk &a, TDDISecurityRisk &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDISecurityRisk::TDDISecurityRisk(const TDDISecurityRisk& other2645) {
-  Id = other2645.Id;
-  Name = other2645.Name;
-  Description = other2645.Description;
-  KeyValueMaps = other2645.KeyValueMaps;
-  Likelihood = other2645.Likelihood;
-  ImpactAsset = other2645.ImpactAsset;
-  ImpactIndividuals = other2645.ImpactIndividuals;
-  ImpactBusiness = other2645.ImpactBusiness;
-  AttackerGoals = other2645.AttackerGoals;
-  __isset = other2645.__isset;
+TDDISecurityRisk::TDDISecurityRisk(const TDDISecurityRisk& other2637) {
+  Id = other2637.Id;
+  Name = other2637.Name;
+  Description = other2637.Description;
+  KeyValueMaps = other2637.KeyValueMaps;
+  Likelihood = other2637.Likelihood;
+  ImpactAsset = other2637.ImpactAsset;
+  ImpactIndividuals = other2637.ImpactIndividuals;
+  ImpactBusiness = other2637.ImpactBusiness;
+  AttackerGoals = other2637.AttackerGoals;
+  __isset = other2637.__isset;
 }
-TDDISecurityRisk& TDDISecurityRisk::operator=(const TDDISecurityRisk& other2646) {
-  Id = other2646.Id;
-  Name = other2646.Name;
-  Description = other2646.Description;
-  KeyValueMaps = other2646.KeyValueMaps;
-  Likelihood = other2646.Likelihood;
-  ImpactAsset = other2646.ImpactAsset;
-  ImpactIndividuals = other2646.ImpactIndividuals;
-  ImpactBusiness = other2646.ImpactBusiness;
-  AttackerGoals = other2646.AttackerGoals;
-  __isset = other2646.__isset;
+TDDISecurityRisk& TDDISecurityRisk::operator=(const TDDISecurityRisk& other2638) {
+  Id = other2638.Id;
+  Name = other2638.Name;
+  Description = other2638.Description;
+  KeyValueMaps = other2638.KeyValueMaps;
+  Likelihood = other2638.Likelihood;
+  ImpactAsset = other2638.ImpactAsset;
+  ImpactIndividuals = other2638.ImpactIndividuals;
+  ImpactBusiness = other2638.ImpactBusiness;
+  AttackerGoals = other2638.AttackerGoals;
+  __isset = other2638.__isset;
   return *this;
 }
 void TDDISecurityRisk::printTo(std::ostream& out) const {
@@ -55328,14 +55190,14 @@ uint32_t TDDIAttack::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2647;
-            ::apache::thrift::protocol::TType _etype2650;
-            xfer += iprot->readListBegin(_etype2650, _size2647);
-            this->KeyValueMaps.resize(_size2647);
-            uint32_t _i2651;
-            for (_i2651 = 0; _i2651 < _size2647; ++_i2651)
+            uint32_t _size2639;
+            ::apache::thrift::protocol::TType _etype2642;
+            xfer += iprot->readListBegin(_etype2642, _size2639);
+            this->KeyValueMaps.resize(_size2639);
+            uint32_t _i2643;
+            for (_i2643 = 0; _i2643 < _size2639; ++_i2643)
             {
-              xfer += this->KeyValueMaps[_i2651].read(iprot);
+              xfer += this->KeyValueMaps[_i2643].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55362,9 +55224,9 @@ uint32_t TDDIAttack::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 7:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2652;
-          xfer += iprot->readI32(ecast2652);
-          this->FinancialCostType = (TDDIFinancialCostType)ecast2652;
+          int32_t ecast2644;
+          xfer += iprot->readI32(ecast2644);
+          this->FinancialCostType = (TDDIFinancialCostType)ecast2644;
           this->__isset.FinancialCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -55380,9 +55242,9 @@ uint32_t TDDIAttack::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 9:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2653;
-          xfer += iprot->readI32(ecast2653);
-          this->TimeUnit = (TDDITimeUnit)ecast2653;
+          int32_t ecast2645;
+          xfer += iprot->readI32(ecast2645);
+          this->TimeUnit = (TDDITimeUnit)ecast2645;
           this->__isset.TimeUnit = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -55408,14 +55270,14 @@ uint32_t TDDIAttack::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ExploitedVulnerabilities.clear();
-            uint32_t _size2654;
-            ::apache::thrift::protocol::TType _etype2657;
-            xfer += iprot->readListBegin(_etype2657, _size2654);
-            this->ExploitedVulnerabilities.resize(_size2654);
-            uint32_t _i2658;
-            for (_i2658 = 0; _i2658 < _size2654; ++_i2658)
+            uint32_t _size2646;
+            ::apache::thrift::protocol::TType _etype2649;
+            xfer += iprot->readListBegin(_etype2649, _size2646);
+            this->ExploitedVulnerabilities.resize(_size2646);
+            uint32_t _i2650;
+            for (_i2650 = 0; _i2650 < _size2646; ++_i2650)
             {
-              xfer += this->ExploitedVulnerabilities[_i2658].read(iprot);
+              xfer += this->ExploitedVulnerabilities[_i2650].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55428,14 +55290,14 @@ uint32_t TDDIAttack::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Violations.clear();
-            uint32_t _size2659;
-            ::apache::thrift::protocol::TType _etype2662;
-            xfer += iprot->readListBegin(_etype2662, _size2659);
-            this->Violations.resize(_size2659);
-            uint32_t _i2663;
-            for (_i2663 = 0; _i2663 < _size2659; ++_i2663)
+            uint32_t _size2651;
+            ::apache::thrift::protocol::TType _etype2654;
+            xfer += iprot->readListBegin(_etype2654, _size2651);
+            this->Violations.resize(_size2651);
+            uint32_t _i2655;
+            for (_i2655 = 0; _i2655 < _size2651; ++_i2655)
             {
-              xfer += this->Violations[_i2663].read(iprot);
+              xfer += this->Violations[_i2655].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55476,10 +55338,10 @@ uint32_t TDDIAttack::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2664;
-    for (_iter2664 = this->KeyValueMaps.begin(); _iter2664 != this->KeyValueMaps.end(); ++_iter2664)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2656;
+    for (_iter2656 = this->KeyValueMaps.begin(); _iter2656 != this->KeyValueMaps.end(); ++_iter2656)
     {
-      xfer += (*_iter2664).write(oprot);
+      xfer += (*_iter2656).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55516,10 +55378,10 @@ uint32_t TDDIAttack::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("ExploitedVulnerabilities", ::apache::thrift::protocol::T_LIST, 12);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ExploitedVulnerabilities.size()));
-    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2665;
-    for (_iter2665 = this->ExploitedVulnerabilities.begin(); _iter2665 != this->ExploitedVulnerabilities.end(); ++_iter2665)
+    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2657;
+    for (_iter2657 = this->ExploitedVulnerabilities.begin(); _iter2657 != this->ExploitedVulnerabilities.end(); ++_iter2657)
     {
-      xfer += (*_iter2665).write(oprot);
+      xfer += (*_iter2657).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55528,10 +55390,10 @@ uint32_t TDDIAttack::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("Violations", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Violations.size()));
-    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2666;
-    for (_iter2666 = this->Violations.begin(); _iter2666 != this->Violations.end(); ++_iter2666)
+    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2658;
+    for (_iter2658 = this->Violations.begin(); _iter2658 != this->Violations.end(); ++_iter2658)
     {
-      xfer += (*_iter2666).write(oprot);
+      xfer += (*_iter2658).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55560,37 +55422,37 @@ void swap(TDDIAttack &a, TDDIAttack &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAttack::TDDIAttack(const TDDIAttack& other2667) {
-  Id = other2667.Id;
-  Name = other2667.Name;
-  Description = other2667.Description;
-  KeyValueMaps = other2667.KeyValueMaps;
-  Category = other2667.Category;
-  FinancialCost = other2667.FinancialCost;
-  FinancialCostType = other2667.FinancialCostType;
-  TimeRequired = other2667.TimeRequired;
-  TimeUnit = other2667.TimeUnit;
-  Difficulty = other2667.Difficulty;
-  Detectability = other2667.Detectability;
-  ExploitedVulnerabilities = other2667.ExploitedVulnerabilities;
-  Violations = other2667.Violations;
-  __isset = other2667.__isset;
+TDDIAttack::TDDIAttack(const TDDIAttack& other2659) {
+  Id = other2659.Id;
+  Name = other2659.Name;
+  Description = other2659.Description;
+  KeyValueMaps = other2659.KeyValueMaps;
+  Category = other2659.Category;
+  FinancialCost = other2659.FinancialCost;
+  FinancialCostType = other2659.FinancialCostType;
+  TimeRequired = other2659.TimeRequired;
+  TimeUnit = other2659.TimeUnit;
+  Difficulty = other2659.Difficulty;
+  Detectability = other2659.Detectability;
+  ExploitedVulnerabilities = other2659.ExploitedVulnerabilities;
+  Violations = other2659.Violations;
+  __isset = other2659.__isset;
 }
-TDDIAttack& TDDIAttack::operator=(const TDDIAttack& other2668) {
-  Id = other2668.Id;
-  Name = other2668.Name;
-  Description = other2668.Description;
-  KeyValueMaps = other2668.KeyValueMaps;
-  Category = other2668.Category;
-  FinancialCost = other2668.FinancialCost;
-  FinancialCostType = other2668.FinancialCostType;
-  TimeRequired = other2668.TimeRequired;
-  TimeUnit = other2668.TimeUnit;
-  Difficulty = other2668.Difficulty;
-  Detectability = other2668.Detectability;
-  ExploitedVulnerabilities = other2668.ExploitedVulnerabilities;
-  Violations = other2668.Violations;
-  __isset = other2668.__isset;
+TDDIAttack& TDDIAttack::operator=(const TDDIAttack& other2660) {
+  Id = other2660.Id;
+  Name = other2660.Name;
+  Description = other2660.Description;
+  KeyValueMaps = other2660.KeyValueMaps;
+  Category = other2660.Category;
+  FinancialCost = other2660.FinancialCost;
+  FinancialCostType = other2660.FinancialCostType;
+  TimeRequired = other2660.TimeRequired;
+  TimeUnit = other2660.TimeUnit;
+  Difficulty = other2660.Difficulty;
+  Detectability = other2660.Detectability;
+  ExploitedVulnerabilities = other2660.ExploitedVulnerabilities;
+  Violations = other2660.Violations;
+  __isset = other2660.__isset;
   return *this;
 }
 void TDDIAttack::printTo(std::ostream& out) const {
@@ -55724,14 +55586,14 @@ uint32_t TDDIAction::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2669;
-            ::apache::thrift::protocol::TType _etype2672;
-            xfer += iprot->readListBegin(_etype2672, _size2669);
-            this->KeyValueMaps.resize(_size2669);
-            uint32_t _i2673;
-            for (_i2673 = 0; _i2673 < _size2669; ++_i2673)
+            uint32_t _size2661;
+            ::apache::thrift::protocol::TType _etype2664;
+            xfer += iprot->readListBegin(_etype2664, _size2661);
+            this->KeyValueMaps.resize(_size2661);
+            uint32_t _i2665;
+            for (_i2665 = 0; _i2665 < _size2661; ++_i2665)
             {
-              xfer += this->KeyValueMaps[_i2673].read(iprot);
+              xfer += this->KeyValueMaps[_i2665].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55758,9 +55620,9 @@ uint32_t TDDIAction::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 7:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2674;
-          xfer += iprot->readI32(ecast2674);
-          this->FinancialCostType = (TDDIFinancialCostType)ecast2674;
+          int32_t ecast2666;
+          xfer += iprot->readI32(ecast2666);
+          this->FinancialCostType = (TDDIFinancialCostType)ecast2666;
           this->__isset.FinancialCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -55776,9 +55638,9 @@ uint32_t TDDIAction::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 9:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2675;
-          xfer += iprot->readI32(ecast2675);
-          this->TimeUnit = (TDDITimeUnit)ecast2675;
+          int32_t ecast2667;
+          xfer += iprot->readI32(ecast2667);
+          this->TimeUnit = (TDDITimeUnit)ecast2667;
           this->__isset.TimeUnit = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -55804,14 +55666,14 @@ uint32_t TDDIAction::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ExploitedVulnerabilities.clear();
-            uint32_t _size2676;
-            ::apache::thrift::protocol::TType _etype2679;
-            xfer += iprot->readListBegin(_etype2679, _size2676);
-            this->ExploitedVulnerabilities.resize(_size2676);
-            uint32_t _i2680;
-            for (_i2680 = 0; _i2680 < _size2676; ++_i2680)
+            uint32_t _size2668;
+            ::apache::thrift::protocol::TType _etype2671;
+            xfer += iprot->readListBegin(_etype2671, _size2668);
+            this->ExploitedVulnerabilities.resize(_size2668);
+            uint32_t _i2672;
+            for (_i2672 = 0; _i2672 < _size2668; ++_i2672)
             {
-              xfer += this->ExploitedVulnerabilities[_i2680].read(iprot);
+              xfer += this->ExploitedVulnerabilities[_i2672].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55824,14 +55686,14 @@ uint32_t TDDIAction::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Violations.clear();
-            uint32_t _size2681;
-            ::apache::thrift::protocol::TType _etype2684;
-            xfer += iprot->readListBegin(_etype2684, _size2681);
-            this->Violations.resize(_size2681);
-            uint32_t _i2685;
-            for (_i2685 = 0; _i2685 < _size2681; ++_i2685)
+            uint32_t _size2673;
+            ::apache::thrift::protocol::TType _etype2676;
+            xfer += iprot->readListBegin(_etype2676, _size2673);
+            this->Violations.resize(_size2673);
+            uint32_t _i2677;
+            for (_i2677 = 0; _i2677 < _size2673; ++_i2677)
             {
-              xfer += this->Violations[_i2685].read(iprot);
+              xfer += this->Violations[_i2677].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -55872,10 +55734,10 @@ uint32_t TDDIAction::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2686;
-    for (_iter2686 = this->KeyValueMaps.begin(); _iter2686 != this->KeyValueMaps.end(); ++_iter2686)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2678;
+    for (_iter2678 = this->KeyValueMaps.begin(); _iter2678 != this->KeyValueMaps.end(); ++_iter2678)
     {
-      xfer += (*_iter2686).write(oprot);
+      xfer += (*_iter2678).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55912,10 +55774,10 @@ uint32_t TDDIAction::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("ExploitedVulnerabilities", ::apache::thrift::protocol::T_LIST, 12);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ExploitedVulnerabilities.size()));
-    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2687;
-    for (_iter2687 = this->ExploitedVulnerabilities.begin(); _iter2687 != this->ExploitedVulnerabilities.end(); ++_iter2687)
+    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2679;
+    for (_iter2679 = this->ExploitedVulnerabilities.begin(); _iter2679 != this->ExploitedVulnerabilities.end(); ++_iter2679)
     {
-      xfer += (*_iter2687).write(oprot);
+      xfer += (*_iter2679).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55924,10 +55786,10 @@ uint32_t TDDIAction::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("Violations", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Violations.size()));
-    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2688;
-    for (_iter2688 = this->Violations.begin(); _iter2688 != this->Violations.end(); ++_iter2688)
+    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2680;
+    for (_iter2680 = this->Violations.begin(); _iter2680 != this->Violations.end(); ++_iter2680)
     {
-      xfer += (*_iter2688).write(oprot);
+      xfer += (*_iter2680).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -55956,37 +55818,37 @@ void swap(TDDIAction &a, TDDIAction &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAction::TDDIAction(const TDDIAction& other2689) {
-  Id = other2689.Id;
-  Name = other2689.Name;
-  Description = other2689.Description;
-  KeyValueMaps = other2689.KeyValueMaps;
-  Category = other2689.Category;
-  FinancialCost = other2689.FinancialCost;
-  FinancialCostType = other2689.FinancialCostType;
-  TimeRequired = other2689.TimeRequired;
-  TimeUnit = other2689.TimeUnit;
-  Difficulty = other2689.Difficulty;
-  Detectability = other2689.Detectability;
-  ExploitedVulnerabilities = other2689.ExploitedVulnerabilities;
-  Violations = other2689.Violations;
-  __isset = other2689.__isset;
+TDDIAction::TDDIAction(const TDDIAction& other2681) {
+  Id = other2681.Id;
+  Name = other2681.Name;
+  Description = other2681.Description;
+  KeyValueMaps = other2681.KeyValueMaps;
+  Category = other2681.Category;
+  FinancialCost = other2681.FinancialCost;
+  FinancialCostType = other2681.FinancialCostType;
+  TimeRequired = other2681.TimeRequired;
+  TimeUnit = other2681.TimeUnit;
+  Difficulty = other2681.Difficulty;
+  Detectability = other2681.Detectability;
+  ExploitedVulnerabilities = other2681.ExploitedVulnerabilities;
+  Violations = other2681.Violations;
+  __isset = other2681.__isset;
 }
-TDDIAction& TDDIAction::operator=(const TDDIAction& other2690) {
-  Id = other2690.Id;
-  Name = other2690.Name;
-  Description = other2690.Description;
-  KeyValueMaps = other2690.KeyValueMaps;
-  Category = other2690.Category;
-  FinancialCost = other2690.FinancialCost;
-  FinancialCostType = other2690.FinancialCostType;
-  TimeRequired = other2690.TimeRequired;
-  TimeUnit = other2690.TimeUnit;
-  Difficulty = other2690.Difficulty;
-  Detectability = other2690.Detectability;
-  ExploitedVulnerabilities = other2690.ExploitedVulnerabilities;
-  Violations = other2690.Violations;
-  __isset = other2690.__isset;
+TDDIAction& TDDIAction::operator=(const TDDIAction& other2682) {
+  Id = other2682.Id;
+  Name = other2682.Name;
+  Description = other2682.Description;
+  KeyValueMaps = other2682.KeyValueMaps;
+  Category = other2682.Category;
+  FinancialCost = other2682.FinancialCost;
+  FinancialCostType = other2682.FinancialCostType;
+  TimeRequired = other2682.TimeRequired;
+  TimeUnit = other2682.TimeUnit;
+  Difficulty = other2682.Difficulty;
+  Detectability = other2682.Detectability;
+  ExploitedVulnerabilities = other2682.ExploitedVulnerabilities;
+  Violations = other2682.Violations;
+  __isset = other2682.__isset;
   return *this;
 }
 void TDDIAction::printTo(std::ostream& out) const {
@@ -56120,14 +55982,14 @@ uint32_t TDDIPayload::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2691;
-            ::apache::thrift::protocol::TType _etype2694;
-            xfer += iprot->readListBegin(_etype2694, _size2691);
-            this->KeyValueMaps.resize(_size2691);
-            uint32_t _i2695;
-            for (_i2695 = 0; _i2695 < _size2691; ++_i2695)
+            uint32_t _size2683;
+            ::apache::thrift::protocol::TType _etype2686;
+            xfer += iprot->readListBegin(_etype2686, _size2683);
+            this->KeyValueMaps.resize(_size2683);
+            uint32_t _i2687;
+            for (_i2687 = 0; _i2687 < _size2683; ++_i2687)
             {
-              xfer += this->KeyValueMaps[_i2695].read(iprot);
+              xfer += this->KeyValueMaps[_i2687].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56154,9 +56016,9 @@ uint32_t TDDIPayload::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 7:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2696;
-          xfer += iprot->readI32(ecast2696);
-          this->FinancialCostType = (TDDIFinancialCostType)ecast2696;
+          int32_t ecast2688;
+          xfer += iprot->readI32(ecast2688);
+          this->FinancialCostType = (TDDIFinancialCostType)ecast2688;
           this->__isset.FinancialCostType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -56172,9 +56034,9 @@ uint32_t TDDIPayload::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 9:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2697;
-          xfer += iprot->readI32(ecast2697);
-          this->TimeUnit = (TDDITimeUnit)ecast2697;
+          int32_t ecast2689;
+          xfer += iprot->readI32(ecast2689);
+          this->TimeUnit = (TDDITimeUnit)ecast2689;
           this->__isset.TimeUnit = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -56200,14 +56062,14 @@ uint32_t TDDIPayload::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ExploitedVulnerabilities.clear();
-            uint32_t _size2698;
-            ::apache::thrift::protocol::TType _etype2701;
-            xfer += iprot->readListBegin(_etype2701, _size2698);
-            this->ExploitedVulnerabilities.resize(_size2698);
-            uint32_t _i2702;
-            for (_i2702 = 0; _i2702 < _size2698; ++_i2702)
+            uint32_t _size2690;
+            ::apache::thrift::protocol::TType _etype2693;
+            xfer += iprot->readListBegin(_etype2693, _size2690);
+            this->ExploitedVulnerabilities.resize(_size2690);
+            uint32_t _i2694;
+            for (_i2694 = 0; _i2694 < _size2690; ++_i2694)
             {
-              xfer += this->ExploitedVulnerabilities[_i2702].read(iprot);
+              xfer += this->ExploitedVulnerabilities[_i2694].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56220,14 +56082,14 @@ uint32_t TDDIPayload::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Violations.clear();
-            uint32_t _size2703;
-            ::apache::thrift::protocol::TType _etype2706;
-            xfer += iprot->readListBegin(_etype2706, _size2703);
-            this->Violations.resize(_size2703);
-            uint32_t _i2707;
-            for (_i2707 = 0; _i2707 < _size2703; ++_i2707)
+            uint32_t _size2695;
+            ::apache::thrift::protocol::TType _etype2698;
+            xfer += iprot->readListBegin(_etype2698, _size2695);
+            this->Violations.resize(_size2695);
+            uint32_t _i2699;
+            for (_i2699 = 0; _i2699 < _size2695; ++_i2699)
             {
-              xfer += this->Violations[_i2707].read(iprot);
+              xfer += this->Violations[_i2699].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56268,10 +56130,10 @@ uint32_t TDDIPayload::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2708;
-    for (_iter2708 = this->KeyValueMaps.begin(); _iter2708 != this->KeyValueMaps.end(); ++_iter2708)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2700;
+    for (_iter2700 = this->KeyValueMaps.begin(); _iter2700 != this->KeyValueMaps.end(); ++_iter2700)
     {
-      xfer += (*_iter2708).write(oprot);
+      xfer += (*_iter2700).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56308,10 +56170,10 @@ uint32_t TDDIPayload::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("ExploitedVulnerabilities", ::apache::thrift::protocol::T_LIST, 12);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ExploitedVulnerabilities.size()));
-    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2709;
-    for (_iter2709 = this->ExploitedVulnerabilities.begin(); _iter2709 != this->ExploitedVulnerabilities.end(); ++_iter2709)
+    std::vector<TDDIVulnerabilityRef> ::const_iterator _iter2701;
+    for (_iter2701 = this->ExploitedVulnerabilities.begin(); _iter2701 != this->ExploitedVulnerabilities.end(); ++_iter2701)
     {
-      xfer += (*_iter2709).write(oprot);
+      xfer += (*_iter2701).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56320,10 +56182,10 @@ uint32_t TDDIPayload::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("Violations", ::apache::thrift::protocol::T_LIST, 13);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Violations.size()));
-    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2710;
-    for (_iter2710 = this->Violations.begin(); _iter2710 != this->Violations.end(); ++_iter2710)
+    std::vector<TDDISecurityViolationRef> ::const_iterator _iter2702;
+    for (_iter2702 = this->Violations.begin(); _iter2702 != this->Violations.end(); ++_iter2702)
     {
-      xfer += (*_iter2710).write(oprot);
+      xfer += (*_iter2702).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56352,37 +56214,37 @@ void swap(TDDIPayload &a, TDDIPayload &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIPayload::TDDIPayload(const TDDIPayload& other2711) {
-  Id = other2711.Id;
-  Name = other2711.Name;
-  Description = other2711.Description;
-  KeyValueMaps = other2711.KeyValueMaps;
-  Category = other2711.Category;
-  FinancialCost = other2711.FinancialCost;
-  FinancialCostType = other2711.FinancialCostType;
-  TimeRequired = other2711.TimeRequired;
-  TimeUnit = other2711.TimeUnit;
-  Difficulty = other2711.Difficulty;
-  Detectability = other2711.Detectability;
-  ExploitedVulnerabilities = other2711.ExploitedVulnerabilities;
-  Violations = other2711.Violations;
-  __isset = other2711.__isset;
+TDDIPayload::TDDIPayload(const TDDIPayload& other2703) {
+  Id = other2703.Id;
+  Name = other2703.Name;
+  Description = other2703.Description;
+  KeyValueMaps = other2703.KeyValueMaps;
+  Category = other2703.Category;
+  FinancialCost = other2703.FinancialCost;
+  FinancialCostType = other2703.FinancialCostType;
+  TimeRequired = other2703.TimeRequired;
+  TimeUnit = other2703.TimeUnit;
+  Difficulty = other2703.Difficulty;
+  Detectability = other2703.Detectability;
+  ExploitedVulnerabilities = other2703.ExploitedVulnerabilities;
+  Violations = other2703.Violations;
+  __isset = other2703.__isset;
 }
-TDDIPayload& TDDIPayload::operator=(const TDDIPayload& other2712) {
-  Id = other2712.Id;
-  Name = other2712.Name;
-  Description = other2712.Description;
-  KeyValueMaps = other2712.KeyValueMaps;
-  Category = other2712.Category;
-  FinancialCost = other2712.FinancialCost;
-  FinancialCostType = other2712.FinancialCostType;
-  TimeRequired = other2712.TimeRequired;
-  TimeUnit = other2712.TimeUnit;
-  Difficulty = other2712.Difficulty;
-  Detectability = other2712.Detectability;
-  ExploitedVulnerabilities = other2712.ExploitedVulnerabilities;
-  Violations = other2712.Violations;
-  __isset = other2712.__isset;
+TDDIPayload& TDDIPayload::operator=(const TDDIPayload& other2704) {
+  Id = other2704.Id;
+  Name = other2704.Name;
+  Description = other2704.Description;
+  KeyValueMaps = other2704.KeyValueMaps;
+  Category = other2704.Category;
+  FinancialCost = other2704.FinancialCost;
+  FinancialCostType = other2704.FinancialCostType;
+  TimeRequired = other2704.TimeRequired;
+  TimeUnit = other2704.TimeUnit;
+  Difficulty = other2704.Difficulty;
+  Detectability = other2704.Detectability;
+  ExploitedVulnerabilities = other2704.ExploitedVulnerabilities;
+  Violations = other2704.Violations;
+  __isset = other2704.__isset;
   return *this;
 }
 void TDDIPayload::printTo(std::ostream& out) const {
@@ -56583,17 +56445,17 @@ void swap(TDDIAbstractAttackUnion &a, TDDIAbstractAttackUnion &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractAttackUnion::TDDIAbstractAttackUnion(const TDDIAbstractAttackUnion& other2713) {
-  Attack = other2713.Attack;
-  Action = other2713.Action;
-  Payload = other2713.Payload;
-  __isset = other2713.__isset;
+TDDIAbstractAttackUnion::TDDIAbstractAttackUnion(const TDDIAbstractAttackUnion& other2705) {
+  Attack = other2705.Attack;
+  Action = other2705.Action;
+  Payload = other2705.Payload;
+  __isset = other2705.__isset;
 }
-TDDIAbstractAttackUnion& TDDIAbstractAttackUnion::operator=(const TDDIAbstractAttackUnion& other2714) {
-  Attack = other2714.Attack;
-  Action = other2714.Action;
-  Payload = other2714.Payload;
-  __isset = other2714.__isset;
+TDDIAbstractAttackUnion& TDDIAbstractAttackUnion::operator=(const TDDIAbstractAttackUnion& other2706) {
+  Attack = other2706.Attack;
+  Action = other2706.Action;
+  Payload = other2706.Payload;
+  __isset = other2706.__isset;
   return *this;
 }
 void TDDIAbstractAttackUnion::printTo(std::ostream& out) const {
@@ -56655,9 +56517,9 @@ uint32_t TDDIAbstractAttack::read(::apache::thrift::protocol::TProtocol* iprot) 
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2715;
-          xfer += iprot->readI32(ecast2715);
-          this->UsedAttackType = (TDDIAbstractAttackUnionType)ecast2715;
+          int32_t ecast2707;
+          xfer += iprot->readI32(ecast2707);
+          this->UsedAttackType = (TDDIAbstractAttackUnionType)ecast2707;
           this->__isset.UsedAttackType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -56700,15 +56562,15 @@ void swap(TDDIAbstractAttack &a, TDDIAbstractAttack &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractAttack::TDDIAbstractAttack(const TDDIAbstractAttack& other2716) {
-  UsedAttack = other2716.UsedAttack;
-  UsedAttackType = other2716.UsedAttackType;
-  __isset = other2716.__isset;
+TDDIAbstractAttack::TDDIAbstractAttack(const TDDIAbstractAttack& other2708) {
+  UsedAttack = other2708.UsedAttack;
+  UsedAttackType = other2708.UsedAttackType;
+  __isset = other2708.__isset;
 }
-TDDIAbstractAttack& TDDIAbstractAttack::operator=(const TDDIAbstractAttack& other2717) {
-  UsedAttack = other2717.UsedAttack;
-  UsedAttackType = other2717.UsedAttackType;
-  __isset = other2717.__isset;
+TDDIAbstractAttack& TDDIAbstractAttack::operator=(const TDDIAbstractAttack& other2709) {
+  UsedAttack = other2709.UsedAttack;
+  UsedAttackType = other2709.UsedAttackType;
+  __isset = other2709.__isset;
   return *this;
 }
 void TDDIAbstractAttack::printTo(std::ostream& out) const {
@@ -56811,14 +56673,14 @@ uint32_t TDDIAttackerGoal::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2718;
-            ::apache::thrift::protocol::TType _etype2721;
-            xfer += iprot->readListBegin(_etype2721, _size2718);
-            this->KeyValueMaps.resize(_size2718);
-            uint32_t _i2722;
-            for (_i2722 = 0; _i2722 < _size2718; ++_i2722)
+            uint32_t _size2710;
+            ::apache::thrift::protocol::TType _etype2713;
+            xfer += iprot->readListBegin(_etype2713, _size2710);
+            this->KeyValueMaps.resize(_size2710);
+            uint32_t _i2714;
+            for (_i2714 = 0; _i2714 < _size2710; ++_i2714)
             {
-              xfer += this->KeyValueMaps[_i2722].read(iprot);
+              xfer += this->KeyValueMaps[_i2714].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56839,14 +56701,14 @@ uint32_t TDDIAttackerGoal::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Attacks.clear();
-            uint32_t _size2723;
-            ::apache::thrift::protocol::TType _etype2726;
-            xfer += iprot->readListBegin(_etype2726, _size2723);
-            this->Attacks.resize(_size2723);
-            uint32_t _i2727;
-            for (_i2727 = 0; _i2727 < _size2723; ++_i2727)
+            uint32_t _size2715;
+            ::apache::thrift::protocol::TType _etype2718;
+            xfer += iprot->readListBegin(_etype2718, _size2715);
+            this->Attacks.resize(_size2715);
+            uint32_t _i2719;
+            for (_i2719 = 0; _i2719 < _size2715; ++_i2719)
             {
-              xfer += this->Attacks[_i2727].read(iprot);
+              xfer += this->Attacks[_i2719].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56859,14 +56721,14 @@ uint32_t TDDIAttackerGoal::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AddressedBy.clear();
-            uint32_t _size2728;
-            ::apache::thrift::protocol::TType _etype2731;
-            xfer += iprot->readListBegin(_etype2731, _size2728);
-            this->AddressedBy.resize(_size2728);
-            uint32_t _i2732;
-            for (_i2732 = 0; _i2732 < _size2728; ++_i2732)
+            uint32_t _size2720;
+            ::apache::thrift::protocol::TType _etype2723;
+            xfer += iprot->readListBegin(_etype2723, _size2720);
+            this->AddressedBy.resize(_size2720);
+            uint32_t _i2724;
+            for (_i2724 = 0; _i2724 < _size2720; ++_i2724)
             {
-              xfer += this->AddressedBy[_i2732].read(iprot);
+              xfer += this->AddressedBy[_i2724].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56879,14 +56741,14 @@ uint32_t TDDIAttackerGoal::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AttackedItems.clear();
-            uint32_t _size2733;
-            ::apache::thrift::protocol::TType _etype2736;
-            xfer += iprot->readListBegin(_etype2736, _size2733);
-            this->AttackedItems.resize(_size2733);
-            uint32_t _i2737;
-            for (_i2737 = 0; _i2737 < _size2733; ++_i2737)
+            uint32_t _size2725;
+            ::apache::thrift::protocol::TType _etype2728;
+            xfer += iprot->readListBegin(_etype2728, _size2725);
+            this->AttackedItems.resize(_size2725);
+            uint32_t _i2729;
+            for (_i2729 = 0; _i2729 < _size2725; ++_i2729)
             {
-              xfer += this->AttackedItems[_i2737].read(iprot);
+              xfer += this->AttackedItems[_i2729].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -56927,10 +56789,10 @@ uint32_t TDDIAttackerGoal::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2738;
-    for (_iter2738 = this->KeyValueMaps.begin(); _iter2738 != this->KeyValueMaps.end(); ++_iter2738)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2730;
+    for (_iter2730 = this->KeyValueMaps.begin(); _iter2730 != this->KeyValueMaps.end(); ++_iter2730)
     {
-      xfer += (*_iter2738).write(oprot);
+      xfer += (*_iter2730).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56943,10 +56805,10 @@ uint32_t TDDIAttackerGoal::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("Attacks", ::apache::thrift::protocol::T_LIST, 6);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Attacks.size()));
-    std::vector<TDDIAbstractAttack> ::const_iterator _iter2739;
-    for (_iter2739 = this->Attacks.begin(); _iter2739 != this->Attacks.end(); ++_iter2739)
+    std::vector<TDDIAbstractAttack> ::const_iterator _iter2731;
+    for (_iter2731 = this->Attacks.begin(); _iter2731 != this->Attacks.end(); ++_iter2731)
     {
-      xfer += (*_iter2739).write(oprot);
+      xfer += (*_iter2731).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56955,10 +56817,10 @@ uint32_t TDDIAttackerGoal::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("AddressedBy", ::apache::thrift::protocol::T_LIST, 7);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AddressedBy.size()));
-    std::vector<TDDISecurityCapability> ::const_iterator _iter2740;
-    for (_iter2740 = this->AddressedBy.begin(); _iter2740 != this->AddressedBy.end(); ++_iter2740)
+    std::vector<TDDISecurityCapability> ::const_iterator _iter2732;
+    for (_iter2732 = this->AddressedBy.begin(); _iter2732 != this->AddressedBy.end(); ++_iter2732)
     {
-      xfer += (*_iter2740).write(oprot);
+      xfer += (*_iter2732).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56967,10 +56829,10 @@ uint32_t TDDIAttackerGoal::write(::apache::thrift::protocol::TProtocol* oprot) c
   xfer += oprot->writeFieldBegin("AttackedItems", ::apache::thrift::protocol::T_LIST, 8);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AttackedItems.size()));
-    std::vector<TDDIVulnerableItemRef> ::const_iterator _iter2741;
-    for (_iter2741 = this->AttackedItems.begin(); _iter2741 != this->AttackedItems.end(); ++_iter2741)
+    std::vector<TDDIVulnerableItemRef> ::const_iterator _iter2733;
+    for (_iter2733 = this->AttackedItems.begin(); _iter2733 != this->AttackedItems.end(); ++_iter2733)
     {
-      xfer += (*_iter2741).write(oprot);
+      xfer += (*_iter2733).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -56994,27 +56856,27 @@ void swap(TDDIAttackerGoal &a, TDDIAttackerGoal &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAttackerGoal::TDDIAttackerGoal(const TDDIAttackerGoal& other2742) {
-  Id = other2742.Id;
-  Name = other2742.Name;
-  Description = other2742.Description;
-  KeyValueMaps = other2742.KeyValueMaps;
-  Category = other2742.Category;
-  Attacks = other2742.Attacks;
-  AddressedBy = other2742.AddressedBy;
-  AttackedItems = other2742.AttackedItems;
-  __isset = other2742.__isset;
+TDDIAttackerGoal::TDDIAttackerGoal(const TDDIAttackerGoal& other2734) {
+  Id = other2734.Id;
+  Name = other2734.Name;
+  Description = other2734.Description;
+  KeyValueMaps = other2734.KeyValueMaps;
+  Category = other2734.Category;
+  Attacks = other2734.Attacks;
+  AddressedBy = other2734.AddressedBy;
+  AttackedItems = other2734.AttackedItems;
+  __isset = other2734.__isset;
 }
-TDDIAttackerGoal& TDDIAttackerGoal::operator=(const TDDIAttackerGoal& other2743) {
-  Id = other2743.Id;
-  Name = other2743.Name;
-  Description = other2743.Description;
-  KeyValueMaps = other2743.KeyValueMaps;
-  Category = other2743.Category;
-  Attacks = other2743.Attacks;
-  AddressedBy = other2743.AddressedBy;
-  AttackedItems = other2743.AttackedItems;
-  __isset = other2743.__isset;
+TDDIAttackerGoal& TDDIAttackerGoal::operator=(const TDDIAttackerGoal& other2735) {
+  Id = other2735.Id;
+  Name = other2735.Name;
+  Description = other2735.Description;
+  KeyValueMaps = other2735.KeyValueMaps;
+  Category = other2735.Category;
+  Attacks = other2735.Attacks;
+  AddressedBy = other2735.AddressedBy;
+  AttackedItems = other2735.AttackedItems;
+  __isset = other2735.__isset;
   return *this;
 }
 void TDDIAttackerGoal::printTo(std::ostream& out) const {
@@ -57123,14 +56985,14 @@ uint32_t TDDIThreatAgent::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2744;
-            ::apache::thrift::protocol::TType _etype2747;
-            xfer += iprot->readListBegin(_etype2747, _size2744);
-            this->KeyValueMaps.resize(_size2744);
-            uint32_t _i2748;
-            for (_i2748 = 0; _i2748 < _size2744; ++_i2748)
+            uint32_t _size2736;
+            ::apache::thrift::protocol::TType _etype2739;
+            xfer += iprot->readListBegin(_etype2739, _size2736);
+            this->KeyValueMaps.resize(_size2736);
+            uint32_t _i2740;
+            for (_i2740 = 0; _i2740 < _size2736; ++_i2740)
             {
-              xfer += this->KeyValueMaps[_i2748].read(iprot);
+              xfer += this->KeyValueMaps[_i2740].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57167,14 +57029,14 @@ uint32_t TDDIThreatAgent::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AttackerGoals.clear();
-            uint32_t _size2749;
-            ::apache::thrift::protocol::TType _etype2752;
-            xfer += iprot->readListBegin(_etype2752, _size2749);
-            this->AttackerGoals.resize(_size2749);
-            uint32_t _i2753;
-            for (_i2753 = 0; _i2753 < _size2749; ++_i2753)
+            uint32_t _size2741;
+            ::apache::thrift::protocol::TType _etype2744;
+            xfer += iprot->readListBegin(_etype2744, _size2741);
+            this->AttackerGoals.resize(_size2741);
+            uint32_t _i2745;
+            for (_i2745 = 0; _i2745 < _size2741; ++_i2745)
             {
-              xfer += this->AttackerGoals[_i2753].read(iprot);
+              xfer += this->AttackerGoals[_i2745].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57215,10 +57077,10 @@ uint32_t TDDIThreatAgent::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2754;
-    for (_iter2754 = this->KeyValueMaps.begin(); _iter2754 != this->KeyValueMaps.end(); ++_iter2754)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2746;
+    for (_iter2746 = this->KeyValueMaps.begin(); _iter2746 != this->KeyValueMaps.end(); ++_iter2746)
     {
-      xfer += (*_iter2754).write(oprot);
+      xfer += (*_iter2746).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57239,10 +57101,10 @@ uint32_t TDDIThreatAgent::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("AttackerGoals", ::apache::thrift::protocol::T_LIST, 8);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AttackerGoals.size()));
-    std::vector<TDDIAttackerGoal> ::const_iterator _iter2755;
-    for (_iter2755 = this->AttackerGoals.begin(); _iter2755 != this->AttackerGoals.end(); ++_iter2755)
+    std::vector<TDDIAttackerGoal> ::const_iterator _iter2747;
+    for (_iter2747 = this->AttackerGoals.begin(); _iter2747 != this->AttackerGoals.end(); ++_iter2747)
     {
-      xfer += (*_iter2755).write(oprot);
+      xfer += (*_iter2747).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57266,27 +57128,27 @@ void swap(TDDIThreatAgent &a, TDDIThreatAgent &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIThreatAgent::TDDIThreatAgent(const TDDIThreatAgent& other2756) {
-  Id = other2756.Id;
-  Name = other2756.Name;
-  Description = other2756.Description;
-  KeyValueMaps = other2756.KeyValueMaps;
-  SkillLevel = other2756.SkillLevel;
-  Motivation = other2756.Motivation;
-  AnonymityDesire = other2756.AnonymityDesire;
-  AttackerGoals = other2756.AttackerGoals;
-  __isset = other2756.__isset;
+TDDIThreatAgent::TDDIThreatAgent(const TDDIThreatAgent& other2748) {
+  Id = other2748.Id;
+  Name = other2748.Name;
+  Description = other2748.Description;
+  KeyValueMaps = other2748.KeyValueMaps;
+  SkillLevel = other2748.SkillLevel;
+  Motivation = other2748.Motivation;
+  AnonymityDesire = other2748.AnonymityDesire;
+  AttackerGoals = other2748.AttackerGoals;
+  __isset = other2748.__isset;
 }
-TDDIThreatAgent& TDDIThreatAgent::operator=(const TDDIThreatAgent& other2757) {
-  Id = other2757.Id;
-  Name = other2757.Name;
-  Description = other2757.Description;
-  KeyValueMaps = other2757.KeyValueMaps;
-  SkillLevel = other2757.SkillLevel;
-  Motivation = other2757.Motivation;
-  AnonymityDesire = other2757.AnonymityDesire;
-  AttackerGoals = other2757.AttackerGoals;
-  __isset = other2757.__isset;
+TDDIThreatAgent& TDDIThreatAgent::operator=(const TDDIThreatAgent& other2749) {
+  Id = other2749.Id;
+  Name = other2749.Name;
+  Description = other2749.Description;
+  KeyValueMaps = other2749.KeyValueMaps;
+  SkillLevel = other2749.SkillLevel;
+  Motivation = other2749.Motivation;
+  AnonymityDesire = other2749.AnonymityDesire;
+  AttackerGoals = other2749.AttackerGoals;
+  __isset = other2749.__isset;
   return *this;
 }
 void TDDIThreatAgent::printTo(std::ostream& out) const {
@@ -57399,14 +57261,14 @@ uint32_t TDDIHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2758;
-            ::apache::thrift::protocol::TType _etype2761;
-            xfer += iprot->readListBegin(_etype2761, _size2758);
-            this->KeyValueMaps.resize(_size2758);
-            uint32_t _i2762;
-            for (_i2762 = 0; _i2762 < _size2758; ++_i2762)
+            uint32_t _size2750;
+            ::apache::thrift::protocol::TType _etype2753;
+            xfer += iprot->readListBegin(_etype2753, _size2750);
+            this->KeyValueMaps.resize(_size2750);
+            uint32_t _i2754;
+            for (_i2754 = 0; _i2754 < _size2750; ++_i2754)
             {
-              xfer += this->KeyValueMaps[_i2762].read(iprot);
+              xfer += this->KeyValueMaps[_i2754].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57443,14 +57305,14 @@ uint32_t TDDIHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AttackerGoals.clear();
-            uint32_t _size2763;
-            ::apache::thrift::protocol::TType _etype2766;
-            xfer += iprot->readListBegin(_etype2766, _size2763);
-            this->AttackerGoals.resize(_size2763);
-            uint32_t _i2767;
-            for (_i2767 = 0; _i2767 < _size2763; ++_i2767)
+            uint32_t _size2755;
+            ::apache::thrift::protocol::TType _etype2758;
+            xfer += iprot->readListBegin(_etype2758, _size2755);
+            this->AttackerGoals.resize(_size2755);
+            uint32_t _i2759;
+            for (_i2759 = 0; _i2759 < _size2755; ++_i2759)
             {
-              xfer += this->AttackerGoals[_i2767].read(iprot);
+              xfer += this->AttackerGoals[_i2759].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57463,14 +57325,14 @@ uint32_t TDDIHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Actions.clear();
-            uint32_t _size2768;
-            ::apache::thrift::protocol::TType _etype2771;
-            xfer += iprot->readListBegin(_etype2771, _size2768);
-            this->Actions.resize(_size2768);
-            uint32_t _i2772;
-            for (_i2772 = 0; _i2772 < _size2768; ++_i2772)
+            uint32_t _size2760;
+            ::apache::thrift::protocol::TType _etype2763;
+            xfer += iprot->readListBegin(_etype2763, _size2760);
+            this->Actions.resize(_size2760);
+            uint32_t _i2764;
+            for (_i2764 = 0; _i2764 < _size2760; ++_i2764)
             {
-              xfer += this->Actions[_i2772].read(iprot);
+              xfer += this->Actions[_i2764].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57511,10 +57373,10 @@ uint32_t TDDIHuman::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2773;
-    for (_iter2773 = this->KeyValueMaps.begin(); _iter2773 != this->KeyValueMaps.end(); ++_iter2773)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2765;
+    for (_iter2765 = this->KeyValueMaps.begin(); _iter2765 != this->KeyValueMaps.end(); ++_iter2765)
     {
-      xfer += (*_iter2773).write(oprot);
+      xfer += (*_iter2765).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57535,10 +57397,10 @@ uint32_t TDDIHuman::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("AttackerGoals", ::apache::thrift::protocol::T_LIST, 8);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AttackerGoals.size()));
-    std::vector<TDDIAttackerGoal> ::const_iterator _iter2774;
-    for (_iter2774 = this->AttackerGoals.begin(); _iter2774 != this->AttackerGoals.end(); ++_iter2774)
+    std::vector<TDDIAttackerGoal> ::const_iterator _iter2766;
+    for (_iter2766 = this->AttackerGoals.begin(); _iter2766 != this->AttackerGoals.end(); ++_iter2766)
     {
-      xfer += (*_iter2774).write(oprot);
+      xfer += (*_iter2766).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57547,10 +57409,10 @@ uint32_t TDDIHuman::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("Actions", ::apache::thrift::protocol::T_LIST, 9);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Actions.size()));
-    std::vector<TDDIActionRef> ::const_iterator _iter2775;
-    for (_iter2775 = this->Actions.begin(); _iter2775 != this->Actions.end(); ++_iter2775)
+    std::vector<TDDIActionRef> ::const_iterator _iter2767;
+    for (_iter2767 = this->Actions.begin(); _iter2767 != this->Actions.end(); ++_iter2767)
     {
-      xfer += (*_iter2775).write(oprot);
+      xfer += (*_iter2767).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57575,29 +57437,29 @@ void swap(TDDIHuman &a, TDDIHuman &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIHuman::TDDIHuman(const TDDIHuman& other2776) {
-  Id = other2776.Id;
-  Name = other2776.Name;
-  Description = other2776.Description;
-  KeyValueMaps = other2776.KeyValueMaps;
-  SkillLevel = other2776.SkillLevel;
-  Motivation = other2776.Motivation;
-  AnonymityDesire = other2776.AnonymityDesire;
-  AttackerGoals = other2776.AttackerGoals;
-  Actions = other2776.Actions;
-  __isset = other2776.__isset;
+TDDIHuman::TDDIHuman(const TDDIHuman& other2768) {
+  Id = other2768.Id;
+  Name = other2768.Name;
+  Description = other2768.Description;
+  KeyValueMaps = other2768.KeyValueMaps;
+  SkillLevel = other2768.SkillLevel;
+  Motivation = other2768.Motivation;
+  AnonymityDesire = other2768.AnonymityDesire;
+  AttackerGoals = other2768.AttackerGoals;
+  Actions = other2768.Actions;
+  __isset = other2768.__isset;
 }
-TDDIHuman& TDDIHuman::operator=(const TDDIHuman& other2777) {
-  Id = other2777.Id;
-  Name = other2777.Name;
-  Description = other2777.Description;
-  KeyValueMaps = other2777.KeyValueMaps;
-  SkillLevel = other2777.SkillLevel;
-  Motivation = other2777.Motivation;
-  AnonymityDesire = other2777.AnonymityDesire;
-  AttackerGoals = other2777.AttackerGoals;
-  Actions = other2777.Actions;
-  __isset = other2777.__isset;
+TDDIHuman& TDDIHuman::operator=(const TDDIHuman& other2769) {
+  Id = other2769.Id;
+  Name = other2769.Name;
+  Description = other2769.Description;
+  KeyValueMaps = other2769.KeyValueMaps;
+  SkillLevel = other2769.SkillLevel;
+  Motivation = other2769.Motivation;
+  AnonymityDesire = other2769.AnonymityDesire;
+  AttackerGoals = other2769.AttackerGoals;
+  Actions = other2769.Actions;
+  __isset = other2769.__isset;
   return *this;
 }
 void TDDIHuman::printTo(std::ostream& out) const {
@@ -57711,14 +57573,14 @@ uint32_t TDDINonHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2778;
-            ::apache::thrift::protocol::TType _etype2781;
-            xfer += iprot->readListBegin(_etype2781, _size2778);
-            this->KeyValueMaps.resize(_size2778);
-            uint32_t _i2782;
-            for (_i2782 = 0; _i2782 < _size2778; ++_i2782)
+            uint32_t _size2770;
+            ::apache::thrift::protocol::TType _etype2773;
+            xfer += iprot->readListBegin(_etype2773, _size2770);
+            this->KeyValueMaps.resize(_size2770);
+            uint32_t _i2774;
+            for (_i2774 = 0; _i2774 < _size2770; ++_i2774)
             {
-              xfer += this->KeyValueMaps[_i2782].read(iprot);
+              xfer += this->KeyValueMaps[_i2774].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57755,14 +57617,14 @@ uint32_t TDDINonHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->AttackerGoals.clear();
-            uint32_t _size2783;
-            ::apache::thrift::protocol::TType _etype2786;
-            xfer += iprot->readListBegin(_etype2786, _size2783);
-            this->AttackerGoals.resize(_size2783);
-            uint32_t _i2787;
-            for (_i2787 = 0; _i2787 < _size2783; ++_i2787)
+            uint32_t _size2775;
+            ::apache::thrift::protocol::TType _etype2778;
+            xfer += iprot->readListBegin(_etype2778, _size2775);
+            this->AttackerGoals.resize(_size2775);
+            uint32_t _i2779;
+            for (_i2779 = 0; _i2779 < _size2775; ++_i2779)
             {
-              xfer += this->AttackerGoals[_i2787].read(iprot);
+              xfer += this->AttackerGoals[_i2779].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57775,14 +57637,14 @@ uint32_t TDDINonHuman::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Payloads.clear();
-            uint32_t _size2788;
-            ::apache::thrift::protocol::TType _etype2791;
-            xfer += iprot->readListBegin(_etype2791, _size2788);
-            this->Payloads.resize(_size2788);
-            uint32_t _i2792;
-            for (_i2792 = 0; _i2792 < _size2788; ++_i2792)
+            uint32_t _size2780;
+            ::apache::thrift::protocol::TType _etype2783;
+            xfer += iprot->readListBegin(_etype2783, _size2780);
+            this->Payloads.resize(_size2780);
+            uint32_t _i2784;
+            for (_i2784 = 0; _i2784 < _size2780; ++_i2784)
             {
-              xfer += this->Payloads[_i2792].read(iprot);
+              xfer += this->Payloads[_i2784].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -57823,10 +57685,10 @@ uint32_t TDDINonHuman::write(::apache::thrift::protocol::TProtocol* oprot) const
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2793;
-    for (_iter2793 = this->KeyValueMaps.begin(); _iter2793 != this->KeyValueMaps.end(); ++_iter2793)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2785;
+    for (_iter2785 = this->KeyValueMaps.begin(); _iter2785 != this->KeyValueMaps.end(); ++_iter2785)
     {
-      xfer += (*_iter2793).write(oprot);
+      xfer += (*_iter2785).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57847,10 +57709,10 @@ uint32_t TDDINonHuman::write(::apache::thrift::protocol::TProtocol* oprot) const
   xfer += oprot->writeFieldBegin("AttackerGoals", ::apache::thrift::protocol::T_LIST, 8);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->AttackerGoals.size()));
-    std::vector<TDDIAttackerGoal> ::const_iterator _iter2794;
-    for (_iter2794 = this->AttackerGoals.begin(); _iter2794 != this->AttackerGoals.end(); ++_iter2794)
+    std::vector<TDDIAttackerGoal> ::const_iterator _iter2786;
+    for (_iter2786 = this->AttackerGoals.begin(); _iter2786 != this->AttackerGoals.end(); ++_iter2786)
     {
-      xfer += (*_iter2794).write(oprot);
+      xfer += (*_iter2786).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57859,10 +57721,10 @@ uint32_t TDDINonHuman::write(::apache::thrift::protocol::TProtocol* oprot) const
   xfer += oprot->writeFieldBegin("Payloads", ::apache::thrift::protocol::T_LIST, 9);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Payloads.size()));
-    std::vector<TDDIPayloadRef> ::const_iterator _iter2795;
-    for (_iter2795 = this->Payloads.begin(); _iter2795 != this->Payloads.end(); ++_iter2795)
+    std::vector<TDDIPayloadRef> ::const_iterator _iter2787;
+    for (_iter2787 = this->Payloads.begin(); _iter2787 != this->Payloads.end(); ++_iter2787)
     {
-      xfer += (*_iter2795).write(oprot);
+      xfer += (*_iter2787).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -57887,29 +57749,29 @@ void swap(TDDINonHuman &a, TDDINonHuman &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDINonHuman::TDDINonHuman(const TDDINonHuman& other2796) {
-  Id = other2796.Id;
-  Name = other2796.Name;
-  Description = other2796.Description;
-  KeyValueMaps = other2796.KeyValueMaps;
-  SkillLevel = other2796.SkillLevel;
-  Motivation = other2796.Motivation;
-  AnonymityDesire = other2796.AnonymityDesire;
-  AttackerGoals = other2796.AttackerGoals;
-  Payloads = other2796.Payloads;
-  __isset = other2796.__isset;
+TDDINonHuman::TDDINonHuman(const TDDINonHuman& other2788) {
+  Id = other2788.Id;
+  Name = other2788.Name;
+  Description = other2788.Description;
+  KeyValueMaps = other2788.KeyValueMaps;
+  SkillLevel = other2788.SkillLevel;
+  Motivation = other2788.Motivation;
+  AnonymityDesire = other2788.AnonymityDesire;
+  AttackerGoals = other2788.AttackerGoals;
+  Payloads = other2788.Payloads;
+  __isset = other2788.__isset;
 }
-TDDINonHuman& TDDINonHuman::operator=(const TDDINonHuman& other2797) {
-  Id = other2797.Id;
-  Name = other2797.Name;
-  Description = other2797.Description;
-  KeyValueMaps = other2797.KeyValueMaps;
-  SkillLevel = other2797.SkillLevel;
-  Motivation = other2797.Motivation;
-  AnonymityDesire = other2797.AnonymityDesire;
-  AttackerGoals = other2797.AttackerGoals;
-  Payloads = other2797.Payloads;
-  __isset = other2797.__isset;
+TDDINonHuman& TDDINonHuman::operator=(const TDDINonHuman& other2789) {
+  Id = other2789.Id;
+  Name = other2789.Name;
+  Description = other2789.Description;
+  KeyValueMaps = other2789.KeyValueMaps;
+  SkillLevel = other2789.SkillLevel;
+  Motivation = other2789.Motivation;
+  AnonymityDesire = other2789.AnonymityDesire;
+  AttackerGoals = other2789.AttackerGoals;
+  Payloads = other2789.Payloads;
+  __isset = other2789.__isset;
   return *this;
 }
 void TDDINonHuman::printTo(std::ostream& out) const {
@@ -58099,17 +57961,17 @@ void swap(TDDIAbstractThreatAgentUnion &a, TDDIAbstractThreatAgentUnion &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractThreatAgentUnion::TDDIAbstractThreatAgentUnion(const TDDIAbstractThreatAgentUnion& other2798) {
-  ThreatAgent = other2798.ThreatAgent;
-  Human = other2798.Human;
-  NonHuman = other2798.NonHuman;
-  __isset = other2798.__isset;
+TDDIAbstractThreatAgentUnion::TDDIAbstractThreatAgentUnion(const TDDIAbstractThreatAgentUnion& other2790) {
+  ThreatAgent = other2790.ThreatAgent;
+  Human = other2790.Human;
+  NonHuman = other2790.NonHuman;
+  __isset = other2790.__isset;
 }
-TDDIAbstractThreatAgentUnion& TDDIAbstractThreatAgentUnion::operator=(const TDDIAbstractThreatAgentUnion& other2799) {
-  ThreatAgent = other2799.ThreatAgent;
-  Human = other2799.Human;
-  NonHuman = other2799.NonHuman;
-  __isset = other2799.__isset;
+TDDIAbstractThreatAgentUnion& TDDIAbstractThreatAgentUnion::operator=(const TDDIAbstractThreatAgentUnion& other2791) {
+  ThreatAgent = other2791.ThreatAgent;
+  Human = other2791.Human;
+  NonHuman = other2791.NonHuman;
+  __isset = other2791.__isset;
   return *this;
 }
 void TDDIAbstractThreatAgentUnion::printTo(std::ostream& out) const {
@@ -58171,9 +58033,9 @@ uint32_t TDDIAbstractThreatAgent::read(::apache::thrift::protocol::TProtocol* ip
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast2800;
-          xfer += iprot->readI32(ecast2800);
-          this->UsedThreatAgentType = (TDDIAbstractThreatAgentUnionType)ecast2800;
+          int32_t ecast2792;
+          xfer += iprot->readI32(ecast2792);
+          this->UsedThreatAgentType = (TDDIAbstractThreatAgentUnionType)ecast2792;
           this->__isset.UsedThreatAgentType = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -58216,15 +58078,15 @@ void swap(TDDIAbstractThreatAgent &a, TDDIAbstractThreatAgent &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDIAbstractThreatAgent::TDDIAbstractThreatAgent(const TDDIAbstractThreatAgent& other2801) {
-  UsedThreatAgent = other2801.UsedThreatAgent;
-  UsedThreatAgentType = other2801.UsedThreatAgentType;
-  __isset = other2801.__isset;
+TDDIAbstractThreatAgent::TDDIAbstractThreatAgent(const TDDIAbstractThreatAgent& other2793) {
+  UsedThreatAgent = other2793.UsedThreatAgent;
+  UsedThreatAgentType = other2793.UsedThreatAgentType;
+  __isset = other2793.__isset;
 }
-TDDIAbstractThreatAgent& TDDIAbstractThreatAgent::operator=(const TDDIAbstractThreatAgent& other2802) {
-  UsedThreatAgent = other2802.UsedThreatAgent;
-  UsedThreatAgentType = other2802.UsedThreatAgentType;
-  __isset = other2802.__isset;
+TDDIAbstractThreatAgent& TDDIAbstractThreatAgent::operator=(const TDDIAbstractThreatAgent& other2794) {
+  UsedThreatAgent = other2794.UsedThreatAgent;
+  UsedThreatAgentType = other2794.UsedThreatAgentType;
+  __isset = other2794.__isset;
   return *this;
 }
 void TDDIAbstractThreatAgent::printTo(std::ostream& out) const {
@@ -58327,14 +58189,14 @@ uint32_t TDDITARAPackage::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->KeyValueMaps.clear();
-            uint32_t _size2803;
-            ::apache::thrift::protocol::TType _etype2806;
-            xfer += iprot->readListBegin(_etype2806, _size2803);
-            this->KeyValueMaps.resize(_size2803);
-            uint32_t _i2807;
-            for (_i2807 = 0; _i2807 < _size2803; ++_i2807)
+            uint32_t _size2795;
+            ::apache::thrift::protocol::TType _etype2798;
+            xfer += iprot->readListBegin(_etype2798, _size2795);
+            this->KeyValueMaps.resize(_size2795);
+            uint32_t _i2799;
+            for (_i2799 = 0; _i2799 < _size2795; ++_i2799)
             {
-              xfer += this->KeyValueMaps[_i2807].read(iprot);
+              xfer += this->KeyValueMaps[_i2799].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -58347,14 +58209,14 @@ uint32_t TDDITARAPackage::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->IdentifiedRisks.clear();
-            uint32_t _size2808;
-            ::apache::thrift::protocol::TType _etype2811;
-            xfer += iprot->readListBegin(_etype2811, _size2808);
-            this->IdentifiedRisks.resize(_size2808);
-            uint32_t _i2812;
-            for (_i2812 = 0; _i2812 < _size2808; ++_i2812)
+            uint32_t _size2800;
+            ::apache::thrift::protocol::TType _etype2803;
+            xfer += iprot->readListBegin(_etype2803, _size2800);
+            this->IdentifiedRisks.resize(_size2800);
+            uint32_t _i2804;
+            for (_i2804 = 0; _i2804 < _size2800; ++_i2804)
             {
-              xfer += this->IdentifiedRisks[_i2812].read(iprot);
+              xfer += this->IdentifiedRisks[_i2804].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -58367,14 +58229,14 @@ uint32_t TDDITARAPackage::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->Controls.clear();
-            uint32_t _size2813;
-            ::apache::thrift::protocol::TType _etype2816;
-            xfer += iprot->readListBegin(_etype2816, _size2813);
-            this->Controls.resize(_size2813);
-            uint32_t _i2817;
-            for (_i2817 = 0; _i2817 < _size2813; ++_i2817)
+            uint32_t _size2805;
+            ::apache::thrift::protocol::TType _etype2808;
+            xfer += iprot->readListBegin(_etype2808, _size2805);
+            this->Controls.resize(_size2805);
+            uint32_t _i2809;
+            for (_i2809 = 0; _i2809 < _size2805; ++_i2809)
             {
-              xfer += this->Controls[_i2817].read(iprot);
+              xfer += this->Controls[_i2809].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -58387,14 +58249,14 @@ uint32_t TDDITARAPackage::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ConsideredAssets.clear();
-            uint32_t _size2818;
-            ::apache::thrift::protocol::TType _etype2821;
-            xfer += iprot->readListBegin(_etype2821, _size2818);
-            this->ConsideredAssets.resize(_size2818);
-            uint32_t _i2822;
-            for (_i2822 = 0; _i2822 < _size2818; ++_i2822)
+            uint32_t _size2810;
+            ::apache::thrift::protocol::TType _etype2813;
+            xfer += iprot->readListBegin(_etype2813, _size2810);
+            this->ConsideredAssets.resize(_size2810);
+            uint32_t _i2814;
+            for (_i2814 = 0; _i2814 < _size2810; ++_i2814)
             {
-              xfer += this->ConsideredAssets[_i2822].read(iprot);
+              xfer += this->ConsideredAssets[_i2814].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -58407,14 +58269,14 @@ uint32_t TDDITARAPackage::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ConsideredThreatAgents.clear();
-            uint32_t _size2823;
-            ::apache::thrift::protocol::TType _etype2826;
-            xfer += iprot->readListBegin(_etype2826, _size2823);
-            this->ConsideredThreatAgents.resize(_size2823);
-            uint32_t _i2827;
-            for (_i2827 = 0; _i2827 < _size2823; ++_i2827)
+            uint32_t _size2815;
+            ::apache::thrift::protocol::TType _etype2818;
+            xfer += iprot->readListBegin(_etype2818, _size2815);
+            this->ConsideredThreatAgents.resize(_size2815);
+            uint32_t _i2819;
+            for (_i2819 = 0; _i2819 < _size2815; ++_i2819)
             {
-              xfer += this->ConsideredThreatAgents[_i2827].read(iprot);
+              xfer += this->ConsideredThreatAgents[_i2819].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -58455,10 +58317,10 @@ uint32_t TDDITARAPackage::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("KeyValueMaps", ::apache::thrift::protocol::T_LIST, 4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->KeyValueMaps.size()));
-    std::vector<TDDIKeyValueMap> ::const_iterator _iter2828;
-    for (_iter2828 = this->KeyValueMaps.begin(); _iter2828 != this->KeyValueMaps.end(); ++_iter2828)
+    std::vector<TDDIKeyValueMap> ::const_iterator _iter2820;
+    for (_iter2820 = this->KeyValueMaps.begin(); _iter2820 != this->KeyValueMaps.end(); ++_iter2820)
     {
-      xfer += (*_iter2828).write(oprot);
+      xfer += (*_iter2820).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -58467,10 +58329,10 @@ uint32_t TDDITARAPackage::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("IdentifiedRisks", ::apache::thrift::protocol::T_LIST, 5);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->IdentifiedRisks.size()));
-    std::vector<TDDISecurityRisk> ::const_iterator _iter2829;
-    for (_iter2829 = this->IdentifiedRisks.begin(); _iter2829 != this->IdentifiedRisks.end(); ++_iter2829)
+    std::vector<TDDISecurityRisk> ::const_iterator _iter2821;
+    for (_iter2821 = this->IdentifiedRisks.begin(); _iter2821 != this->IdentifiedRisks.end(); ++_iter2821)
     {
-      xfer += (*_iter2829).write(oprot);
+      xfer += (*_iter2821).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -58479,10 +58341,10 @@ uint32_t TDDITARAPackage::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("Controls", ::apache::thrift::protocol::T_LIST, 6);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->Controls.size()));
-    std::vector<TDDISecurityControl> ::const_iterator _iter2830;
-    for (_iter2830 = this->Controls.begin(); _iter2830 != this->Controls.end(); ++_iter2830)
+    std::vector<TDDISecurityControl> ::const_iterator _iter2822;
+    for (_iter2822 = this->Controls.begin(); _iter2822 != this->Controls.end(); ++_iter2822)
     {
-      xfer += (*_iter2830).write(oprot);
+      xfer += (*_iter2822).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -58491,10 +58353,10 @@ uint32_t TDDITARAPackage::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("ConsideredAssets", ::apache::thrift::protocol::T_LIST, 7);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ConsideredAssets.size()));
-    std::vector<TDDIAbstractAsset> ::const_iterator _iter2831;
-    for (_iter2831 = this->ConsideredAssets.begin(); _iter2831 != this->ConsideredAssets.end(); ++_iter2831)
+    std::vector<TDDIAbstractAsset> ::const_iterator _iter2823;
+    for (_iter2823 = this->ConsideredAssets.begin(); _iter2823 != this->ConsideredAssets.end(); ++_iter2823)
     {
-      xfer += (*_iter2831).write(oprot);
+      xfer += (*_iter2823).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -58503,10 +58365,10 @@ uint32_t TDDITARAPackage::write(::apache::thrift::protocol::TProtocol* oprot) co
   xfer += oprot->writeFieldBegin("ConsideredThreatAgents", ::apache::thrift::protocol::T_LIST, 8);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ConsideredThreatAgents.size()));
-    std::vector<TDDIAbstractThreatAgent> ::const_iterator _iter2832;
-    for (_iter2832 = this->ConsideredThreatAgents.begin(); _iter2832 != this->ConsideredThreatAgents.end(); ++_iter2832)
+    std::vector<TDDIAbstractThreatAgent> ::const_iterator _iter2824;
+    for (_iter2824 = this->ConsideredThreatAgents.begin(); _iter2824 != this->ConsideredThreatAgents.end(); ++_iter2824)
     {
-      xfer += (*_iter2832).write(oprot);
+      xfer += (*_iter2824).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -58530,27 +58392,27 @@ void swap(TDDITARAPackage &a, TDDITARAPackage &b) {
   swap(a.__isset, b.__isset);
 }
 
-TDDITARAPackage::TDDITARAPackage(const TDDITARAPackage& other2833) {
-  Id = other2833.Id;
-  Name = other2833.Name;
-  Description = other2833.Description;
-  KeyValueMaps = other2833.KeyValueMaps;
-  IdentifiedRisks = other2833.IdentifiedRisks;
-  Controls = other2833.Controls;
-  ConsideredAssets = other2833.ConsideredAssets;
-  ConsideredThreatAgents = other2833.ConsideredThreatAgents;
-  __isset = other2833.__isset;
+TDDITARAPackage::TDDITARAPackage(const TDDITARAPackage& other2825) {
+  Id = other2825.Id;
+  Name = other2825.Name;
+  Description = other2825.Description;
+  KeyValueMaps = other2825.KeyValueMaps;
+  IdentifiedRisks = other2825.IdentifiedRisks;
+  Controls = other2825.Controls;
+  ConsideredAssets = other2825.ConsideredAssets;
+  ConsideredThreatAgents = other2825.ConsideredThreatAgents;
+  __isset = other2825.__isset;
 }
-TDDITARAPackage& TDDITARAPackage::operator=(const TDDITARAPackage& other2834) {
-  Id = other2834.Id;
-  Name = other2834.Name;
-  Description = other2834.Description;
-  KeyValueMaps = other2834.KeyValueMaps;
-  IdentifiedRisks = other2834.IdentifiedRisks;
-  Controls = other2834.Controls;
-  ConsideredAssets = other2834.ConsideredAssets;
-  ConsideredThreatAgents = other2834.ConsideredThreatAgents;
-  __isset = other2834.__isset;
+TDDITARAPackage& TDDITARAPackage::operator=(const TDDITARAPackage& other2826) {
+  Id = other2826.Id;
+  Name = other2826.Name;
+  Description = other2826.Description;
+  KeyValueMaps = other2826.KeyValueMaps;
+  IdentifiedRisks = other2826.IdentifiedRisks;
+  Controls = other2826.Controls;
+  ConsideredAssets = other2826.ConsideredAssets;
+  ConsideredThreatAgents = other2826.ConsideredThreatAgents;
+  __isset = other2826.__isset;
   return *this;
 }
 void TDDITARAPackage::printTo(std::ostream& out) const {

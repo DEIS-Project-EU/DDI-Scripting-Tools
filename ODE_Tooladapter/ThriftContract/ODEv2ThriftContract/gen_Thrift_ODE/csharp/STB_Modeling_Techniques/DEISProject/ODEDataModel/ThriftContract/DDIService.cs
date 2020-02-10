@@ -19,33 +19,28 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 {
   public partial class DDIService {
     public interface ISync {
-      void ExportModelToDDIFile(TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage);
-      TDDIDDIPackage ImportDDIModel(TDDIServiceConfig ServiceConfiguration);
-      TDDIValidationResult ValidateDDI(string DdiPath, string EvlFilePath);
-      TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage);
-      TDDIDDIPackage ExecuteEpsilonSripts(TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage);
+      void ExportModelToDDIFile(string DDIFilePath, TDDIDDIPackage DDIPackage);
+      TDDIDDIPackage ImportDDIModel(string DDIFilePath);
+      TDDIValidationResult ValidateDDI(string DDIFilePath, string EvlFilePath);
+      TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage);
     }
 
     public interface Iface : ISync {
       #if SILVERLIGHT
-      IAsyncResult Begin_ExportModelToDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage);
+      IAsyncResult Begin_ExportModelToDDIFile(AsyncCallback callback, object state, string DDIFilePath, TDDIDDIPackage DDIPackage);
       void End_ExportModelToDDIFile(IAsyncResult asyncResult);
       #endif
       #if SILVERLIGHT
-      IAsyncResult Begin_ImportDDIModel(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration);
+      IAsyncResult Begin_ImportDDIModel(AsyncCallback callback, object state, string DDIFilePath);
       TDDIDDIPackage End_ImportDDIModel(IAsyncResult asyncResult);
       #endif
       #if SILVERLIGHT
-      IAsyncResult Begin_ValidateDDI(AsyncCallback callback, object state, string DdiPath, string EvlFilePath);
+      IAsyncResult Begin_ValidateDDI(AsyncCallback callback, object state, string DDIFilePath, string EvlFilePath);
       TDDIValidationResult End_ValidateDDI(IAsyncResult asyncResult);
       #endif
       #if SILVERLIGHT
-      IAsyncResult Begin_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage);
+      IAsyncResult Begin_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage);
       TDDIDDIPackage End_ExecuteEpsilonSriptsOnDDIFile(IAsyncResult asyncResult);
-      #endif
-      #if SILVERLIGHT
-      IAsyncResult Begin_ExecuteEpsilonSripts(AsyncCallback callback, object state, TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage);
-      TDDIDDIPackage End_ExecuteEpsilonSripts(IAsyncResult asyncResult);
       #endif
     }
 
@@ -107,9 +102,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       
       #if SILVERLIGHT
-      public IAsyncResult Begin_ExportModelToDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage)
+      public IAsyncResult Begin_ExportModelToDDIFile(AsyncCallback callback, object state, string DDIFilePath, TDDIDDIPackage DDIPackage)
       {
-        return send_ExportModelToDDIFile(callback, state, ServiceConfiguration, DDIPackage);
+        return send_ExportModelToDDIFile(callback, state, DDIFilePath, DDIPackage);
       }
 
       public void End_ExportModelToDDIFile(IAsyncResult asyncResult)
@@ -120,27 +115,27 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       #endif
 
-      public void ExportModelToDDIFile(TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage)
+      public void ExportModelToDDIFile(string DDIFilePath, TDDIDDIPackage DDIPackage)
       {
         #if !SILVERLIGHT
-        send_ExportModelToDDIFile(ServiceConfiguration, DDIPackage);
+        send_ExportModelToDDIFile(DDIFilePath, DDIPackage);
         recv_ExportModelToDDIFile();
 
         #else
-        var asyncResult = Begin_ExportModelToDDIFile(null, null, ServiceConfiguration, DDIPackage);
+        var asyncResult = Begin_ExportModelToDDIFile(null, null, DDIFilePath, DDIPackage);
         End_ExportModelToDDIFile(asyncResult);
 
         #endif
       }
       #if SILVERLIGHT
-      public IAsyncResult send_ExportModelToDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage)
+      public IAsyncResult send_ExportModelToDDIFile(AsyncCallback callback, object state, string DDIFilePath, TDDIDDIPackage DDIPackage)
       #else
-      public void send_ExportModelToDDIFile(TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage)
+      public void send_ExportModelToDDIFile(string DDIFilePath, TDDIDDIPackage DDIPackage)
       #endif
       {
         oprot_.WriteMessageBegin(new TMessage("ExportModelToDDIFile", TMessageType.Call, seqid_));
         ExportModelToDDIFile_args args = new ExportModelToDDIFile_args();
-        args.ServiceConfiguration = ServiceConfiguration;
+        args.DDIFilePath = DDIFilePath;
         args.DDIPackage = DDIPackage;
         args.Write(oprot_);
         oprot_.WriteMessageEnd();
@@ -170,9 +165,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       
       #if SILVERLIGHT
-      public IAsyncResult Begin_ImportDDIModel(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration)
+      public IAsyncResult Begin_ImportDDIModel(AsyncCallback callback, object state, string DDIFilePath)
       {
-        return send_ImportDDIModel(callback, state, ServiceConfiguration);
+        return send_ImportDDIModel(callback, state, DDIFilePath);
       }
 
       public TDDIDDIPackage End_ImportDDIModel(IAsyncResult asyncResult)
@@ -183,27 +178,27 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       #endif
 
-      public TDDIDDIPackage ImportDDIModel(TDDIServiceConfig ServiceConfiguration)
+      public TDDIDDIPackage ImportDDIModel(string DDIFilePath)
       {
         #if !SILVERLIGHT
-        send_ImportDDIModel(ServiceConfiguration);
+        send_ImportDDIModel(DDIFilePath);
         return recv_ImportDDIModel();
 
         #else
-        var asyncResult = Begin_ImportDDIModel(null, null, ServiceConfiguration);
+        var asyncResult = Begin_ImportDDIModel(null, null, DDIFilePath);
         return End_ImportDDIModel(asyncResult);
 
         #endif
       }
       #if SILVERLIGHT
-      public IAsyncResult send_ImportDDIModel(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration)
+      public IAsyncResult send_ImportDDIModel(AsyncCallback callback, object state, string DDIFilePath)
       #else
-      public void send_ImportDDIModel(TDDIServiceConfig ServiceConfiguration)
+      public void send_ImportDDIModel(string DDIFilePath)
       #endif
       {
         oprot_.WriteMessageBegin(new TMessage("ImportDDIModel", TMessageType.Call, seqid_));
         ImportDDIModel_args args = new ImportDDIModel_args();
-        args.ServiceConfiguration = ServiceConfiguration;
+        args.DDIFilePath = DDIFilePath;
         args.Write(oprot_);
         oprot_.WriteMessageEnd();
         #if SILVERLIGHT
@@ -235,9 +230,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       
       #if SILVERLIGHT
-      public IAsyncResult Begin_ValidateDDI(AsyncCallback callback, object state, string DdiPath, string EvlFilePath)
+      public IAsyncResult Begin_ValidateDDI(AsyncCallback callback, object state, string DDIFilePath, string EvlFilePath)
       {
-        return send_ValidateDDI(callback, state, DdiPath, EvlFilePath);
+        return send_ValidateDDI(callback, state, DDIFilePath, EvlFilePath);
       }
 
       public TDDIValidationResult End_ValidateDDI(IAsyncResult asyncResult)
@@ -248,27 +243,27 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       #endif
 
-      public TDDIValidationResult ValidateDDI(string DdiPath, string EvlFilePath)
+      public TDDIValidationResult ValidateDDI(string DDIFilePath, string EvlFilePath)
       {
         #if !SILVERLIGHT
-        send_ValidateDDI(DdiPath, EvlFilePath);
+        send_ValidateDDI(DDIFilePath, EvlFilePath);
         return recv_ValidateDDI();
 
         #else
-        var asyncResult = Begin_ValidateDDI(null, null, DdiPath, EvlFilePath);
+        var asyncResult = Begin_ValidateDDI(null, null, DDIFilePath, EvlFilePath);
         return End_ValidateDDI(asyncResult);
 
         #endif
       }
       #if SILVERLIGHT
-      public IAsyncResult send_ValidateDDI(AsyncCallback callback, object state, string DdiPath, string EvlFilePath)
+      public IAsyncResult send_ValidateDDI(AsyncCallback callback, object state, string DDIFilePath, string EvlFilePath)
       #else
-      public void send_ValidateDDI(string DdiPath, string EvlFilePath)
+      public void send_ValidateDDI(string DDIFilePath, string EvlFilePath)
       #endif
       {
         oprot_.WriteMessageBegin(new TMessage("ValidateDDI", TMessageType.Call, seqid_));
         ValidateDDI_args args = new ValidateDDI_args();
-        args.DdiPath = DdiPath;
+        args.DDIFilePath = DDIFilePath;
         args.EvlFilePath = EvlFilePath;
         args.Write(oprot_);
         oprot_.WriteMessageEnd();
@@ -298,9 +293,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       
       #if SILVERLIGHT
-      public IAsyncResult Begin_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage)
+      public IAsyncResult Begin_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage)
       {
-        return send_ExecuteEpsilonSriptsOnDDIFile(callback, state, ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+        return send_ExecuteEpsilonSriptsOnDDIFile(callback, state, EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
       }
 
       public TDDIDDIPackage End_ExecuteEpsilonSriptsOnDDIFile(IAsyncResult asyncResult)
@@ -311,27 +306,27 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       #endif
 
-      public TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage)
+      public TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage)
       {
         #if !SILVERLIGHT
-        send_ExecuteEpsilonSriptsOnDDIFile(ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+        send_ExecuteEpsilonSriptsOnDDIFile(EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
         return recv_ExecuteEpsilonSriptsOnDDIFile();
 
         #else
-        var asyncResult = Begin_ExecuteEpsilonSriptsOnDDIFile(null, null, ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+        var asyncResult = Begin_ExecuteEpsilonSriptsOnDDIFile(null, null, EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
         return End_ExecuteEpsilonSriptsOnDDIFile(asyncResult);
 
         #endif
       }
       #if SILVERLIGHT
-      public IAsyncResult send_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage)
+      public IAsyncResult send_ExecuteEpsilonSriptsOnDDIFile(AsyncCallback callback, object state, List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage)
       #else
-      public void send_ExecuteEpsilonSriptsOnDDIFile(TDDIServiceConfig ServiceConfiguration, bool BackupDDIFile, bool ReturnDDIPackage)
+      public void send_ExecuteEpsilonSriptsOnDDIFile(List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs, bool BackupDDIFile, bool ReturnDDIPackage)
       #endif
       {
         oprot_.WriteMessageBegin(new TMessage("ExecuteEpsilonSriptsOnDDIFile", TMessageType.Call, seqid_));
         ExecuteEpsilonSriptsOnDDIFile_args args = new ExecuteEpsilonSriptsOnDDIFile_args();
-        args.ServiceConfiguration = ServiceConfiguration;
+        args.EpsilonScriptExecutionConfigs = EpsilonScriptExecutionConfigs;
         args.BackupDDIFile = BackupDDIFile;
         args.ReturnDDIPackage = ReturnDDIPackage;
         args.Write(oprot_);
@@ -363,74 +358,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ExecuteEpsilonSriptsOnDDIFile failed: unknown result");
       }
 
-      
-      #if SILVERLIGHT
-      public IAsyncResult Begin_ExecuteEpsilonSripts(AsyncCallback callback, object state, TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage)
-      {
-        return send_ExecuteEpsilonSripts(callback, state, DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-      }
-
-      public TDDIDDIPackage End_ExecuteEpsilonSripts(IAsyncResult asyncResult)
-      {
-        oprot_.Transport.EndFlush(asyncResult);
-        return recv_ExecuteEpsilonSripts();
-      }
-
-      #endif
-
-      public TDDIDDIPackage ExecuteEpsilonSripts(TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage)
-      {
-        #if !SILVERLIGHT
-        send_ExecuteEpsilonSripts(DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-        return recv_ExecuteEpsilonSripts();
-
-        #else
-        var asyncResult = Begin_ExecuteEpsilonSripts(null, null, DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-        return End_ExecuteEpsilonSripts(asyncResult);
-
-        #endif
-      }
-      #if SILVERLIGHT
-      public IAsyncResult send_ExecuteEpsilonSripts(AsyncCallback callback, object state, TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage)
-      #else
-      public void send_ExecuteEpsilonSripts(TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, bool ExportDDIFile, bool ReturnDDIPackage)
-      #endif
-      {
-        oprot_.WriteMessageBegin(new TMessage("ExecuteEpsilonSripts", TMessageType.Call, seqid_));
-        ExecuteEpsilonSripts_args args = new ExecuteEpsilonSripts_args();
-        args.DDIPackage = DDIPackage;
-        args.ServiceConfiguration = ServiceConfiguration;
-        args.ExportDDIFile = ExportDDIFile;
-        args.ReturnDDIPackage = ReturnDDIPackage;
-        args.Write(oprot_);
-        oprot_.WriteMessageEnd();
-        #if SILVERLIGHT
-        return oprot_.Transport.BeginFlush(callback, state);
-        #else
-        oprot_.Transport.Flush();
-        #endif
-      }
-
-      public TDDIDDIPackage recv_ExecuteEpsilonSripts()
-      {
-        TMessage msg = iprot_.ReadMessageBegin();
-        if (msg.Type == TMessageType.Exception) {
-          TApplicationException x = TApplicationException.Read(iprot_);
-          iprot_.ReadMessageEnd();
-          throw x;
-        }
-        ExecuteEpsilonSripts_result result = new ExecuteEpsilonSripts_result();
-        result.Read(iprot_);
-        iprot_.ReadMessageEnd();
-        if (result.__isset.success) {
-          return result.Success;
-        }
-        if (result.__isset.EpsilonScriptExecutionException) {
-          throw result.EpsilonScriptExecutionException;
-        }
-        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ExecuteEpsilonSripts failed: unknown result");
-      }
-
     }
     public class Processor : TProcessor {
       public Processor(ISync iface)
@@ -440,7 +367,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         processMap_["ImportDDIModel"] = ImportDDIModel_Process;
         processMap_["ValidateDDI"] = ValidateDDI_Process;
         processMap_["ExecuteEpsilonSriptsOnDDIFile"] = ExecuteEpsilonSriptsOnDDIFile_Process;
-        processMap_["ExecuteEpsilonSripts"] = ExecuteEpsilonSripts_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -483,7 +409,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         {
           try
           {
-            iface_.ExportModelToDDIFile(args.ServiceConfiguration, args.DDIPackage);
+            iface_.ExportModelToDDIFile(args.DDIFilePath, args.DDIPackage);
           }
           catch (TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException)
           {
@@ -518,7 +444,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         {
           try
           {
-            result.Success = iface_.ImportDDIModel(args.ServiceConfiguration);
+            result.Success = iface_.ImportDDIModel(args.DDIFilePath);
           }
           catch (TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException)
           {
@@ -551,7 +477,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         ValidateDDI_result result = new ValidateDDI_result();
         try
         {
-          result.Success = iface_.ValidateDDI(args.DdiPath, args.EvlFilePath);
+          result.Success = iface_.ValidateDDI(args.DDIFilePath, args.EvlFilePath);
           oprot.WriteMessageBegin(new TMessage("ValidateDDI", TMessageType.Reply, seqid)); 
           result.Write(oprot);
         }
@@ -581,7 +507,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         {
           try
           {
-            result.Success = iface_.ExecuteEpsilonSriptsOnDDIFile(args.ServiceConfiguration, args.BackupDDIFile, args.ReturnDDIPackage);
+            result.Success = iface_.ExecuteEpsilonSriptsOnDDIFile(args.EpsilonScriptExecutionConfigs, args.BackupDDIFile, args.ReturnDDIPackage);
           }
           catch (TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException)
           {
@@ -606,41 +532,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         oprot.Transport.Flush();
       }
 
-      public void ExecuteEpsilonSripts_Process(int seqid, TProtocol iprot, TProtocol oprot)
-      {
-        ExecuteEpsilonSripts_args args = new ExecuteEpsilonSripts_args();
-        args.Read(iprot);
-        iprot.ReadMessageEnd();
-        ExecuteEpsilonSripts_result result = new ExecuteEpsilonSripts_result();
-        try
-        {
-          try
-          {
-            result.Success = iface_.ExecuteEpsilonSripts(args.DDIPackage, args.ServiceConfiguration, args.ExportDDIFile, args.ReturnDDIPackage);
-          }
-          catch (TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException)
-          {
-            result.EpsilonScriptExecutionException = EpsilonScriptExecutionException;
-          }
-          oprot.WriteMessageBegin(new TMessage("ExecuteEpsilonSripts", TMessageType.Reply, seqid)); 
-          result.Write(oprot);
-        }
-        catch (TTransportException)
-        {
-          throw;
-        }
-        catch (Exception ex)
-        {
-          Console.Error.WriteLine("Error occurred in processor:");
-          Console.Error.WriteLine(ex.ToString());
-          TApplicationException x = new TApplicationException        (TApplicationException.ExceptionType.InternalError," Internal error.");
-          oprot.WriteMessageBegin(new TMessage("ExecuteEpsilonSripts", TMessageType.Exception, seqid));
-          x.Write(oprot);
-        }
-        oprot.WriteMessageEnd();
-        oprot.Transport.Flush();
-      }
-
     }
 
 
@@ -649,19 +540,19 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     #endif
     public partial class ExportModelToDDIFile_args : TBase
     {
-      private TDDIServiceConfig _ServiceConfiguration;
+      private string _DDIFilePath;
       private TDDIDDIPackage _DDIPackage;
 
-      public TDDIServiceConfig ServiceConfiguration
+      public string DDIFilePath
       {
         get
         {
-          return _ServiceConfiguration;
+          return _DDIFilePath;
         }
         set
         {
-          __isset.ServiceConfiguration = true;
-          this._ServiceConfiguration = value;
+          __isset.DDIFilePath = true;
+          this._DDIFilePath = value;
         }
       }
 
@@ -684,7 +575,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       [Serializable]
       #endif
       public struct Isset {
-        public bool ServiceConfiguration;
+        public bool DDIFilePath;
         public bool DDIPackage;
       }
 
@@ -707,9 +598,8 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             switch (field.ID)
             {
               case 1:
-                if (field.Type == TType.Struct) {
-                  ServiceConfiguration = new TDDIServiceConfig();
-                  ServiceConfiguration.Read(iprot);
+                if (field.Type == TType.String) {
+                  DDIFilePath = iprot.ReadString();
                 } else { 
                   TProtocolUtil.Skip(iprot, field.Type);
                 }
@@ -743,12 +633,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           TStruct struc = new TStruct("ExportModelToDDIFile_args");
           oprot.WriteStructBegin(struc);
           TField field = new TField();
-          if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
-            field.Name = "ServiceConfiguration";
-            field.Type = TType.Struct;
+          if (DDIFilePath != null && __isset.DDIFilePath) {
+            field.Name = "DDIFilePath";
+            field.Type = TType.String;
             field.ID = 1;
             oprot.WriteFieldBegin(field);
-            ServiceConfiguration.Write(oprot);
+            oprot.WriteString(DDIFilePath);
             oprot.WriteFieldEnd();
           }
           if (DDIPackage != null && __isset.DDIPackage) {
@@ -771,11 +661,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       public override string ToString() {
         StringBuilder __sb = new StringBuilder("ExportModelToDDIFile_args(");
         bool __first = true;
-        if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
+        if (DDIFilePath != null && __isset.DDIFilePath) {
           if(!__first) { __sb.Append(", "); }
           __first = false;
-          __sb.Append("ServiceConfiguration: ");
-          __sb.Append(ServiceConfiguration== null ? "<null>" : ServiceConfiguration.ToString());
+          __sb.Append("DDIFilePath: ");
+          __sb.Append(DDIFilePath);
         }
         if (DDIPackage != null && __isset.DDIPackage) {
           if(!__first) { __sb.Append(", "); }
@@ -907,18 +797,18 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     #endif
     public partial class ImportDDIModel_args : TBase
     {
-      private TDDIServiceConfig _ServiceConfiguration;
+      private string _DDIFilePath;
 
-      public TDDIServiceConfig ServiceConfiguration
+      public string DDIFilePath
       {
         get
         {
-          return _ServiceConfiguration;
+          return _DDIFilePath;
         }
         set
         {
-          __isset.ServiceConfiguration = true;
-          this._ServiceConfiguration = value;
+          __isset.DDIFilePath = true;
+          this._DDIFilePath = value;
         }
       }
 
@@ -928,7 +818,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       [Serializable]
       #endif
       public struct Isset {
-        public bool ServiceConfiguration;
+        public bool DDIFilePath;
       }
 
       public ImportDDIModel_args() {
@@ -950,9 +840,8 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             switch (field.ID)
             {
               case 1:
-                if (field.Type == TType.Struct) {
-                  ServiceConfiguration = new TDDIServiceConfig();
-                  ServiceConfiguration.Read(iprot);
+                if (field.Type == TType.String) {
+                  DDIFilePath = iprot.ReadString();
                 } else { 
                   TProtocolUtil.Skip(iprot, field.Type);
                 }
@@ -978,12 +867,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           TStruct struc = new TStruct("ImportDDIModel_args");
           oprot.WriteStructBegin(struc);
           TField field = new TField();
-          if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
-            field.Name = "ServiceConfiguration";
-            field.Type = TType.Struct;
+          if (DDIFilePath != null && __isset.DDIFilePath) {
+            field.Name = "DDIFilePath";
+            field.Type = TType.String;
             field.ID = 1;
             oprot.WriteFieldBegin(field);
-            ServiceConfiguration.Write(oprot);
+            oprot.WriteString(DDIFilePath);
             oprot.WriteFieldEnd();
           }
           oprot.WriteFieldStop();
@@ -998,11 +887,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       public override string ToString() {
         StringBuilder __sb = new StringBuilder("ImportDDIModel_args(");
         bool __first = true;
-        if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
+        if (DDIFilePath != null && __isset.DDIFilePath) {
           if(!__first) { __sb.Append(", "); }
           __first = false;
-          __sb.Append("ServiceConfiguration: ");
-          __sb.Append(ServiceConfiguration== null ? "<null>" : ServiceConfiguration.ToString());
+          __sb.Append("DDIFilePath: ");
+          __sb.Append(DDIFilePath);
         }
         __sb.Append(")");
         return __sb.ToString();
@@ -1166,19 +1055,19 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     #endif
     public partial class ValidateDDI_args : TBase
     {
-      private string _DdiPath;
+      private string _DDIFilePath;
       private string _EvlFilePath;
 
-      public string DdiPath
+      public string DDIFilePath
       {
         get
         {
-          return _DdiPath;
+          return _DDIFilePath;
         }
         set
         {
-          __isset.DdiPath = true;
-          this._DdiPath = value;
+          __isset.DDIFilePath = true;
+          this._DDIFilePath = value;
         }
       }
 
@@ -1201,7 +1090,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       [Serializable]
       #endif
       public struct Isset {
-        public bool DdiPath;
+        public bool DDIFilePath;
         public bool EvlFilePath;
       }
 
@@ -1225,7 +1114,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             {
               case 1:
                 if (field.Type == TType.String) {
-                  DdiPath = iprot.ReadString();
+                  DDIFilePath = iprot.ReadString();
                 } else { 
                   TProtocolUtil.Skip(iprot, field.Type);
                 }
@@ -1258,12 +1147,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           TStruct struc = new TStruct("ValidateDDI_args");
           oprot.WriteStructBegin(struc);
           TField field = new TField();
-          if (DdiPath != null && __isset.DdiPath) {
-            field.Name = "DdiPath";
+          if (DDIFilePath != null && __isset.DDIFilePath) {
+            field.Name = "DDIFilePath";
             field.Type = TType.String;
             field.ID = 1;
             oprot.WriteFieldBegin(field);
-            oprot.WriteString(DdiPath);
+            oprot.WriteString(DDIFilePath);
             oprot.WriteFieldEnd();
           }
           if (EvlFilePath != null && __isset.EvlFilePath) {
@@ -1286,11 +1175,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       public override string ToString() {
         StringBuilder __sb = new StringBuilder("ValidateDDI_args(");
         bool __first = true;
-        if (DdiPath != null && __isset.DdiPath) {
+        if (DDIFilePath != null && __isset.DDIFilePath) {
           if(!__first) { __sb.Append(", "); }
           __first = false;
-          __sb.Append("DdiPath: ");
-          __sb.Append(DdiPath);
+          __sb.Append("DDIFilePath: ");
+          __sb.Append(DDIFilePath);
         }
         if (EvlFilePath != null && __isset.EvlFilePath) {
           if(!__first) { __sb.Append(", "); }
@@ -1422,20 +1311,20 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     #endif
     public partial class ExecuteEpsilonSriptsOnDDIFile_args : TBase
     {
-      private TDDIServiceConfig _ServiceConfiguration;
+      private List<TDDIEpsilonScriptExecutionConfig> _EpsilonScriptExecutionConfigs;
       private bool _BackupDDIFile;
       private bool _ReturnDDIPackage;
 
-      public TDDIServiceConfig ServiceConfiguration
+      public List<TDDIEpsilonScriptExecutionConfig> EpsilonScriptExecutionConfigs
       {
         get
         {
-          return _ServiceConfiguration;
+          return _EpsilonScriptExecutionConfigs;
         }
         set
         {
-          __isset.ServiceConfiguration = true;
-          this._ServiceConfiguration = value;
+          __isset.EpsilonScriptExecutionConfigs = true;
+          this._EpsilonScriptExecutionConfigs = value;
         }
       }
 
@@ -1471,7 +1360,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       [Serializable]
       #endif
       public struct Isset {
-        public bool ServiceConfiguration;
+        public bool EpsilonScriptExecutionConfigs;
         public bool BackupDDIFile;
         public bool ReturnDDIPackage;
       }
@@ -1495,9 +1384,19 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             switch (field.ID)
             {
               case 1:
-                if (field.Type == TType.Struct) {
-                  ServiceConfiguration = new TDDIServiceConfig();
-                  ServiceConfiguration.Read(iprot);
+                if (field.Type == TType.List) {
+                  {
+                    EpsilonScriptExecutionConfigs = new List<TDDIEpsilonScriptExecutionConfig>();
+                    TList _list1532 = iprot.ReadListBegin();
+                    for( int _i1533 = 0; _i1533 < _list1532.Count; ++_i1533)
+                    {
+                      TDDIEpsilonScriptExecutionConfig _elem1534;
+                      _elem1534 = new TDDIEpsilonScriptExecutionConfig();
+                      _elem1534.Read(iprot);
+                      EpsilonScriptExecutionConfigs.Add(_elem1534);
+                    }
+                    iprot.ReadListEnd();
+                  }
                 } else { 
                   TProtocolUtil.Skip(iprot, field.Type);
                 }
@@ -1537,12 +1436,19 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           TStruct struc = new TStruct("ExecuteEpsilonSriptsOnDDIFile_args");
           oprot.WriteStructBegin(struc);
           TField field = new TField();
-          if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
-            field.Name = "ServiceConfiguration";
-            field.Type = TType.Struct;
+          if (EpsilonScriptExecutionConfigs != null && __isset.EpsilonScriptExecutionConfigs) {
+            field.Name = "EpsilonScriptExecutionConfigs";
+            field.Type = TType.List;
             field.ID = 1;
             oprot.WriteFieldBegin(field);
-            ServiceConfiguration.Write(oprot);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, EpsilonScriptExecutionConfigs.Count));
+              foreach (TDDIEpsilonScriptExecutionConfig _iter1535 in EpsilonScriptExecutionConfigs)
+              {
+                _iter1535.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
             oprot.WriteFieldEnd();
           }
           if (__isset.BackupDDIFile) {
@@ -1573,11 +1479,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       public override string ToString() {
         StringBuilder __sb = new StringBuilder("ExecuteEpsilonSriptsOnDDIFile_args(");
         bool __first = true;
-        if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
+        if (EpsilonScriptExecutionConfigs != null && __isset.EpsilonScriptExecutionConfigs) {
           if(!__first) { __sb.Append(", "); }
           __first = false;
-          __sb.Append("ServiceConfiguration: ");
-          __sb.Append(ServiceConfiguration== null ? "<null>" : ServiceConfiguration.ToString());
+          __sb.Append("EpsilonScriptExecutionConfigs: ");
+          __sb.Append(EpsilonScriptExecutionConfigs);
         }
         if (__isset.BackupDDIFile) {
           if(!__first) { __sb.Append(", "); }
@@ -1728,374 +1634,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
 
       public override string ToString() {
         StringBuilder __sb = new StringBuilder("ExecuteEpsilonSriptsOnDDIFile_result(");
-        bool __first = true;
-        if (Success != null && __isset.success) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("Success: ");
-          __sb.Append(Success== null ? "<null>" : Success.ToString());
-        }
-        if (EpsilonScriptExecutionException != null && __isset.EpsilonScriptExecutionException) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("EpsilonScriptExecutionException: ");
-          __sb.Append(EpsilonScriptExecutionException== null ? "<null>" : EpsilonScriptExecutionException.ToString());
-        }
-        __sb.Append(")");
-        return __sb.ToString();
-      }
-
-    }
-
-
-    #if !SILVERLIGHT
-    [Serializable]
-    #endif
-    public partial class ExecuteEpsilonSripts_args : TBase
-    {
-      private TDDIDDIPackage _DDIPackage;
-      private TDDIServiceConfig _ServiceConfiguration;
-      private bool _ExportDDIFile;
-      private bool _ReturnDDIPackage;
-
-      public TDDIDDIPackage DDIPackage
-      {
-        get
-        {
-          return _DDIPackage;
-        }
-        set
-        {
-          __isset.DDIPackage = true;
-          this._DDIPackage = value;
-        }
-      }
-
-      public TDDIServiceConfig ServiceConfiguration
-      {
-        get
-        {
-          return _ServiceConfiguration;
-        }
-        set
-        {
-          __isset.ServiceConfiguration = true;
-          this._ServiceConfiguration = value;
-        }
-      }
-
-      public bool ExportDDIFile
-      {
-        get
-        {
-          return _ExportDDIFile;
-        }
-        set
-        {
-          __isset.ExportDDIFile = true;
-          this._ExportDDIFile = value;
-        }
-      }
-
-      public bool ReturnDDIPackage
-      {
-        get
-        {
-          return _ReturnDDIPackage;
-        }
-        set
-        {
-          __isset.ReturnDDIPackage = true;
-          this._ReturnDDIPackage = value;
-        }
-      }
-
-
-      public Isset __isset;
-      #if !SILVERLIGHT
-      [Serializable]
-      #endif
-      public struct Isset {
-        public bool DDIPackage;
-        public bool ServiceConfiguration;
-        public bool ExportDDIFile;
-        public bool ReturnDDIPackage;
-      }
-
-      public ExecuteEpsilonSripts_args() {
-      }
-
-      public void Read (TProtocol iprot)
-      {
-        iprot.IncrementRecursionDepth();
-        try
-        {
-          TField field;
-          iprot.ReadStructBegin();
-          while (true)
-          {
-            field = iprot.ReadFieldBegin();
-            if (field.Type == TType.Stop) { 
-              break;
-            }
-            switch (field.ID)
-            {
-              case 1:
-                if (field.Type == TType.Struct) {
-                  DDIPackage = new TDDIDDIPackage();
-                  DDIPackage.Read(iprot);
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              case 2:
-                if (field.Type == TType.Struct) {
-                  ServiceConfiguration = new TDDIServiceConfig();
-                  ServiceConfiguration.Read(iprot);
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              case 3:
-                if (field.Type == TType.Bool) {
-                  ExportDDIFile = iprot.ReadBool();
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              case 4:
-                if (field.Type == TType.Bool) {
-                  ReturnDDIPackage = iprot.ReadBool();
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              default: 
-                TProtocolUtil.Skip(iprot, field.Type);
-                break;
-            }
-            iprot.ReadFieldEnd();
-          }
-          iprot.ReadStructEnd();
-        }
-        finally
-        {
-          iprot.DecrementRecursionDepth();
-        }
-      }
-
-      public void Write(TProtocol oprot) {
-        oprot.IncrementRecursionDepth();
-        try
-        {
-          TStruct struc = new TStruct("ExecuteEpsilonSripts_args");
-          oprot.WriteStructBegin(struc);
-          TField field = new TField();
-          if (DDIPackage != null && __isset.DDIPackage) {
-            field.Name = "DDIPackage";
-            field.Type = TType.Struct;
-            field.ID = 1;
-            oprot.WriteFieldBegin(field);
-            DDIPackage.Write(oprot);
-            oprot.WriteFieldEnd();
-          }
-          if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
-            field.Name = "ServiceConfiguration";
-            field.Type = TType.Struct;
-            field.ID = 2;
-            oprot.WriteFieldBegin(field);
-            ServiceConfiguration.Write(oprot);
-            oprot.WriteFieldEnd();
-          }
-          if (__isset.ExportDDIFile) {
-            field.Name = "ExportDDIFile";
-            field.Type = TType.Bool;
-            field.ID = 3;
-            oprot.WriteFieldBegin(field);
-            oprot.WriteBool(ExportDDIFile);
-            oprot.WriteFieldEnd();
-          }
-          if (__isset.ReturnDDIPackage) {
-            field.Name = "ReturnDDIPackage";
-            field.Type = TType.Bool;
-            field.ID = 4;
-            oprot.WriteFieldBegin(field);
-            oprot.WriteBool(ReturnDDIPackage);
-            oprot.WriteFieldEnd();
-          }
-          oprot.WriteFieldStop();
-          oprot.WriteStructEnd();
-        }
-        finally
-        {
-          oprot.DecrementRecursionDepth();
-        }
-      }
-
-      public override string ToString() {
-        StringBuilder __sb = new StringBuilder("ExecuteEpsilonSripts_args(");
-        bool __first = true;
-        if (DDIPackage != null && __isset.DDIPackage) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("DDIPackage: ");
-          __sb.Append(DDIPackage== null ? "<null>" : DDIPackage.ToString());
-        }
-        if (ServiceConfiguration != null && __isset.ServiceConfiguration) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("ServiceConfiguration: ");
-          __sb.Append(ServiceConfiguration== null ? "<null>" : ServiceConfiguration.ToString());
-        }
-        if (__isset.ExportDDIFile) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("ExportDDIFile: ");
-          __sb.Append(ExportDDIFile);
-        }
-        if (__isset.ReturnDDIPackage) {
-          if(!__first) { __sb.Append(", "); }
-          __first = false;
-          __sb.Append("ReturnDDIPackage: ");
-          __sb.Append(ReturnDDIPackage);
-        }
-        __sb.Append(")");
-        return __sb.ToString();
-      }
-
-    }
-
-
-    #if !SILVERLIGHT
-    [Serializable]
-    #endif
-    public partial class ExecuteEpsilonSripts_result : TBase
-    {
-      private TDDIDDIPackage _success;
-      private TDDIAbstractEpsilonScriptExecutionException _EpsilonScriptExecutionException;
-
-      public TDDIDDIPackage Success
-      {
-        get
-        {
-          return _success;
-        }
-        set
-        {
-          __isset.success = true;
-          this._success = value;
-        }
-      }
-
-      public TDDIAbstractEpsilonScriptExecutionException EpsilonScriptExecutionException
-      {
-        get
-        {
-          return _EpsilonScriptExecutionException;
-        }
-        set
-        {
-          __isset.EpsilonScriptExecutionException = true;
-          this._EpsilonScriptExecutionException = value;
-        }
-      }
-
-
-      public Isset __isset;
-      #if !SILVERLIGHT
-      [Serializable]
-      #endif
-      public struct Isset {
-        public bool success;
-        public bool EpsilonScriptExecutionException;
-      }
-
-      public ExecuteEpsilonSripts_result() {
-      }
-
-      public void Read (TProtocol iprot)
-      {
-        iprot.IncrementRecursionDepth();
-        try
-        {
-          TField field;
-          iprot.ReadStructBegin();
-          while (true)
-          {
-            field = iprot.ReadFieldBegin();
-            if (field.Type == TType.Stop) { 
-              break;
-            }
-            switch (field.ID)
-            {
-              case 0:
-                if (field.Type == TType.Struct) {
-                  Success = new TDDIDDIPackage();
-                  Success.Read(iprot);
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              case 1:
-                if (field.Type == TType.Struct) {
-                  EpsilonScriptExecutionException = new TDDIAbstractEpsilonScriptExecutionException();
-                  EpsilonScriptExecutionException.Read(iprot);
-                } else { 
-                  TProtocolUtil.Skip(iprot, field.Type);
-                }
-                break;
-              default: 
-                TProtocolUtil.Skip(iprot, field.Type);
-                break;
-            }
-            iprot.ReadFieldEnd();
-          }
-          iprot.ReadStructEnd();
-        }
-        finally
-        {
-          iprot.DecrementRecursionDepth();
-        }
-      }
-
-      public void Write(TProtocol oprot) {
-        oprot.IncrementRecursionDepth();
-        try
-        {
-          TStruct struc = new TStruct("ExecuteEpsilonSripts_result");
-          oprot.WriteStructBegin(struc);
-          TField field = new TField();
-
-          if (this.__isset.success) {
-            if (Success != null) {
-              field.Name = "Success";
-              field.Type = TType.Struct;
-              field.ID = 0;
-              oprot.WriteFieldBegin(field);
-              Success.Write(oprot);
-              oprot.WriteFieldEnd();
-            }
-          } else if (this.__isset.EpsilonScriptExecutionException) {
-            if (EpsilonScriptExecutionException != null) {
-              field.Name = "EpsilonScriptExecutionException";
-              field.Type = TType.Struct;
-              field.ID = 1;
-              oprot.WriteFieldBegin(field);
-              EpsilonScriptExecutionException.Write(oprot);
-              oprot.WriteFieldEnd();
-            }
-          }
-          oprot.WriteFieldStop();
-          oprot.WriteStructEnd();
-        }
-        finally
-        {
-          oprot.DecrementRecursionDepth();
-        }
-      }
-
-      public override string ToString() {
-        StringBuilder __sb = new StringBuilder("ExecuteEpsilonSripts_result(");
         bool __first = true;
         if (Success != null && __isset.success) {
           if(!__first) { __sb.Append(", "); }

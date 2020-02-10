@@ -35,9 +35,9 @@ uint32_t DDIService_ExportModelToDDIFile_args::read(::apache::thrift::protocol::
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->ServiceConfiguration.read(iprot);
-          this->__isset.ServiceConfiguration = true;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->DDIFilePath);
+          this->__isset.DDIFilePath = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -67,8 +67,8 @@ uint32_t DDIService_ExportModelToDDIFile_args::write(::apache::thrift::protocol:
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ExportModelToDDIFile_args");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->ServiceConfiguration.write(oprot);
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->DDIFilePath);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("DDIPackage", ::apache::thrift::protocol::T_STRUCT, 2);
@@ -90,8 +90,8 @@ uint32_t DDIService_ExportModelToDDIFile_pargs::write(::apache::thrift::protocol
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ExportModelToDDIFile_pargs");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->ServiceConfiguration)).write(oprot);
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->DDIFilePath)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("DDIPackage", ::apache::thrift::protocol::T_STRUCT, 2);
@@ -238,9 +238,9 @@ uint32_t DDIService_ImportDDIModel_args::read(::apache::thrift::protocol::TProto
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->ServiceConfiguration.read(iprot);
-          this->__isset.ServiceConfiguration = true;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->DDIFilePath);
+          this->__isset.DDIFilePath = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -262,8 +262,8 @@ uint32_t DDIService_ImportDDIModel_args::write(::apache::thrift::protocol::TProt
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ImportDDIModel_args");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->ServiceConfiguration.write(oprot);
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->DDIFilePath);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -281,8 +281,8 @@ uint32_t DDIService_ImportDDIModel_pargs::write(::apache::thrift::protocol::TPro
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ImportDDIModel_pargs");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->ServiceConfiguration)).write(oprot);
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->DDIFilePath)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -446,8 +446,8 @@ uint32_t DDIService_ValidateDDI_args::read(::apache::thrift::protocol::TProtocol
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->DdiPath);
-          this->__isset.DdiPath = true;
+          xfer += iprot->readString(this->DDIFilePath);
+          this->__isset.DDIFilePath = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -477,8 +477,8 @@ uint32_t DDIService_ValidateDDI_args::write(::apache::thrift::protocol::TProtoco
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ValidateDDI_args");
 
-  xfer += oprot->writeFieldBegin("DdiPath", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->DdiPath);
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->DDIFilePath);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("EvlFilePath", ::apache::thrift::protocol::T_STRING, 2);
@@ -500,8 +500,8 @@ uint32_t DDIService_ValidateDDI_pargs::write(::apache::thrift::protocol::TProtoc
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ValidateDDI_pargs");
 
-  xfer += oprot->writeFieldBegin("DdiPath", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->DdiPath)));
+  xfer += oprot->writeFieldBegin("DDIFilePath", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->DDIFilePath)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("EvlFilePath", ::apache::thrift::protocol::T_STRING, 2);
@@ -648,9 +648,21 @@ uint32_t DDIService_ExecuteEpsilonSriptsOnDDIFile_args::read(::apache::thrift::p
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->ServiceConfiguration.read(iprot);
-          this->__isset.ServiceConfiguration = true;
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->EpsilonScriptExecutionConfigs.clear();
+            uint32_t _size2827;
+            ::apache::thrift::protocol::TType _etype2830;
+            xfer += iprot->readListBegin(_etype2830, _size2827);
+            this->EpsilonScriptExecutionConfigs.resize(_size2827);
+            uint32_t _i2831;
+            for (_i2831 = 0; _i2831 < _size2827; ++_i2831)
+            {
+              xfer += this->EpsilonScriptExecutionConfigs[_i2831].read(iprot);
+            }
+            xfer += iprot->readListEnd();
+          }
+          this->__isset.EpsilonScriptExecutionConfigs = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -688,8 +700,16 @@ uint32_t DDIService_ExecuteEpsilonSriptsOnDDIFile_args::write(::apache::thrift::
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ExecuteEpsilonSriptsOnDDIFile_args");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->ServiceConfiguration.write(oprot);
+  xfer += oprot->writeFieldBegin("EpsilonScriptExecutionConfigs", ::apache::thrift::protocol::T_LIST, 1);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->EpsilonScriptExecutionConfigs.size()));
+    std::vector<TDDIEpsilonScriptExecutionConfig> ::const_iterator _iter2832;
+    for (_iter2832 = this->EpsilonScriptExecutionConfigs.begin(); _iter2832 != this->EpsilonScriptExecutionConfigs.end(); ++_iter2832)
+    {
+      xfer += (*_iter2832).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("BackupDDIFile", ::apache::thrift::protocol::T_BOOL, 2);
@@ -715,8 +735,16 @@ uint32_t DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs::write(::apache::thrift:
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs");
 
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->ServiceConfiguration)).write(oprot);
+  xfer += oprot->writeFieldBegin("EpsilonScriptExecutionConfigs", ::apache::thrift::protocol::T_LIST, 1);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>((*(this->EpsilonScriptExecutionConfigs)).size()));
+    std::vector<TDDIEpsilonScriptExecutionConfig> ::const_iterator _iter2833;
+    for (_iter2833 = (*(this->EpsilonScriptExecutionConfigs)).begin(); _iter2833 != (*(this->EpsilonScriptExecutionConfigs)).end(); ++_iter2833)
+    {
+      xfer += (*_iter2833).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("BackupDDIFile", ::apache::thrift::protocol::T_BOOL, 2);
@@ -860,274 +888,19 @@ uint32_t DDIService_ExecuteEpsilonSriptsOnDDIFile_presult::read(::apache::thrift
   return xfer;
 }
 
-
-DDIService_ExecuteEpsilonSripts_args::~DDIService_ExecuteEpsilonSripts_args() throw() {
-}
-
-
-uint32_t DDIService_ExecuteEpsilonSripts_args::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->DDIPackage.read(iprot);
-          this->__isset.DDIPackage = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->ServiceConfiguration.read(iprot);
-          this->__isset.ServiceConfiguration = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_BOOL) {
-          xfer += iprot->readBool(this->ExportDDIFile);
-          this->__isset.ExportDDIFile = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_BOOL) {
-          xfer += iprot->readBool(this->ReturnDDIPackage);
-          this->__isset.ReturnDDIPackage = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t DDIService_ExecuteEpsilonSripts_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("DDIService_ExecuteEpsilonSripts_args");
-
-  xfer += oprot->writeFieldBegin("DDIPackage", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->DDIPackage.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 2);
-  xfer += this->ServiceConfiguration.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ExportDDIFile", ::apache::thrift::protocol::T_BOOL, 3);
-  xfer += oprot->writeBool(this->ExportDDIFile);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ReturnDDIPackage", ::apache::thrift::protocol::T_BOOL, 4);
-  xfer += oprot->writeBool(this->ReturnDDIPackage);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-DDIService_ExecuteEpsilonSripts_pargs::~DDIService_ExecuteEpsilonSripts_pargs() throw() {
-}
-
-
-uint32_t DDIService_ExecuteEpsilonSripts_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("DDIService_ExecuteEpsilonSripts_pargs");
-
-  xfer += oprot->writeFieldBegin("DDIPackage", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->DDIPackage)).write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ServiceConfiguration", ::apache::thrift::protocol::T_STRUCT, 2);
-  xfer += (*(this->ServiceConfiguration)).write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ExportDDIFile", ::apache::thrift::protocol::T_BOOL, 3);
-  xfer += oprot->writeBool((*(this->ExportDDIFile)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ReturnDDIPackage", ::apache::thrift::protocol::T_BOOL, 4);
-  xfer += oprot->writeBool((*(this->ReturnDDIPackage)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-DDIService_ExecuteEpsilonSripts_result::~DDIService_ExecuteEpsilonSripts_result() throw() {
-}
-
-
-uint32_t DDIService_ExecuteEpsilonSripts_result::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->success.read(iprot);
-          this->__isset.success = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->EpsilonScriptExecutionException.read(iprot);
-          this->__isset.EpsilonScriptExecutionException = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t DDIService_ExecuteEpsilonSripts_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
-
-  uint32_t xfer = 0;
-
-  xfer += oprot->writeStructBegin("DDIService_ExecuteEpsilonSripts_result");
-
-  if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRUCT, 0);
-    xfer += this->success.write(oprot);
-    xfer += oprot->writeFieldEnd();
-  } else if (this->__isset.EpsilonScriptExecutionException) {
-    xfer += oprot->writeFieldBegin("EpsilonScriptExecutionException", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->EpsilonScriptExecutionException.write(oprot);
-    xfer += oprot->writeFieldEnd();
-  }
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-DDIService_ExecuteEpsilonSripts_presult::~DDIService_ExecuteEpsilonSripts_presult() throw() {
-}
-
-
-uint32_t DDIService_ExecuteEpsilonSripts_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += (*(this->success)).read(iprot);
-          this->__isset.success = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->EpsilonScriptExecutionException.read(iprot);
-          this->__isset.EpsilonScriptExecutionException = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-void DDIServiceClient::ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage)
+void DDIServiceClient::ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage)
 {
-  send_ExportModelToDDIFile(ServiceConfiguration, DDIPackage);
+  send_ExportModelToDDIFile(DDIFilePath, DDIPackage);
   recv_ExportModelToDDIFile();
 }
 
-void DDIServiceClient::send_ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage)
+void DDIServiceClient::send_ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("ExportModelToDDIFile", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ExportModelToDDIFile_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.DDIFilePath = &DDIFilePath;
   args.DDIPackage = &DDIPackage;
   args.write(oprot_);
 
@@ -1172,19 +945,19 @@ void DDIServiceClient::recv_ExportModelToDDIFile()
   return;
 }
 
-void DDIServiceClient::ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration)
+void DDIServiceClient::ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath)
 {
-  send_ImportDDIModel(ServiceConfiguration);
+  send_ImportDDIModel(DDIFilePath);
   recv_ImportDDIModel(_return);
 }
 
-void DDIServiceClient::send_ImportDDIModel(const TDDIServiceConfig& ServiceConfiguration)
+void DDIServiceClient::send_ImportDDIModel(const std::string& DDIFilePath)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("ImportDDIModel", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ImportDDIModel_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.DDIFilePath = &DDIFilePath;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -1233,19 +1006,19 @@ void DDIServiceClient::recv_ImportDDIModel(TDDIDDIPackage& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ImportDDIModel failed: unknown result");
 }
 
-void DDIServiceClient::ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath)
+void DDIServiceClient::ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath)
 {
-  send_ValidateDDI(DdiPath, EvlFilePath);
+  send_ValidateDDI(DDIFilePath, EvlFilePath);
   recv_ValidateDDI(_return);
 }
 
-void DDIServiceClient::send_ValidateDDI(const std::string& DdiPath, const std::string& EvlFilePath)
+void DDIServiceClient::send_ValidateDDI(const std::string& DDIFilePath, const std::string& EvlFilePath)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("ValidateDDI", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ValidateDDI_pargs args;
-  args.DdiPath = &DdiPath;
+  args.DDIFilePath = &DDIFilePath;
   args.EvlFilePath = &EvlFilePath;
   args.write(oprot_);
 
@@ -1292,19 +1065,19 @@ void DDIServiceClient::recv_ValidateDDI(TDDIValidationResult& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ValidateDDI failed: unknown result");
 }
 
-void DDIServiceClient::ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage)
+void DDIServiceClient::ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage)
 {
-  send_ExecuteEpsilonSriptsOnDDIFile(ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+  send_ExecuteEpsilonSriptsOnDDIFile(EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
   recv_ExecuteEpsilonSriptsOnDDIFile(_return);
 }
 
-void DDIServiceClient::send_ExecuteEpsilonSriptsOnDDIFile(const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage)
+void DDIServiceClient::send_ExecuteEpsilonSriptsOnDDIFile(const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("ExecuteEpsilonSriptsOnDDIFile", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.EpsilonScriptExecutionConfigs = &EpsilonScriptExecutionConfigs;
   args.BackupDDIFile = &BackupDDIFile;
   args.ReturnDDIPackage = &ReturnDDIPackage;
   args.write(oprot_);
@@ -1355,70 +1128,6 @@ void DDIServiceClient::recv_ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _retur
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ExecuteEpsilonSriptsOnDDIFile failed: unknown result");
 }
 
-void DDIServiceClient::ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage)
-{
-  send_ExecuteEpsilonSripts(DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-  recv_ExecuteEpsilonSripts(_return);
-}
-
-void DDIServiceClient::send_ExecuteEpsilonSripts(const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage)
-{
-  int32_t cseqid = 0;
-  oprot_->writeMessageBegin("ExecuteEpsilonSripts", ::apache::thrift::protocol::T_CALL, cseqid);
-
-  DDIService_ExecuteEpsilonSripts_pargs args;
-  args.DDIPackage = &DDIPackage;
-  args.ServiceConfiguration = &ServiceConfiguration;
-  args.ExportDDIFile = &ExportDDIFile;
-  args.ReturnDDIPackage = &ReturnDDIPackage;
-  args.write(oprot_);
-
-  oprot_->writeMessageEnd();
-  oprot_->getTransport()->writeEnd();
-  oprot_->getTransport()->flush();
-}
-
-void DDIServiceClient::recv_ExecuteEpsilonSripts(TDDIDDIPackage& _return)
-{
-
-  int32_t rseqid = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TMessageType mtype;
-
-  iprot_->readMessageBegin(fname, mtype, rseqid);
-  if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
-    ::apache::thrift::TApplicationException x;
-    x.read(iprot_);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-    throw x;
-  }
-  if (mtype != ::apache::thrift::protocol::T_REPLY) {
-    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-  }
-  if (fname.compare("ExecuteEpsilonSripts") != 0) {
-    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-  }
-  DDIService_ExecuteEpsilonSripts_presult result;
-  result.success = &_return;
-  result.read(iprot_);
-  iprot_->readMessageEnd();
-  iprot_->getTransport()->readEnd();
-
-  if (result.__isset.success) {
-    // _return pointer has now been filled
-    return;
-  }
-  if (result.__isset.EpsilonScriptExecutionException) {
-    throw result.EpsilonScriptExecutionException;
-  }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ExecuteEpsilonSripts failed: unknown result");
-}
-
 bool DDIServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
@@ -1461,7 +1170,7 @@ void DDIServiceProcessor::process_ExportModelToDDIFile(int32_t seqid, ::apache::
 
   DDIService_ExportModelToDDIFile_result result;
   try {
-    iface_->ExportModelToDDIFile(args.ServiceConfiguration, args.DDIPackage);
+    iface_->ExportModelToDDIFile(args.DDIFilePath, args.DDIPackage);
   } catch (TDDIAbstractEpsilonScriptExecutionException &EpsilonScriptExecutionException) {
     result.EpsilonScriptExecutionException = EpsilonScriptExecutionException;
     result.__isset.EpsilonScriptExecutionException = true;
@@ -1517,7 +1226,7 @@ void DDIServiceProcessor::process_ImportDDIModel(int32_t seqid, ::apache::thrift
 
   DDIService_ImportDDIModel_result result;
   try {
-    iface_->ImportDDIModel(result.success, args.ServiceConfiguration);
+    iface_->ImportDDIModel(result.success, args.DDIFilePath);
     result.__isset.success = true;
   } catch (TDDIAbstractEpsilonScriptExecutionException &EpsilonScriptExecutionException) {
     result.EpsilonScriptExecutionException = EpsilonScriptExecutionException;
@@ -1574,7 +1283,7 @@ void DDIServiceProcessor::process_ValidateDDI(int32_t seqid, ::apache::thrift::p
 
   DDIService_ValidateDDI_result result;
   try {
-    iface_->ValidateDDI(result.success, args.DdiPath, args.EvlFilePath);
+    iface_->ValidateDDI(result.success, args.DDIFilePath, args.EvlFilePath);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
@@ -1628,7 +1337,7 @@ void DDIServiceProcessor::process_ExecuteEpsilonSriptsOnDDIFile(int32_t seqid, :
 
   DDIService_ExecuteEpsilonSriptsOnDDIFile_result result;
   try {
-    iface_->ExecuteEpsilonSriptsOnDDIFile(result.success, args.ServiceConfiguration, args.BackupDDIFile, args.ReturnDDIPackage);
+    iface_->ExecuteEpsilonSriptsOnDDIFile(result.success, args.EpsilonScriptExecutionConfigs, args.BackupDDIFile, args.ReturnDDIPackage);
     result.__isset.success = true;
   } catch (TDDIAbstractEpsilonScriptExecutionException &EpsilonScriptExecutionException) {
     result.EpsilonScriptExecutionException = EpsilonScriptExecutionException;
@@ -1662,63 +1371,6 @@ void DDIServiceProcessor::process_ExecuteEpsilonSriptsOnDDIFile(int32_t seqid, :
   }
 }
 
-void DDIServiceProcessor::process_ExecuteEpsilonSripts(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
-{
-  void* ctx = NULL;
-  if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("DDIService.ExecuteEpsilonSripts", callContext);
-  }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "DDIService.ExecuteEpsilonSripts");
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "DDIService.ExecuteEpsilonSripts");
-  }
-
-  DDIService_ExecuteEpsilonSripts_args args;
-  args.read(iprot);
-  iprot->readMessageEnd();
-  uint32_t bytes = iprot->getTransport()->readEnd();
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "DDIService.ExecuteEpsilonSripts", bytes);
-  }
-
-  DDIService_ExecuteEpsilonSripts_result result;
-  try {
-    iface_->ExecuteEpsilonSripts(result.success, args.DDIPackage, args.ServiceConfiguration, args.ExportDDIFile, args.ReturnDDIPackage);
-    result.__isset.success = true;
-  } catch (TDDIAbstractEpsilonScriptExecutionException &EpsilonScriptExecutionException) {
-    result.EpsilonScriptExecutionException = EpsilonScriptExecutionException;
-    result.__isset.EpsilonScriptExecutionException = true;
-  } catch (const std::exception& e) {
-    if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "DDIService.ExecuteEpsilonSripts");
-    }
-
-    ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("ExecuteEpsilonSripts", ::apache::thrift::protocol::T_EXCEPTION, seqid);
-    x.write(oprot);
-    oprot->writeMessageEnd();
-    oprot->getTransport()->writeEnd();
-    oprot->getTransport()->flush();
-    return;
-  }
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "DDIService.ExecuteEpsilonSripts");
-  }
-
-  oprot->writeMessageBegin("ExecuteEpsilonSripts", ::apache::thrift::protocol::T_REPLY, seqid);
-  result.write(oprot);
-  oprot->writeMessageEnd();
-  bytes = oprot->getTransport()->writeEnd();
-  oprot->getTransport()->flush();
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "DDIService.ExecuteEpsilonSripts", bytes);
-  }
-}
-
 ::apache::thrift::stdcxx::shared_ptr< ::apache::thrift::TProcessor > DDIServiceProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
   ::apache::thrift::ReleaseHandler< DDIServiceIfFactory > cleanup(handlerFactory_);
   ::apache::thrift::stdcxx::shared_ptr< DDIServiceIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
@@ -1726,20 +1378,20 @@ void DDIServiceProcessor::process_ExecuteEpsilonSripts(int32_t seqid, ::apache::
   return processor;
 }
 
-void DDIServiceConcurrentClient::ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage)
+void DDIServiceConcurrentClient::ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage)
 {
-  int32_t seqid = send_ExportModelToDDIFile(ServiceConfiguration, DDIPackage);
+  int32_t seqid = send_ExportModelToDDIFile(DDIFilePath, DDIPackage);
   recv_ExportModelToDDIFile(seqid);
 }
 
-int32_t DDIServiceConcurrentClient::send_ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage)
+int32_t DDIServiceConcurrentClient::send_ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("ExportModelToDDIFile", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ExportModelToDDIFile_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.DDIFilePath = &DDIFilePath;
   args.DDIPackage = &DDIPackage;
   args.write(oprot_);
 
@@ -1809,20 +1461,20 @@ void DDIServiceConcurrentClient::recv_ExportModelToDDIFile(const int32_t seqid)
   } // end while(true)
 }
 
-void DDIServiceConcurrentClient::ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration)
+void DDIServiceConcurrentClient::ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath)
 {
-  int32_t seqid = send_ImportDDIModel(ServiceConfiguration);
+  int32_t seqid = send_ImportDDIModel(DDIFilePath);
   recv_ImportDDIModel(_return, seqid);
 }
 
-int32_t DDIServiceConcurrentClient::send_ImportDDIModel(const TDDIServiceConfig& ServiceConfiguration)
+int32_t DDIServiceConcurrentClient::send_ImportDDIModel(const std::string& DDIFilePath)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("ImportDDIModel", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ImportDDIModel_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.DDIFilePath = &DDIFilePath;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -1897,20 +1549,20 @@ void DDIServiceConcurrentClient::recv_ImportDDIModel(TDDIDDIPackage& _return, co
   } // end while(true)
 }
 
-void DDIServiceConcurrentClient::ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath)
+void DDIServiceConcurrentClient::ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath)
 {
-  int32_t seqid = send_ValidateDDI(DdiPath, EvlFilePath);
+  int32_t seqid = send_ValidateDDI(DDIFilePath, EvlFilePath);
   recv_ValidateDDI(_return, seqid);
 }
 
-int32_t DDIServiceConcurrentClient::send_ValidateDDI(const std::string& DdiPath, const std::string& EvlFilePath)
+int32_t DDIServiceConcurrentClient::send_ValidateDDI(const std::string& DDIFilePath, const std::string& EvlFilePath)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("ValidateDDI", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ValidateDDI_pargs args;
-  args.DdiPath = &DdiPath;
+  args.DDIFilePath = &DDIFilePath;
   args.EvlFilePath = &EvlFilePath;
   args.write(oprot_);
 
@@ -1982,20 +1634,20 @@ void DDIServiceConcurrentClient::recv_ValidateDDI(TDDIValidationResult& _return,
   } // end while(true)
 }
 
-void DDIServiceConcurrentClient::ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage)
+void DDIServiceConcurrentClient::ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage)
 {
-  int32_t seqid = send_ExecuteEpsilonSriptsOnDDIFile(ServiceConfiguration, BackupDDIFile, ReturnDDIPackage);
+  int32_t seqid = send_ExecuteEpsilonSriptsOnDDIFile(EpsilonScriptExecutionConfigs, BackupDDIFile, ReturnDDIPackage);
   recv_ExecuteEpsilonSriptsOnDDIFile(_return, seqid);
 }
 
-int32_t DDIServiceConcurrentClient::send_ExecuteEpsilonSriptsOnDDIFile(const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage)
+int32_t DDIServiceConcurrentClient::send_ExecuteEpsilonSriptsOnDDIFile(const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("ExecuteEpsilonSriptsOnDDIFile", ::apache::thrift::protocol::T_CALL, cseqid);
 
   DDIService_ExecuteEpsilonSriptsOnDDIFile_pargs args;
-  args.ServiceConfiguration = &ServiceConfiguration;
+  args.EpsilonScriptExecutionConfigs = &EpsilonScriptExecutionConfigs;
   args.BackupDDIFile = &BackupDDIFile;
   args.ReturnDDIPackage = &ReturnDDIPackage;
   args.write(oprot_);
@@ -2063,97 +1715,6 @@ void DDIServiceConcurrentClient::recv_ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPacka
       }
       // in a bad state, don't commit
       throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ExecuteEpsilonSriptsOnDDIFile failed: unknown result");
-    }
-    // seqid != rseqid
-    this->sync_.updatePending(fname, mtype, rseqid);
-
-    // this will temporarily unlock the readMutex, and let other clients get work done
-    this->sync_.waitForWork(seqid);
-  } // end while(true)
-}
-
-void DDIServiceConcurrentClient::ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage)
-{
-  int32_t seqid = send_ExecuteEpsilonSripts(DDIPackage, ServiceConfiguration, ExportDDIFile, ReturnDDIPackage);
-  recv_ExecuteEpsilonSripts(_return, seqid);
-}
-
-int32_t DDIServiceConcurrentClient::send_ExecuteEpsilonSripts(const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage)
-{
-  int32_t cseqid = this->sync_.generateSeqId();
-  ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("ExecuteEpsilonSripts", ::apache::thrift::protocol::T_CALL, cseqid);
-
-  DDIService_ExecuteEpsilonSripts_pargs args;
-  args.DDIPackage = &DDIPackage;
-  args.ServiceConfiguration = &ServiceConfiguration;
-  args.ExportDDIFile = &ExportDDIFile;
-  args.ReturnDDIPackage = &ReturnDDIPackage;
-  args.write(oprot_);
-
-  oprot_->writeMessageEnd();
-  oprot_->getTransport()->writeEnd();
-  oprot_->getTransport()->flush();
-
-  sentry.commit();
-  return cseqid;
-}
-
-void DDIServiceConcurrentClient::recv_ExecuteEpsilonSripts(TDDIDDIPackage& _return, const int32_t seqid)
-{
-
-  int32_t rseqid = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TMessageType mtype;
-
-  // the read mutex gets dropped and reacquired as part of waitForWork()
-  // The destructor of this sentry wakes up other clients
-  ::apache::thrift::async::TConcurrentRecvSentry sentry(&this->sync_, seqid);
-
-  while(true) {
-    if(!this->sync_.getPending(fname, mtype, rseqid)) {
-      iprot_->readMessageBegin(fname, mtype, rseqid);
-    }
-    if(seqid == rseqid) {
-      if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
-        ::apache::thrift::TApplicationException x;
-        x.read(iprot_);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-        sentry.commit();
-        throw x;
-      }
-      if (mtype != ::apache::thrift::protocol::T_REPLY) {
-        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-      }
-      if (fname.compare("ExecuteEpsilonSripts") != 0) {
-        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-
-        // in a bad state, don't commit
-        using ::apache::thrift::protocol::TProtocolException;
-        throw TProtocolException(TProtocolException::INVALID_DATA);
-      }
-      DDIService_ExecuteEpsilonSripts_presult result;
-      result.success = &_return;
-      result.read(iprot_);
-      iprot_->readMessageEnd();
-      iprot_->getTransport()->readEnd();
-
-      if (result.__isset.success) {
-        // _return pointer has now been filled
-        sentry.commit();
-        return;
-      }
-      if (result.__isset.EpsilonScriptExecutionException) {
-        sentry.commit();
-        throw result.EpsilonScriptExecutionException;
-      }
-      // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ExecuteEpsilonSripts failed: unknown result");
     }
     // seqid != rseqid
     this->sync_.updatePending(fname, mtype, rseqid);

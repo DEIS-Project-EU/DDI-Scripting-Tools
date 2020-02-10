@@ -196,13 +196,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1416 = iprot.ReadListBegin();
-                  for( int _i1417 = 0; _i1417 < _list1416.Count; ++_i1417)
+                  TList _list1412 = iprot.ReadListBegin();
+                  for( int _i1413 = 0; _i1413 < _list1412.Count; ++_i1413)
                   {
-                    TDDIKeyValueMap _elem1418;
-                    _elem1418 = new TDDIKeyValueMap();
-                    _elem1418.Read(iprot);
-                    KeyValueMaps.Add(_elem1418);
+                    TDDIKeyValueMap _elem1414;
+                    _elem1414 = new TDDIKeyValueMap();
+                    _elem1414.Read(iprot);
+                    KeyValueMaps.Add(_elem1414);
                   }
                   iprot.ReadListEnd();
                 }
@@ -228,13 +228,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   ImplementedBy = new List<TDDISecurityControlRef>();
-                  TList _list1419 = iprot.ReadListBegin();
-                  for( int _i1420 = 0; _i1420 < _list1419.Count; ++_i1420)
+                  TList _list1415 = iprot.ReadListBegin();
+                  for( int _i1416 = 0; _i1416 < _list1415.Count; ++_i1416)
                   {
-                    TDDISecurityControlRef _elem1421;
-                    _elem1421 = new TDDISecurityControlRef();
-                    _elem1421.Read(iprot);
-                    ImplementedBy.Add(_elem1421);
+                    TDDISecurityControlRef _elem1417;
+                    _elem1417 = new TDDISecurityControlRef();
+                    _elem1417.Read(iprot);
+                    ImplementedBy.Add(_elem1417);
                   }
                   iprot.ReadListEnd();
                 }
@@ -294,9 +294,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1422 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1418 in KeyValueMaps)
             {
-              _iter1422.Write(oprot);
+              _iter1418.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -325,9 +325,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ImplementedBy.Count));
-            foreach (TDDISecurityControlRef _iter1423 in ImplementedBy)
+            foreach (TDDISecurityControlRef _iter1419 in ImplementedBy)
             {
-              _iter1423.Write(oprot);
+              _iter1419.Write(oprot);
             }
             oprot.WriteListEnd();
           }

@@ -77,9 +77,9 @@ public class TDDIEpsilonScriptExecutionExceptionUnion extends org.apache.thrift.
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.VALIDATION_FAILED_EXCEPTION, new org.apache.thrift.meta_data.FieldMetaData("ValidationFailedException", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT        , "TDDIValidationFailedException")));
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TDDIValidationFailedException.class)));
     tmpMap.put(_Fields.EPSILON_SCRIPT_EXECUTION_EXCEPTION, new org.apache.thrift.meta_data.FieldMetaData("EpsilonScriptExecutionException", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT        , "TDDIEpsilonScriptExecutionException")));
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TDDIEpsilonScriptExecutionException.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TDDIEpsilonScriptExecutionExceptionUnion.class, metaDataMap);
   }

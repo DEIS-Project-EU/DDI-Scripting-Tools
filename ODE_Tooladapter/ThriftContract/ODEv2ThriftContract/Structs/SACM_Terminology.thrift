@@ -35,7 +35,7 @@ struct TDDITerminologyGroup{
     8: list<TDDIImplementationConstraintRef> ImplementationConstraint = [],
     9: list<TDDINoteRef> Note = [],
     10: list<TDDITaggedValueRef> TaggedValue = [],
-    11: list<TDDIAbstractTerminologyElement> TerminologyElement = []
+    11: list<TDDIAbstractTerminologyElementRef> TerminologyElement = []
 }
 
 union TDDITerminologyPackageUnion{
@@ -76,7 +76,7 @@ struct TDDITerminologyPackageBinding{
     9: list<TDDINoteRef> Note = [],
     10: list<TDDITaggedValueRef> TaggedValue = [],
     11: list<TDDIAbstractTerminologyElement> TerminologyElement = [],
-    12: list<TDDIAbstractTerminologyPackage> ParticipantPackage = []
+    12: list<TDDIAbstractTerminologyPackageRef> ParticipantPackage = []
 }
 
 struct TDDITerminologyPackageInterface{

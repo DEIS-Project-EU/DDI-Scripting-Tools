@@ -217,9 +217,6 @@ struct TDDIAssuranceCasePackageInterfaceRef {
 	1: TDDIAssuranceCasePackageInterface& ref
 }
 
-struct TDDIAbstractArtifactPackageRef {
-	1: TDDIAbstractArtifactPackage& ref
-}
 
 struct TDDIAbstractTerminologyPackageRef {
 	1: TDDIAbstractTerminologyPackage& ref
@@ -231,6 +228,10 @@ struct TDDIAbstractTerminologyPackageRef {
 
 struct TDDIAbstractExpressionElementRef {
 	1: TDDIAbstractExpressionElement& ref
+}
+
+struct TDDIAbstractTerminologyElementRef {
+	1: TDDIAbstractTerminologyElement& ref
 }
 
 struct TDDICategoryRef{

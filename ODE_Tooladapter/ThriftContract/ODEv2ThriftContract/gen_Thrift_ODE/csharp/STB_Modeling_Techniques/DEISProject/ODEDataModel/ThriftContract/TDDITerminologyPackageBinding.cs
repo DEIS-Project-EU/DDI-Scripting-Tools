@@ -34,7 +34,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     private List<TDDINoteRef> _Note;
     private List<TDDITaggedValueRef> _TaggedValue;
     private List<TDDIAbstractTerminologyElement> _TerminologyElement;
-    private List<TDDIAbstractTerminologyPackage> _ParticipantPackage;
+    private List<TDDIAbstractTerminologyPackageRef> _ParticipantPackage;
 
     public string Gid
     {
@@ -179,7 +179,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractTerminologyPackage> ParticipantPackage
+    public List<TDDIAbstractTerminologyPackageRef> ParticipantPackage
     {
       get
       {
@@ -227,7 +227,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       this.__isset.TaggedValue = true;
       this._TerminologyElement = new List<TDDIAbstractTerminologyElement>();
       this.__isset.TerminologyElement = true;
-      this._ParticipantPackage = new List<TDDIAbstractTerminologyPackage>();
+      this._ParticipantPackage = new List<TDDIAbstractTerminologyPackageRef>();
       this.__isset.ParticipantPackage = true;
     }
 
@@ -374,12 +374,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 12:
               if (field.Type == TType.List) {
                 {
-                  ParticipantPackage = new List<TDDIAbstractTerminologyPackage>();
+                  ParticipantPackage = new List<TDDIAbstractTerminologyPackageRef>();
                   TList _list1300 = iprot.ReadListBegin();
                   for( int _i1301 = 0; _i1301 < _list1300.Count; ++_i1301)
                   {
-                    TDDIAbstractTerminologyPackage _elem1302;
-                    _elem1302 = new TDDIAbstractTerminologyPackage();
+                    TDDIAbstractTerminologyPackageRef _elem1302;
+                    _elem1302 = new TDDIAbstractTerminologyPackageRef();
                     _elem1302.Read(iprot);
                     ParticipantPackage.Add(_elem1302);
                   }
@@ -533,7 +533,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, ParticipantPackage.Count));
-            foreach (TDDIAbstractTerminologyPackage _iter1307 in ParticipantPackage)
+            foreach (TDDIAbstractTerminologyPackageRef _iter1307 in ParticipantPackage)
             {
               _iter1307.Write(oprot);
             }

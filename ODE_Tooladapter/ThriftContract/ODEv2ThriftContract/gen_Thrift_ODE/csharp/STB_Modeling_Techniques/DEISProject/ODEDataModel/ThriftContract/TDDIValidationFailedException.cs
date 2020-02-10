@@ -118,7 +118,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         if(!__first) { __sb.Append(", "); }
         __first = false;
         __sb.Append("ValidationResult: ");
-        __sb.Append(ValidationResult);
+        __sb.Append(ValidationResult== null ? "<null>" : ValidationResult.ToString());
       }
       __sb.Append(")");
       return __sb.ToString();

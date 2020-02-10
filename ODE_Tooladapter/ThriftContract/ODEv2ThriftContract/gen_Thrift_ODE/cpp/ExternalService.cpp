@@ -54,14 +54,14 @@ uint32_t ExternalService_InvokeExternalService_args::read(::apache::thrift::prot
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->ServiceParameter.clear();
-            uint32_t _size2835;
-            ::apache::thrift::protocol::TType _etype2838;
-            xfer += iprot->readListBegin(_etype2838, _size2835);
-            this->ServiceParameter.resize(_size2835);
-            uint32_t _i2839;
-            for (_i2839 = 0; _i2839 < _size2835; ++_i2839)
+            uint32_t _size2834;
+            ::apache::thrift::protocol::TType _etype2837;
+            xfer += iprot->readListBegin(_etype2837, _size2834);
+            this->ServiceParameter.resize(_size2834);
+            uint32_t _i2838;
+            for (_i2838 = 0; _i2838 < _size2834; ++_i2838)
             {
-              xfer += this->ServiceParameter[_i2839].read(iprot);
+              xfer += this->ServiceParameter[_i2838].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -98,10 +98,10 @@ uint32_t ExternalService_InvokeExternalService_args::write(::apache::thrift::pro
   xfer += oprot->writeFieldBegin("ServiceParameter", ::apache::thrift::protocol::T_LIST, 3);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->ServiceParameter.size()));
-    std::vector<TDDIExternalServiceParameter> ::const_iterator _iter2840;
-    for (_iter2840 = this->ServiceParameter.begin(); _iter2840 != this->ServiceParameter.end(); ++_iter2840)
+    std::vector<TDDIExternalServiceParameter> ::const_iterator _iter2839;
+    for (_iter2839 = this->ServiceParameter.begin(); _iter2839 != this->ServiceParameter.end(); ++_iter2839)
     {
-      xfer += (*_iter2840).write(oprot);
+      xfer += (*_iter2839).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }
@@ -133,10 +133,10 @@ uint32_t ExternalService_InvokeExternalService_pargs::write(::apache::thrift::pr
   xfer += oprot->writeFieldBegin("ServiceParameter", ::apache::thrift::protocol::T_LIST, 3);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>((*(this->ServiceParameter)).size()));
-    std::vector<TDDIExternalServiceParameter> ::const_iterator _iter2841;
-    for (_iter2841 = (*(this->ServiceParameter)).begin(); _iter2841 != (*(this->ServiceParameter)).end(); ++_iter2841)
+    std::vector<TDDIExternalServiceParameter> ::const_iterator _iter2840;
+    for (_iter2840 = (*(this->ServiceParameter)).begin(); _iter2840 != (*(this->ServiceParameter)).end(); ++_iter2840)
     {
-      xfer += (*_iter2841).write(oprot);
+      xfer += (*_iter2840).write(oprot);
     }
     xfer += oprot->writeListEnd();
   }

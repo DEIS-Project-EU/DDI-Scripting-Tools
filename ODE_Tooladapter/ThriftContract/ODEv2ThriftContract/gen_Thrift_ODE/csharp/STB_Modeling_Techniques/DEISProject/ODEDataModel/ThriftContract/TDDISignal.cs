@@ -27,6 +27,8 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     private string _Name;
     private string _Description;
     private List<TDDIKeyValueMap> _KeyValueMaps;
+    private TDDIPort _FromPort;
+    private TDDIPort _ToPort;
 
     public long Id
     {
@@ -80,9 +82,31 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public TDDIPort FromPort { get; set; }
+    public TDDIPort FromPort
+    {
+      get
+      {
+        return _FromPort;
+      }
+      set
+      {
+        __isset.FromPort = true;
+        this._FromPort = value;
+      }
+    }
 
-    public TDDIPort ToPort { get; set; }
+    public TDDIPort ToPort
+    {
+      get
+      {
+        return _ToPort;
+      }
+      set
+      {
+        __isset.ToPort = true;
+        this._ToPort = value;
+      }
+    }
 
 
     public Isset __isset;
@@ -94,6 +118,8 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       public bool Name;
       public bool Description;
       public bool KeyValueMaps;
+      public bool FromPort;
+      public bool ToPort;
     }
 
     public TDDISignal() {
@@ -105,18 +131,11 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       this.__isset.KeyValueMaps = true;
     }
 
-    public TDDISignal(TDDIPort FromPort, TDDIPort ToPort) : this() {
-      this.FromPort = FromPort;
-      this.ToPort = ToPort;
-    }
-
     public void Read (TProtocol iprot)
     {
       iprot.IncrementRecursionDepth();
       try
       {
-        bool isset_FromPort = false;
-        bool isset_ToPort = false;
         TField field;
         iprot.ReadStructBegin();
         while (true)
@@ -170,7 +189,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.Struct) {
                 FromPort = new TDDIPort();
                 FromPort.Read(iprot);
-                isset_FromPort = true;
               } else { 
                 TProtocolUtil.Skip(iprot, field.Type);
               }
@@ -179,7 +197,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.Struct) {
                 ToPort = new TDDIPort();
                 ToPort.Read(iprot);
-                isset_ToPort = true;
               } else { 
                 TProtocolUtil.Skip(iprot, field.Type);
               }
@@ -191,10 +208,6 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           iprot.ReadFieldEnd();
         }
         iprot.ReadStructEnd();
-        if (!isset_FromPort)
-          throw new TProtocolException(TProtocolException.INVALID_DATA, "required field FromPort not set");
-        if (!isset_ToPort)
-          throw new TProtocolException(TProtocolException.INVALID_DATA, "required field ToPort not set");
       }
       finally
       {
@@ -248,22 +261,22 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           }
           oprot.WriteFieldEnd();
         }
-        if (FromPort == null)
-          throw new TProtocolException(TProtocolException.INVALID_DATA, "required field FromPort not set");
-        field.Name = "FromPort";
-        field.Type = TType.Struct;
-        field.ID = 5;
-        oprot.WriteFieldBegin(field);
-        FromPort.Write(oprot);
-        oprot.WriteFieldEnd();
-        if (ToPort == null)
-          throw new TProtocolException(TProtocolException.INVALID_DATA, "required field ToPort not set");
-        field.Name = "ToPort";
-        field.Type = TType.Struct;
-        field.ID = 6;
-        oprot.WriteFieldBegin(field);
-        ToPort.Write(oprot);
-        oprot.WriteFieldEnd();
+        if (FromPort != null && __isset.FromPort) {
+          field.Name = "FromPort";
+          field.Type = TType.Struct;
+          field.ID = 5;
+          oprot.WriteFieldBegin(field);
+          FromPort.Write(oprot);
+          oprot.WriteFieldEnd();
+        }
+        if (ToPort != null && __isset.ToPort) {
+          field.Name = "ToPort";
+          field.Type = TType.Struct;
+          field.ID = 6;
+          oprot.WriteFieldBegin(field);
+          ToPort.Write(oprot);
+          oprot.WriteFieldEnd();
+        }
         oprot.WriteFieldStop();
         oprot.WriteStructEnd();
       }
@@ -300,11 +313,18 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
         __sb.Append("KeyValueMaps: ");
         __sb.Append(KeyValueMaps);
       }
-      if(!__first) { __sb.Append(", "); }
-      __sb.Append("FromPort: ");
-      __sb.Append(FromPort== null ? "<null>" : FromPort.ToString());
-      __sb.Append(", ToPort: ");
-      __sb.Append(ToPort== null ? "<null>" : ToPort.ToString());
+      if (FromPort != null && __isset.FromPort) {
+        if(!__first) { __sb.Append(", "); }
+        __first = false;
+        __sb.Append("FromPort: ");
+        __sb.Append(FromPort== null ? "<null>" : FromPort.ToString());
+      }
+      if (ToPort != null && __isset.ToPort) {
+        if(!__first) { __sb.Append(", "); }
+        __first = false;
+        __sb.Append("ToPort: ");
+        __sb.Append(ToPort== null ? "<null>" : ToPort.ToString());
+      }
       __sb.Append(")");
       return __sb.ToString();
     }

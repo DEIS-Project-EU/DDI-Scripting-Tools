@@ -209,13 +209,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1468 = iprot.ReadListBegin();
-                  for( int _i1469 = 0; _i1469 < _list1468.Count; ++_i1469)
+                  TList _list1464 = iprot.ReadListBegin();
+                  for( int _i1465 = 0; _i1465 < _list1464.Count; ++_i1465)
                   {
-                    TDDIKeyValueMap _elem1470;
-                    _elem1470 = new TDDIKeyValueMap();
-                    _elem1470.Read(iprot);
-                    KeyValueMaps.Add(_elem1470);
+                    TDDIKeyValueMap _elem1466;
+                    _elem1466 = new TDDIKeyValueMap();
+                    _elem1466.Read(iprot);
+                    KeyValueMaps.Add(_elem1466);
                   }
                   iprot.ReadListEnd();
                 }
@@ -234,13 +234,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   Attacks = new List<TDDIAbstractAttack>();
-                  TList _list1471 = iprot.ReadListBegin();
-                  for( int _i1472 = 0; _i1472 < _list1471.Count; ++_i1472)
+                  TList _list1467 = iprot.ReadListBegin();
+                  for( int _i1468 = 0; _i1468 < _list1467.Count; ++_i1468)
                   {
-                    TDDIAbstractAttack _elem1473;
-                    _elem1473 = new TDDIAbstractAttack();
-                    _elem1473.Read(iprot);
-                    Attacks.Add(_elem1473);
+                    TDDIAbstractAttack _elem1469;
+                    _elem1469 = new TDDIAbstractAttack();
+                    _elem1469.Read(iprot);
+                    Attacks.Add(_elem1469);
                   }
                   iprot.ReadListEnd();
                 }
@@ -252,13 +252,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   AddressedBy = new List<TDDISecurityCapability>();
-                  TList _list1474 = iprot.ReadListBegin();
-                  for( int _i1475 = 0; _i1475 < _list1474.Count; ++_i1475)
+                  TList _list1470 = iprot.ReadListBegin();
+                  for( int _i1471 = 0; _i1471 < _list1470.Count; ++_i1471)
                   {
-                    TDDISecurityCapability _elem1476;
-                    _elem1476 = new TDDISecurityCapability();
-                    _elem1476.Read(iprot);
-                    AddressedBy.Add(_elem1476);
+                    TDDISecurityCapability _elem1472;
+                    _elem1472 = new TDDISecurityCapability();
+                    _elem1472.Read(iprot);
+                    AddressedBy.Add(_elem1472);
                   }
                   iprot.ReadListEnd();
                 }
@@ -270,13 +270,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   AttackedItems = new List<TDDIVulnerableItemRef>();
-                  TList _list1477 = iprot.ReadListBegin();
-                  for( int _i1478 = 0; _i1478 < _list1477.Count; ++_i1478)
+                  TList _list1473 = iprot.ReadListBegin();
+                  for( int _i1474 = 0; _i1474 < _list1473.Count; ++_i1474)
                   {
-                    TDDIVulnerableItemRef _elem1479;
-                    _elem1479 = new TDDIVulnerableItemRef();
-                    _elem1479.Read(iprot);
-                    AttackedItems.Add(_elem1479);
+                    TDDIVulnerableItemRef _elem1475;
+                    _elem1475 = new TDDIVulnerableItemRef();
+                    _elem1475.Read(iprot);
+                    AttackedItems.Add(_elem1475);
                   }
                   iprot.ReadListEnd();
                 }
@@ -336,9 +336,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1480 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1476 in KeyValueMaps)
             {
-              _iter1480.Write(oprot);
+              _iter1476.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -359,9 +359,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, Attacks.Count));
-            foreach (TDDIAbstractAttack _iter1481 in Attacks)
+            foreach (TDDIAbstractAttack _iter1477 in Attacks)
             {
-              _iter1481.Write(oprot);
+              _iter1477.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -374,9 +374,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, AddressedBy.Count));
-            foreach (TDDISecurityCapability _iter1482 in AddressedBy)
+            foreach (TDDISecurityCapability _iter1478 in AddressedBy)
             {
-              _iter1482.Write(oprot);
+              _iter1478.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -389,9 +389,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, AttackedItems.Count));
-            foreach (TDDIVulnerableItemRef _iter1483 in AttackedItems)
+            foreach (TDDIVulnerableItemRef _iter1479 in AttackedItems)
             {
-              _iter1483.Write(oprot);
+              _iter1479.Write(oprot);
             }
             oprot.WriteListEnd();
           }

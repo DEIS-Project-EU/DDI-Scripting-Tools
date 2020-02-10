@@ -21,11 +21,11 @@ struct TDDIAssuranceCasePackage{
     8: list<TDDIImplementationConstraintRef> ImplementationConstraint = [],
     9: list<TDDINoteRef> Note = [],
     10: list<TDDITaggedValueRef> TaggedValue = [],
-    11: list<TDDIAbstractAssuranceCasePackageRef> AssuranceCasePackage = [],
+    11: list<TDDIAbstractAssuranceCasePackage> AssuranceCasePackage = [],
     12: list<TDDIAssuranceCasePackageInterfaceRef> Interface = [],
-    13: list<TDDIAbstractArtifactPackageRef> ArtifactPackage = [],
-    14: list<TDDIAbstractArgumentPackageRef> ArgumentPackage = [],
-    15: list<TDDIAbstractTerminologyPackageRef> TerminologyPackage = []
+    13: list<TDDIAbstractArtifactPackage> ArtifactPackage = [],
+    14: list<TDDIAbstractArgumentPackage> ArgumentPackage = [],
+    15: list<TDDIAbstractTerminologyPackage> TerminologyPackage = []
 }
 
 struct TDDIAssuranceCasePackageInterface{
@@ -39,11 +39,11 @@ struct TDDIAssuranceCasePackageInterface{
     8: list<TDDIImplementationConstraintRef> ImplementationConstraint = [],
     9: list<TDDINoteRef> Note = [],
     10: list<TDDITaggedValueRef> TaggedValue = [],
-    11: list<TDDIAbstractAssuranceCasePackageRef> AssuranceCasePackage = [],
+    11: list<TDDIAbstractAssuranceCasePackage> AssuranceCasePackage = [],
     12: list<TDDIAssuranceCasePackageInterfaceRef> Interface = [],
-    13: list<TDDIAbstractArtifactPackageRef> ArtifactPackage = [],
-    14: list<TDDIAbstractArgumentPackageRef> ArgumentPackage = [],
-    15: list<TDDIAbstractTerminologyPackageRef> TerminologyPackage = [],
+    13: list<TDDIAbstractArtifactPackage> ArtifactPackage = [],
+    14: list<TDDIAbstractArgumentPackage> ArgumentPackage = [],
+    15: list<TDDIAbstractTerminologyPackage> TerminologyPackage = [],
     16: TDDIAbstractAssuranceCasePackage Implements
 }
 
@@ -58,10 +58,10 @@ struct TDDIAssuranceCasePackageBinding{
     8: list<TDDIImplementationConstraintRef> ImplementationConstraint = [],
     9: list<TDDINoteRef> Note = [],
     10: list<TDDITaggedValueRef> TaggedValue = [],
-    11: list<TDDIAbstractAssuranceCasePackageRef> AssuranceCasePackage = [],
+    11: list<TDDIAbstractAssuranceCasePackage> AssuranceCasePackage = [],
     12: list<TDDIAssuranceCasePackageInterfaceRef> Interface = [],
-    13: list<TDDIAbstractArtifactPackageRef> ArtifactPackage = [],
-    14: list<TDDIAbstractArgumentPackageRef> ArgumentPackage = [],
-    15: list<TDDIAbstractTerminologyPackageRef> TerminologyPackage = [],
+    13: list<TDDIAbstractArtifactPackage> ArtifactPackage = [],
+    14: list<TDDIAbstractArgumentPackage> ArgumentPackage = [],
+    15: list<TDDIAbstractTerminologyPackage> TerminologyPackage = [],
     16: list<TDDIAbstractAssuranceCasePackageRef> ParticipantPackage = []
 }

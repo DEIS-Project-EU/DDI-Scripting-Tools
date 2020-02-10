@@ -31,8 +31,10 @@ struct TDDISignal{
     3: string Description = "",
     4: list<TDDIKeyValueMap> KeyValueMaps = [],
 	// Own
-	5: required TDDIPort& FromPort,
-	6: required TDDIPort& ToPort
+	// Although the translation from EMF corresponds to 'required' correctly
+	// When generating C++ code, 'required' and '&' create non-compiling code
+	5: TDDIPort& FromPort,
+	6: TDDIPort& ToPort
 }
 
 struct TDDIPerfChars{

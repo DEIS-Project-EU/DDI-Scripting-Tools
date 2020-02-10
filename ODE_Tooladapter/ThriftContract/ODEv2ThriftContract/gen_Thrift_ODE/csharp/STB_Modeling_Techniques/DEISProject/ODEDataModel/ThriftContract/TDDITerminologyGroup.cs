@@ -33,7 +33,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
     private List<TDDIImplementationConstraintRef> _ImplementationConstraint;
     private List<TDDINoteRef> _Note;
     private List<TDDITaggedValueRef> _TaggedValue;
-    private List<TDDIAbstractTerminologyElement> _TerminologyElement;
+    private List<TDDIAbstractTerminologyElementRef> _TerminologyElement;
 
     public string Gid
     {
@@ -165,7 +165,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       }
     }
 
-    public List<TDDIAbstractTerminologyElement> TerminologyElement
+    public List<TDDIAbstractTerminologyElementRef> TerminologyElement
     {
       get
       {
@@ -210,7 +210,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
       this.__isset.Note = true;
       this._TaggedValue = new List<TDDITaggedValueRef>();
       this.__isset.TaggedValue = true;
-      this._TerminologyElement = new List<TDDIAbstractTerminologyElement>();
+      this._TerminologyElement = new List<TDDIAbstractTerminologyElementRef>();
       this.__isset.TerminologyElement = true;
     }
 
@@ -339,12 +339,12 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
             case 11:
               if (field.Type == TType.List) {
                 {
-                  TerminologyElement = new List<TDDIAbstractTerminologyElement>();
+                  TerminologyElement = new List<TDDIAbstractTerminologyElementRef>();
                   TList _list1265 = iprot.ReadListBegin();
                   for( int _i1266 = 0; _i1266 < _list1265.Count; ++_i1266)
                   {
-                    TDDIAbstractTerminologyElement _elem1267;
-                    _elem1267 = new TDDIAbstractTerminologyElement();
+                    TDDIAbstractTerminologyElementRef _elem1267;
+                    _elem1267 = new TDDIAbstractTerminologyElementRef();
                     _elem1267.Read(iprot);
                     TerminologyElement.Add(_elem1267);
                   }
@@ -483,7 +483,7 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, TerminologyElement.Count));
-            foreach (TDDIAbstractTerminologyElement _iter1271 in TerminologyElement)
+            foreach (TDDIAbstractTerminologyElementRef _iter1271 in TerminologyElement)
             {
               _iter1271.Write(oprot);
             }

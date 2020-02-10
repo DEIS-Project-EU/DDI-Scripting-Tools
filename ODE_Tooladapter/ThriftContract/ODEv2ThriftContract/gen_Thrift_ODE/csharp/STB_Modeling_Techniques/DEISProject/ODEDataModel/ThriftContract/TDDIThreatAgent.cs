@@ -209,13 +209,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1484 = iprot.ReadListBegin();
-                  for( int _i1485 = 0; _i1485 < _list1484.Count; ++_i1485)
+                  TList _list1480 = iprot.ReadListBegin();
+                  for( int _i1481 = 0; _i1481 < _list1480.Count; ++_i1481)
                   {
-                    TDDIKeyValueMap _elem1486;
-                    _elem1486 = new TDDIKeyValueMap();
-                    _elem1486.Read(iprot);
-                    KeyValueMaps.Add(_elem1486);
+                    TDDIKeyValueMap _elem1482;
+                    _elem1482 = new TDDIKeyValueMap();
+                    _elem1482.Read(iprot);
+                    KeyValueMaps.Add(_elem1482);
                   }
                   iprot.ReadListEnd();
                 }
@@ -248,13 +248,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   AttackerGoals = new List<TDDIAttackerGoal>();
-                  TList _list1487 = iprot.ReadListBegin();
-                  for( int _i1488 = 0; _i1488 < _list1487.Count; ++_i1488)
+                  TList _list1483 = iprot.ReadListBegin();
+                  for( int _i1484 = 0; _i1484 < _list1483.Count; ++_i1484)
                   {
-                    TDDIAttackerGoal _elem1489;
-                    _elem1489 = new TDDIAttackerGoal();
-                    _elem1489.Read(iprot);
-                    AttackerGoals.Add(_elem1489);
+                    TDDIAttackerGoal _elem1485;
+                    _elem1485 = new TDDIAttackerGoal();
+                    _elem1485.Read(iprot);
+                    AttackerGoals.Add(_elem1485);
                   }
                   iprot.ReadListEnd();
                 }
@@ -314,9 +314,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1490 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1486 in KeyValueMaps)
             {
-              _iter1490.Write(oprot);
+              _iter1486.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -353,9 +353,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, AttackerGoals.Count));
-            foreach (TDDIAttackerGoal _iter1491 in AttackerGoals)
+            foreach (TDDIAttackerGoal _iter1487 in AttackerGoals)
             {
-              _iter1491.Write(oprot);
+              _iter1487.Write(oprot);
             }
             oprot.WriteListEnd();
           }

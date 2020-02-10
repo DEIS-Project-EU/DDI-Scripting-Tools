@@ -20,29 +20,24 @@ class DDIServiceHandler : virtual public DDIServiceIf {
     // Your initialization goes here
   }
 
-  void ExportModelToDDIFile(const TDDIServiceConfig& ServiceConfiguration, const TDDIDDIPackage& DDIPackage) {
+  void ExportModelToDDIFile(const std::string& DDIFilePath, const TDDIDDIPackage& DDIPackage) {
     // Your implementation goes here
     printf("ExportModelToDDIFile\n");
   }
 
-  void ImportDDIModel(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration) {
+  void ImportDDIModel(TDDIDDIPackage& _return, const std::string& DDIFilePath) {
     // Your implementation goes here
     printf("ImportDDIModel\n");
   }
 
-  void ValidateDDI(TDDIValidationResult& _return, const std::string& DdiPath, const std::string& EvlFilePath) {
+  void ValidateDDI(TDDIValidationResult& _return, const std::string& DDIFilePath, const std::string& EvlFilePath) {
     // Your implementation goes here
     printf("ValidateDDI\n");
   }
 
-  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const TDDIServiceConfig& ServiceConfiguration, const bool BackupDDIFile, const bool ReturnDDIPackage) {
+  void ExecuteEpsilonSriptsOnDDIFile(TDDIDDIPackage& _return, const std::vector<TDDIEpsilonScriptExecutionConfig> & EpsilonScriptExecutionConfigs, const bool BackupDDIFile, const bool ReturnDDIPackage) {
     // Your implementation goes here
     printf("ExecuteEpsilonSriptsOnDDIFile\n");
-  }
-
-  void ExecuteEpsilonSripts(TDDIDDIPackage& _return, const TDDIDDIPackage& DDIPackage, const TDDIServiceConfig& ServiceConfiguration, const bool ExportDDIFile, const bool ReturnDDIPackage) {
-    // Your implementation goes here
-    printf("ExecuteEpsilonSripts\n");
   }
 
 };

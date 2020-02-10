@@ -1,0 +1,245 @@
+// Architecture //
+
+struct TDDIKeyValueMapRef {
+	1: TDDIKeyValueMap& ref
+}
+
+struct TDDIAbstractDependabilityRequirementRef {
+	1: TDDIAbstractDependabilityRequirement& ref
+}
+
+struct TDDIAbstractDesignArtifactRef {
+	1: TDDIAbstractDesignArtifact& ref
+}
+
+struct TDDIAbstractArchitecturePackageRef {
+	1: TDDIAbstractArchitecturePackage& ref
+}
+
+struct TDDIAbstractSystemRef {
+	1: TDDIAbstractSystem& ref
+}
+
+struct TDDIAbstractFunctionRef {
+	1: TDDIAbstractFunction& ref
+}
+
+struct TDDILifecycleConditionRef {
+	1: TDDILifecycleCondition& ref
+}
+
+struct TDDIAbstractFailureLogicPackageRef {
+	1: TDDIAbstractFailureLogicPackage& ref
+}
+
+struct TDDIPortRef {
+	1: TDDIPort& ref
+}
+
+struct TDDIAbstractInterfaceFailureRef {
+	1: TDDIAbstractInterfaceFailure& ref
+}
+
+struct TDDIAbstractStandardRef {
+	1: TDDIAbstractStandard& ref
+}
+
+struct TDDIMalFunctionRef {
+	1: TDDIMalFunction& ref
+}
+
+// Architecture //
+
+// Base //
+
+// No -Refs needed
+
+// Base //
+
+// Dependability //
+
+struct TDDIAbstractDependabilityArtifactRef {
+	1: TDDIAbstractDependabilityArtifact& ref
+}
+
+struct TDDIAbstractDependabilityPackageRef {
+	1: TDDIAbstractDependabilityPackage& ref
+}
+
+// Dependability //
+
+// Domain //
+
+struct TDDIAbstractDomainElementRef {
+	1: TDDIAbstractDomainElement& ref
+}
+
+struct TDDIAbstractDomainPackageRef {
+	1: TDDIAbstractDomainPackage& ref
+}
+
+// Domain //
+
+// FailureLogic //
+
+// End-FailureLogic //
+
+// FMEA //
+
+struct TDDIAbstractFailureAnalysisArtifactRef {
+	1: TDDIAbstractFailureAnalysisArtifact& ref
+}
+
+struct TDDIAbstractFMEAArtifactRef {
+	1: TDDIAbstractFMEAArtifact& ref
+}
+
+struct TDDIAbstractFMEAPackageRef {
+	1: TDDIAbstractFMEAPackage& ref
+}
+
+// End-FMEA //
+
+// FTA //
+
+struct TDDIMinimalCutsetRef {
+	1: TDDIMinimalCutset& ref
+}
+
+struct TDDIAbstractFTAPackageRef {
+	1: TDDIAbstractFTAPackage& ref
+}
+
+// End-FTA
+
+// HARA
+
+struct TDDIAbstractHARAPackageRef {
+	1: TDDIAbstractHARAPackage& ref
+}
+
+struct TDDIAbstractMeasureRef {
+	1: TDDIAbstractMeasure& ref
+}
+
+struct TDDIAbstractRiskParameterRef {
+	1: TDDIAbstractRiskParameter& ref
+}
+
+// End-HARA
+
+// Integration
+
+struct TDDIAbstractODEPackageRef {
+	1: TDDIAbstractODEPackage& ref
+}
+
+// End-Integration //
+
+// Markov //
+
+struct TDDIAbstractMarkovChainPackageRef {
+	1: TDDIAbstractMarkovChainPackage& ref
+}
+
+// End-Markov //
+
+// Requirement //
+
+struct TDDIAbstractRequirementArtifactRef {
+	1: TDDIAbstractRequirementArtifact& ref
+}
+
+struct TDDIAbstractRequirementPackageRef {
+	1: TDDIAbstractRequirementPackage& ref
+}
+
+struct TDDIAbstractFailureRef {
+	1: TDDIAbstractFailure& ref
+}
+
+struct TDDIMaintenanceProcedureRef {
+	1: TDDIMaintenanceProcedure& ref
+}
+
+struct TDDIHazardRef {
+	1: TDDIHazard& ref
+}
+
+// End-Requirement //
+
+// SACM_Argumentation //
+
+struct TDDIImplementationConstraintRef {
+	1: TDDIImplementationConstraint& ref
+}
+
+struct TDDINoteRef {
+	1: TDDINote& ref
+}
+
+struct TDDITaggedValueRef {
+	1: TDDITaggedValue& ref
+}
+
+struct TDDIAbstractArtifactElementRef {
+	1: TDDIAbstractArtifactElement& ref
+}
+
+struct TDDIClaimRef {
+	1: TDDIClaim& ref
+}
+
+struct TDDIAbstractArgumentPackageRef {
+	1: TDDIAbstractArgumentPackage& ref
+}
+
+struct TDDIAbstractArgumentationElementRef{
+	1: TDDIAbstractArgumentationElement& ref
+}
+
+struct TDDIAbstractArgumentAssetRef{
+	1: TDDIAbstractArgumentAsset& ref
+}
+
+// End-SACM_Argumentation //
+
+// SACM_Artifact //
+
+struct TDDIPropertyRef {
+	1: TDDIProperty& ref
+}
+
+struct TDDIAbstractArtifactAssetRef {
+	1: TDDIAbstractArtifactAsset& ref
+}
+
+// End-SACM_Artifact //
+
+// SACM_AssuranceCase //
+
+struct TDDIAbstractAssuranceCasePackageRef {
+	1: TDDIAbstractAssuranceCasePackage& ref
+}
+
+struct TDDIAssuranceCasePackageInterfaceRef {
+	1: TDDIAssuranceCasePackageInterface& ref
+}
+
+struct TDDIAbstractArtifactPackageRef {
+	1: TDDIAbstractArtifactPackage& ref
+}
+
+struct TDDIAbstractTerminologyPackageRef {
+	1: TDDIAbstractTerminologyPackage& ref
+}
+
+// End-SACM_AssuranceCase //
+
+// SACM_Terminology //
+
+struct TDDIAbstractExpressionElementRef {
+	1: TDDIAbstractExpressionElement& ref
+}
+
+// End-SACM_Terminology //

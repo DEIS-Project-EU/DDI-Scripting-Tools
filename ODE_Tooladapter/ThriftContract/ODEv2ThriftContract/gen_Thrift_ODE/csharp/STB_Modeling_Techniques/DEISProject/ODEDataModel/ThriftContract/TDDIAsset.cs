@@ -217,13 +217,13 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
               if (field.Type == TType.List) {
                 {
                   KeyValueMaps = new List<TDDIKeyValueMap>();
-                  TList _list1396 = iprot.ReadListBegin();
-                  for( int _i1397 = 0; _i1397 < _list1396.Count; ++_i1397)
+                  TList _list1392 = iprot.ReadListBegin();
+                  for( int _i1393 = 0; _i1393 < _list1392.Count; ++_i1393)
                   {
-                    TDDIKeyValueMap _elem1398;
-                    _elem1398 = new TDDIKeyValueMap();
-                    _elem1398.Read(iprot);
-                    KeyValueMaps.Add(_elem1398);
+                    TDDIKeyValueMap _elem1394;
+                    _elem1394 = new TDDIKeyValueMap();
+                    _elem1394.Read(iprot);
+                    KeyValueMaps.Add(_elem1394);
                   }
                   iprot.ReadListEnd();
                 }
@@ -311,9 +311,9 @@ namespace STB_Modeling_Techniques.DEISProject.ODEDataModel.ThriftContract
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, KeyValueMaps.Count));
-            foreach (TDDIKeyValueMap _iter1399 in KeyValueMaps)
+            foreach (TDDIKeyValueMap _iter1395 in KeyValueMaps)
             {
-              _iter1399.Write(oprot);
+              _iter1395.Write(oprot);
             }
             oprot.WriteListEnd();
           }
