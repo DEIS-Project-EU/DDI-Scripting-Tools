@@ -5,15 +5,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.Failure;
-import failureLogic.FailureLogicPackage;
-import failureLogic.FailureModel;
-import failureLogic.FailureOriginType;
-import failureLogic.MinimalCutSets;
-import failureLogic.MinimalCutset;
-import failureLogic.ProbDist;
-import failureLogic.ProbDistParam;
-import failureLogic.SecurityViolation;
 import failurelogic.iface.IFailure;
 import failurelogic.iface.IFailureModel;
 import failurelogic.typed.TFailure;
@@ -34,6 +25,15 @@ import thriftContract.TDDIMinimalCutSets;
 import thriftContract.TDDIProbDist;
 import thriftContract.TDDIProbDistParam;
 import thriftContract.TDDISecurityViolation;
+import top.failureLogic.Failure;
+import top.failureLogic.FailureLogicPackage;
+import top.failureLogic.FailureModel;
+import top.failureLogic.FailureOriginType;
+import top.failureLogic.MinimalCutSets;
+import top.failureLogic.MinimalCutset;
+import top.failureLogic.ProbDist;
+import top.failureLogic.ProbDistParam;
+import top.failureLogic.SecurityViolation;
 import util.EMFFactory;
 
 public class FailureLogicEMFTranslater {
@@ -90,15 +90,15 @@ public class FailureLogicEMFTranslater {
 	public static void transformFailureModelContents(IFailureModel tFailureModel, FailureModel emfFailureModel) {
 		BaseEMFTranslater.transformBaseElementContents(tFailureModel, emfFailureModel);
 		
-		if(tFailureModel.isSetMinimalCutsets()){
-			for(TDDIMinimalCutSets tMinimalCutSets : tFailureModel.getMinimalCutsets()){
-				emfFailureModel.getMinimalCutsets().add(transformMinimalCutSets(tMinimalCutSets));
-			}
-		}
-		
 		if(tFailureModel.isSetFailures()){
 			for(TDDIAbstractFailure tAbstractFailure : tFailureModel.getFailures()){
 				emfFailureModel.getFailures().add(transformAbstractFailure(tAbstractFailure));
+			}
+		}
+		
+		if(tFailureModel.isSetMinimalCutsets()){
+			for(TDDIMinimalCutSets tMinimalCutSets : tFailureModel.getMinimalCutsets()){
+				emfFailureModel.getMinimalCutsets().add(transformMinimalCutSets(tMinimalCutSets));
 			}
 		}
 		

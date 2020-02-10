@@ -2,10 +2,6 @@ package transformation.thrift2ode;
 
 import java.util.stream.Collectors;
 
-import dependability.AssuranceLevel;
-import dependability.DomainPackage;
-import dependability.SafetyStandard;
-import dependability.Standard;
 import dependability.domain.typed.TAssuranceLevel;
 import dependability.domain.typed.TDomainPackage;
 import dependability.domain.typed.TSafetyStandard;
@@ -15,6 +11,10 @@ import thriftContract.TDDIAssuranceLevel;
 import thriftContract.TDDIDomainPackage;
 import thriftContract.TDDISafetyStandard;
 import thriftContract.TDDIStandard;
+import top.dependability.AssuranceLevel;
+import top.dependability.DomainPackage;
+import top.dependability.SafetyStandard;
+import top.dependability.Standard;
 import util.EMFFactory;
 
 public class DomainEMFTranslater {

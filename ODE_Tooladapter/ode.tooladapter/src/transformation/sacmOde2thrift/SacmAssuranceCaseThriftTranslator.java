@@ -1,26 +1,23 @@
 package transformation.sacmOde2thrift;
 
-import argumentation.ArgumentPackage;
-import artifact.ArtifactPackage;
-import assuranceCase.AssuranceCasePackage;
-import assuranceCase.AssuranceCasePackageBinding;
-import assuranceCase.AssuranceCasePackageInterface;
 import sacm.assuranceCase.iface.IAssuranceCasePackage;
 import sacm.assuranceCase.typed.TAssuranceCasePackage;
 import sacm.assuranceCase.typed.TAssuranceCasePackageBinding;
 import sacm.assuranceCase.typed.TAssuranceCasePackageInterface;
-import terminology.TerminologyPackage;
-import thriftContract.TDDIAbstractArgumentPackageRef;
-import thriftContract.TDDIAbstractArtifactPackageRef;
 import thriftContract.TDDIAbstractAssuranceCasePackage;
 import thriftContract.TDDIAbstractAssuranceCasePackageRef;
-import thriftContract.TDDIAbstractTerminologyPackageRef;
 import thriftContract.TDDIAssuranceCasePackage;
 import thriftContract.TDDIAssuranceCasePackageBinding;
 import thriftContract.TDDIAssuranceCasePackageInterface;
 import thriftContract.TDDIAssuranceCasePackageInterfaceRef;
 import thriftContract.TDDIAssuranceCasePackageUnion;
 import thriftContract.TDDIAssuranceCasePackageUnionType;
+import top.argumentation.ArgumentPackage;
+import top.artifact.ArtifactPackage;
+import top.assuranceCase.AssuranceCasePackage;
+import top.assuranceCase.AssuranceCasePackageBinding;
+import top.assuranceCase.AssuranceCasePackageInterface;
+import top.terminology.TerminologyPackage;
 
 public class SacmAssuranceCaseThriftTranslator {
 	public static TDDIAbstractAssuranceCasePackage transformAbstractAssuranceCasePackage(AssuranceCasePackage eAssuranceCasePackage) {
@@ -92,13 +89,13 @@ public class SacmAssuranceCaseThriftTranslator {
 		
 		if(emfAssuranceCasePackage.getTerminologyPackage() != null) {
 			for(TerminologyPackage eTerminologyPackgage : emfAssuranceCasePackage.getTerminologyPackage()) {
-				tAssuranceCasePackage.addToTerminologyPackage(new TDDIAbstractTerminologyPackageRef(SacmTerminologyThriftTranslator.transformAbstractTerminologyPackage(eTerminologyPackgage)));
+				tAssuranceCasePackage.addToTerminologyPackage(SacmTerminologyThriftTranslator.transformAbstractTerminologyPackage(eTerminologyPackgage));
 			}
 		}
 		
 		if(emfAssuranceCasePackage.getAssuranceCasePackage() != null) {
 			for(AssuranceCasePackage eAssuranceCasePackage : emfAssuranceCasePackage.getAssuranceCasePackage()) {
-				tAssuranceCasePackage.addToAssuranceCasePackage(new TDDIAbstractAssuranceCasePackageRef(transformAbstractAssuranceCasePackage(eAssuranceCasePackage)));
+				tAssuranceCasePackage.addToAssuranceCasePackage(transformAbstractAssuranceCasePackage(eAssuranceCasePackage));
 			}
 		}
 		
@@ -110,13 +107,13 @@ public class SacmAssuranceCaseThriftTranslator {
 		
 		if(emfAssuranceCasePackage.getArtifactPackage() != null) {
 			for(ArtifactPackage eArtifactPackage : emfAssuranceCasePackage.getArtifactPackage()) {
-				tAssuranceCasePackage.addToArtifactPackage(new TDDIAbstractArtifactPackageRef(SacmArtifactThriftTranslator.transformAbstractArtifactPackage(eArtifactPackage)));
+				tAssuranceCasePackage.addToArtifactPackage(SacmArtifactThriftTranslator.transformAbstractArtifactPackage(eArtifactPackage));
 			}
 		}
 		
 		if(emfAssuranceCasePackage.getArgumentPackage() != null) {
 			for(ArgumentPackage eArgumentPackage : emfAssuranceCasePackage.getArgumentPackage()) {
-				tAssuranceCasePackage.addToArgumentPackage(new TDDIAbstractArgumentPackageRef(SacmArgumentThriftTranslator.transformAbstractArgumentPackage(eArgumentPackage)));
+				tAssuranceCasePackage.addToArgumentPackage(SacmArgumentThriftTranslator.transformAbstractArgumentPackage(eArgumentPackage));
 			}
 		}
 	}

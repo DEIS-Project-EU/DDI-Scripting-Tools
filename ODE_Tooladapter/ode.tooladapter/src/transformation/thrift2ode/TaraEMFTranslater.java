@@ -2,23 +2,6 @@ package transformation.thrift2ode;
 
 import java.util.stream.Collectors;
 
-import dependability.Action;
-import dependability.Asset;
-import dependability.Attack;
-import dependability.AttackerGoal;
-import dependability.FinancialCostType;
-import dependability.Human;
-import dependability.NonHuman;
-import dependability.OperationalCostType;
-import dependability.Payload;
-import dependability.SecurityApplicationType;
-import dependability.SecurityCapability;
-import dependability.SecurityControl;
-import dependability.SecurityRisk;
-import dependability.TARAPackage;
-import dependability.ThreatAgent;
-import dependability.Vulnerability;
-import dependability.VulnerableItem;
 import dependability.iface.IAsset;
 import dependability.iface.IAttack;
 import dependability.iface.IThreatAgent;
@@ -56,6 +39,23 @@ import thriftContract.TDDITARAPackage;
 import thriftContract.TDDIThreatAgent;
 import thriftContract.TDDIVulnerability;
 import thriftContract.TDDIVulnerableItem;
+import top.dependability.Action;
+import top.dependability.Asset;
+import top.dependability.Attack;
+import top.dependability.AttackerGoal;
+import top.dependability.FinancialCostType;
+import top.dependability.Human;
+import top.dependability.NonHuman;
+import top.dependability.OperationalCostType;
+import top.dependability.Payload;
+import top.dependability.SecurityApplicationType;
+import top.dependability.SecurityCapability;
+import top.dependability.SecurityControl;
+import top.dependability.SecurityRisk;
+import top.dependability.TARAPackage;
+import top.dependability.ThreatAgent;
+import top.dependability.Vulnerability;
+import top.dependability.VulnerableItem;
 import util.EMFFactory;
 
 public class TaraEMFTranslater {

@@ -1,22 +1,11 @@
 package transformation.ode2thrift;
 
-import dependability.MaintenanceProcedure;
-import dependability.Measure;
-import dependability.Hazard;
-import dependability.DependabilityRequirement;
-import dependability.LegalContract;
-import dependability.RequirementPackage;
-import dependability.RequirementSource;
-import dependability.SafetyRequirement;
-import dependability.SecurityRequirement;
-import dependability.SecurityCapability;
 import dependability.iface.IDependabilityRequirement;
 import dependability.iface.IRequirementSource;
 import dependability.requirements.typed.TLegalContract;
 import dependability.requirements.typed.TRequirementPackage;
 import dependability.requirements.typed.TSafetyRequirement;
 import dependability.requirements.typed.TSecurityRequirement;
-import failureLogic.Failure;
 import thriftContract.TDDIAbstractDependabilityRequirement;
 import thriftContract.TDDIAbstractDependabilityRequirementRef;
 import thriftContract.TDDIAbstractFailureRef;
@@ -32,6 +21,17 @@ import thriftContract.TDDIRequirementSourceUnionType;
 import thriftContract.TDDISafetyRequirement;
 import thriftContract.TDDISecurityCapabilityRef;
 import thriftContract.TDDISecurityRequirement;
+import top.dependability.DependabilityRequirement;
+import top.dependability.Hazard;
+import top.dependability.LegalContract;
+import top.dependability.MaintenanceProcedure;
+import top.dependability.Measure;
+import top.dependability.RequirementPackage;
+import top.dependability.RequirementSource;
+import top.dependability.SafetyRequirement;
+import top.dependability.SecurityCapability;
+import top.dependability.SecurityRequirement;
+import top.failureLogic.Failure;
 
 public class RequirementsThriftTranslater {
 

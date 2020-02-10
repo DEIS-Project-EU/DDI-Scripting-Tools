@@ -2,14 +2,14 @@ package transformation.thrift2ode;
 
 import java.util.HashMap;
 
-import odeBase.BaseElement;
-import odeBase.KeyValueMap;
-import odeBase.TimeUnit;
-import odeBase.Value;
 import base.iface.IBaseElement;
 import thriftContract.TDDIKeyValueMap;
 import thriftContract.TDDITimeUnit;
 import thriftContract.TDDIValue;
+import top.odeBase.BaseElement;
+import top.odeBase.KeyValueMap;
+import top.odeBase.TimeUnit;
+import top.odeBase.Value;
 import util.EMFFactory;
 
 public class BaseEMFTranslater {

@@ -2,12 +2,6 @@ package transformation.thrift2ode;
 
 import java.util.stream.Collectors;
 
-import dependability.DependabilityRequirement;
-import dependability.LegalContract;
-import dependability.RequirementPackage;
-import dependability.RequirementSource;
-import dependability.SafetyRequirement;
-import dependability.SecurityRequirement;
 import dependability.iface.IDependabilityRequirement;
 import dependability.iface.IRequirementSource;
 import dependability.requirements.typed.TLegalContract;
@@ -25,6 +19,12 @@ import thriftContract.TDDIRequirementPackage;
 import thriftContract.TDDISafetyRequirement;
 import thriftContract.TDDISecurityCapability;
 import thriftContract.TDDISecurityRequirement;
+import top.dependability.DependabilityRequirement;
+import top.dependability.LegalContract;
+import top.dependability.RequirementPackage;
+import top.dependability.RequirementSource;
+import top.dependability.SafetyRequirement;
+import top.dependability.SecurityRequirement;
 import util.EMFFactory;
 
 public class RequirementsEMFTranslater {

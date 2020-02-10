@@ -2,16 +2,6 @@ package transformation.thrift2ode;
 
 import java.util.stream.Collectors;
 
-import dependability.Accident;
-import dependability.HARAPackage;
-import dependability.Hazard;
-import dependability.HazardType;
-import dependability.HazardTypeSystem;
-import dependability.Malfunction;
-import dependability.OperatorMeasure;
-import dependability.RiskAssessment;
-import dependability.RiskParameter;
-import dependability.Situation;
 import dependability.hara.typed.TAccident;
 import dependability.hara.typed.THARAPackage;
 import dependability.hara.typed.THazard;
@@ -36,6 +26,16 @@ import thriftContract.TDDIOperatorMeasure;
 import thriftContract.TDDIRiskAssessment;
 import thriftContract.TDDIRiskParameter;
 import thriftContract.TDDISituation;
+import top.dependability.Accident;
+import top.dependability.HARAPackage;
+import top.dependability.Hazard;
+import top.dependability.HazardType;
+import top.dependability.HazardTypeSystem;
+import top.dependability.Malfunction;
+import top.dependability.OperatorMeasure;
+import top.dependability.RiskAssessment;
+import top.dependability.RiskParameter;
+import top.dependability.Situation;
 import util.EMFFactory;
 
 public class HaraEMFTranslater {

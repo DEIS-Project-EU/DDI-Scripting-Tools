@@ -1,15 +1,5 @@
 package transformation.sacmOde2thrift;
 
-import terminology.Category;
-import terminology.Expression;
-import terminology.ExpressionElement;
-import terminology.Term;
-import terminology.TerminologyAsset;
-import terminology.TerminologyElement;
-import terminology.TerminologyGroup;
-import terminology.TerminologyPackage;
-import terminology.TerminologyPackageBinding;
-import terminology.TerminologyPackageInterface;
 import sacm.terminology.iface.IExpressionElement;
 import sacm.terminology.iface.ITerminologyAsset;
 import sacm.terminology.iface.ITerminologyElement;
@@ -25,7 +15,9 @@ import thriftContract.TDDIAbstractExpressionElement;
 import thriftContract.TDDIAbstractExpressionElementRef;
 import thriftContract.TDDIAbstractTerminologyAsset;
 import thriftContract.TDDIAbstractTerminologyElement;
+import thriftContract.TDDIAbstractTerminologyElementRef;
 import thriftContract.TDDIAbstractTerminologyPackage;
+import thriftContract.TDDIAbstractTerminologyPackageRef;
 import thriftContract.TDDICategory;
 import thriftContract.TDDICategoryRef;
 import thriftContract.TDDIExpression;
@@ -42,6 +34,16 @@ import thriftContract.TDDITerminologyPackageBinding;
 import thriftContract.TDDITerminologyPackageInterface;
 import thriftContract.TDDITerminologyPackageUnion;
 import thriftContract.TDDITerminologyPackageUnionType;
+import top.terminology.Category;
+import top.terminology.Expression;
+import top.terminology.ExpressionElement;
+import top.terminology.Term;
+import top.terminology.TerminologyAsset;
+import top.terminology.TerminologyElement;
+import top.terminology.TerminologyGroup;
+import top.terminology.TerminologyPackage;
+import top.terminology.TerminologyPackageBinding;
+import top.terminology.TerminologyPackageInterface;
 
 public class SacmTerminologyThriftTranslator {
 
@@ -76,7 +78,7 @@ public class SacmTerminologyThriftTranslator {
 		
 		if(eTerminologyGroup.getTerminologyElement() != null) {
 			for(TerminologyElement eTerminologyElement : eTerminologyGroup.getTerminologyElement()) {
-				tTerminologyGroup.getTerminologyElement().add(transformAbstractTerminologyElement(eTerminologyElement));
+				tTerminologyGroup.getTerminologyElement().add(new TDDIAbstractTerminologyElementRef(transformAbstractTerminologyElement(eTerminologyElement)));
 			}
 		}
 		return tTerminologyGroup;
@@ -113,7 +115,7 @@ public class SacmTerminologyThriftTranslator {
 		
 		if(eTerminologyPackageBinding.getParticipantPackage() != null && eTerminologyPackageBinding.getParticipantPackage().size() >= 2) {
 			for(TerminologyPackage eParticipantTerminologyPackage : eTerminologyPackageBinding.getParticipantPackage()) {
-				tTerminologyPackageBinding.getParticipantPackage().add(transformAbstractTerminologyPackage(eParticipantTerminologyPackage));
+				tTerminologyPackageBinding.getParticipantPackage().add(new TDDIAbstractTerminologyPackageRef(transformAbstractTerminologyPackage(eParticipantTerminologyPackage)));
 			}
 		}
 		return tTerminologyPackageBinding;

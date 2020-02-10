@@ -14,17 +14,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import architecture.Architecture_Package;
-import argumentation.Argumentation_Package;
-import artifact.Artifact_Package;
-import assuranceCase.AssuranceCase_Package;
-import base.Base_Package;
-import odeBase.OdeBasePackage;
-import dependability.Dependability_Package;
-import failureLogic.FailureLogic_Package;
-import integration.DDIPackage;
-import integration.Integration_Package;
-import terminology.Terminology_Package;
+import top.architecture.ArchitecturePackage;
+import top.argumentation.ArgumentationPackage;
+import top.artifact.Artifact_Package;
+import top.assuranceCase.AssuranceCase_Package;
+import top.base.BasePackage;
+import top.dependability.Dependability_Package;
+import top.failureLogic.FailureLogic_Package;
+import top.integration.DDIPackage;
+import top.integration.IntegrationPackage;
+import top.odeBase.OdeBasePackage;
+import top.terminology.Terminology_Package;
 
 public class EMFSerialization {
 	public static void saveEMFModelToFile(String Path, DDIPackage emfDDIPackage) {
@@ -35,9 +35,9 @@ public class EMFSerialization {
 
 		// Obtain a new resource set
 		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getPackageRegistry().put(Integration_Package.eNS_URI, Integration_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(IntegrationPackage.eNS_URI, IntegrationPackage.eINSTANCE);
 		resSet.getPackageRegistry().put(OdeBasePackage.eNS_URI, OdeBasePackage.eINSTANCE);
-		resSet.getPackageRegistry().put(Architecture_Package.eNS_URI, Architecture_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(ArchitecturePackage.eNS_URI, ArchitecturePackage.eINSTANCE);
 		resSet.getPackageRegistry().put(FailureLogic_Package.eNS_URI, FailureLogic_Package.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEFTAPackage.eNS_URI, ODEFTAPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEFMEAPackage.eNS_URI, ODEFMEAPackage.eINSTANCE);
@@ -47,10 +47,10 @@ public class EMFSerialization {
 		//resSet.getPackageRegistry().put(ODEDomainPackage.eNS_URI, ODEDomainPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEHARAPackage.eNS_URI, ODEHARAPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODETARAPackage.eNS_URI, ODETARAPackage.eINSTANCE);
-		resSet.getPackageRegistry().put(Base_Package.eNS_URI, Base_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(BasePackage.eNS_URI, BasePackage.eINSTANCE);
 		resSet.getPackageRegistry().put(AssuranceCase_Package.eNS_URI, AssuranceCase_Package.eINSTANCE);
 		resSet.getPackageRegistry().put(Artifact_Package.eNS_URI, Artifact_Package.eINSTANCE);
-		resSet.getPackageRegistry().put(Argumentation_Package.eNS_URI, Argumentation_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(ArgumentationPackage.eNS_URI, ArgumentationPackage.eINSTANCE);
 		resSet.getPackageRegistry().put(Terminology_Package.eNS_URI, Terminology_Package.eINSTANCE);
 		
 		
@@ -71,9 +71,9 @@ public class EMFSerialization {
 
 	public static DDIPackage loadEMFModelFromFile(String Path) {
 		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getPackageRegistry().put(Integration_Package.eNS_URI, Integration_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(IntegrationPackage.eNS_URI, IntegrationPackage.eINSTANCE);
 		resSet.getPackageRegistry().put(OdeBasePackage.eNS_URI, OdeBasePackage.eINSTANCE);
-		resSet.getPackageRegistry().put(Architecture_Package.eNS_URI, Architecture_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(ArchitecturePackage.eNS_URI, ArchitecturePackage.eINSTANCE);
 		resSet.getPackageRegistry().put(FailureLogic_Package.eNS_URI, FailureLogic_Package.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEFTAPackage.eNS_URI, ODEFTAPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEFMEAPackage.eNS_URI, ODEFMEAPackage.eINSTANCE);
@@ -83,10 +83,10 @@ public class EMFSerialization {
 		//resSet.getPackageRegistry().put(ODEDomainPackage.eNS_URI, ODEDomainPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODEHARAPackage.eNS_URI, ODEHARAPackage.eINSTANCE);
 		//resSet.getPackageRegistry().put(ODETARAPackage.eNS_URI, ODETARAPackage.eINSTANCE);
-		resSet.getPackageRegistry().put(Base_Package.eNS_URI, Base_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(BasePackage.eNS_URI, BasePackage.eINSTANCE);
 		resSet.getPackageRegistry().put(AssuranceCase_Package.eNS_URI, AssuranceCase_Package.eINSTANCE);
 		resSet.getPackageRegistry().put(Artifact_Package.eNS_URI, Artifact_Package.eINSTANCE);
-		resSet.getPackageRegistry().put(Argumentation_Package.eNS_URI, Argumentation_Package.eINSTANCE);
+		resSet.getPackageRegistry().put(ArgumentationPackage.eNS_URI, ArgumentationPackage.eINSTANCE);
 		resSet.getPackageRegistry().put(Terminology_Package.eNS_URI, Terminology_Package.eINSTANCE);
 		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ddi", new XMIResourceFactoryImpl());
 		

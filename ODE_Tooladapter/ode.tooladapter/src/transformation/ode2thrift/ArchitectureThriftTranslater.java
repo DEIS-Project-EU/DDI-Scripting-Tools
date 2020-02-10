@@ -1,19 +1,5 @@
 package transformation.ode2thrift;
 
-import architecture.Configuration;
-import architecture.Context;
-import architecture.DesignPackage;
-import architecture.Function;
-import architecture.LifecycleCondition;
-import architecture.LogicalComponent;
-import architecture.PerfChars;
-import architecture.PhysicalComponent;
-import architecture.Port;
-import architecture.SafetyFunction;
-import architecture.SafetyRelatedSystem;
-import architecture.Signal;
-import architecture.System;
-import architecture.SystemBoundary;
 import architecture.iface.IFunction;
 import architecture.iface.ISystem;
 import architecture.typed.TConfiguration;
@@ -30,11 +16,6 @@ import architecture.typed.TSafetyRelatedSystem;
 import architecture.typed.TSignal;
 import architecture.typed.TSystem;
 import architecture.typed.TSystemBoundary;
-import dependability.Standard;
-import dependability.Malfunction;
-import dependability.DependabilityRequirement;
-import failureLogic.Failure;
-import failureLogic.FailureModel;
 import thriftContract.TDDIAbstractDependabilityRequirementRef;
 import thriftContract.TDDIAbstractFailureModelRef;
 import thriftContract.TDDIAbstractFailureRef;
@@ -65,6 +46,25 @@ import thriftContract.TDDISystem;
 import thriftContract.TDDISystemBoundary;
 import thriftContract.TDDISystemUnion;
 import thriftContract.TDDISystemUnionType;
+import top.architecture.Configuration;
+import top.architecture.Context;
+import top.architecture.DesignPackage;
+import top.architecture.Function;
+import top.architecture.LifecycleCondition;
+import top.architecture.LogicalComponent;
+import top.architecture.PerfChars;
+import top.architecture.PhysicalComponent;
+import top.architecture.Port;
+import top.architecture.SafetyFunction;
+import top.architecture.SafetyRelatedSystem;
+import top.architecture.Signal;
+import top.architecture.System;
+import top.architecture.SystemBoundary;
+import top.dependability.DependabilityRequirement;
+import top.dependability.Malfunction;
+import top.dependability.Standard;
+import top.failureLogic.Failure;
+import top.failureLogic.FailureModel;
 
 public class ArchitectureThriftTranslater {
 

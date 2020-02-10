@@ -1,18 +1,5 @@
 package transformation.sacmOde2thrift;
 
-import artifact.Activity;
-import artifact.Artifact;
-import artifact.ArtifactAsset;
-import artifact.ArtifactAssetRelationship;
-import artifact.ArtifactGroup;
-import artifact.ArtifactPackage;
-import artifact.ArtifactPackageBinding;
-import artifact.ArtifactPackageInterface;
-import artifact.Event;
-import artifact.Participant;
-import artifact.Property;
-import artifact.Resource;
-import artifact.Technique;
 import sacm.artifact.iface.IArtifactAsset;
 import sacm.artifact.iface.IArtifactPackage;
 import sacm.artifact.typed.TActivity;
@@ -27,7 +14,6 @@ import sacm.artifact.typed.TParticipant;
 import sacm.artifact.typed.TProperty;
 import sacm.artifact.typed.TResource;
 import sacm.artifact.typed.TTechnique;
-import base.ArtifactElement;
 import thriftContract.TDDIAbstractArtifactAsset;
 import thriftContract.TDDIAbstractArtifactAssetRef;
 import thriftContract.TDDIAbstractArtifactElementRef;
@@ -49,6 +35,20 @@ import thriftContract.TDDIProperty;
 import thriftContract.TDDIPropertyRef;
 import thriftContract.TDDIResource;
 import thriftContract.TDDITechnique;
+import top.artifact.Activity;
+import top.artifact.Artifact;
+import top.artifact.ArtifactAsset;
+import top.artifact.ArtifactAssetRelationship;
+import top.artifact.ArtifactGroup;
+import top.artifact.ArtifactPackage;
+import top.artifact.ArtifactPackageBinding;
+import top.artifact.ArtifactPackageInterface;
+import top.artifact.Event;
+import top.artifact.Participant;
+import top.artifact.Property;
+import top.artifact.Resource;
+import top.artifact.Technique;
+import top.base.ArtifactElement;
 
 public class SacmArtifactThriftTranslator {
 

@@ -1,21 +1,21 @@
 package transformation.ode2thrift;
 
-import architecture.DesignPackage;
-import dependability.DependabilityPackage;
-import dependability.DomainPackage;
-import dependability.HARAPackage;
-import dependability.RequirementPackage;
-import dependability.TARAPackage;
-import failureLogic.FailureLogicPackage;
-import integration.DDIPackage;
-import integration.ODEProductPackage;
 import integration.iface.IODEProductPackage;
 import integration.typed.TDDIPackage;
-import assuranceCase.AssuranceCasePackage;
 import thriftContract.TDDIAbstractODEProductPackage;
 import thriftContract.TDDIDDIPackage;
 import thriftContract.TDDIODEProductPackageUnion;
 import thriftContract.TDDIODEProductPackageUnionType;
+import top.architecture.DesignPackage;
+import top.assuranceCase.AssuranceCasePackage;
+import top.dependability.DependabilityPackage;
+import top.dependability.DomainPackage;
+import top.dependability.HARAPackage;
+import top.dependability.RequirementPackage;
+import top.dependability.TARAPackage;
+import top.failureLogic.FailureLogicPackage;
+import top.integration.DDIPackage;
+import top.integration.ODEProductPackage;
 import transformation.sacmOde2thrift.SacmAssuranceCaseThriftTranslator;
 
 public class ODE2ThriftTranslater {

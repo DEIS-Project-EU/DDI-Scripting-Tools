@@ -18,9 +18,12 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 
-import resourcePackage.EcoreResourceLoader;
-import sacm.SacmEcoreResourceLoader;
+import mergedODE.MergedResourceLoader;
+import thriftContract.TDDIAbstractEpsilonScriptExecutionException;
 import thriftContract.TDDIEpsilonScriptExecutionConfig;
+import thriftContract.TDDIEpsilonScriptExecutionException;
+import thriftContract.TDDIEpsilonScriptExecutionExceptionUnion;
+import thriftContract.TDDIEpsilonScriptExecutionExceptionUnionType;
 import thriftContract.TDDIEpsilonScriptModelConfig;
 
 public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExecutor{
@@ -101,11 +104,23 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 		}
 		
 		if (module.getParseProblems().size() > 0) {
-			System.err.println("Parse errors occured...");
+			String errorMessage = "Errors occurred while parsing epsilon script...";
+			
+			System.err.println(errorMessage);
 			for (ParseProblem problem : module.getParseProblems()) {
 				System.err.println(problem.toString());
+				errorMessage += "\n"+problem.toString();
 			}
-			return;
+			
+			TDDIEpsilonScriptExecutionException scriptExecExecption = new TDDIEpsilonScriptExecutionException();
+			scriptExecExecption.Message = errorMessage;
+			TDDIEpsilonScriptExecutionExceptionUnion exceptionUnion = new TDDIEpsilonScriptExecutionExceptionUnion();
+			exceptionUnion.setEpsilonScriptExecutionException(scriptExecExecption);
+			TDDIAbstractEpsilonScriptExecutionException abstractScriptExececutionException = new TDDIAbstractEpsilonScriptExecutionException();
+			abstractScriptExececutionException.UsedExceptionType = TDDIEpsilonScriptExecutionExceptionUnionType.ESEEUTEpsilonScriptExecutionException;
+			abstractScriptExececutionException.UsedException = exceptionUnion;
+			
+			throw abstractScriptExececutionException;
 		}
 		
 		preProcess();
@@ -154,9 +169,9 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 		
 		String metaModelUrisCsv = this.metaModelURIs.stream().map(uri -> uri.toString()).reduce((a, b) -> a + "," + b).get();
 		//String metaModelPathsCsv = String.join(",", this.metaModelPaths);
-		List<String> metamodelPathsWithoutSlash = new ArrayList<String>();
+		//List<String> metamodelPathsWithoutSlash = new ArrayList<String>();
 		
-		String metaModelPathsCsv = this.metaModelPaths.stream().reduce((a, b)-> a + "," + b).get();
+		//String metaModelPathsCsv = this.metaModelPaths.stream().reduce((a, b)-> a + "," + b).get();
 		File modelFile = new File(modelUri);
 		modelFile.createNewFile();
 			
@@ -165,7 +180,7 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 		StringProperties properties = new StringProperties();
 		properties.put(EmfModel.PROPERTY_NAME, modelName);
 		properties.put(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI, metaModelUrisCsv);
-		
+		properties.put(EmfModel.PROPERTY_CACHED, Boolean.FALSE);
 		//properties.put(EmfModel.PROPERTY_METAMODEL_FILE, metaModelPathsCsv);
 		properties.put(EmfModel.PROPERTY_MODEL_URI, ddiFileUriAsString);
 		properties.put(EmfModel.PROPERTY_READONLOAD, readOnLoad + "");
@@ -186,18 +201,18 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 	private void setMetaModelUris() throws URISyntaxException{
 		List<String> metaModelFileNames = getOdeMetaModelFileNames();
 		for(String metaModelFileName : metaModelFileNames){
-			this.metaModelURIs.add(EcoreResourceLoader.getEcoreUri(metaModelFileName));
+			this.metaModelURIs.add(MergedResourceLoader.getEcoreUri(metaModelFileName));
 		}
 		
-		List<String> sacmMetaModelFileNames = getSacmMetaModelFileNames();
+		/*List<String> sacmMetaModelFileNames = getSacmMetaModelFileNames();
 		for(String sacmMetaModelFileName : sacmMetaModelFileNames){
 			this.metaModelURIs.add(SacmEcoreResourceLoader.getEcoreUri(sacmMetaModelFileName));
-		}
+		}*/
 	}
 	
 	private void setMetaModelPaths() throws URISyntaxException{
 		for(String metaModelFileName : getOdeMetaModelFileNames()){
-			this.metaModelPaths.add(EcoreResourceLoader.getEcorePath(metaModelFileName));
+			this.metaModelPaths.add(MergedResourceLoader.getEcorePath(metaModelFileName));
 		}
 		
 		/*List<String> sacmMetaModelFileNames = getSacmMetaModelFileNames();
@@ -210,15 +225,17 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 		List<String> metaModelFileNames = new ArrayList<String>();
 		
 		// order of metaModelFileNames list has to be considered
-		metaModelFileNames.add("integration.ecore");
+		metaModelFileNames.add("mergedODE.ecore");
+		
+		/*metaModelFileNames.add("integration.ecore");
 		metaModelFileNames.add("architecture.ecore");
 		metaModelFileNames.add("dependability.ecore");
 		metaModelFileNames.add("failureLogic.ecore");
-		metaModelFileNames.add("odeBase.ecore");
+		metaModelFileNames.add("odeBase.ecore");*/
 		return metaModelFileNames; 
 	}
 	
-	private List<String> getSacmMetaModelFileNames(){
+	/*private List<String> getSacmMetaModelFileNames(){
 		List<String> sacmMetaModelFileNames = new ArrayList<String>();
 
 		// order of metaModelFileNames list has to be considered
@@ -228,6 +245,6 @@ public abstract class AbstractEpsilonScriptExecutor implements IEpsilonScriptExe
 		sacmMetaModelFileNames.add("terminology.ecore");
 		sacmMetaModelFileNames.add("base.ecore");
 		return sacmMetaModelFileNames;
-	}
+	}*/
 }
 

@@ -5,11 +5,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.Cause;
-import failureLogic.CauseType;
-import failureLogic.FaultTree;
-import failureLogic.Gate;
-import failureLogic.GateType;
 import failurelogic.fta.typed.TCause;
 import failurelogic.fta.typed.TFaultTree;
 import failurelogic.fta.typed.TGate;
@@ -18,6 +13,11 @@ import thriftContract.TDDIAbstractCause;
 import thriftContract.TDDICause;
 import thriftContract.TDDIFaultTree;
 import thriftContract.TDDIGate;
+import top.failureLogic.Cause;
+import top.failureLogic.CauseType;
+import top.failureLogic.FaultTree;
+import top.failureLogic.Gate;
+import top.failureLogic.GateType;
 import util.EMFFactory;
 
 public class FTAEMFTranslater {

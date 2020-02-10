@@ -2,18 +2,6 @@ package transformation.sacmThrift2ode;
 
 import java.util.HashMap;
 
-import base.ArtifactElement;
-import base.Description;
-import base.Element;
-import base.ExpressionLangString;
-import base.ImplementationConstraint;
-import base.LangString;
-import base.ModelElement;
-import base.MultiLangString;
-import base.Note;
-import base.SACMElement;
-import base.TaggedValue;
-import base.UtilityElement;
 import sacm.base.iface.IArtifactElement;
 import sacm.base.iface.IModelElement;
 import sacm.base.iface.ISacmElement;
@@ -37,6 +25,18 @@ import thriftContract.TDDINote;
 import thriftContract.TDDINoteRef;
 import thriftContract.TDDITaggedValue;
 import thriftContract.TDDITaggedValueRef;
+import top.base.ArtifactElement;
+import top.base.Description;
+import top.base.Element;
+import top.base.ExpressionLangString;
+import top.base.ImplementationConstraint;
+import top.base.LangString;
+import top.base.ModelElement;
+import top.base.MultiLangString;
+import top.base.Note;
+import top.base.SACMElement;
+import top.base.TaggedValue;
+import top.base.UtilityElement;
 import util.EMFFactory;
 
 public class SacmBaseEMFTranslater {
@@ -164,9 +164,9 @@ public class SacmBaseEMFTranslater {
 	}
 	
 	private static Description transformDescription(TDDIDescription tElement) {
-		if (thrift2EmfMap.containsKey(tElement)) {
-			return (Description) thrift2EmfMap.get(tElement);
-		}
+		//if (thrift2EmfMap.containsKey(tElement)) {
+		//	return (Description) thrift2EmfMap.get(tElement);
+		//}
 		
 		Description emfElement = EMFFactory.sacmBaseFactory.createDescription();
 		thrift2EmfMap.put(tElement, emfElement);
@@ -215,7 +215,7 @@ public class SacmBaseEMFTranslater {
 		return emfElement;
 	}
 	
-	private static ModelElement transformAbstractModelElement(TDDIAbstractModelElement tElement) {
+	public static ModelElement transformAbstractModelElement(TDDIAbstractModelElement tElement) {
 		if (tElement.isSetUsedModelElementType()) {
 			switch (tElement.UsedModelElementType) {
 				case MEUTAbstractArtifactElement: return transformAbstractArtifactElement(tElement.UsedModelElement.getArtifactElement());
@@ -252,19 +252,16 @@ public class SacmBaseEMFTranslater {
 		}
 	}
 		
-	public static ArtifactElement transformAbstractArtifactElement(TDDIAbstractArtifactElement tElement) {
-		if (tElement.isSetUsedArtifactElementType()) {
-			switch (tElement.UsedArtifactElementType) {
-				case AEUTAbstractArgumentationElement: return SacmArgumentEMFTranslater.transformAbstractArgumentationElement(tElement.UsedArtifactElement.getArgumentationElement());
-				case AEUTAbstractArtifactAsset: //TODO
-					break;
-				case AEUTAbstractArtifactPackage: //TODO
-					break;
-				case AEUTAbstractAssuranceCasePackage: return SacmAssuranceCaseEMFTranslater.transformAbstractAssuranceCasePackage(tElement.UsedArtifactElement.getAssuranceCasePackage());
+	public static ArtifactElement transformAbstractArtifactElement(TDDIAbstractArtifactElement tAbstractArtifactElement) {
+		if (tAbstractArtifactElement.isSetUsedArtifactElementType()) {
+			switch (tAbstractArtifactElement.UsedArtifactElementType) {
+				case AEUTAbstractArgumentationElement: return SacmArgumentEMFTranslater.transformAbstractArgumentationElement(tAbstractArtifactElement.UsedArtifactElement.getArgumentationElement());
+				case AEUTAbstractArtifactAsset: return SacmArtifactEMFTranslater.transformAbstractArtifactAsset(tAbstractArtifactElement.UsedArtifactElement.getArtifactAsset());
+				case AEUTAbstractArtifactPackage: return SacmArtifactEMFTranslater.transformAbstractArtifactPackage(tAbstractArtifactElement.UsedArtifactElement.getArtifactPackage());
+				case AEUTAbstractAssuranceCasePackage: return SacmAssuranceCaseEMFTranslater.transformAbstractAssuranceCasePackage(tAbstractArtifactElement.UsedArtifactElement.getAssuranceCasePackage());
 				case AEUTAbstractTerminologyElement: //TODO
 					break;
-				case AEUTArtifactGroup: //TODO
-					break;	 
+				case AEUTArtifactGroup: return SacmArtifactEMFTranslater.transformArtifactGroup(tAbstractArtifactElement.UsedArtifactElement.getArtifactGroup());
 			}
 		}
 		return null;

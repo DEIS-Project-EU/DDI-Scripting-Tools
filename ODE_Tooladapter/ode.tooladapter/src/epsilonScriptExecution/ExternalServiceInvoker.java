@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JOptionPane;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TJSONProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
@@ -18,11 +21,15 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.models.ModelGroup;
 
-import integration.DDIPackage;
-import integration.impl.DDIPackageImpl;
 import thriftContract.ExternalService;
+import thriftContract.TDDIAbstractODEProductPackage;
 import thriftContract.TDDIDDIPackage;
 import thriftContract.TDDIExternalServiceParameter;
+import thriftContract.TDDIFailure;
+import thriftContract.TDDIFailureLogicPackage;
+import thriftContract.TDDIFaultTree;
+import thriftContract.TDDIGate;
+import top.integration.DDIPackage;
 import transformation.ode2thrift.BaseThriftTranslater;
 import transformation.ode2thrift.ODE2ThriftTranslater;
 import transformation.thrift2ode.Thrift2ODETranslater;
@@ -73,9 +80,19 @@ public class ExternalServiceInvoker {
     }
         
 	public DDIPackage InvokeExternalService(IModel model, String serviceName, HashMap<String, String> valuesByParameterName){
+		
+		Log.info("Invoke external service. Service name: " + serviceName);
+		
 		String nullIsReturnedMessage = "\nNull is returned to Epsilon script.";
 		
+		Log.debug("Start converting DDI package from epsilon to thrift");
+		
 		TDDIDDIPackage tDdiPackageFromEpsilon = getThriftDDIPackageFromModel(model);
+		
+		Log.debug("DDI package converted to thrift structure successfully.");
+		
+		//checkReferences(tDdiPackageFromEpsilon);
+		
 		
 		if(tDdiPackageFromEpsilon == null){
 			Log.warn("Could not get TDDIDDIPackage from given model." + nullIsReturnedMessage);
@@ -131,6 +148,39 @@ public class ExternalServiceInvoker {
 		return updatedEmfDdiPackage;
 	}
 	
+	public void showMessageDialog(String message){
+		JOptionPane.showMessageDialog(null,  message);
+	}
+	
+	private void checkReferences(TDDIDDIPackage tDdiPackageFromEpsilon) {
+		
+		TDDIFaultTree faultTree = null;
+		
+		for(TDDIAbstractODEProductPackage abstractODEProductPackage : tDdiPackageFromEpsilon.ODEProductPackages){
+			switch(abstractODEProductPackage.UsedODEProductPackageType){
+			case OPPUTDependabilityPackage:
+				break;
+			case OPPUTDesignPackage:
+				break;
+			case OPPUTDomainPackage:
+				break;
+			case OPPUTFailureLogicPackage:
+				TDDIFailureLogicPackage failureLogicPackage = abstractODEProductPackage.UsedODEProductPackage.getFailureLogicPackage();
+				faultTree = failureLogicPackage.getFailureModels().stream().findFirst().get().UsedFailureModel.getFaultTree();
+				break;
+			case OPPUTHARAPackage:
+				break;
+			case OPPUTRequirementPackage:
+				break;
+			case OPPUTTARAPackage:
+				break;
+			default:
+				break;
+			
+			}
+		}
+	}
+
 	public void SerializeDDIObject(DDIPackage ddiPackage, String path){
 		EMFSerialization.saveEMFModelToFile(path, ddiPackage);
 	}

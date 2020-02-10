@@ -18,7 +18,12 @@ import java.util.zip.ZipEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.transport.TFileTransport.TruncableBufferedInputStream;
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TFramedTransport.Factory;
 import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportFactory;
 
 import picocli.CommandLine;
 import serviceImpl.DDIServiceHandler;
@@ -63,11 +68,17 @@ public class ServerMain
 
         // start server
         try {
+        	
         	TServerSocket serverTransport = new TServerSocket(parser.getServerPort());
     		
+        	TTransportFactory framedServerTransport = new TFramedTransport.Factory();
+        	
+        	
+        	
         	DDIServiceHandler ddiExchangeHandler = new DDIServiceHandler();
         	DDIService.Processor<DDIServiceHandler> ddiExchangeProcessor = new DDIService.Processor<>(ddiExchangeHandler);
-    		TThreadPoolServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(ddiExchangeProcessor));
+        	
+    		TThreadPoolServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(ddiExchangeProcessor).inputProtocolFactory(new CustomProtocolFactory()));
     		server.serve();
         } catch (Exception e) {
             log.error("An exception occurred while starting the Server.", e);

@@ -12,7 +12,6 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,18 +24,11 @@ import org.eclipse.epsilon.eol.execute.context.FrameStack;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.SingleFrame;
 import org.eclipse.epsilon.eol.execute.context.Variable;
-import org.eclipse.epsilon.evl.EvlModule;
-import org.eclipse.epsilon.evl.dom.Constraint;
-import org.eclipse.epsilon.evl.dom.Constraints;
-import org.eclipse.epsilon.evl.trace.ConstraintTrace;
-import org.eclipse.epsilon.evl.trace.ConstraintTraceItem;
 
 import epsilonScriptExecution.EolExecutor;
 import epsilonScriptExecution.EplExecutor;
 import epsilonScriptExecution.EvlExecutor;
 import epsilonScriptExecution.IEpsilonScriptExecutor;
-import evlValidation.DdiValidation;
-import integration.DDIPackage;
 import serverStartup.ServerMain;
 import thriftContract.DDIService;
 import thriftContract.TDDIAbstractEpsilonScriptExecutionException;
@@ -44,11 +36,9 @@ import thriftContract.TDDIDDIPackage;
 import thriftContract.TDDIEpsilonLanguage;
 import thriftContract.TDDIEpsilonParameter;
 import thriftContract.TDDIEpsilonScriptExecutionConfig;
-import thriftContract.TDDIEpsilonScriptExecutionExceptionUnionType;
 import thriftContract.TDDIEpsilonScriptModelConfig;
-import thriftContract.TDDIServiceConfig;
-import thriftContract.TDDIValidationFailedException;
 import thriftContract.TDDIValidationResult;
+import top.integration.DDIPackage;
 import transformation.ode2thrift.BaseThriftTranslater;
 import transformation.ode2thrift.ODE2ThriftTranslater;
 import transformation.sacmThrift2ode.SacmBaseEMFTranslater;
@@ -63,77 +53,31 @@ public class DDIServiceHandler implements DDIService.Iface {
 	private static final Logger Log = LogManager.getLogger(DDIServiceHandler.class);
 	
 	@Override
-	public void ExportModelToDDIFile(TDDIServiceConfig ServiceConfiguration, TDDIDDIPackage DDIPackage) throws TDDIAbstractEpsilonScriptExecutionException, TException {
-		if(ServiceConfiguration.getDDIFilePath() != null)
-		{
-			String ddiFilePath = ServiceConfiguration.getDDIFilePath();
-			try {
-				Log.info("========= Service Invocation: ExportModelToDDIFile("+ddiFilePath+")");
-				Log.info("Translation from Thrift -> EMF starting");
-				BaseEMFTranslater.thrift2EmfMap.clear();
-				SacmBaseEMFTranslater.thrift2EmfMap.clear();
-				DDIPackage emfDDIPackage;
-				try{
-					emfDDIPackage = Thrift2ODETranslater.transformDDIPackage(DDIPackage);
-				}
-				catch (Exception e){
-					String message = "Exception of type " + e.getClass().getName() + " has occured. Message: " + e.getMessage();
-					Log.warn(message);
-					throw new TException(message);
-				}
-				Log.info("Translation from Thrift -> EMF finished");
-				//DDI Validation based on EVL
-				Log.info("Export EMF Model to File (Path must be an absolute system path with access rights and the filename must have .ddi as extension");
-				EMFSerialization.saveEMFModelToFile(ddiFilePath, emfDDIPackage); 
-				Log.info("Starting DDI Validation based on Eclipse Validation Language");
-				
-				try {
-					TDDIValidationResult lastValidationResult = executeDDIValidation(ddiFilePath, getStandardEvlFilePath());
-					if(lastValidationResult.ValidationViolationOccurred){
-						TDDIValidationFailedException validationException = new TDDIValidationFailedException();
-						validationException.setValidationResult(lastValidationResult);
-						
-						TDDIAbstractEpsilonScriptExecutionException exception = new TDDIAbstractEpsilonScriptExecutionException();
-						exception.UsedExceptionType = TDDIEpsilonScriptExecutionExceptionUnionType.ESEEUTValidationFailedException;
-						exception.UsedException.setValidationFailedException(validationException);
-						throw exception;
-					}
-				} catch (Exception e) {
-					TException ex = new TException(e.getMessage());
-					ex.setStackTrace(e.getStackTrace());
-					throw ex;
-				}
-			}
-			finally {
-				
-			}
-		}
-	}
-	
-	@Override
-	public TDDIDDIPackage ImportDDIModel(TDDIServiceConfig ServiceConfiguration) throws TDDIAbstractEpsilonScriptExecutionException, TException {
+	public void ExportModelToDDIFile(String ddiFilePath, TDDIDDIPackage DDIPackage) throws TDDIAbstractEpsilonScriptExecutionException, TException {
 		
-		if(ServiceConfiguration.getDDIFilePath() != null){
-			
-			String ddiFilePath = ServiceConfiguration.getDDIFilePath();
-			boolean ddiFileIsDownloaded = false;
-			if(isValidUrl(ddiFilePath)){
-				try {
-					ddiFilePath = downloadTemporaryDDIFileFromWeb(new URL(ddiFilePath));
-					ddiFileIsDownloaded = true;
-				} catch (Exception e) {
-					
-					throw new TException("A Problem occurred while trying to download ddi from " + ddiFilePath);
-				}
+		try {
+			Log.info("========= Service Invocation: ExportModelToDDIFile("+ddiFilePath+")");
+			Log.info("Translation from Thrift -> EMF starting");
+			BaseEMFTranslater.thrift2EmfMap.clear();
+			SacmBaseEMFTranslater.thrift2EmfMap.clear();
+			DDIPackage emfDDIPackage;
+			try{
+				emfDDIPackage = Thrift2ODETranslater.transformDDIPackage(DDIPackage);
 			}
-			
-			Log.info("========= Service Invocation: ImportDDIModel(Path='"+ddiFilePath+"')");
+			catch (Exception e){
+				String message = "Exception of type " + e.getClass().getName() + " has occured. Message: " + e.getMessage();
+				Log.warn(message);
+				throw new TException(message);
+			}
+			Log.info("Translation from Thrift -> EMF finished");
+			//DDI Validation based on EVL
+			Log.info("Export EMF Model to File (Path must be an absolute system path with access rights and the filename must have .ddi as extension");
+			EMFSerialization.saveEMFModelToFile(ddiFilePath, emfDDIPackage); 
 			Log.info("Starting DDI Validation based on Eclipse Validation Language");
 			
-			try {
+			/*try {
 				TDDIValidationResult lastValidationResult = executeDDIValidation(ddiFilePath, getStandardEvlFilePath());
 				if(lastValidationResult.ValidationViolationOccurred){
-					
 					TDDIValidationFailedException validationException = new TDDIValidationFailedException();
 					validationException.setValidationResult(lastValidationResult);
 					
@@ -146,39 +90,74 @@ public class DDIServiceHandler implements DDIService.Iface {
 				TException ex = new TException(e.getMessage());
 				ex.setStackTrace(e.getStackTrace());
 				throw ex;
-			}
+			}*/
+		}
+		finally {
 			
-			//EVLUtil validationEngine = new EVLUtil();
-			//Object result = validationEngine.execute(Path);
-			Log.info("Load DDI model from file to EMF");
-			BaseThriftTranslater.emf2ThriftMap.clear();
-			BaseThriftTranslater.importId = 1;
-			DDIPackage emfDDIPackage = EMFSerialization.loadEMFModelFromFile(ddiFilePath);
-			Log.info("Loading DDI model finished");		
-			Log.info("Translation from EMF -> Thrift starting");
-			TDDIDDIPackage tDDIPackage = ODE2ThriftTranslater.transformDDIPackage(emfDDIPackage);
-			Log.info("Translation from EMF -> Thrift finished");
-			Log.info("Thrift model: "+tDDIPackage.toString());
+		}
+		
+	}
+	
+	@Override
+	public TDDIDDIPackage ImportDDIModel(String ddiFilePath) throws TDDIAbstractEpsilonScriptExecutionException, TException {
+		
+		boolean ddiFileIsDownloaded = false;
+		if(isValidUrl(ddiFilePath)){
+			try {
+				ddiFilePath = downloadTemporaryDDIFileFromWeb(new URL(ddiFilePath));
+				ddiFileIsDownloaded = true;
+			} catch (Exception e) {
 				
-			if(ddiFileIsDownloaded){
-				File tempDDIFile = new File(ddiFilePath);
-				Log.info("Deleting temporary downloaded ddi file.");
-				if(tempDDIFile.delete()) 
-		        { 
-		            Log.info("Temporary ddi file \"" + ddiFilePath + "\" deleted successfully.");
-		        } 
-		        else
-		        { 
-		            Log.warn("Temporary ddi file \"" + ddiFilePath + "\" could not be deleted."); 
-		        } 
+				throw new TException("A Problem occurred while trying to download ddi from " + ddiFilePath);
 			}
-			
-			
-			return tDDIPackage;
 		}
-		else{
-			throw new TException("DDIFile path is not given");
+		
+		Log.info("========= Service Invocation: ImportDDIModel(Path='"+ddiFilePath+"')");
+		Log.info("Starting DDI Validation based on Eclipse Validation Language");
+		
+		/*try {
+			TDDIValidationResult lastValidationResult = executeDDIValidation(ddiFilePath, getStandardEvlFilePath());
+			if(lastValidationResult.ValidationViolationOccurred){
+				
+				TDDIValidationFailedException validationException = new TDDIValidationFailedException();
+				validationException.setValidationResult(lastValidationResult);
+				
+				TDDIAbstractEpsilonScriptExecutionException exception = new TDDIAbstractEpsilonScriptExecutionException();
+				exception.UsedExceptionType = TDDIEpsilonScriptExecutionExceptionUnionType.ESEEUTValidationFailedException;
+				exception.UsedException.setValidationFailedException(validationException);
+				throw exception;
+			}
+		} catch (Exception e) {
+			TException ex = new TException(e.getMessage());
+			ex.setStackTrace(e.getStackTrace());
+			throw ex;
+		}*/
+		
+		//EVLUtil validationEngine = new EVLUtil();
+		//Object result = validationEngine.execute(Path);
+		Log.info("Load DDI model from file to EMF");
+		BaseThriftTranslater.emf2ThriftMap.clear();
+		BaseThriftTranslater.importId = 1;
+		DDIPackage emfDDIPackage = EMFSerialization.loadEMFModelFromFile(ddiFilePath);
+		Log.info("Loading DDI model finished");		
+		Log.info("Translation from EMF -> Thrift starting");
+		TDDIDDIPackage tDDIPackage = ODE2ThriftTranslater.transformDDIPackage(emfDDIPackage);
+		Log.info("Translation from EMF -> Thrift finished");
+		//Log.info("Thrift model: "+tDDIPackage.toString());
+			
+		if(ddiFileIsDownloaded){
+			File tempDDIFile = new File(ddiFilePath);
+			Log.info("Deleting temporary downloaded ddi file.");
+			if(tempDDIFile.delete()) 
+	        { 
+	            Log.info("Temporary ddi file \"" + ddiFilePath + "\" deleted successfully.");
+	        } 
+	        else
+	        { 
+	            Log.warn("Temporary ddi file \"" + ddiFilePath + "\" could not be deleted."); 
+	        } 
 		}
+		return tDDIPackage;
 	}
 
 	@Override
@@ -198,11 +177,11 @@ public class DDIServiceHandler implements DDIService.Iface {
 	}
 
 	@Override
-	public TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(TDDIServiceConfig ServiceConfiguration, boolean BackupDDIFile, boolean ReturnDDIPackage) throws TDDIAbstractEpsilonScriptExecutionException, TException {
+	public TDDIDDIPackage ExecuteEpsilonSriptsOnDDIFile(List<TDDIEpsilonScriptExecutionConfig> scriptExecutionConfigs, boolean BackupDDIFile, boolean ReturnDDIPackage) throws TDDIAbstractEpsilonScriptExecutionException, TException {
 
 		Map<String, Variable> exportedVariablesByNameDefinedForContext = new HashMap<String, Variable>();
 		
-		for(TDDIEpsilonScriptExecutionConfig execConfig : ServiceConfiguration.getEpsilonScriptExecutionConfig()){
+		for(TDDIEpsilonScriptExecutionConfig execConfig : scriptExecutionConfigs){
 
 			List<Variable> variablesToImport = getParametersToImport(execConfig.getImportParameters(), exportedVariablesByNameDefinedForContext);
 			
@@ -248,9 +227,12 @@ public class DDIServiceHandler implements DDIService.Iface {
 					IEolExecutableModule module = scriptExecutor.getModule();
 					updateExportedVariables(exportedVariablesByNameDefinedForContext, module, execConfig.getExportParameters());
 					
-				} catch (Exception e) {
+				}
+				catch (TDDIAbstractEpsilonScriptExecutionException executionException){
+					throw executionException;
+				}
+				catch (Exception e) {
 					Log.warn(e.getMessage());
-					break;
 				}	
 			}
 		}
@@ -323,12 +305,6 @@ public class DDIServiceHandler implements DDIService.Iface {
 		}
 		
 		return variablesToImport;
-	}
-
-	@Override
-	public TDDIDDIPackage ExecuteEpsilonSripts(TDDIDDIPackage DDIPackage, TDDIServiceConfig ServiceConfiguration, boolean ExportDDIFile, boolean ReturnDDIPackage) throws TDDIAbstractEpsilonScriptExecutionException, TException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	private boolean isValidUrl(String url){

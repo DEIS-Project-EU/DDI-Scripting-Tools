@@ -1,15 +1,5 @@
 package transformation.ode2thrift;
 
-import dependability.DependabilityPackage;
-import dependability.FaultToleranceMeasure;
-import dependability.MaintenanceProcedure;
-import dependability.Measure;
-import dependability.MeasureType;
-import dependability.DomainPackage;
-import dependability.HARAPackage;
-import dependability.RequirementPackage;
-import dependability.SecurityControl;
-import dependability.TARAPackage;
 import dependability.iface.IMeasure;
 import dependability.typed.TDependabilityPackage;
 import dependability.typed.TFaultToleranceMeasure;
@@ -24,6 +14,16 @@ import thriftContract.TDDIMeasure;
 import thriftContract.TDDIMeasureType;
 import thriftContract.TDDIMeasureUnion;
 import thriftContract.TDDIMeasureUnionType;
+import top.dependability.DependabilityPackage;
+import top.dependability.DomainPackage;
+import top.dependability.FaultToleranceMeasure;
+import top.dependability.HARAPackage;
+import top.dependability.MaintenanceProcedure;
+import top.dependability.Measure;
+import top.dependability.MeasureType;
+import top.dependability.RequirementPackage;
+import top.dependability.SecurityControl;
+import top.dependability.TARAPackage;
 
 public class DependabilityThriftTranslater {
 

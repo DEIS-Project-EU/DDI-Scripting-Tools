@@ -3,9 +3,6 @@ package transformation.ode2thrift;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.Cause;
-import failureLogic.FaultTree;
-import failureLogic.Gate;
 import failurelogic.fta.typed.TCause;
 import failurelogic.fta.typed.TFaultTree;
 import failurelogic.fta.typed.TGate;
@@ -19,6 +16,9 @@ import thriftContract.TDDICauseUnionType;
 import thriftContract.TDDIFaultTree;
 import thriftContract.TDDIGate;
 import thriftContract.TDDIGateType;
+import top.failureLogic.Cause;
+import top.failureLogic.FaultTree;
+import top.failureLogic.Gate;
 
 public class FTAThriftTranslater {
 	

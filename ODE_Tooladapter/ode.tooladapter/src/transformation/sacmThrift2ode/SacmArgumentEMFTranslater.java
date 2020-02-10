@@ -1,20 +1,5 @@
 package transformation.sacmThrift2ode;
 
-import argumentation.ArgumentAsset;
-import argumentation.ArgumentGroup;
-import argumentation.ArgumentPackage;
-import argumentation.ArgumentReasoning;
-import argumentation.ArgumentationElement;
-import argumentation.ArtifactReference;
-import argumentation.AssertedArtifactContext;
-import argumentation.AssertedArtifactSupport;
-import argumentation.AssertedContext;
-import argumentation.AssertedEvidence;
-import argumentation.AssertedInference;
-import argumentation.AssertedRelationship;
-import argumentation.Assertion;
-import argumentation.AssertionDeclaration;
-import argumentation.Claim;
 import sacm.argumentation.iface.IArgumentAsset;
 import sacm.argumentation.iface.IArgumentPackage;
 import sacm.argumentation.iface.IArgumentationElement;
@@ -49,6 +34,21 @@ import thriftContract.TDDIAssertedEvidence;
 import thriftContract.TDDIAssertedInference;
 import thriftContract.TDDIClaim;
 import thriftContract.TDDIClaimRef;
+import top.argumentation.ArgumentAsset;
+import top.argumentation.ArgumentGroup;
+import top.argumentation.ArgumentPackage;
+import top.argumentation.ArgumentReasoning;
+import top.argumentation.ArgumentationElement;
+import top.argumentation.ArtifactReference;
+import top.argumentation.AssertedArtifactContext;
+import top.argumentation.AssertedArtifactSupport;
+import top.argumentation.AssertedContext;
+import top.argumentation.AssertedEvidence;
+import top.argumentation.AssertedInference;
+import top.argumentation.AssertedRelationship;
+import top.argumentation.Assertion;
+import top.argumentation.AssertionDeclaration;
+import top.argumentation.Claim;
 import util.EMFFactory;
 
 public class SacmArgumentEMFTranslater {

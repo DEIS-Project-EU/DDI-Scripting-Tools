@@ -15,7 +15,3 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.epsilon.epl.dt;bundle-version="1.4.0",
  org.eclipse.epsilon.epl.engine;bundle-version="1.4.0"
 Export-Package: base.iface
-Import-Package: architecture,
- base,
- dependability,
- failureLogic

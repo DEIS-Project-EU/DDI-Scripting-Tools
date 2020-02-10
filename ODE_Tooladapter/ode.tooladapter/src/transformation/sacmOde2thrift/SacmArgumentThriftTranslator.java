@@ -1,21 +1,5 @@
 package transformation.sacmOde2thrift;
 
-import argumentation.ArgumentAsset;
-import argumentation.ArgumentGroup;
-import argumentation.ArgumentPackage;
-import argumentation.ArgumentPackageBinding;
-import argumentation.ArgumentPackageInterface;
-import argumentation.ArgumentReasoning;
-import argumentation.ArgumentationElement;
-import argumentation.ArtifactReference;
-import argumentation.AssertedArtifactContext;
-import argumentation.AssertedArtifactSupport;
-import argumentation.AssertedContext;
-import argumentation.AssertedEvidence;
-import argumentation.AssertedInference;
-import argumentation.AssertedRelationship;
-import argumentation.Assertion;
-import argumentation.Claim;
 import sacm.argumentation.iface.IArgumentAsset;
 import sacm.argumentation.iface.IArgumentPackage;
 import sacm.argumentation.iface.IArgumentationElement;
@@ -33,7 +17,6 @@ import sacm.argumentation.typed.TAssertedContext;
 import sacm.argumentation.typed.TAssertedEvidence;
 import sacm.argumentation.typed.TAssertedInference;
 import sacm.argumentation.typed.TClaim;
-import base.ArtifactElement;
 import thriftContract.TDDIAbstractArgumentAsset;
 import thriftContract.TDDIAbstractArgumentAssetRef;
 import thriftContract.TDDIAbstractArgumentPackage;
@@ -66,6 +49,23 @@ import thriftContract.TDDIAssertionDeclaration;
 import thriftContract.TDDIAssertionUnion;
 import thriftContract.TDDIAssertionUnionType;
 import thriftContract.TDDIClaim;
+import top.argumentation.ArgumentAsset;
+import top.argumentation.ArgumentGroup;
+import top.argumentation.ArgumentPackage;
+import top.argumentation.ArgumentPackageBinding;
+import top.argumentation.ArgumentPackageInterface;
+import top.argumentation.ArgumentReasoning;
+import top.argumentation.ArgumentationElement;
+import top.argumentation.ArtifactReference;
+import top.argumentation.AssertedArtifactContext;
+import top.argumentation.AssertedArtifactSupport;
+import top.argumentation.AssertedContext;
+import top.argumentation.AssertedEvidence;
+import top.argumentation.AssertedInference;
+import top.argumentation.AssertedRelationship;
+import top.argumentation.Assertion;
+import top.argumentation.Claim;
+import top.base.ArtifactElement;
 
 public class SacmArgumentThriftTranslator {
 

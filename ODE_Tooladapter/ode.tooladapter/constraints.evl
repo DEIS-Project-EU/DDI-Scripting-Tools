@@ -43,7 +43,7 @@ context Port {
 		message: "Port " + self.name + " should only have output failures"
 	}
 	
-	constraint PortIsConnectedToOtherPort {
+	/*constraint PortIsConnectedToOtherPort {
 		check {
 			var package = self.eContainer();
 			var signals = Signal.all();
@@ -60,7 +60,7 @@ context Port {
 			return portIsConnected;
 		}
 		message: "Port " + self.name + " is not connected to another port."
-	}
+	}*/
 }
 
 // Dependability package
@@ -116,4 +116,19 @@ context Cause {
 		message: "Out-/Input event "+ self.name +" has to be of type Gate."
 	}
 }
+
+/*context Gate {
+	constraint outPutEventHasCausesReferences{
+		check {
+			if(self.causeType = CauseType#OutputEvent) {
+				if(self.causes.size() > 0){
+					return true;
+				}
+				return false;
+			}
+			return true;
+		}
+		message: "Output event " + self.name + " does not reference any causes."
+	}
+}*/
 

@@ -3,12 +3,13 @@ package sacm.assuranceCase.typed;
 import java.util.List;
 
 import sacm.assuranceCase.iface.IAssuranceCasePackage;
+import thriftContract.TDDIAbstractArgumentPackage;
 import thriftContract.TDDIAbstractArgumentPackageRef;
-import thriftContract.TDDIAbstractArtifactPackageRef;
-import thriftContract.TDDIAbstractAssuranceCasePackageRef;
+import thriftContract.TDDIAbstractArtifactPackage;
+import thriftContract.TDDIAbstractAssuranceCasePackage;
 import thriftContract.TDDIAbstractLangString;
 import thriftContract.TDDIAbstractSACMElement;
-import thriftContract.TDDIAbstractTerminologyPackageRef;
+import thriftContract.TDDIAbstractTerminologyPackage;
 import thriftContract.TDDIAssuranceCasePackage;
 import thriftContract.TDDIAssuranceCasePackageInterfaceRef;
 import thriftContract.TDDIDescription;
@@ -196,12 +197,12 @@ public class TAssuranceCasePackage implements IAssuranceCasePackage{
 	}
 
 	@Override
-	public List<TDDIAbstractTerminologyPackageRef> getTerminologyPackage() {
+	public List<TDDIAbstractTerminologyPackage> getTerminologyPackage() {
 		return thriftElement.getTerminologyPackage();
 	}
 
 	@Override
-	public void addToTerminologyPackage(TDDIAbstractTerminologyPackageRef value) {
+	public void addToTerminologyPackage(TDDIAbstractTerminologyPackage value) {
 		thriftElement.setTerminologyPackageIsSet(true);
 		thriftElement.addToTerminologyPackage(value);
 	}
@@ -212,12 +213,12 @@ public class TAssuranceCasePackage implements IAssuranceCasePackage{
 	}
 
 	@Override
-	public List<TDDIAbstractAssuranceCasePackageRef> getAssuranceCasePackage() {
+	public List<TDDIAbstractAssuranceCasePackage> getAssuranceCasePackage() {
 		return thriftElement.getAssuranceCasePackage();
 	}
 
 	@Override
-	public void addToAssuranceCasePackage(TDDIAbstractAssuranceCasePackageRef value) {
+	public void addToAssuranceCasePackage(TDDIAbstractAssuranceCasePackage value) {
 		thriftElement.setAssuranceCasePackageIsSet(true);
 		thriftElement.addToAssuranceCasePackage(value);
 	}
@@ -244,12 +245,12 @@ public class TAssuranceCasePackage implements IAssuranceCasePackage{
 	}
 
 	@Override
-	public List<TDDIAbstractArtifactPackageRef> getArtifactPackage() {
+	public List<TDDIAbstractArtifactPackage> getArtifactPackage() {
 		return thriftElement.getArtifactPackage();
 	}
 
 	@Override
-	public void addToArtifactPackage(TDDIAbstractArtifactPackageRef value) {
+	public void addToArtifactPackage(TDDIAbstractArtifactPackage value) {
 		thriftElement.setArtifactPackageIsSet(true);
 		thriftElement.addToArtifactPackage(value);
 	}
@@ -260,12 +261,12 @@ public class TAssuranceCasePackage implements IAssuranceCasePackage{
 	}
 
 	@Override
-	public List<TDDIAbstractArgumentPackageRef> getArgumentPackage() {
+	public List<TDDIAbstractArgumentPackage> getArgumentPackage() {
 		return thriftElement.getArgumentPackage();
 	}
 
 	@Override
-	public void addToArgumentPackage(TDDIAbstractArgumentPackageRef value) {
+	public void addToArgumentPackage(TDDIAbstractArgumentPackage value) {
 		thriftElement.setArgumentPackageIsSet(true);
 		thriftElement.addToArgumentPackage(value);
 	}

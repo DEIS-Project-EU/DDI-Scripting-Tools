@@ -1,10 +1,5 @@
 package transformation.thrift2ode;
 
-import dependability.DependabilityPackage;
-import dependability.FaultToleranceMeasure;
-import dependability.MaintenanceProcedure;
-import dependability.Measure;
-import dependability.MeasureType;
 import dependability.iface.IMeasure;
 import dependability.typed.TDependabilityPackage;
 import dependability.typed.TFaultToleranceMeasure;
@@ -21,6 +16,11 @@ import thriftContract.TDDIMeasure;
 import thriftContract.TDDIMeasureType;
 import thriftContract.TDDIRequirementPackage;
 import thriftContract.TDDITARAPackage;
+import top.dependability.DependabilityPackage;
+import top.dependability.FaultToleranceMeasure;
+import top.dependability.MaintenanceProcedure;
+import top.dependability.Measure;
+import top.dependability.MeasureType;
 import util.EMFFactory;
 
 public class DependabilityEMFTranslater {

@@ -1,21 +1,21 @@
 package transformation.sacmThrift2ode;
 
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import sacm.argumentation.typed.TAssuranceCasePackage;
-import assuranceCase.AssuranceCasePackage;
-import assuranceCase.AssuranceCasePackageBinding;
-import assuranceCase.AssuranceCasePackageInterface;
-import thriftContract.TDDIAbstractArgumentPackageRef;
-import thriftContract.TDDIAbstractArtifactPackageRef;
+import thriftContract.TDDIAbstractArgumentPackage;
+import thriftContract.TDDIAbstractArtifactPackage;
 import thriftContract.TDDIAbstractAssuranceCasePackage;
-import thriftContract.TDDIAbstractAssuranceCasePackageRef;
-import thriftContract.TDDIAbstractTerminologyPackageRef;
+import thriftContract.TDDIAbstractTerminologyPackage;
 import thriftContract.TDDIAssuranceCasePackage;
 import thriftContract.TDDIAssuranceCasePackageBinding;
 import thriftContract.TDDIAssuranceCasePackageInterface;
-import thriftContract.TDDIAssuranceCasePackageInterfaceRef;
+import top.assuranceCase.AssuranceCasePackage;
+import top.assuranceCase.AssuranceCasePackageBinding;
+import top.assuranceCase.AssuranceCasePackageInterface;
 import util.EMFFactory;
 
 public class SacmAssuranceCaseEMFTranslater {
@@ -47,35 +47,36 @@ public class SacmAssuranceCaseEMFTranslater {
 		return EMFFactory.sacmAssuranceCaseFactory.createAssuranceCasePackageBinding();
 	}
 
-	private static AssuranceCasePackage transformAssuranceCasePackage(TDDIAssuranceCasePackage tElement) {
-		if (SacmBaseEMFTranslater.thrift2EmfMap.containsKey(tElement)) {
-			return (AssuranceCasePackage) SacmBaseEMFTranslater.thrift2EmfMap.get(tElement);
+	private static AssuranceCasePackage transformAssuranceCasePackage(TDDIAssuranceCasePackage tAssuranceCasePackage) {
+		if (SacmBaseEMFTranslater.thrift2EmfMap.containsKey(tAssuranceCasePackage)) {
+			return (AssuranceCasePackage) SacmBaseEMFTranslater.thrift2EmfMap.get(tAssuranceCasePackage);
 		}
 		
-		AssuranceCasePackage emfElement = EMFFactory.sacmAssuranceCaseFactory.createAssuranceCasePackage();
-		SacmBaseEMFTranslater.thrift2EmfMap.put(tElement, emfElement);
-		SacmBaseEMFTranslater.transformModelElementContents(TAssuranceCasePackage.wrap(tElement), emfElement);
+		AssuranceCasePackage eAssuranceCasePackage = EMFFactory.sacmAssuranceCaseFactory.createAssuranceCasePackage();
+		SacmBaseEMFTranslater.thrift2EmfMap.put(tAssuranceCasePackage, eAssuranceCasePackage);
+		SacmBaseEMFTranslater.transformModelElementContents(TAssuranceCasePackage.wrap(tAssuranceCasePackage), eAssuranceCasePackage);
 		
-		for (TDDIAbstractAssuranceCasePackageRef tSubElement : tElement.getAssuranceCasePackage()) {
-			emfElement.getAssuranceCasePackage().add(transformAbstractAssuranceCasePackage(tSubElement.getRef()));
+		
+		for (TDDIAbstractAssuranceCasePackage tAbstractAssuranceCasePackage : tAssuranceCasePackage.getAssuranceCasePackage()) {
+			eAssuranceCasePackage.getAssuranceCasePackage().add(transformAbstractAssuranceCasePackage(tAbstractAssuranceCasePackage));
 		}
 		
-		for (TDDIAssuranceCasePackageInterfaceRef tinterface : tElement.getInterface()) {
-			//TODO
+		for (TDDIAssuranceCasePackageInterface tInterface : tAssuranceCasePackage.getInterface().stream().map(ref -> ref.ref).collect(Collectors.toList())){
+			eAssuranceCasePackage.getInterface().add(transformAssuranceCasePackageInterface(tInterface));
 		}
 		
-		for (TDDIAbstractArtifactPackageRef tArtifactPackage : tElement.getArtifactPackage()) {
-			//TODO
+		for (TDDIAbstractArtifactPackage tAbstractArtifactPackage : tAssuranceCasePackage.getArtifactPackage()) {
+			eAssuranceCasePackage.getArtifactPackage().add(SacmArtifactEMFTranslater.transformAbstractArtifactPackage(tAbstractArtifactPackage));
 		}			
 
-		for (TDDIAbstractArgumentPackageRef tArgumentPackage : tElement.getArgumentPackage()) {
-			emfElement.getArgumentPackage().add(SacmArgumentEMFTranslater.transformAbstractArgumentPackage(tArgumentPackage.ref));
+		for (TDDIAbstractArgumentPackage tAbstractArgumentPackage : tAssuranceCasePackage.getArgumentPackage()) {
+			eAssuranceCasePackage.getArgumentPackage().add(SacmArgumentEMFTranslater.transformAbstractArgumentPackage(tAbstractArgumentPackage));
 		}
 		
-		for (TDDIAbstractTerminologyPackageRef tSubElement : tElement.getTerminologyPackage()) {
-			//TODO
+		for (TDDIAbstractTerminologyPackage tAbstractTerminologyPackage : tAssuranceCasePackage.getTerminologyPackage()) {
+			eAssuranceCasePackage.getTerminologyPackage().add(SacmTerminologyEMFTranslater.transformAbstractTerminologyPackage(tAbstractTerminologyPackage));
 		}
 		
-		return emfElement;
+		return eAssuranceCasePackage;
 	}
 }

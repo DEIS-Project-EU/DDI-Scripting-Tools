@@ -3,12 +3,12 @@ package transformation.thrift2ode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import integration.DDIPackage;
-import integration.ODEProductPackage;
 import integration.typed.TDDIPackage;
 import thriftContract.TDDIAbstractAssuranceCasePackage;
 import thriftContract.TDDIAbstractODEProductPackage;
 import thriftContract.TDDIDDIPackage;
+import top.integration.DDIPackage;
+import top.integration.ODEProductPackage;
 import transformation.sacmThrift2ode.SacmAssuranceCaseEMFTranslater;
 import util.EMFFactory;
 import util.MissingThriftUnionTypeException;
@@ -20,6 +20,10 @@ public class Thrift2ODETranslater {
 	private static final Logger Log = LogManager.getLogger(ArchitectureEMFTranslater.class);
 	
 	public static DDIPackage transformDDIPackage(TDDIDDIPackage tDDIPackage) throws MissingThriftUnionTypeException{
+		if(BaseEMFTranslater.thrift2EmfMap.size() > 0){
+			BaseEMFTranslater.thrift2EmfMap.clear();
+		}
+		
 		if(BaseEMFTranslater.thrift2EmfMap.containsKey(tDDIPackage)){
 			return (DDIPackage) BaseEMFTranslater.thrift2EmfMap.get(tDDIPackage);
 		}

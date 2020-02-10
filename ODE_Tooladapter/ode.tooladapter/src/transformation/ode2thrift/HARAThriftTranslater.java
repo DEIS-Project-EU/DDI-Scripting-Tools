@@ -1,16 +1,5 @@
 package transformation.ode2thrift;
 
-import dependability.Measure;
-import dependability.Accident;
-import dependability.HARAPackage;
-import dependability.Hazard;
-import dependability.HazardType;
-import dependability.HazardTypeSystem;
-import dependability.Malfunction;
-import dependability.OperatorMeasure;
-import dependability.RiskAssessment;
-import dependability.RiskParameter;
-import dependability.Situation;
 import dependability.hara.typed.TAccident;
 import dependability.hara.typed.THARAPackage;
 import dependability.hara.typed.THazard;
@@ -22,7 +11,6 @@ import dependability.hara.typed.TRiskAssessment;
 import dependability.hara.typed.TRiskParameter;
 import dependability.hara.typed.TSituation;
 import dependability.iface.IRiskParameter;
-import failureLogic.Failure;
 import thriftContract.TDDIAbstractFailureRef;
 import thriftContract.TDDIAbstractMeasureRef;
 import thriftContract.TDDIAbstractRiskParameter;
@@ -41,6 +29,18 @@ import thriftContract.TDDIRiskParameter;
 import thriftContract.TDDIRiskParameterUnion;
 import thriftContract.TDDIRiskParameterUnionType;
 import thriftContract.TDDISituation;
+import top.dependability.Accident;
+import top.dependability.HARAPackage;
+import top.dependability.Hazard;
+import top.dependability.HazardType;
+import top.dependability.HazardTypeSystem;
+import top.dependability.Malfunction;
+import top.dependability.Measure;
+import top.dependability.OperatorMeasure;
+import top.dependability.RiskAssessment;
+import top.dependability.RiskParameter;
+import top.dependability.Situation;
+import top.failureLogic.Failure;
 
 public class HARAThriftTranslater {
 

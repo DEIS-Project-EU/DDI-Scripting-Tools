@@ -5,15 +5,15 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.MarkovChain;
-import failureLogic.State;
-import failureLogic.Transition;
 import failurelogic.markov.typed.TMarkovChain;
 import failurelogic.markov.typed.TState;
 import failurelogic.markov.typed.TTransition;
 import thriftContract.TDDIMarkovChain;
 import thriftContract.TDDIState;
 import thriftContract.TDDITransition;
+import top.failureLogic.MarkovChain;
+import top.failureLogic.State;
+import top.failureLogic.Transition;
 import util.EMFFactory;
 
 public class MarkovEMFTranslater {

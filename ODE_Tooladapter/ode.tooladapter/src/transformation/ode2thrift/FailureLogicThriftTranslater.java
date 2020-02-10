@@ -3,17 +3,6 @@ package transformation.ode2thrift;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.Failure;
-import failureLogic.FailureLogicPackage;
-import failureLogic.FailureModel;
-import failureLogic.MinimalCutSets;
-import failureLogic.MinimalCutset;
-import failureLogic.ProbDist;
-import failureLogic.ProbDistParam;
-import failureLogic.SecurityViolation;
-import failureLogic.FMEA;
-import failureLogic.FaultTree;
-import failureLogic.MarkovChain;
 import failurelogic.iface.IFailure;
 import failurelogic.iface.IFailureModel;
 import failurelogic.typed.TFailure;
@@ -41,6 +30,17 @@ import thriftContract.TDDIMinimalCutSets;
 import thriftContract.TDDIProbDist;
 import thriftContract.TDDIProbDistParam;
 import thriftContract.TDDISecurityViolation;
+import top.failureLogic.FMEA;
+import top.failureLogic.Failure;
+import top.failureLogic.FailureLogicPackage;
+import top.failureLogic.FailureModel;
+import top.failureLogic.FaultTree;
+import top.failureLogic.MarkovChain;
+import top.failureLogic.MinimalCutSets;
+import top.failureLogic.MinimalCutset;
+import top.failureLogic.ProbDist;
+import top.failureLogic.ProbDistParam;
+import top.failureLogic.SecurityViolation;
 
 public class FailureLogicThriftTranslater {
 

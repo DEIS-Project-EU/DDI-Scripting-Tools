@@ -3,9 +3,6 @@ package transformation.ode2thrift;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import failureLogic.FMEA;
-import failureLogic.FMEAEntry;
-import failureLogic.FMEDAEntry;
 import failurelogic.fmea.typed.TFMEA;
 import failurelogic.fmea.typed.TFMEAEntry;
 import failurelogic.fmea.typed.TFMEDAEntry;
@@ -17,6 +14,9 @@ import thriftContract.TDDIFMEAEntryUnion;
 import thriftContract.TDDIFMEAEntryUnionType;
 import thriftContract.TDDIFMEAType;
 import thriftContract.TDDIFMEDAEntry;
+import top.failureLogic.FMEA;
+import top.failureLogic.FMEAEntry;
+import top.failureLogic.FMEDAEntry;
 
 public class FMEAThriftTranslater {
 

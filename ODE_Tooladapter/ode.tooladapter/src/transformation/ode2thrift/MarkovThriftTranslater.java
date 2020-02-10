@@ -1,8 +1,5 @@
 package transformation.ode2thrift;
 
-import failureLogic.MarkovChain;
-import failureLogic.State;
-import failureLogic.Transition;
 import failurelogic.markov.typed.TMarkovChain;
 import failurelogic.markov.typed.TState;
 import failurelogic.markov.typed.TTransition;
@@ -10,6 +7,9 @@ import thriftContract.TDDIMarkovChain;
 import thriftContract.TDDIState;
 import thriftContract.TDDIStateRef;
 import thriftContract.TDDITransition;
+import top.failureLogic.MarkovChain;
+import top.failureLogic.State;
+import top.failureLogic.Transition;
 
 public class MarkovThriftTranslater {
 

@@ -1,9 +1,5 @@
 package transformation.ode2thrift;
 
-import dependability.AssuranceLevel;
-import dependability.DomainPackage;
-import dependability.SafetyStandard;
-import dependability.Standard;
 import dependability.domain.typed.TAssuranceLevel;
 import dependability.domain.typed.TDomainPackage;
 import dependability.domain.typed.TSafetyStandard;
@@ -17,6 +13,10 @@ import thriftContract.TDDISafetyStandard;
 import thriftContract.TDDIStandard;
 import thriftContract.TDDIStandardUnion;
 import thriftContract.TDDIStandardUnionType;
+import top.dependability.AssuranceLevel;
+import top.dependability.DomainPackage;
+import top.dependability.SafetyStandard;
+import top.dependability.Standard;
 
 public class DomainThriftTranslater {
 
