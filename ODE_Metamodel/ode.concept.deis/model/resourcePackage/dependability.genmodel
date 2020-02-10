@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ode.concept.deis/src" modelPluginID="ode.concept.deis"
+    modelName="Dependability" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../org.eclipse.acme.sacm/model/argumentation.genmodel#//argumentation ../../../org.eclipse.acme.sacm/model/artifact.genmodel#//artifact ../../../org.eclipse.acme.sacm/model/assurancecase.genmodel#//assuranceCase ../../../org.eclipse.acme.sacm/model/base.genmodel#//base failureLogic.genmodel#//failureLogic integration.genmodel#//integration odeBase.genmodel#//odeBase ../../../org.eclipse.acme.sacm/model/terminology.genmodel#//terminology"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>dependability.ecore</foreignModel>
+  <genPackages prefix="Dependability_" disposableProviderFactory="true" childCreationExtenders="true"
+      fileExtensions="dependability" ecorePackage="dependability.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dependability.ecore#//SecurityApplicationType">
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//SecurityApplicationType/Preventive"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//SecurityApplicationType/Active"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//SecurityApplicationType/Passive"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dependability.ecore#//FinancialCostType">
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//FinancialCostType/USD"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//FinancialCostType/EUR"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//FinancialCostType/GBP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dependability.ecore#//OperationalCostType">
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//OperationalCostType/Workhours"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//OperationalCostType/Workdays"/>
+      <genEnumLiterals ecoreEnumLiteral="dependability.ecore#//OperationalCostType/Workmonths"/>
+    </genEnums>
+    <genClasses ecoreClass="dependability.ecore#//MaintenanceProcedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/activityDescription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/technicalDescription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/toolSpecification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/staffNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/staffSkillLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//MaintenanceProcedure/staffTrainingDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//MeasureType"/>
+    <genClasses ecoreClass="dependability.ecore#//Measure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/intrinsicSafety"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/safeGuard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/applierInformation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/riskAcceptability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/furtherAction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Measure/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Measure/measureType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Measure/assuranceLevel"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//FaultToleranceMeasure"/>
+    <genClasses ecoreClass="dependability.ecore#//DependabilityPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/measures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/measureTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/maintenanceProcedures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/HARAPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/requirementPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/domainPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityPackage/TARAPackages"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//HARAPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/hazards"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/hazardTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/hazardTypeSystems"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/malfunctions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/riskAssessments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//HARAPackage/riskParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Hazard">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Hazard/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Hazard/failures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Hazard/measures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Hazard/hazardType"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//HazardTypeSystem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//HazardTypeSystem/hazardTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//HazardType"/>
+    <genClasses ecoreClass="dependability.ecore#//Malfunction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Malfunction/hazards"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//RiskAssessment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//RiskAssessment/relatedStandard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//RiskAssessment/riskParameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//RiskAssessment/hazard"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//RiskParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//RiskParameter/argument"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Situation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Situation/likelihood"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Accident">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Accident/severity"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//OperatorMeasure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//OperatorMeasure/controlability"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//RequirementPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//RequirementPackage/requirementSources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//RequirementPackage/dependabilityRequirements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dependability.ecore#//RequirementSource"/>
+    <genClasses ecoreClass="dependability.ecore#//LegalContract"/>
+    <genClasses image="false" ecoreClass="dependability.ecore#//DependabilityRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//DependabilityRequirement/decompositionArgument"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/refinedRequirements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/requirementSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/measures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/failures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/assuranceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//DependabilityRequirement/maintenanceProcedures"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//SafetyRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SafetyRequirement/failureReactionTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SafetyRequirement/failureDetectionTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SafetyRequirement/failureLatencyTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SafetyRequirement/isSafetyGoal"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SafetyRequirement/hazards"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//SecurityRequirement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SecurityRequirement/securityCapabilities"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//DomainPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DomainPackage/standards"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//DomainPackage/assuranceLevels"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Standard"/>
+    <genClasses ecoreClass="dependability.ecore#//AssuranceLevel"/>
+    <genClasses ecoreClass="dependability.ecore#//SafetyStandard">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SafetyStandard/assuranceLevels"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//TARAPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//TARAPackage/identifiedRisks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//TARAPackage/controls"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//TARAPackage/consideredAssets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//TARAPackage/consideredThreatAgents"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Asset">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Asset/financialValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Asset/financialCostType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Asset/operationalCost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Asset/operationalCostType"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//SecurityControl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityControl/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityControl/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SecurityControl/vulnerabilities"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//SecurityCapability">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityCapability/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityCapability/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SecurityCapability/implementedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Vulnerability">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Vulnerability/category"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//VulnerableItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//VulnerableItem/vulnerabilities"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//AttackerGoal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//AttackerGoal/category"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//AttackerGoal/addressedBy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//AttackerGoal/attacks"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//AttackerGoal/attackedItems"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//SecurityRisk">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityRisk/likelihood"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityRisk/impactAsset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityRisk/impactIndividuals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//SecurityRisk/impactBusiness"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//SecurityRisk/attackerGoals"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Attack">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/financialCost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/financialCostType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/timeRequired"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/timeUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/difficulty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//Attack/detectability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Attack/violations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Attack/exploitedVulnerabilities"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Payload"/>
+    <genClasses ecoreClass="dependability.ecore#//Action"/>
+    <genClasses ecoreClass="dependability.ecore#//ThreatAgent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//ThreatAgent/skillLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//ThreatAgent/motivation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dependability.ecore#//ThreatAgent/anonymityDesire"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dependability.ecore#//ThreatAgent/attackerGoals"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//Human">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//Human/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="dependability.ecore#//NonHuman">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dependability.ecore#//NonHuman/payloads"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

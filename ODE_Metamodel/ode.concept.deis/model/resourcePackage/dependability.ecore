@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dependability" nsURI="http://www.deis-project.eu/ode/dependability"
-    nsPrefix="dependability_">
+    nsPrefix="dependability">
   <eClassifiers xsi:type="ecore:EClass" name="MaintenanceProcedure" eSuperTypes="odeBase.ecore#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="activityDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="technicalDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ode.concept.deis/src" modelPluginID="ode.concept.deis"
+    modelName="FailureLogic" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../org.eclipse.acme.sacm/model/argumentation.genmodel#//argumentation ../../../org.eclipse.acme.sacm/model/artifact.genmodel#//artifact ../../../org.eclipse.acme.sacm/model/assurancecase.genmodel#//assuranceCase ../../../org.eclipse.acme.sacm/model/base.genmodel#//base integration.genmodel#//integration odeBase.genmodel#//odeBase ../../../org.eclipse.acme.sacm/model/terminology.genmodel#//terminology"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>failureLogic.ecore</foreignModel>
+  <genPackages prefix="FailureLogic_" disposableProviderFactory="true" childCreationExtenders="true"
+      fileExtensions="failurelogic" ecorePackage="failureLogic.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="failureLogic.ecore#//FailureOriginType">
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//FailureOriginType/Input"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//FailureOriginType/Output"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//FailureOriginType/Internal"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="failureLogic.ecore#//GateType">
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/NOT"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/VOTE"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/PAND"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/POR"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/SAND"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/InputEvent"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//GateType/OutputEvent"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="failureLogic.ecore#//CauseType">
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//CauseType/InputEvent"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//CauseType/OutputEvent"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//CauseType/BasicEvent"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//CauseType/Gate"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="failureLogic.ecore#//FMEAType">
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//FMEAType/FMEA"/>
+      <genEnumLiterals ecoreEnumLiteral="failureLogic.ecore#//FMEAType/FMEDA"/>
+    </genEnums>
+    <genClasses ecoreClass="failureLogic.ecore#//FailureLogicPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FailureLogicPackage/failureModels"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//Failure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Failure/originType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Failure/failureClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Failure/failureRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Failure/isCcf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Failure/failureProbDistribution"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Failure/ccfFailures"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//SecurityViolation"/>
+    <genClasses ecoreClass="failureLogic.ecore#//FailureModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FailureModel/minimalCutsets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FailureModel/failures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FailureModel/subModels"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//MinimalCutSets">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//MinimalCutSets/cutsets"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//MinimalCutSets/failures"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//MinimalCutset">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//MinimalCutset/failures"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//ProbDist">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//ProbDist/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//ProbDist/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//ProbDistParam">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//ProbDistParam/value"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//FaultTree">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FaultTree/causes"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//Cause">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Cause/causeType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Cause/failure"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//Gate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Gate/gateType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Gate/causes"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//MarkovChain">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//MarkovChain/transitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//MarkovChain/states"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//State/isInitialState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//State/isFailState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//State/failState"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//Transition/transition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Transition/transitionProbDistribution"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Transition/fromStates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//Transition/toStates"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//FMEA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//FMEA/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FMEA/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//FMEAEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FMEAEntry/effect"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FMEAEntry/mode"/>
+    </genClasses>
+    <genClasses ecoreClass="failureLogic.ecore#//FMEDAEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute failureLogic.ecore#//FMEDAEntry/diagnosisRate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference failureLogic.ecore#//FMEDAEntry/diagnosisProbDistribution"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

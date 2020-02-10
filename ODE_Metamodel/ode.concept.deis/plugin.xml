@@ -6,10 +6,45 @@
 
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SACM -->
+      <package
+            uri="http://www.omg.org/sacm/2.0/base"
+            class="sacm.base.Base_Package"
+            genModel="model/resourcePackage/SACM.genmodel"/>
+   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SACM -->
+      <package
+            uri="http://www.omg.org/sacm/2.0/terminology"
+            class="sacm.terminology.Terminology_Package"
+            genModel="model/resourcePackage/SACM.genmodel"/>
+   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SACM -->
+      <package
+            uri="http://www.omg.org/sacm/2.0/assurancecase"
+            class="sacm.assuranceCase.AssuranceCase_Package"
+            genModel="model/resourcePackage/SACM.genmodel"/>
+   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SACM -->
+      <package
+            uri="http://www.omg.org/sacm/2.0/artifact"
+            class="sacm.artifact.Artifact_Package"
+            genModel="model/resourcePackage/SACM.genmodel"/>
+   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SACM -->
+      <package
+            uri="http://www.omg.org/sacm/2.0/argument"
+            class="sacm.argumentation.Argumentation_Package"
+            genModel="model/resourcePackage/SACM.genmodel"/>
+   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated base -->
       <package
@@ -90,4 +125,83 @@
             genModel="model/resourcePackage/architecture.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/sacm/base"
+            class="top.base.BasePackage"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/sacm/artifact"
+            class="top.artifact.Artifact_Package"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/sacm/terminology"
+            class="top.terminology.Terminology_Package"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/sacm/argumentation"
+            class="top.argumentation.ArgumentationPackage"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/sacm/assurancecase"
+            class="top.assuranceCase.AssuranceCase_Package"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/base"
+            class="top.odeBase.OdeBasePackage"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/integration"
+            class="top.integration.IntegrationPackage"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/failureLogic"
+            class="top.failureLogic.FailureLogic_Package"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/dependability"
+            class="top.dependability.Dependability_Package"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergedODE -->
+      <package
+            uri="http://www.deis-project.eu/ode/mergedODE/architecture"
+            class="top.architecture.ArchitecturePackage"
+            genModel="model/mergedODE/mergedODE.genmodel"/>
+   </extension>
 </plugin>

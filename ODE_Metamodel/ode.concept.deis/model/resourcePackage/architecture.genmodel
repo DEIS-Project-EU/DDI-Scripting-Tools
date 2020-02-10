@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ode.concept.deis/src" modelPluginID="ode.concept.deis"
+    modelName="Architecture" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../org.eclipse.acme.sacm/model/argumentation.genmodel#//argumentation ../../../org.eclipse.acme.sacm/model/artifact.genmodel#//artifact ../../../org.eclipse.acme.sacm/model/assurancecase.genmodel#//assuranceCase ../../../org.eclipse.acme.sacm/model/base.genmodel#//base dependability.genmodel#//dependability failureLogic.genmodel#//failureLogic integration.genmodel#//integration odeBase.genmodel#//odeBase ../../../org.eclipse.acme.sacm/model/terminology.genmodel#//terminology"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>architecture.ecore</foreignModel>
+  <genPackages prefix="Architecture_" disposableProviderFactory="true" childCreationExtenders="true"
+      fileExtensions="architecture" ecorePackage="architecture.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="architecture.ecore#//PortDirection">
+      <genEnumLiterals ecoreEnumLiteral="architecture.ecore#//PortDirection/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="architecture.ecore#//PortDirection/OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="architecture.ecore#//PortDirection/INOUT"/>
+    </genEnums>
+    <genClasses ecoreClass="architecture.ecore#//DesignPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//DesignPackage/systems"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//DesignPackage/functions"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//System">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//System/overallLifetime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//System/overallLifetimeTimeUnit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//System/systemBoundaries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//System/contexts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//System/configurations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//System/signals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//System/ports"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/subSystems"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/realisedFunctions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/asAsset"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/dependabilityRequirements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/assuranceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/appliedStandards"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//System/failureModels"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//Function">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/signals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/ports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/perfChars"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/subFunctions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/asAsset"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/dependabilityRequirements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/assuranceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/failureModels"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Function/malfunctions"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//SafetyFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//SafetyFunction/object"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//SafetyFunction/behavior"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//SafetyFunction/safeState"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Port/flowType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Port/direction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Port/interfaceFailures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Port/refinedPorts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Port/assuranceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Port/dependabilityRequirements"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//PerfChars">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PerfChars/responseTime"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//SystemBoundary">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//SystemBoundary/ports"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//Context">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Context/usageHistory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Context/missionTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Context/missionTimeTimeUnit"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//PhysicalComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/dimensions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/pricePerUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/protectionCategory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/usefulLifetime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PhysicalComponent/usefulLifetimeTimeUnit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//PhysicalComponent/lifecycleConditions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//PhysicalComponent/logicalComponents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//PhysicalComponent/maintenanceProcedure"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//LogicalComponent"/>
+    <genClasses ecoreClass="architecture.ecore#//LifecycleCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//LifecycleCondition/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference architecture.ecore#//LifecycleCondition/conditions"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//Signal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Signal/fromPort"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Signal/toPort"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//SafetyRelatedSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//SafetyRelatedSystem/safeState"/>
+    </genClasses>
+    <genClasses ecoreClass="architecture.ecore#//Configuration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Configuration/subSystems"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

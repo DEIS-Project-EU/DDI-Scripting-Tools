@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ode.concept.deis/src" modelPluginID="ode.concept.deis"
+    modelName="MergedODE" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mergedODE.ecore</foreignModel>
+  <genPackages prefix="Top" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#/">
+    <nestedGenPackages prefix="Base" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//base">
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//base/Element"/>
+      <genClasses ecoreClass="mergedODE.ecore#//base/LangString">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//base/LangString/lang"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//base/LangString/content"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//base/ExpressionLangString">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ExpressionLangString/expression"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//base/MultiLangString">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/MultiLangString/value"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//base/SACMElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//base/SACMElement/gid"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//base/SACMElement/isCitation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//base/SACMElement/isAbstract"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//base/SACMElement/citedElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//base/SACMElement/abstractForm"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//base/UtilityElement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/UtilityElement/content"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//base/Description"/>
+      <genClasses ecoreClass="mergedODE.ecore#//base/ImplementationConstraint"/>
+      <genClasses ecoreClass="mergedODE.ecore#//base/Note"/>
+      <genClasses ecoreClass="mergedODE.ecore#//base/TaggedValue">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/TaggedValue/key"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//base/ModelElement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ModelElement/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ModelElement/description"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ModelElement/implementationConstraint"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ModelElement/note"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//base/ModelElement/taggedValue"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//base/ArtifactElement"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Artifact_" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//artifact">
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/ArtifactGroup">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactGroup/artifactElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/ArtifactPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactPackage/artifactElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/ArtifactPackageBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactPackageBinding/participantPackage"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/ArtifactPackageInterface">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactPackageInterface/implements"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//artifact/ArtifactAsset">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactAsset/artifactProperty"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Property"/>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Technique"/>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Participant"/>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Activity">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//artifact/Activity/startTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//artifact/Activity/endTime"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Event">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//artifact/Event/occurence"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Resource"/>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/Artifact">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//artifact/Artifact/version"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//artifact/Artifact/date"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//artifact/ArtifactAssetRelationship">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactAssetRelationship/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//artifact/ArtifactAssetRelationship/target"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Terminology_" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//terminology">
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//terminology/TerminologyElement"/>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/TerminologyGroup">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/TerminologyGroup/terminologyElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/TerminologyPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/TerminologyPackage/terminologyElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/TerminologyPackageBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/TerminologyPackageBinding/participantPackage"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/TerminologyPackageInterface">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/TerminologyPackageInterface/implements"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//terminology/TerminologyAsset"/>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/Category">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/Category/category"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//terminology/ExpressionElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//terminology/ExpressionElement/value"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/ExpressionElement/category"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/Expression">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/Expression/element"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//terminology/Term">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//terminology/Term/externalReference"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//terminology/Term/origin"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Argumentation" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//argumentation">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//argumentation/AssertionDeclaration">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/asserted"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/needsSupport"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/assumed"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/axiomatic"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/defeated"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//argumentation/AssertionDeclaration/asCited"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//argumentation/ArgumentationElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//argumentation/ArgumentationElement/uninstantiated"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArgumentGroup">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentGroup/argumentationElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArgumentPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentPackage/argumentationElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArgumentPackageInterface">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentPackageInterface/implements"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArgumentPackageBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentPackageBinding/participantPackage"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//argumentation/ArgumentAsset">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentAsset/content"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//argumentation/Assertion">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//argumentation/Assertion/assertionDeclaration"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/Assertion/metaClaim"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArgumentReasoning">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArgumentReasoning/structure"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/Claim"/>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//argumentation/AssertedRelationship">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//argumentation/AssertedRelationship/isCounter"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/AssertedRelationship/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/AssertedRelationship/target"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/AssertedRelationship/reasoning"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//argumentation/AssertedRelationship/requies"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/ArtifactReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//argumentation/ArtifactReference/referencedArtifactElement"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/AssertedArtifactSupport"/>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/AssertedInference"/>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/AssertedEvidence"/>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/AssertedContext"/>
+      <genClasses ecoreClass="mergedODE.ecore#//argumentation/AssertedArtifactContext"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="AssuranceCase_" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//assuranceCase">
+      <genClasses ecoreClass="mergedODE.ecore#//assuranceCase/AssuranceCasePackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackage/assuranceCasePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackage/interface"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackage/artifactPackage"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackage/argumentPackage"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackage/terminologyPackage"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//assuranceCase/AssuranceCasePackageBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackageBinding/participantPackage"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//assuranceCase/AssuranceCasePackageInterface">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//assuranceCase/AssuranceCasePackageInterface/implements"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="OdeBase" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//odeBase">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//odeBase/TimeUnit">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Millisecond"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Second"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Minute"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Hour"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Day"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Week"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Month"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//odeBase/TimeUnit/Year"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//odeBase/BaseElement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//odeBase/BaseElement/keyValueMaps"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/BaseElement/Id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/BaseElement/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/BaseElement/description"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//odeBase/KeyValueMap">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/KeyValueMap/key"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//odeBase/KeyValueMap/values"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//odeBase/Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/Value/tag"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//odeBase/Value/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Integration" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//integration">
+      <genClasses ecoreClass="mergedODE.ecore#//integration/DDIPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//integration/DDIPackage/odeProductPackages"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//integration/DDIPackage/assuranceCasePackages"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//integration/ODEProductPackage"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="FailureLogic_" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//failureLogic">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//failureLogic/FailureOriginType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/FailureOriginType/Input"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/FailureOriginType/Output"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/FailureOriginType/Internal"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//failureLogic/GateType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/OR"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/AND"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/NOT"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/XOR"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/VOTE"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/PAND"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/POR"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/SAND"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/InputEvent"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/GateType/OutputEvent"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//failureLogic/CauseType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/CauseType/InputEvent"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/CauseType/OutputEvent"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/CauseType/BasicEvent"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/CauseType/Gate"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//failureLogic/FMEAType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/FMEAType/FMEA"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//failureLogic/FMEAType/FMEDA"/>
+      </genEnums>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FailureLogicPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FailureLogicPackage/failureModels"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/Failure">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Failure/originType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Failure/failureClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Failure/failureRate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Failure/isCcf"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Failure/failureProbDistribution"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Failure/ccfFailures"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/SecurityViolation"/>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FailureModel">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FailureModel/minimalCutsets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FailureModel/failures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FailureModel/subModels"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/MinimalCutSets">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/MinimalCutSets/cutsets"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/MinimalCutSets/failures"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/MinimalCutset">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/MinimalCutset/failures"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/ProbDist">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/ProbDist/type"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/ProbDist/parameters"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/ProbDistParam">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/ProbDistParam/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FaultTree">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FaultTree/causes"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/Cause">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Cause/causeType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Cause/failure"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/Gate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Gate/gateType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Gate/causes"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/MarkovChain">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/MarkovChain/transitions"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/MarkovChain/states"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/State">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/State/isInitialState"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/State/isFailState"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/State/failState"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/Transition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/Transition/transition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Transition/transitionProbDistribution"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Transition/fromStates"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/Transition/toStates"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FMEA">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/FMEA/type"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FMEA/entries"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FMEAEntry">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FMEAEntry/effect"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FMEAEntry/mode"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//failureLogic/FMEDAEntry">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//failureLogic/FMEDAEntry/diagnosisRate"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//failureLogic/FMEDAEntry/diagnosisProbDistribution"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Dependability_" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//dependability">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//dependability/SecurityApplicationType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/SecurityApplicationType/Preventive"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/SecurityApplicationType/Active"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/SecurityApplicationType/Passive"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//dependability/FinancialCostType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/FinancialCostType/USD"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/FinancialCostType/EUR"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/FinancialCostType/GBP"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//dependability/OperationalCostType">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/OperationalCostType/Workhours"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/OperationalCostType/Workdays"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//dependability/OperationalCostType/Workmonths"/>
+      </genEnums>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/MaintenanceProcedure">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/activityDescription"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/technicalDescription"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/toolSpecification"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/staffNumber"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/staffSkillLevel"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/MaintenanceProcedure/staffTrainingDescription"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/MeasureType"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Measure">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/intrinsicSafety"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/safeGuard"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/applierInformation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/riskAcceptability"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/furtherAction"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Measure/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Measure/measureType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Measure/assuranceLevel"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/FaultToleranceMeasure"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/DependabilityPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/measures"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/measureTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/maintenanceProcedures"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/HARAPackages"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/requirementPackages"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/domainPackages"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityPackage/TARAPackages"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/HARAPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/hazards"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/hazardTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/hazardTypeSystems"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/malfunctions"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/riskAssessments"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HARAPackage/riskParameters"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Hazard">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Hazard/condition"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Hazard/failures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Hazard/measures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Hazard/hazardType"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/HazardTypeSystem">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/HazardTypeSystem/hazardTypes"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/HazardType"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Malfunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Malfunction/hazards"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/RiskAssessment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/RiskAssessment/relatedStandard"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/RiskAssessment/riskParameters"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/RiskAssessment/hazard"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/RiskParameter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/RiskParameter/argument"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Situation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Situation/likelihood"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Accident">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Accident/severity"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/OperatorMeasure">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/OperatorMeasure/controlability"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/RequirementPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/RequirementPackage/requirementSources"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/RequirementPackage/dependabilityRequirements"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//dependability/RequirementSource"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/LegalContract"/>
+      <genClasses image="false" ecoreClass="mergedODE.ecore#//dependability/DependabilityRequirement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/DependabilityRequirement/decompositionArgument"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/refinedRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/requirementSource"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/measures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/failures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/assuranceLevel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DependabilityRequirement/maintenanceProcedures"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SafetyRequirement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SafetyRequirement/failureReactionTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SafetyRequirement/failureDetectionTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SafetyRequirement/failureLatencyTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SafetyRequirement/isSafetyGoal"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SafetyRequirement/hazards"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SecurityRequirement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SecurityRequirement/securityCapabilities"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/DomainPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DomainPackage/standards"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/DomainPackage/assuranceLevels"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Standard"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/AssuranceLevel"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SafetyStandard">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SafetyStandard/assuranceLevels"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/TARAPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/TARAPackage/identifiedRisks"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/TARAPackage/controls"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/TARAPackage/consideredAssets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/TARAPackage/consideredThreatAgents"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Asset">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Asset/financialValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Asset/financialCostType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Asset/operationalCost"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Asset/operationalCostType"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SecurityControl">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityControl/category"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityControl/type"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SecurityControl/vulnerabilities"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SecurityCapability">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityCapability/category"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityCapability/type"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SecurityCapability/implementedBy"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Vulnerability">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Vulnerability/category"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/VulnerableItem">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/VulnerableItem/vulnerabilities"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/AttackerGoal">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/AttackerGoal/category"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/AttackerGoal/addressedBy"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/AttackerGoal/attacks"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/AttackerGoal/attackedItems"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/SecurityRisk">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityRisk/likelihood"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityRisk/impactAsset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityRisk/impactIndividuals"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/SecurityRisk/impactBusiness"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/SecurityRisk/attackerGoals"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Attack">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/category"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/financialCost"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/financialCostType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/timeRequired"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/timeUnit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/difficulty"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/Attack/detectability"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Attack/violations"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Attack/exploitedVulnerabilities"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Payload"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Action"/>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/ThreatAgent">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/ThreatAgent/skillLevel"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/ThreatAgent/motivation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//dependability/ThreatAgent/anonymityDesire"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/ThreatAgent/attackerGoals"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/Human">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/Human/actions"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//dependability/NonHuman">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//dependability/NonHuman/payloads"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Architecture" disposableProviderFactory="true" ecorePackage="mergedODE.ecore#//architecture">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mergedODE.ecore#//architecture/PortDirection">
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//architecture/PortDirection/IN"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//architecture/PortDirection/OUT"/>
+        <genEnumLiterals ecoreEnumLiteral="mergedODE.ecore#//architecture/PortDirection/INOUT"/>
+      </genEnums>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/DesignPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/DesignPackage/systems"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/DesignPackage/functions"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/System">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/System/overallLifetime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/System/overallLifetimeTimeUnit"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/systemBoundaries"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/contexts"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/configurations"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/signals"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/ports"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/subSystems"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/realisedFunctions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/asAsset"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/dependabilityRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/assuranceLevel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/appliedStandards"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/System/failureModels"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/Function">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/signals"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/ports"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/perfChars"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/subFunctions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/asAsset"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/dependabilityRequirements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/assuranceLevel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/failureModels"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Function/malfunctions"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/SafetyFunction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/SafetyFunction/object"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/SafetyFunction/behavior"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/SafetyFunction/safeState"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/Port">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/Port/flowType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/Port/direction"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Port/interfaceFailures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Port/refinedPorts"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Port/assuranceLevel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Port/dependabilityRequirements"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/PerfChars">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PerfChars/responseTime"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/SystemBoundary">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/SystemBoundary/ports"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/Context">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/Context/usageHistory"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/Context/missionTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/Context/missionTimeTimeUnit"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/PhysicalComponent">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/dimensions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/pricePerUnit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/mass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/protectionCategory"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/usefulLifetime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/PhysicalComponent/usefulLifetimeTimeUnit"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/PhysicalComponent/lifecycleConditions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/PhysicalComponent/logicalComponents"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/PhysicalComponent/maintenanceProcedure"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/LogicalComponent"/>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/LifecycleCondition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/LifecycleCondition/value"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/LifecycleCondition/conditions"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/Signal">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Signal/fromPort"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Signal/toPort"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/SafetyRelatedSystem">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergedODE.ecore#//architecture/SafetyRelatedSystem/safeState"/>
+      </genClasses>
+      <genClasses ecoreClass="mergedODE.ecore#//architecture/Configuration">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mergedODE.ecore#//architecture/Configuration/subSystems"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
