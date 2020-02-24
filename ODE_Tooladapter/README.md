@@ -9,9 +9,9 @@ For language independent communication between the tooladapter and modeling tool
 1. The ODE Tooladapter project depends on the [ODE Metamodel](https://github.com/DEIS-Project-EU/DDI-Scripting-Tools/tree/master/ODE_Metamodel/ode.concept.deis) project.
 2. Before running the ODE Tooladapter inside Eclipse, all ecore files of the metamodel have to be registered.
 
-# Metamodel change adaption
+# Metamodel change adaptation
 
-After the ODE metamodel has been changed, the Thrift contract and the ODE Tooladapter have to be adapted. The adaption steps are listed below: 
+After the ODE metamodel has been changed, the Thrift contract and the ODE Tooladapter have to be adapted. The adaptation steps are listed below: 
 
 1. Adapt changes in the Thrift contract. Under *\ThriftContract\ODEv2ThriftContract\Structs* you can find a .thrift file for each metamodel package. In these .thrift files the ODE metamodel types are defined in [Thrift interface description language](https://thrift.apache.org/docs/idl) (IDL).
 2. Generate language specific code from Thrift.
