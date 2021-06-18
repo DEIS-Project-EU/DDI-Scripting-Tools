@@ -985,7 +985,7 @@ operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!Tagg
 	result.key = new m!MultiLangString;
 	result.key.BuildLangString("en", key );
 	result.content = new m!MultiLangString;
-	result.content.BuildLangString("en",value);
+	result.content.BuildLangString("en", value);
 	self.taggedValue.add(result);
 	result.gid = GetID().asString();
 	return result;
@@ -1003,20 +1003,20 @@ operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!Tagg
   @type String
   The 'key' of the TaggedValue
  @param value
-  @type Sequence(String)
+  @type Collection(String)
   The 'values' of the TaggedValue
  @comments
   Builds a TaggedValue, adds it to the context ModelElement and returns it 
   <br> The built TaggedValue is initialised with an ID using GetID() 
   <br> This function maps one key to multiple values.
 */
-operation m!ModelElement BuildTaggedValue(key : String, values : Sequence(String)) : m!TaggedValue{
+operation m!ModelElement BuildTaggedValue(key : String, values : Collection(String)) : m!TaggedValue {
 	var taggedValue : new m!TaggedValue;
 	taggedValue.key = new m!MultiLangString;
-	taggedValue.key.BuildLangString("en" , key);
+	taggedValue.key.BuildLangString("en", key);
 	taggedValue.content = new m!MultiLangString;
 	for (value : String in values){
-		taggedValue.content.BuildLangString("en",value);
+		taggedValue.content.BuildLangString("en", value);
 	}
 	self.taggedValue.add(taggedValue);
 	taggedValue.gid = GetID().asString();
@@ -1033,10 +1033,10 @@ operation m!ModelElement BuildTaggedValue(key : String, values : Sequence(String
   @type TaggedValue
   The built TaggedValue
  @param key
-  @type Sequence(String)
+  @type Collection(String)
   The 'keys' of the TaggedValue
  @param value
-  @type Sequence(String)
+  @type Collection(String)
   The 'values' of the TaggedValue
  @comments
   Builds a TaggedValue, adds it to the context ModelElement and returns it 
@@ -1044,15 +1044,15 @@ operation m!ModelElement BuildTaggedValue(key : String, values : Sequence(String
   <br> This function maps multiple keys to multiple values within one TaggedValue.
   <br> Note: A TaggedValue can have multiple keys 
 */
-operation m!ModelElement BuildTaggedValue(keys : Sequence(String), values : Sequence(String)) : m!TaggedValue{
+operation m!ModelElement BuildTaggedValue(keys : Collection(String), values : Collection(String)) : m!TaggedValue {
 	var taggedValue : new m!TaggedValue;
 	taggedValue.key = new m!MultiLangString;
 	for (key:String in keys){
-		taggedValue.key.BuildLangString("en" , key);
+		taggedValue.key.BuildLangString("en", key);
 	}
 	taggedValue.content = new m!MultiLangString;
 	for (value : String in values){
-		taggedValue.content.BuildLangString("en",value);
+		taggedValue.content.BuildLangString("en", value);
 	}
 	self.taggedValue.add(taggedValue);
 	taggedValue.gid = GetID().asString();
@@ -1078,7 +1078,7 @@ operation m!ModelElement BuildTaggedValue(keys : Sequence(String), values : Sequ
 */
 operation m!ModelElement HasTaggedValue(key : String) : Boolean {
 	for(t in self.taggedValue) 
-		for (v in t.key.value){
+		for (v in t.key.value) {
 			if(v.content == key)
 			   return true;
 		}
