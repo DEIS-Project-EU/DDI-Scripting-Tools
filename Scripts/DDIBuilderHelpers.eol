@@ -968,17 +968,95 @@ operation m!MultiLangString BuildLangString(lang : String, content : String) : m
   The 'value' of the TaggedValue
  @comments
   Builds a TaggedValue, adds it to the context ModelElement and returns it 
-  <br> Note that a MultiLangString does not have an explicit 'key' or 'value' property; 
-  <br> the key is set as the lang of a LangString contained in the MultiLangString, the 'value' being the content 
   <br> The built TaggedValue is initialised with an ID using GetID() 
+  <br><b>Attention: Method updated to comply to SACM meta model:</b>
+  <br> Each TaggedValue consists of a MultiLangString <key> containing LangStrings.
+  <br> The key value is now in the "content" attribute of the LangString element <value>.	
+  <br> It is further now possible to add multiple keys for one TaggedValue. 
+  <br> See functions below.	
+  <br> Each TaggedValue further has a MultiLangString <content> to store the value
+  <br> as a LangString. Here, the value is also located in the "content" attribute 
+  <br> of the LangString element <value>. 
+  <br> It is now also possible to add multiple values to one or more keys within
+  <br> a single TaggedValue element. See functions below.
 */
 operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!TaggedValue {
 	var result : new m!TaggedValue;
 	result.key = new m!MultiLangString;
-	result.key.BuildLangString(key, value);
+	result.key.BuildLangString("en", key );
+	result.content = new m!MultiLangString;
+	result.content.BuildLangString("en",value);
 	self.taggedValue.add(result);
 	result.gid = GetID().asString();
 	return result;
+}
+
+/**
+@BuildTaggedValue
+ @context
+  @type ModelElement
+  The ModelElement to which the constructed TaggedValue will be added
+ @return-type
+  @type TaggedValue
+  The built TaggedValue
+ @param key
+  @type String
+  The 'key' of the TaggedValue
+ @param value
+  @type Sequence(String)
+  The 'values' of the TaggedValue
+ @comments
+  Builds a TaggedValue, adds it to the context ModelElement and returns it 
+  <br> The built TaggedValue is initialised with an ID using GetID() 
+  <br> This function maps one key to multiple values.
+*/
+operation m!ModelElement BuildTaggedValue(key : String, values : Sequence(String)) : m!TaggedValue{
+	var taggedValue : new m!TaggedValue;
+	taggedValue.key = new m!MultiLangString;
+	taggedValue.key.BuildLangString("en" , key);
+	taggedValue.content = new m!MultiLangString;
+	for (value : String in values){
+		taggedValue.content.BuildLangString("en",value);
+	}
+	self.taggedValue.add(taggedValue);
+	taggedValue.gid = GetID().asString();
+	return taggedValue;
+}
+
+
+/**
+@BuildTaggedValue
+ @context
+  @type ModelElement
+  The ModelElement to which the constructed TaggedValue will be added
+ @return-type
+  @type TaggedValue
+  The built TaggedValue
+ @param key
+  @type Sequence(String)
+  The 'keys' of the TaggedValue
+ @param value
+  @type Sequence(String)
+  The 'values' of the TaggedValue
+ @comments
+  Builds a TaggedValue, adds it to the context ModelElement and returns it 
+  <br> The built TaggedValue is initialised with an ID using GetID() 
+  <br> This function maps multiple keys to multiple values within one TaggedValue.
+  <br> Note: A TaggedValue can have multiple keys 
+*/
+operation m!ModelElement BuildTaggedValue(keys : Sequence(String), values : Sequence(String)) : m!TaggedValue{
+	var taggedValue : new m!TaggedValue;
+	taggedValue.key = new m!MultiLangString;
+	for (key:String in keys){
+		taggedValue.key.BuildLangString("en" , key);
+	}
+	taggedValue.content = new m!MultiLangString;
+	for (value : String in values){
+		taggedValue.content.BuildLangString("en",value);
+	}
+	self.taggedValue.add(taggedValue);
+	taggedValue.gid = GetID().asString();
+	return taggedValue;
 }
 
 /**
@@ -996,15 +1074,15 @@ operation m!ModelElement BuildTaggedValue(key : String, value : String) : m!Tagg
  @comments
   Searches across the context ModelElement's TaggedValues to find whether 
   <br> there is at least one with the same name as the parameter
+  <br> <b>Attention: Method updated to work according to updated BuildTaggedValue functions</b> 
 */
-operation m!ModelElement HasTaggedValue(name : String) : Boolean {
+operation m!ModelElement HasTaggedValue(key : String) : Boolean {
 	for(t in self.taggedValue) 
-		if(t.key.value.first().lang = name)
-			return true;
+		for (v in t.key.value){
+			if(v.content == key)
+			   return true;
+		}
 	return false;
-	// This should be equivalent and work because taggedValue is an OrderedSet
-	// OrderedSet is a subclass of Collection and Collection::includes should work
-	//return self.taggedValue.includes(t | t.key.value.first().lang = name);
 }
 
 /**
@@ -1043,6 +1121,35 @@ operation m!ModelElement SetDescription(input : String) {
 	descContentValue.lang = "en";
 	descContentValue.content = input;
 	self.description.content.value.add(descContentValue);
+}
+
+/**
+@SetNameAndDescription
+ @context
+  @type ModelElement
+ @param name
+  @type String
+  The name of the ModelElement
+ @param description
+  @type String
+  The description of the context ModelElement
+ @comments
+  Sets the context ModelElement's Description and the name of the ModelElement.
+  <br> The description is contained in a MultiLangString and then LangString.
+  <br> The name is set within a LangString.
+  <br> The LangString language is set to be 'en'
+*/
+operation m!ModelElement SetNameAndDescription(name : String, description : String) {
+	self.description = new m!Description;
+	self.description.content = new m!MultiLangString;
+	var descContentValue : new m!LangString;
+	descContentValue.lang = "en";
+	descContentValue.content = description;
+	self.description.content.value.add(descContentValue);
+	
+	self.name = new m!LangString;
+	self.name.lang = "en";
+	self.name.content = name;
 }
 
 /**
@@ -1482,6 +1589,7 @@ operation m!ArgumentPackage LinkGoalToGoals(target : m!Claim, subGoals : Collect
 	result.target.add(target);
 	return result;
 }
+
 
 /**
 @LinkGoalToGoals(2)
